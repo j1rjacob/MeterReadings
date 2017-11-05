@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Data;
 using System.Data.SqlClient;
+using System.Diagnostics;
 using TMF.Core.Model;
 
 namespace TMF.Core
@@ -44,7 +45,9 @@ namespace TMF.Core
                 for (int i = 0; i < insertParameters.Length; i++)
                 {
                     string fieldname = insertParameters[i].ParameterName.Remove(0, 1);
+                    //string fieldname = insertParameters[i].ParameterName;
                     bool flag = info[fieldname] == null;
+                    Debug.WriteLine($"Id {info["Id"]}");
                     if (flag)
                     {
                         insertParameters[i].Value = DBNull.Value;
@@ -65,6 +68,7 @@ namespace TMF.Core
             }
             catch (Exception ex)
             {
+                Debug.WriteLine($"Error from Inser {ex.Message}");
                 bool flag3 = ex.Message.Contains("null reference");
                 if (flag3)
                 {
@@ -77,6 +81,12 @@ namespace TMF.Core
             SqlDataReader sqlDataReader = null;
             try
             {
+                Debug.WriteLine(insertParameters.Length);
+                foreach (var item in insertParameters)
+                {
+                    Debug.WriteLine(item.Value.ToString());
+                }
+
                 bool transactionControl = dbInstance.TransactionControl;
                 if (transactionControl)
                 {
@@ -112,6 +122,7 @@ namespace TMF.Core
             }
             catch (Exception ex2)
             {
+                Debug.WriteLine($"Error from Insert {ex2.Message}");
                 bool flag7 = ex2.Message.Contains("unique constraint");
                 if (flag7)
                 {

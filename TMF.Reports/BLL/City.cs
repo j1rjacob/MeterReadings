@@ -62,13 +62,13 @@ namespace TMF.Reports.BLL
             ReturnInfo result;
             if (flag)
             {
-                bool flag2 = (info2.BizObject as Model.City).Lock_Count == info.Lock_Count;
+                bool flag2 = (info2.BizObject as Model.City).LockCount == info.LockCount;
                 if (!flag2)
                 {
                     result = new ReturnInfo(ErrorEnum.ColumnReference, "Record has been changed.");
                     return result;
                 }
-                info.Lock_Count++;
+                info.LockCount++;
                 info2 = _dal.Update(dbInstance, info);
             }
             result = new ReturnInfo(info2.Code, info2.Message, info2.RowsAffected);

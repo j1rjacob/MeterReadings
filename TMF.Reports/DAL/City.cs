@@ -26,11 +26,11 @@ namespace TMF.Reports.DAL
                 info = new Model.City();
                 info.Id = CastDBNull.To<string>(reader["Id"], "");
                 info.Description = CastDBNull.To<string>(reader["Description"], "");
-                info.TotalNumberOfMeters = CastDBNull.To<int>(reader["Total_Number_Of_Meters"], 0);
-                info.CreatedBy = CastDBNull.To<string>(reader["Created_by"], "");
-                info.EditedBy = CastDBNull.To<string>(reader["Edited_by"], "");
-                info.DocDate = CastDBNull.To<DateTime>(reader["Doc_Date"], DateTime.Now);
-                info.Show = CastDBNull.To<bool>(reader["Show"], true);
+                info.TotalNumberOfMeters = CastDBNull.To<int>(reader["TotalNumberOfMeters"], 0);
+                info.CreatedBy = CastDBNull.To<string>(reader["Createdby"], "");
+                info.EditedBy = CastDBNull.To<string>(reader["Editedby"], "");
+                info.DocDate = CastDBNull.To<DateTime>(reader["DocDate"], DateTime.Now);
+                info.Show = CastDBNull.To<int>(reader["Show"], 1);
                 info.IsNew = false;
                 info.IsDirty = true;
             }
