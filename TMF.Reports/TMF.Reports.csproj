@@ -43,10 +43,28 @@
   <ItemGroup>
     <Compile Include="BLL\City.cs" />
     <Compile Include="BLL\DMZ.cs" />
+    <Compile Include="BLL\Gateway.cs" />
+    <Compile Include="BLL\GatewayLog.cs" />
+    <Compile Include="BLL\Meter.cs" />
+    <Compile Include="BLL\MeterReading.cs" />
+    <Compile Include="BLL\MeterSize.cs" />
+    <Compile Include="BLL\MeterType.cs" />
     <Compile Include="DAL\DMZ.cs" />
+    <Compile Include="DAL\Gateway.cs" />
+    <Compile Include="DAL\GatewayLog.cs" />
+    <Compile Include="DAL\Meter.cs" />
+    <Compile Include="DAL\MeterReading.cs" />
+    <Compile Include="DAL\MeterSize.cs" />
+    <Compile Include="DAL\MeterType.cs" />
     <Compile Include="Model\City.cs" />
     <Compile Include="DAL\City.cs" />
     <Compile Include="Model\DMZ.cs" />
+    <Compile Include="Model\Gateway.cs" />
+    <Compile Include="Model\GatewayLog.cs" />
+    <Compile Include="Model\Meter.cs" />
+    <Compile Include="Model\MeterReading.cs" />
+    <Compile Include="Model\MeterSize.cs" />
+    <Compile Include="Model\MeterType.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup />
