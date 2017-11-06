@@ -45,7 +45,7 @@ namespace TMF.Reports.DAL
             string sQL_GET = this.SQL_GET;
             SqlParameter[] array = new SqlParameter[]
             {
-                new SqlParameter(this.PARM_ID, SqlDbType.Int)
+                new SqlParameter(this.PARM_ID, SqlDbType.NVarChar)
             };
             array[0].Value = Id;
             Model.City bizObject = null;

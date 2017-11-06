@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using TMF.Core;
 using TMF.Core.Model;
 
@@ -194,6 +195,7 @@ namespace TMF.Reports.Model
         {
             string text = fieldname.ToLower();
             //uint num = < PrivateImplementationDetails >.ComputeStringHash(text);
+            
             //if (num <= 1680044954u)
             //{
             //    if (num <= 926444256u)

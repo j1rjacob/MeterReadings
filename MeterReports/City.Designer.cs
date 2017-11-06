@@ -54,6 +54,7 @@
             this.buttonUpdate.TabIndex = 0;
             this.buttonUpdate.Text = "Update";
             this.buttonUpdate.UseVisualStyleBackColor = true;
+            this.buttonUpdate.Click += new System.EventHandler(this.buttonUpdate_Click);
             // 
             // buttonDelete
             // 
@@ -63,6 +64,7 @@
             this.buttonDelete.TabIndex = 0;
             this.buttonDelete.Text = "Delete";
             this.buttonDelete.UseVisualStyleBackColor = true;
+            this.buttonDelete.Click += new System.EventHandler(this.buttonDelete_Click);
             // 
             // buttonSearch
             // 
@@ -81,6 +83,7 @@
             this.buttonList.TabIndex = 0;
             this.buttonList.Text = "Get List";
             this.buttonList.UseVisualStyleBackColor = true;
+            this.buttonList.Click += new System.EventHandler(this.buttonList_Click);
             // 
             // textBox1
             // 
@@ -102,6 +105,7 @@
             this.Controls.Add(this.buttonCreate);
             this.Name = "City";
             this.Text = "City";
+            this.Load += new System.EventHandler(this.City_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

@@ -42,8 +42,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BLL\City.cs" />
+    <Compile Include="BLL\DMZ.cs" />
+    <Compile Include="DAL\DMZ.cs" />
     <Compile Include="Model\City.cs" />
     <Compile Include="DAL\City.cs" />
+    <Compile Include="Model\DMZ.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup />

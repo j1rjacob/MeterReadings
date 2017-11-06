@@ -45,9 +45,7 @@ namespace TMF.Core
                 for (int i = 0; i < insertParameters.Length; i++)
                 {
                     string fieldname = insertParameters[i].ParameterName.Remove(0, 1);
-                    //string fieldname = insertParameters[i].ParameterName;
                     bool flag = info[fieldname] == null;
-                    Debug.WriteLine($"Id {info["Id"]}");
                     if (flag)
                     {
                         insertParameters[i].Value = DBNull.Value;
@@ -68,7 +66,6 @@ namespace TMF.Core
             }
             catch (Exception ex)
             {
-                Debug.WriteLine($"Error from Inser {ex.Message}");
                 bool flag3 = ex.Message.Contains("null reference");
                 if (flag3)
                 {
@@ -81,12 +78,6 @@ namespace TMF.Core
             SqlDataReader sqlDataReader = null;
             try
             {
-                Debug.WriteLine(insertParameters.Length);
-                foreach (var item in insertParameters)
-                {
-                    Debug.WriteLine(item.Value.ToString());
-                }
-
                 bool transactionControl = dbInstance.TransactionControl;
                 if (transactionControl)
                 {
@@ -96,33 +87,35 @@ namespace TMF.Core
                 {
                     sqlDataReader = SqlHelper.ExecuteReader(dbInstance.Connection.ConnectionString, CommandType.StoredProcedure, sQL_INSERT, insertParameters);
                 }
-                bool flag4 = !sqlDataReader.Read();
+                //bool flag4 = !sqlDataReader.Read();
+
+                bool flag4 = sqlDataReader.Read();
                 if (flag4)
                 {
                     sqlDataReader.Dispose();
                     result = new ReturnInfo(ErrorEnum.TransactionError, "Insert record failed");
                     return result;
                 }
-                bool flag5 = sqlDataReader.GetDecimal(0) == -99m;
-                if (flag5)
-                {
-                    sqlDataReader.Dispose();
-                    result = new ReturnInfo(ErrorEnum.DuplicateRecord, "Record already exists");
-                    return result;
-                }
-                bool flag6 = sqlDataReader.GetDecimal(0) == decimal.MinusOne;
-                if (flag6)
-                {
-                    sqlDataReader.Dispose();
-                    result = new ReturnInfo(ErrorEnum.TransactionError, "Insert record failed");
-                    return result;
-                }
+                //bool flag5 = sqlDataReader.GetDecimal(0) == -99m;
+                //if (flag5)
+                //{
+                //    sqlDataReader.Dispose();
+                //    result = new ReturnInfo(ErrorEnum.DuplicateRecord, "Record already exists");
+                //    return result;
+                //}
+                //bool flag6 = sqlDataReader.GetDecimal(0) == decimal.MinusOne;
+                //if (flag6)
+                //{
+                //    sqlDataReader.Dispose();
+                //    result = new ReturnInfo(ErrorEnum.TransactionError, "Insert record failed");
+                //    return result;
+                //}
                 string fieldname2 = this.PARM_ID.Remove(0, 1);
-                info[fieldname2] = Convert.ToInt32(sqlDataReader.GetDecimal(0));
+                //info[fieldname2] = Convert.ToInt32(sqlDataReader.GetDecimal(0));
             }
             catch (Exception ex2)
             {
-                Debug.WriteLine($"Error from Insert {ex2.Message}");
+                Debug.WriteLine($"ex2 {ex2}");
                 bool flag7 = ex2.Message.Contains("unique constraint");
                 if (flag7)
                 {
@@ -208,7 +201,7 @@ namespace TMF.Core
                 bool flag4 = ex2.Message.Contains("unique constraint");
                 if (flag4)
                 {
-                    result = new ReturnInfo(ErrorEnum.UniqueConstraint, string.Format("Record: {0} already exist in the system", info["ID"]));
+                    result = new ReturnInfo(ErrorEnum.UniqueConstraint, string.Format("Record: {0} already exist in the system", info["Id"]));
                     return result;
                 }
                 result = new ReturnInfo(ErrorEnum.DataException, ex2.Message);
@@ -224,7 +217,7 @@ namespace TMF.Core
             string sQL_DELETE = this.SQL_DELETE;
             SqlParameter[] array = new SqlParameter[]
             {
-                new SqlParameter(this.PARM_ID, SqlDbType.Int)
+                new SqlParameter(this.PARM_ID, SqlDbType.NVarChar)
             };
             array[0].Value = Id;
             IInfo result;

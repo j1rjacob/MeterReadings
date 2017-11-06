@@ -4,12 +4,11 @@ using TMF.Core.Model;
 
 namespace TMF.Reports.BLL
 {
-    public class City : BusinessBase
+    public class DMZ : BusinessBase
     {
-        private static readonly DAL.City _dal = new DAL.City();
+        private static readonly DAL.DMZ _dal = new DAL.DMZ();
 
         private string lang = "en";
-
         public string Lang
         {
             get
@@ -21,13 +20,11 @@ namespace TMF.Reports.BLL
                 this.lang = value;
             }
         }
-
         public IInfo CheckRight()
         {
             return new ReturnInfo(ErrorEnum.NoError, "");
         }
-
-        public ReturnInfo IsValid(Model.City info)
+        public ReturnInfo IsValid(Model.DMZ info)
         {
             bool flag = string.IsNullOrEmpty(info.Id);
             ReturnInfo result;
@@ -46,23 +43,21 @@ namespace TMF.Reports.BLL
             }
             return result;
         }
-
-        public ReturnInfo Create(SmartDB dbInstance, ref Model.City info)
+        public ReturnInfo Create(SmartDB dbInstance, ref Model.DMZ info)
         {
             IInfo info2 = _dal.Insert(dbInstance, info);
             info.IsNew = false;
             info.IsDirty = true;
             return new ReturnInfo(info2.Code, info2.Message);
         }
-
-        public ReturnInfo Update(SmartDB dbInstance, Model.City info)
+        public ReturnInfo Update(SmartDB dbInstance, Model.DMZ info)
         {
             IInfo info2 = _dal.GetRecord(dbInstance, info.Id);
             bool flag = info2.Code == ErrorEnum.NoError;
             ReturnInfo result;
             if (flag)
             {
-                bool flag2 = (info2.BizObject as Model.City).LockCount == info.LockCount;
+                bool flag2 = (info2.BizObject as Model.DMZ).LockCount == info.LockCount;
                 if (!flag2)
                 {
                     result = new ReturnInfo(ErrorEnum.ColumnReference, "Record has been changed.");
@@ -74,7 +69,6 @@ namespace TMF.Reports.BLL
             result = new ReturnInfo(info2.Code, info2.Message, info2.RowsAffected);
             return result;
         }
-
         public ReturnInfo Delete(SmartDB dbInstance, string Id)
         {
             bool flag = Id == null;
@@ -90,8 +84,7 @@ namespace TMF.Reports.BLL
             }
             return result;
         }
-
-        public ReturnInfo GetCityById(SmartDB dbInstance, int Id)
+        public ReturnInfo GetDMZById(SmartDB dbInstance, int Id)
         {
             IInfo record = _dal.GetRecord(dbInstance, Id);
             return new ReturnInfo
@@ -102,8 +95,7 @@ namespace TMF.Reports.BLL
                 RowsAffected = record.RowsAffected
             };
         }
-
-        public ReturnInfo GetCityList(SmartDB dbInstance)
+        public ReturnInfo GetDMZList(SmartDB dbInstance)
         {
             IInfo records = _dal.GetRecords(dbInstance);
             return new ReturnInfo
