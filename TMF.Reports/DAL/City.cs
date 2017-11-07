@@ -30,6 +30,7 @@ namespace TMF.Reports.DAL
                 info.EditedBy = CastDBNull.To<string>(reader["Editedby"], "");
                 info.DocDate = CastDBNull.To<DateTime>(reader["DocDate"], DateTime.Now);
                 info.Show = CastDBNull.To<int>(reader["Show"], 1);
+                info.LockCount = CastDBNull.To<int>(reader["LockCount"], 1);
                 info.IsNew = false;
                 info.IsDirty = true;
             }
