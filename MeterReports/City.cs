@@ -147,20 +147,6 @@ namespace MeterReports
             var source = new BindingSource(bindingList, null);
             dataGridViewCity.AutoGenerateColumns = false;
             dataGridViewCity.DataSource = source;
-
-            //foreach (var itm in city)
-            //{
-            //    Debug.WriteLine(itm.Description);
-            //}
-
-            //if (flag)
-            //{
-            //    MessageBox.Show("City List");
-            //}
-            //else
-            //{
-            //    MessageBox.Show(getCityList.Code.ToString());
-            //}
         }
     }
 }

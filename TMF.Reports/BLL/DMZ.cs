@@ -7,7 +7,6 @@ namespace TMF.Reports.BLL
     public class DMZ : BusinessBase
     {
         private static readonly DAL.DMZ _dal = new DAL.DMZ();
-
         private string lang = "en";
         public string Lang
         {
@@ -87,6 +86,17 @@ namespace TMF.Reports.BLL
         public ReturnInfo GetDMZById(SmartDB dbInstance, int Id)
         {
             IInfo record = _dal.GetRecord(dbInstance, Id);
+            return new ReturnInfo
+            {
+                BizObject = ((record.Code == ErrorEnum.NoError) ? record.BizObject : null),
+                Code = record.Code,
+                Message = record.Message,
+                RowsAffected = record.RowsAffected
+            };
+        }
+        public ReturnInfo GetDMZByDescription(SmartDB dbInstance, string Description)
+        {
+            IInfo record = _dal.GetRecordsByDescription(dbInstance, Description);
             return new ReturnInfo
             {
                 BizObject = ((record.Code == ErrorEnum.NoError) ? record.BizObject : null),

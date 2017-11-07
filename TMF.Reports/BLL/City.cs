@@ -21,7 +21,6 @@ namespace TMF.Reports.BLL
                 this.lang = value;
             }
         }
-
         public IInfo CheckRight()
         {
             return new ReturnInfo(ErrorEnum.NoError, "");
@@ -46,7 +45,6 @@ namespace TMF.Reports.BLL
             }
             return result;
         }
-
         public ReturnInfo Create(SmartDB dbInstance, ref Model.City info)
         {
             IInfo info2 = _dal.Insert(dbInstance, info);
@@ -54,7 +52,6 @@ namespace TMF.Reports.BLL
             info.IsDirty = true;
             return new ReturnInfo(info2.Code, info2.Message);
         }
-
         public ReturnInfo Update(SmartDB dbInstance, Model.City info)
         {
             IInfo info2 = _dal.GetRecord(dbInstance, info.Id);
@@ -74,7 +71,6 @@ namespace TMF.Reports.BLL
             result = new ReturnInfo(info2.Code, info2.Message, info2.RowsAffected);
             return result;
         }
-
         public ReturnInfo Delete(SmartDB dbInstance, string Id)
         {
             bool flag = Id == null;
@@ -113,7 +109,6 @@ namespace TMF.Reports.BLL
                 RowsAffected = record.RowsAffected
             };
         }
-
         public ReturnInfo GetCityList(SmartDB dbInstance)
         {
             IInfo records = _dal.GetRecords(dbInstance);

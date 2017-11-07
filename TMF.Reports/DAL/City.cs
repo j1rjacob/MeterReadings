@@ -39,7 +39,6 @@ namespace TMF.Reports.DAL
                 throw ex;
             }
         }
-
         public override IInfo GetRecord(SmartDB dbInstance, object Id)
         {
             string sQL_GET = this.SQL_GET;
@@ -84,7 +83,6 @@ namespace TMF.Reports.DAL
             }
             return result;
         }
-
         protected IInfo GetRecords(SmartDB dbInstance, string cmdText, SqlParameter[] parms)
         {
             var list = new List<Model.City>();
@@ -147,13 +145,11 @@ namespace TMF.Reports.DAL
             }
             return result;
         }
-
         public override IInfo GetRecords(SmartDB dbInstance)
         {
             string sQL_GET_LIST = this.SQL_GET_LIST;
             return this.GetRecords(dbInstance, sQL_GET_LIST, null);
         }
-
         public IInfo GetRecordsByDescription(SmartDB dbInstance, string description)
         {
             string cmdText = "[REPORT CITY_LST_BYDESCRIPTION]";
