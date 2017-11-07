@@ -102,7 +102,7 @@ namespace TMF.Reports.BLL
             {
                 Code = records.Code,
                 Message = records.Message,
-                BizObject = ((records.Code == ErrorEnum.NoError) ? records.BizObject : new List<Model.City>())
+                BizObject = ((records.Code == ErrorEnum.NoError) ? records.BizObject : new List<Model.DMZ>())
             };
         }
     }

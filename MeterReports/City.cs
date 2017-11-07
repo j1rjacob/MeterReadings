@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.Windows.Forms;
 using TMF.Core;
@@ -95,26 +96,12 @@ namespace MeterReports
 
             bool flag = getCityList.Code == ErrorEnum.NoError;
 
-            foreach (var prop in getCityList.BizObject.GetType().GetProperties())
+            List<TMF.Reports.Model.City> city =  (List<TMF.Reports.Model.City>)getCityList.BizObject;
+            foreach (var itm in city)
             {
-                Debug.WriteLine("{0} = {1}", prop.Name, prop.GetValue(getCityList.BizObject, null));
+                Debug.WriteLine(itm.Description);
             }
-
-            //TMF.Reports.Model.City city = (TMF.Reports.Model.City)getCityList.BizObject;
-
-            //Type cityType = typeof(City);
-
-            //FieldInfo[] fields = cityType.GetFields(BindingFlags.Public
-            //                                      | BindingFlags.Instance);
-
-            //Console.WriteLine("Displaying the values of the fields of {0}:",
-            //    cityType);
-            //for (int i = 0; i < fields.Length; i++)
-            //{
-            //    Debug.WriteLine("   {0}:\t'{1}'",
-            //        fields[i].Name, fields[i].GetValue(city));
-            //}
-
+            
             if (flag)
             {
                 MessageBox.Show("City List");
@@ -123,6 +110,11 @@ namespace MeterReports
             {
                 MessageBox.Show(getCityList.Code.ToString());
             }
+        }
+
+        private void buttonSearch_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
