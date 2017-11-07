@@ -23,7 +23,6 @@ namespace TMF.Reports.Model
             base.IsDirty = false;
             base.IsDeleted = false;
         }
-
         public DMZ(string Id, string Description, int TotalNumberOfMeters, string CityId,
                    string Type, string CreatedBy, string EditedBy, DateTime DocDate,
                    int Show, int LockCount)
@@ -42,105 +41,76 @@ namespace TMF.Reports.Model
             base.IsDirty = true;
             base.IsDeleted = false;
         }
-
         protected override object OnGetValue(string fieldname)
         {
-            string text = fieldname.ToLower();
-            
-            object result;
-            
-            if (text == "id")
+            switch (fieldname.ToLower())
             {
-                result = this.Id;
-                return result;
+                case "id":
+                    return this.Id;
+                    break;
+                case "description":
+                    return this.Description;
+                    break;
+                case "totalnumberofmeters":
+                    return this.TotalNumberOfMeters;
+                    break;
+                case "cityid":
+                    return this.CityId;
+                    break;
+                case "createdby":
+                    return this.CreatedBy;
+                    break;
+                case "editedby":
+                    return this.EditedBy;
+                    break;
+                case "docdate":
+                    return this.DocDate;
+                    break;
+                case "show":
+                    return this.Show;
+                    break;
+                case "lockcount":
+                    return this.LockCount;
+                    break;
+                default:
+                    return null;
+                    break;
             }
-            if (text == "description")
-            {
-                result = this.Description;
-                return result;
-            }
-            if (text == "totalnumberofmeters")
-            {
-                result = this.TotalNumberOfMeters;
-                return result;
-            }
-            if (text == "cityid")
-            {
-                result = this.CityId;
-                return result;
-            }
-            if (text == "createdby")
-            {
-                result = this.CreatedBy;
-                return result;
-            }
-            if (text == "editedby")
-            {
-                result = this.EditedBy;
-                return result;
-            }
-            if (text == "docdate")
-            {
-                result = this.DocDate;
-                return result;
-            }
-            if (text == "show")
-            {
-                result = this.Show;
-                return result;
-            }
-            if (text == "lockcount")
-            {
-                result = this.LockCount;
-                return result;
-            }
-
-            result = null;
-
-
-            return result;
         }
-
         protected override void OnSetValue(string fieldname, object value)
         {
-            string text = fieldname.ToLower();
-            
-            if (text == "id")
+            switch (fieldname.ToLower())
             {
-                this.Id = CastDBNull.To<string>(value, "");
-            }
-
-            if (text == "description")
-            {
-                this.Description = CastDBNull.To<string>(value, "");
-            }
-            if (text == "totalnumberofmeters")
-            {
-                this.TotalNumberOfMeters = CastDBNull.To<int>(value, 0);
-            }
-            if (text == "cityid")
-            {
-                this.CityId = CastDBNull.To<string>(value, "");
-            }
-            if (text == "createdby")
-            {
-                this.CreatedBy = CastDBNull.To<string>(value, "");
-            }
-            if (text == "editedby")
-            {
-                this.EditedBy = CastDBNull.To<string>(value, "");
-            }
-            if (text == "docdate")
-            {
-                this.DocDate = CastDBNull.To<DateTime>(value, DateTime.Now);
-            }
-            if (text == "show")
-            {
-                this.Show = CastDBNull.To<int>(value, 0);
-            }
-            if (text == "lockcount")
-            {
-                this.TotalNumberOfMeters = CastDBNull.To<int>(value, 0);
+                case "id":
+                    this.Id = CastDBNull.To<string>(value, "");
+                    break;
+                case "description":
+                    this.Description = CastDBNull.To<string>(value, "");
+                    break;
+                case "totalnumberofmeters":
+                    this.TotalNumberOfMeters = CastDBNull.To<int>(value, 0);
+                    break;
+                case "cityid":
+                    this.CityId = CastDBNull.To<string>(value, "");
+                    break;
+                case "createdby":
+                    this.CreatedBy = CastDBNull.To<string>(value, "");
+                    break;
+                case "editedby":
+                    this.EditedBy = CastDBNull.To<string>(value, "");
+                    break;
+                case "docdate":
+                    this.DocDate = CastDBNull.To<DateTime>(value, DateTime.Now);
+                    break;
+                case "show":
+                    this.Show = CastDBNull.To<int>(value, 0);
+                    break;
+                case "lockcount":
+                    this.TotalNumberOfMeters = CastDBNull.To<int>(value, 0);
+                    break;
+                default:
+                    //null;
+                    break;
             }
         }
     }

@@ -18,7 +18,6 @@ namespace TMF.Reports.DAL
             SQL_UPDATE = "[REPORT CITY_UPD]";
             PARM_ID = "@Id";
         }
-
         protected void SetInfo(out Model.City info, SqlDataReader reader)
         {
             try

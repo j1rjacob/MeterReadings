@@ -46,7 +46,7 @@ namespace TMF.Reports.DAL
                 new SqlParameter(this.PARM_ID, SqlDbType.NVarChar)
             };
             array[0].Value = Id;
-            Model.City bizObject = null;
+            Model.DMZ bizObject = null;
             IInfo result;
             try
             {

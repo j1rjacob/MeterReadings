@@ -101,7 +101,17 @@ namespace TMF.Reports.BLL
                 RowsAffected = record.RowsAffected
             };
         }
-
+        public ReturnInfo GetMeterTypeDescription(SmartDB dbInstance, string Description)
+        {
+            IInfo record = _dal.GetRecordsByDescription(dbInstance, Description);
+            return new ReturnInfo
+            {
+                BizObject = ((record.Code == ErrorEnum.NoError) ? record.BizObject : null),
+                Code = record.Code,
+                Message = record.Message,
+                RowsAffected = record.RowsAffected
+            };
+        }
         public ReturnInfo GetMeterTypeList(SmartDB dbInstance)
         {
             IInfo records = _dal.GetRecords(dbInstance);

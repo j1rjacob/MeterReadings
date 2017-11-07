@@ -25,7 +25,6 @@ namespace TMF.Reports.BLL
         {
             return new ReturnInfo(ErrorEnum.NoError, "");
         }
-
         public ReturnInfo IsValid(Model.City info)
         {
             bool flag = string.IsNullOrEmpty(info.Id);
@@ -86,7 +85,6 @@ namespace TMF.Reports.BLL
             }
             return result;
         }
-
         public ReturnInfo GetCityById(SmartDB dbInstance, int Id)
         {
             IInfo record = _dal.GetRecord(dbInstance, Id);

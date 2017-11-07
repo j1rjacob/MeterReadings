@@ -25,7 +25,6 @@ namespace TMF.Reports.DAL
                 info = new Model.MeterType();
                 info.Id = CastDBNull.To<string>(reader["Id"], "");
                 info.Description = CastDBNull.To<string>(reader["Description"], "");
-                //info.TotalNumberOfMeters = CastDBNull.To<int>(reader["TotalNumberOfMeters"], 0);
                 info.CreatedBy = CastDBNull.To<string>(reader["Createdby"], "");
                 info.EditedBy = CastDBNull.To<string>(reader["Editedby"], "");
                 info.DocDate = CastDBNull.To<DateTime>(reader["DocDate"], DateTime.Now);
@@ -38,7 +37,6 @@ namespace TMF.Reports.DAL
                 throw ex;
             }
         }
-
         public override IInfo GetRecord(SmartDB dbInstance, object Id)
         {
             string sQL_GET = this.SQL_GET;
@@ -47,7 +45,7 @@ namespace TMF.Reports.DAL
                 new SqlParameter(this.PARM_ID, SqlDbType.NVarChar)
             };
             array[0].Value = Id;
-            Model.City bizObject = null;
+            Model.MeterType bizObject = null;
             IInfo result;
             try
             {
@@ -65,7 +63,7 @@ namespace TMF.Reports.DAL
                 if (hasRows)
                 {
                     sqlDataReader.Read();
-                    //this.SetInfo(out bizObject, sqlDataReader);
+                    this.SetInfo(out bizObject, sqlDataReader);
                     result = new ReturnInfo
                     {
                         BizObject = bizObject,
@@ -86,7 +84,7 @@ namespace TMF.Reports.DAL
 
         protected IInfo GetRecords(SmartDB dbInstance, string cmdText, SqlParameter[] parms)
         {
-            var list = new List<Model.City>();
+            var list = new List<Model.MeterType>();
             IInfo result;
             try
             {
@@ -121,9 +119,9 @@ namespace TMF.Reports.DAL
                 {
                     while (sqlDataReader.Read())
                     {
-                        Model.City item;
-                        //this.SetInfo(out item, sqlDataReader);
-                        //list.Add(item);
+                        Model.MeterType item;
+                        this.SetInfo(out item, sqlDataReader);
+                        list.Add(item);
                     }
                     result = new ReturnInfo
                     {
@@ -146,11 +144,20 @@ namespace TMF.Reports.DAL
             }
             return result;
         }
-
         public override IInfo GetRecords(SmartDB dbInstance)
         {
             string sQL_GET_LIST = this.SQL_GET_LIST;
             return this.GetRecords(dbInstance, sQL_GET_LIST, null);
+        }
+        public IInfo GetRecordsByDescription(SmartDB dbInstance, string description)
+        {
+            string cmdText = "[REPORT METERTYPE_LST_BYDESCRIPTION]";
+            SqlParameter[] array = new SqlParameter[]
+            {
+                new SqlParameter("@Description", SqlDbType.NVarChar)
+            };
+            array[0].Value = description;
+            return this.GetRecords(dbInstance, cmdText, array);
         }
     }
 }

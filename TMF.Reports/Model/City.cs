@@ -39,7 +39,6 @@ namespace TMF.Reports.Model
             base.IsDirty = true;
             base.IsDeleted = false;
         }
-
         protected override object OnGetValue(string fieldname)
         {
             switch (fieldname.ToLower())
@@ -73,7 +72,6 @@ namespace TMF.Reports.Model
                     break;
             }
         }
-
         protected override void OnSetValue(string fieldname, object value)
         {
             switch (fieldname.ToLower())
@@ -100,7 +98,7 @@ namespace TMF.Reports.Model
                     this.Show = CastDBNull.To<int>(value, 0);
                     break;
                 case "lockcount":
-                    this.TotalNumberOfMeters = CastDBNull.To<int>(value, 0);
+                    this.LockCount = CastDBNull.To<int>(value, 0);
                     break;
                 default:
                     //null;
