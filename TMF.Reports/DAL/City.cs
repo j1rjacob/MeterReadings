@@ -153,5 +153,16 @@ namespace TMF.Reports.DAL
             string sQL_GET_LIST = this.SQL_GET_LIST;
             return this.GetRecords(dbInstance, sQL_GET_LIST, null);
         }
+
+        public IInfo GetRecordsByDescription(SmartDB dbInstance, string description)
+        {
+            string cmdText = "[REPORT CITY_LST_BYDESCRIPTION]";
+            SqlParameter[] array = new SqlParameter[]
+            {
+                new SqlParameter("@Description", SqlDbType.NVarChar)
+            };
+            array[0].Value = description;
+            return this.GetRecords(dbInstance, cmdText, array);
+        }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Diagnostics;
 using System.Windows.Forms;
 using TMF.Core;
@@ -114,7 +115,52 @@ namespace MeterReports
 
         private void buttonSearch_Click(object sender, EventArgs e)
         {
+            ReturnInfo getCity = _city.GetCityByDescription(new SmartDB(), textBoxSearch.Text);
+            
+            bool flag = getCity.Code == ErrorEnum.NoError;
 
+            List<TMF.Reports.Model.City> city = (List<TMF.Reports.Model.City>)getCity.BizObject;
+            foreach (var itm in city)
+            {
+                Debug.WriteLine(itm.Description);
+            }
+
+            if (flag)
+            {
+                MessageBox.Show("City List");
+            }
+            else
+            {
+                MessageBox.Show(getCity.Code.ToString());
+            }
+        }
+
+        private void buttonBind_Click(object sender, EventArgs e)
+        {
+            ReturnInfo getCityList = _city.GetCityList(new SmartDB());
+
+            bool flag = getCityList.Code == ErrorEnum.NoError;
+
+            List<TMF.Reports.Model.City> city = (List<TMF.Reports.Model.City>)getCityList.BizObject;
+
+            var bindingList = new BindingList<TMF.Reports.Model.City>(city);
+            var source = new BindingSource(bindingList, null);
+            dataGridViewCity.AutoGenerateColumns = false;
+            dataGridViewCity.DataSource = source;
+
+            //foreach (var itm in city)
+            //{
+            //    Debug.WriteLine(itm.Description);
+            //}
+
+            //if (flag)
+            //{
+            //    MessageBox.Show("City List");
+            //}
+            //else
+            //{
+            //    MessageBox.Show(getCityList.Code.ToString());
+            //}
         }
     }
 }

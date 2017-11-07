@@ -33,9 +33,12 @@
             this.buttonDelete = new System.Windows.Forms.Button();
             this.buttonSearch = new System.Windows.Forms.Button();
             this.buttonList = new System.Windows.Forms.Button();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            this.textBoxSearch = new System.Windows.Forms.TextBox();
+            this.dataGridViewCity = new System.Windows.Forms.DataGridView();
+            this.buttonBind = new System.Windows.Forms.Button();
+            this.ColumnDescription = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColumnTotNumMeter = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewCity)).BeginInit();
             this.SuspendLayout();
             // 
             // buttonCreate
@@ -88,29 +91,60 @@
             this.buttonList.UseVisualStyleBackColor = true;
             this.buttonList.Click += new System.EventHandler(this.buttonList_Click);
             // 
-            // textBox1
+            // textBoxSearch
             // 
-            this.textBox1.Location = new System.Drawing.Point(336, 24);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(100, 20);
-            this.textBox1.TabIndex = 1;
+            this.textBoxSearch.Location = new System.Drawing.Point(336, 24);
+            this.textBoxSearch.Name = "textBoxSearch";
+            this.textBoxSearch.Size = new System.Drawing.Size(100, 20);
+            this.textBoxSearch.TabIndex = 1;
             // 
-            // dataGridView1
+            // dataGridViewCity
             // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(16, 104);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(560, 176);
-            this.dataGridView1.TabIndex = 2;
+            this.dataGridViewCity.AllowUserToAddRows = false;
+            this.dataGridViewCity.AllowUserToDeleteRows = false;
+            this.dataGridViewCity.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewCity.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.ColumnDescription,
+            this.ColumnTotNumMeter});
+            this.dataGridViewCity.Location = new System.Drawing.Point(16, 104);
+            this.dataGridViewCity.Name = "dataGridViewCity";
+            this.dataGridViewCity.ReadOnly = true;
+            this.dataGridViewCity.Size = new System.Drawing.Size(560, 176);
+            this.dataGridViewCity.TabIndex = 2;
+            // 
+            // buttonBind
+            // 
+            this.buttonBind.Location = new System.Drawing.Point(416, 72);
+            this.buttonBind.Name = "buttonBind";
+            this.buttonBind.Size = new System.Drawing.Size(75, 23);
+            this.buttonBind.TabIndex = 0;
+            this.buttonBind.Text = "Bind";
+            this.buttonBind.UseVisualStyleBackColor = true;
+            this.buttonBind.Click += new System.EventHandler(this.buttonBind_Click);
+            // 
+            // ColumnDescription
+            // 
+            this.ColumnDescription.DataPropertyName = "Description";
+            this.ColumnDescription.HeaderText = "Description";
+            this.ColumnDescription.Name = "ColumnDescription";
+            this.ColumnDescription.ReadOnly = true;
+            // 
+            // ColumnTotNumMeter
+            // 
+            this.ColumnTotNumMeter.DataPropertyName = "TotalNumberOfMeters";
+            this.ColumnTotNumMeter.HeaderText = "Total Number of Meters";
+            this.ColumnTotNumMeter.Name = "ColumnTotNumMeter";
+            this.ColumnTotNumMeter.ReadOnly = true;
             // 
             // City
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(602, 291);
-            this.Controls.Add(this.dataGridView1);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.dataGridViewCity);
+            this.Controls.Add(this.textBoxSearch);
             this.Controls.Add(this.buttonSearch);
+            this.Controls.Add(this.buttonBind);
             this.Controls.Add(this.buttonList);
             this.Controls.Add(this.buttonDelete);
             this.Controls.Add(this.buttonUpdate);
@@ -118,7 +152,7 @@
             this.Name = "City";
             this.Text = "City";
             this.Load += new System.EventHandler(this.City_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewCity)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -131,7 +165,10 @@
         private System.Windows.Forms.Button buttonDelete;
         private System.Windows.Forms.Button buttonSearch;
         private System.Windows.Forms.Button buttonList;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.TextBox textBoxSearch;
+        private System.Windows.Forms.DataGridView dataGridViewCity;
+        private System.Windows.Forms.Button buttonBind;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnDescription;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnTotNumMeter;
     }
 }

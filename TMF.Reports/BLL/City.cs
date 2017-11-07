@@ -102,6 +102,17 @@ namespace TMF.Reports.BLL
                 RowsAffected = record.RowsAffected
             };
         }
+        public ReturnInfo GetCityByDescription(SmartDB dbInstance, string Description)
+        {
+            IInfo record = _dal.GetRecordsByDescription(dbInstance, Description);
+            return new ReturnInfo
+            {
+                BizObject = ((record.Code == ErrorEnum.NoError) ? record.BizObject : null),
+                Code = record.Code,
+                Message = record.Message,
+                RowsAffected = record.RowsAffected
+            };
+        }
 
         public ReturnInfo GetCityList(SmartDB dbInstance)
         {
