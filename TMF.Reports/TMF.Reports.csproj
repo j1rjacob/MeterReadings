@@ -46,6 +46,7 @@
     <Compile Include="BLL\Gateway.cs" />
     <Compile Include="BLL\GatewayLog.cs" />
     <Compile Include="BLL\Meter.cs" />
+    <Compile Include="BLL\MeterProtocol.cs" />
     <Compile Include="BLL\MeterReading.cs" />
     <Compile Include="BLL\MeterSize.cs" />
     <Compile Include="BLL\MeterType.cs" />
@@ -53,6 +54,7 @@
     <Compile Include="DAL\Gateway.cs" />
     <Compile Include="DAL\GatewayLog.cs" />
     <Compile Include="DAL\Meter.cs" />
+    <Compile Include="DAL\MeterProtocol.cs" />
     <Compile Include="DAL\MeterReading.cs" />
     <Compile Include="DAL\MeterSize.cs" />
     <Compile Include="DAL\MeterType.cs" />
@@ -62,6 +64,7 @@
     <Compile Include="Model\Gateway.cs" />
     <Compile Include="Model\GatewayLog.cs" />
     <Compile Include="Model\Meter.cs" />
+    <Compile Include="Model\MeterProtocol.cs" />
     <Compile Include="Model\MeterReading.cs" />
     <Compile Include="Model\MeterSize.cs" />
     <Compile Include="Model\MeterType.cs" />
