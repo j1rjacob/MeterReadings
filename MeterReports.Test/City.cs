@@ -58,7 +58,6 @@ namespace MeterReports.Test
             //Assert
             Assert.IsTrue(flag);
         }
-
         [Test]
         public void City_UPD_True()
         {
@@ -82,7 +81,6 @@ namespace MeterReports.Test
             //Assert
             Assert.IsTrue(flag);
         }
-
         [Test]
         public void City_DEL_True()
         {

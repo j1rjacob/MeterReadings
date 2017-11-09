@@ -85,7 +85,7 @@ namespace TMF.Reports.BLL
             }
             return result;
         }
-        public ReturnInfo GetMeterProtocolById(SmartDB dbInstance, int Id)
+        public ReturnInfo GetMeterProtocolById(SmartDB dbInstance, string Id)
         {
             IInfo record = _dal.GetRecord(dbInstance, Id);
             return new ReturnInfo

@@ -85,7 +85,7 @@ namespace TMF.Reports.BLL
             }
             return result;
         }
-        public ReturnInfo GetGatewayById(SmartDB dbInstance, int Id)
+        public ReturnInfo GetGatewayById(SmartDB dbInstance, string Id)
         {
             IInfo record = _dal.GetRecord(dbInstance, Id);
             return new ReturnInfo

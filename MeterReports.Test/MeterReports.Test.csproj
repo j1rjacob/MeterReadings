@@ -46,6 +46,11 @@
   <ItemGroup>
     <Compile Include="City.cs" />
     <Compile Include="DMZ.cs" />
+    <Compile Include="Gateway.cs" />
+    <Compile Include="GatewayLog.cs" />
+    <Compile Include="MeterProtocol.cs" />
+    <Compile Include="MeterSize.cs" />
+    <Compile Include="MeterType.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

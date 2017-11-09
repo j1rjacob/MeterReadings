@@ -1,26 +1,27 @@
 ﻿using NUnit.Framework;
+using NUnit.Framework.Internal;
 using System;
 using TMF.Core;
 using TMF.Core.Model;
 
 namespace MeterReports.Test
 {
-    [TestFixture]
-    public class DMZ
+    [TestFixture()]
+    public class MeterSize
     {
-        private readonly TMF.Reports.BLL.DMZ _dmz;
-        public DMZ()
+        private readonly TMF.Reports.BLL.MeterSize _meterSize;
+        public MeterSize()
         {
-            _dmz = new TMF.Reports.BLL.DMZ();
+            _meterSize = new TMF.Reports.BLL.MeterSize();
         }
-        public void DMZ_INS_True()
+        [Test]
+        public void MeterSize_INS_True()
         {
             //Arrange
-            TMF.Reports.Model.DMZ dmz = new TMF.Reports.Model.DMZ()
+            TMF.Reports.Model.MeterSize meterSize = new TMF.Reports.Model.MeterSize()
             {
                 Id = Guid.NewGuid().ToString("N"),
                 Description = "Al Jeddah",
-                TotalNumberOfMeters = 50,
                 CreatedBy = "646f18f9-6425-4769-aa79-16ecdb7cf816",
                 EditedBy = "646f18f9-6425-4769-aa79-16ecdb7cf816",
                 DocDate = DateTime.Now,
@@ -29,44 +30,42 @@ namespace MeterReports.Test
             };
 
             //Act
-            var createDMZ = _dmz.Create(new SmartDB(), ref dmz);
-            bool flag = createDMZ.Code == ErrorEnum.NoError;
+            var createMeterSize = _meterSize.Create(new SmartDB(), ref meterSize);
+            bool flag = createMeterSize.Code == ErrorEnum.NoError;
 
             //Assert
             Assert.IsTrue(flag);
         }
         [Test]
-        public void DMZ_SearchById_True()
+        public void MeterSize_SearchById_True()
         {
             //Arrange
             //Act
-            ReturnInfo getDMZ = _dmz.GetDMZById(new SmartDB(), "9086b56203164748a61c6c485b55fe78");
-            bool flag = getDMZ.Code == ErrorEnum.NoError;
+            ReturnInfo getMeterSize = _meterSize.GetMeterSizeById(new SmartDB(), "9086b56203164748a61c6c485b55fe78");
+            bool flag = getMeterSize.Code == ErrorEnum.NoError;
 
             //Assert
             Assert.IsTrue(flag);
         }
         [Test]
-        public void City_SearchByDescription_True()
+        public void MeterSize_SearchByDescription_True()
         {
             //Arrange
             //Act
-            ReturnInfo getDMZ = _dmz.GetDMZByDescription(new SmartDB(), "Al Damman");
-            bool flag = getDMZ.Code == ErrorEnum.NoError;
+            ReturnInfo getMeterSize = _meterSize.GetMeterSizeByDescription(new SmartDB(), "Al Damman");
+            bool flag = getMeterSize.Code == ErrorEnum.NoError;
 
             //Assert
             Assert.IsTrue(flag);
         }
-
         [Test]
-        public void City_UPD_True()
+        public void MeterSize_UPD_True()
         {
             //Arrange
-            TMF.Reports.Model.DMZ dmz = new TMF.Reports.Model.DMZ()
+            TMF.Reports.Model.MeterSize meterSize = new TMF.Reports.Model.MeterSize()
             {
                 Id = "6ca10b442a894258bd135cc9b0ddcb1e",
                 Description = "Al Kharj",
-                TotalNumberOfMeters = 50,
                 CreatedBy = "646f18f9-6425-4769-aa79-16ecdb7cf816",
                 EditedBy = "646f18f9-6425-4769-aa79-16ecdb7cf816",
                 DocDate = DateTime.Now,
@@ -75,20 +74,19 @@ namespace MeterReports.Test
             };
 
             //Act
-            var updateDMZ = _dmz.Update(new SmartDB(), dmz);
-            bool flag = updateDMZ.Code == ErrorEnum.NoError;
+            var updateMeterSize = _meterSize.Update(new SmartDB(), meterSize);
+            bool flag = updateMeterSize.Code == ErrorEnum.NoError;
 
             //Assert
             Assert.IsTrue(flag);
         }
-
         [Test]
-        public void City_DEL_True()
+        public void MeterSize_DEL_True()
         {
             //Arrange
             //Act
-            var deleteDMZ = _dmz.Delete(new SmartDB(), "6ca10b442a894258bd135cc9b0ddcb1e");
-            bool flag = deleteDMZ.Code == ErrorEnum.NoError;
+            var deleteMeterSize = _meterSize.Delete(new SmartDB(), "6ca10b442a894258bd135cc9b0ddcb1e");
+            bool flag = deleteMeterSize.Code == ErrorEnum.NoError;
 
             //Assert
             Assert.IsTrue(flag);
