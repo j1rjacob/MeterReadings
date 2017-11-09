@@ -9,7 +9,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TMF.Core", "TMF.Core\TMF.Co
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TMF.Reports", "TMF.Reports\TMF.Reports.csproj", "{CED8F3AF-C81D-4006-B45D-0190874813BC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MeterReports.Test", "MeterReports.Test\MeterReports.Test.csproj", "{6187CB1B-3D93-444B-9808-7DCB9BFE6BA6}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MeterReports.Test", "MeterReports.Test\MeterReports.Test.csproj", "{4DEFEEE7-E3EE-4C78-99AE-FC5EE0B5D931}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -29,10 +29,10 @@ Global
 		{CED8F3AF-C81D-4006-B45D-0190874813BC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CED8F3AF-C81D-4006-B45D-0190874813BC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CED8F3AF-C81D-4006-B45D-0190874813BC}.Release|Any CPU.Build.0 = Release|Any CPU
-		{6187CB1B-3D93-444B-9808-7DCB9BFE6BA6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{6187CB1B-3D93-444B-9808-7DCB9BFE6BA6}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{6187CB1B-3D93-444B-9808-7DCB9BFE6BA6}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{6187CB1B-3D93-444B-9808-7DCB9BFE6BA6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4DEFEEE7-E3EE-4C78-99AE-FC5EE0B5D931}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4DEFEEE7-E3EE-4C78-99AE-FC5EE0B5D931}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4DEFEEE7-E3EE-4C78-99AE-FC5EE0B5D931}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4DEFEEE7-E3EE-4C78-99AE-FC5EE0B5D931}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

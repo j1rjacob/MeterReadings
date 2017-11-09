@@ -83,7 +83,7 @@ namespace TMF.Reports.BLL
             }
             return result;
         }
-        public ReturnInfo GetDMZById(SmartDB dbInstance, int Id)
+        public ReturnInfo GetDMZById(SmartDB dbInstance, string Id)
         {
             IInfo record = _dal.GetRecord(dbInstance, Id);
             return new ReturnInfo

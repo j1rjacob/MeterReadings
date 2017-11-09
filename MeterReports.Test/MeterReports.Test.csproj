@@ -4,13 +4,14 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{6187CB1B-3D93-444B-9808-7DCB9BFE6BA6}</ProjectGuid>
+    <ProjectGuid>{4DEFEEE7-E3EE-4C78-99AE-FC5EE0B5D931}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>MeterReports.Test</RootNamespace>
     <AssemblyName>MeterReports.Test</AssemblyName>
-    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -43,10 +44,22 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class1.cs" />
+    <Compile Include="City.cs" />
+    <Compile Include="DMZ.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\TMF.Core\TMF.Core.csproj">
+      <Project>{c4aa963a-a0f5-412a-a5b1-5387cd565e6b}</Project>
+      <Name>TMF.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TMF.Reports\TMF.Reports.csproj">
+      <Project>{ced8f3af-c81d-4006-b45d-0190874813bc}</Project>
+      <Name>TMF.Reports</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
