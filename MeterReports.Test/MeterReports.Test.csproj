@@ -48,7 +48,9 @@
     <Compile Include="DMZ.cs" />
     <Compile Include="Gateway.cs" />
     <Compile Include="GatewayLog.cs" />
+    <Compile Include="Meter.cs" />
     <Compile Include="MeterProtocol.cs" />
+    <Compile Include="MeterReading.cs" />
     <Compile Include="MeterSize.cs" />
     <Compile Include="MeterType.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

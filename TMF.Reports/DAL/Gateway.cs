@@ -159,12 +159,12 @@ namespace TMF.Reports.DAL
             string sQL_GET_LIST = this.SQL_GET_LIST;
             return this.GetRecords(dbInstance, sQL_GET_LIST, null);
         }
-        public IInfo GetRecordsByDescription(SmartDB dbInstance, string description)
+        public IInfo GetRecordsByLogDateTime(SmartDB dbInstance, string description)
         {
-            string cmdText = "[REPORT GATEWAY_LST_BYDESCRIPTION]";
+            string cmdText = "[REPORT GATEWAYLOG_LST_BYLOGDATETIME]";
             SqlParameter[] array = new SqlParameter[]
             {
-                new SqlParameter("@Description", SqlDbType.NVarChar)
+                new SqlParameter("@LogDateTime", SqlDbType.NVarChar)
             };
             array[0].Value = description;
             return this.GetRecords(dbInstance, cmdText, array);

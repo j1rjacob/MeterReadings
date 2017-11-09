@@ -21,7 +21,7 @@ namespace MeterReports.Test
             TMF.Reports.Model.MeterType meterType = new TMF.Reports.Model.MeterType()
             {
                 Id = Guid.NewGuid().ToString("N"),
-                Description = "Al Jeddah",
+                Description = "B+",
                 CreatedBy = "646f18f9-6425-4769-aa79-16ecdb7cf816",
                 EditedBy = "646f18f9-6425-4769-aa79-16ecdb7cf816",
                 DocDate = DateTime.Now,
@@ -41,7 +41,7 @@ namespace MeterReports.Test
         {
             //Arrange
             //Act
-            ReturnInfo getMeterType = _meterType.GetMeterTypeById(new SmartDB(), "9086b56203164748a61c6c485b55fe78");
+            ReturnInfo getMeterType = _meterType.GetMeterTypeById(new SmartDB(), "4fd614746950416d909ee2446cd29c1e");
             bool flag = getMeterType.Code == ErrorEnum.NoError;
 
             //Assert
@@ -52,7 +52,7 @@ namespace MeterReports.Test
         {
             //Arrange
             //Act
-            ReturnInfo getMeterType = _meterType.GetMeterTypeDescription(new SmartDB(), "Al Damman");
+            ReturnInfo getMeterType = _meterType.GetMeterTypeDescription(new SmartDB(), "A+");
             bool flag = getMeterType.Code == ErrorEnum.NoError;
 
             //Assert
@@ -64,8 +64,8 @@ namespace MeterReports.Test
             //Arrange
             TMF.Reports.Model.MeterType meterType = new TMF.Reports.Model.MeterType()
             {
-                Id = "6ca10b442a894258bd135cc9b0ddcb1e",
-                Description = "Al Kharj",
+                Id = "e222c1a6c8b04e6ab0b5ae22abb711c7",
+                Description = "B-",
                 CreatedBy = "646f18f9-6425-4769-aa79-16ecdb7cf816",
                 EditedBy = "646f18f9-6425-4769-aa79-16ecdb7cf816",
                 DocDate = DateTime.Now,
@@ -85,7 +85,7 @@ namespace MeterReports.Test
         {
             //Arrange
             //Act
-            var deleteMeterType = _meterType.Delete(new SmartDB(), "6ca10b442a894258bd135cc9b0ddcb1e");
+            var deleteMeterType = _meterType.Delete(new SmartDB(), "e222c1a6c8b04e6ab0b5ae22abb711c7");
             bool flag = deleteMeterType.Code == ErrorEnum.NoError;
 
             //Assert

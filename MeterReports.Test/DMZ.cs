@@ -13,14 +13,15 @@ namespace MeterReports.Test
         {
             _dmz = new TMF.Reports.BLL.DMZ();
         }
+        [Test]
         public void DMZ_INS_True()
         {
             //Arrange
             TMF.Reports.Model.DMZ dmz = new TMF.Reports.Model.DMZ()
             {
                 Id = Guid.NewGuid().ToString("N"),
-                Description = "Al Jeddah",
-                TotalNumberOfMeters = 50,
+                Description = "DMZ2",
+                TotalNumberOfMeters = 25,
                 CreatedBy = "646f18f9-6425-4769-aa79-16ecdb7cf816",
                 EditedBy = "646f18f9-6425-4769-aa79-16ecdb7cf816",
                 DocDate = DateTime.Now,
@@ -40,18 +41,18 @@ namespace MeterReports.Test
         {
             //Arrange
             //Act
-            ReturnInfo getDMZ = _dmz.GetDMZById(new SmartDB(), "9086b56203164748a61c6c485b55fe78");
+            ReturnInfo getDMZ = _dmz.GetDMZById(new SmartDB(), "329ae1c48fe347b384133fbfff5d54b8");
             bool flag = getDMZ.Code == ErrorEnum.NoError;
 
             //Assert
             Assert.IsTrue(flag);
         }
         [Test]
-        public void City_SearchByDescription_True()
+        public void DMZ_SearchByDescription_True()
         {
             //Arrange
             //Act
-            ReturnInfo getDMZ = _dmz.GetDMZByDescription(new SmartDB(), "Al Damman");
+            ReturnInfo getDMZ = _dmz.GetDMZByDescription(new SmartDB(), "DMZ2");
             bool flag = getDMZ.Code == ErrorEnum.NoError;
 
             //Assert
@@ -59,13 +60,13 @@ namespace MeterReports.Test
         }
 
         [Test]
-        public void City_UPD_True()
+        public void DMZ_UPD_True()
         {
             //Arrange
             TMF.Reports.Model.DMZ dmz = new TMF.Reports.Model.DMZ()
             {
-                Id = "6ca10b442a894258bd135cc9b0ddcb1e",
-                Description = "Al Kharj",
+                Id = "0d5be89393f447b393445d1d21509442",
+                Description = "DMZ0",
                 TotalNumberOfMeters = 50,
                 CreatedBy = "646f18f9-6425-4769-aa79-16ecdb7cf816",
                 EditedBy = "646f18f9-6425-4769-aa79-16ecdb7cf816",
@@ -83,11 +84,11 @@ namespace MeterReports.Test
         }
 
         [Test]
-        public void City_DEL_True()
+        public void DMZ_DEL_True()
         {
             //Arrange
             //Act
-            var deleteDMZ = _dmz.Delete(new SmartDB(), "6ca10b442a894258bd135cc9b0ddcb1e");
+            var deleteDMZ = _dmz.Delete(new SmartDB(), "0d5be89393f447b393445d1d21509442");
             bool flag = deleteDMZ.Code == ErrorEnum.NoError;
 
             //Assert

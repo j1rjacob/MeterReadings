@@ -98,7 +98,7 @@ namespace TMF.Reports.BLL
         }
         public ReturnInfo GetGatewayByDescription(SmartDB dbInstance, string Description)
         {
-            IInfo record = _dal.GetRecordsByDescription(dbInstance, Description);
+            IInfo record = _dal.GetRecordsByLogDateTime(dbInstance, Description);
             return new ReturnInfo
             {
                 BizObject = ((record.Code == ErrorEnum.NoError) ? record.BizObject : null),
