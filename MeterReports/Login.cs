@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
+using System;
 using System.Windows.Forms;
 
 namespace MeterReports
@@ -13,10 +8,10 @@ namespace MeterReports
     public partial class Login : Form
     {
         private Label label1;
-        private TextBox textBox1;
-        private TextBox textBox2;
-        private Button button1;
-        private Button button2;
+        private TextBox TextBoxUsername;
+        private TextBox TextBoxPassword;
+        private Button ButtonLogin;
+        private Button ButtonCancel;
         private Label label2;
 
         public Login()
@@ -29,10 +24,10 @@ namespace MeterReports
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Login));
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
+            this.TextBoxUsername = new System.Windows.Forms.TextBox();
+            this.TextBoxPassword = new System.Windows.Forms.TextBox();
+            this.ButtonLogin = new System.Windows.Forms.Button();
+            this.ButtonCancel = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
@@ -55,64 +50,94 @@ namespace MeterReports
             this.label2.TabIndex = 0;
             this.label2.Text = "PASSWORD";
             // 
-            // textBox1
+            // TextBoxUsername
             // 
-            this.textBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox1.Location = new System.Drawing.Point(216, 24);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(168, 27);
-            this.textBox1.TabIndex = 1;
+            this.TextBoxUsername.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TextBoxUsername.Location = new System.Drawing.Point(216, 24);
+            this.TextBoxUsername.Name = "TextBoxUsername";
+            this.TextBoxUsername.Size = new System.Drawing.Size(168, 27);
+            this.TextBoxUsername.TabIndex = 1;
             // 
-            // textBox2
+            // TextBoxPassword
             // 
-            this.textBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox2.Location = new System.Drawing.Point(216, 72);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(168, 27);
-            this.textBox2.TabIndex = 1;
+            this.TextBoxPassword.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TextBoxPassword.Location = new System.Drawing.Point(216, 72);
+            this.TextBoxPassword.Name = "TextBoxPassword";
+            this.TextBoxPassword.Size = new System.Drawing.Size(168, 27);
+            this.TextBoxPassword.TabIndex = 1;
             // 
-            // button1
+            // ButtonLogin
             // 
-            this.button1.AutoSize = true;
-            this.button1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("button1.BackgroundImage")));
-            this.button1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.Location = new System.Drawing.Point(96, 128);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(288, 56);
-            this.button1.TabIndex = 2;
-            this.button1.Text = "LOGIN";
-            this.button1.UseVisualStyleBackColor = true;
+            this.ButtonLogin.AutoSize = true;
+            this.ButtonLogin.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("ButtonLogin.BackgroundImage")));
+            this.ButtonLogin.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.ButtonLogin.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ButtonLogin.Location = new System.Drawing.Point(96, 128);
+            this.ButtonLogin.Name = "ButtonLogin";
+            this.ButtonLogin.Size = new System.Drawing.Size(288, 56);
+            this.ButtonLogin.TabIndex = 2;
+            this.ButtonLogin.Text = "LOGIN";
+            this.ButtonLogin.UseVisualStyleBackColor = true;
+            this.ButtonLogin.Click += new System.EventHandler(this.ButtonLogin_Click);
             // 
-            // button2
+            // ButtonCancel
             // 
-            this.button2.AutoSize = true;
-            this.button2.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("button2.BackgroundImage")));
-            this.button2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button2.Location = new System.Drawing.Point(96, 198);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(288, 56);
-            this.button2.TabIndex = 2;
-            this.button2.Text = "CANCEL";
-            this.button2.UseVisualStyleBackColor = true;
+            this.ButtonCancel.AutoSize = true;
+            this.ButtonCancel.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("ButtonCancel.BackgroundImage")));
+            this.ButtonCancel.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.ButtonCancel.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ButtonCancel.Location = new System.Drawing.Point(96, 198);
+            this.ButtonCancel.Name = "ButtonCancel";
+            this.ButtonCancel.Size = new System.Drawing.Size(288, 56);
+            this.ButtonCancel.TabIndex = 2;
+            this.ButtonCancel.Text = "CANCEL";
+            this.ButtonCancel.UseVisualStyleBackColor = true;
+            this.ButtonCancel.Click += new System.EventHandler(this.ButtonCancel_Click);
             // 
             // Login
             // 
             this.ClientSize = new System.Drawing.Size(471, 265);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.button1);
-            this.Controls.Add(this.textBox2);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.ButtonCancel);
+            this.Controls.Add(this.ButtonLogin);
+            this.Controls.Add(this.TextBoxPassword);
+            this.Controls.Add(this.TextBoxUsername);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "Login";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Login";
             this.ResumeLayout(false);
             this.PerformLayout();
 
+        }
+
+        private void ButtonLogin_Click(object sender, EventArgs e)
+        {
+            var userStore = new UserStore<IdentityUser>();
+            var userManager = new UserManager<IdentityUser>(userStore);
+
+            var user = userManager.FindByName("junarjacob");
+            var checkPassword = userManager.CheckPassword(user, "Password123!");
+
+            if (checkPassword)
+            {
+                MessageBox.Show("Find User");
+                var f = new MainForm();
+                f.Show();
+                this.Hide();
+            }
+            else
+            {
+                MessageBox.Show("User not found!");
+            }
+        }
+
+        private void ButtonCancel_Click(object sender, EventArgs e)
+        {
+            TextBoxUsername.Text = "";
+            TextBoxPassword.Text = "";
         }
     }
 }

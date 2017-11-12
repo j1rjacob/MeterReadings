@@ -17,10 +17,10 @@ namespace MeterReports
             var userStore = new UserStore<IdentityUser>();
             var userManager = new UserManager<IdentityUser>(userStore);
 
-            //var creationResult = userManager.Create(new IdentityUser("j1rjacob"), "Password123!");
-            //MessageBox.Show($"Created: {creationResult}");
+            //var creationResult = userManager.Create(new IdentityUser("junarjacob"), "Password123!");
+            //MessageBox.Show($"Created: {creationResult.Succeeded}");
 
-            var user = userManager.FindByName("j1rjacob");
+            var user = userManager.FindByName("junarjacob");
             var claimResult = userManager.AddToRole(user.Id, "Administrator");
             MessageBox.Show($"Claim Added: {claimResult.Succeeded}");
 

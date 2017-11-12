@@ -17,7 +17,7 @@ namespace TMF.Core
                 string result;
                 for (int i = 0; i < ConfigurationManager.ConnectionStrings.Count; i++)
                 {
-                    bool flag = ConfigurationManager.ConnectionStrings[i].Name.Contains("DBConnectionString");
+                    bool flag = ConfigurationManager.ConnectionStrings[i].Name.Contains("DefaultConnection");
                     if (flag)
                     {
                         result = ConfigurationManager.ConnectionStrings[i].ConnectionString;
