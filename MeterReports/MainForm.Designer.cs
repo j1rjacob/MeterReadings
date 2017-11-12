@@ -38,6 +38,7 @@
             this.IsMdiContainer = true;
             this.Name = "MainForm";
             this.Text = "Main";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.ResumeLayout(false);
 
         }

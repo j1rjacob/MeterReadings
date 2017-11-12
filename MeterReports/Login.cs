@@ -1,6 +1,4 @@
-﻿using Microsoft.AspNet.Identity;
-using Microsoft.AspNet.Identity.EntityFramework;
-using System;
+﻿using System;
 using System.Windows.Forms;
 
 namespace MeterReports
@@ -56,13 +54,14 @@ namespace MeterReports
             this.TextBoxUsername.Location = new System.Drawing.Point(216, 24);
             this.TextBoxUsername.Name = "TextBoxUsername";
             this.TextBoxUsername.Size = new System.Drawing.Size(168, 27);
-            this.TextBoxUsername.TabIndex = 1;
+            this.TextBoxUsername.TabIndex = 0;
             // 
             // TextBoxPassword
             // 
             this.TextBoxPassword.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TextBoxPassword.Location = new System.Drawing.Point(216, 72);
             this.TextBoxPassword.Name = "TextBoxPassword";
+            this.TextBoxPassword.PasswordChar = '$';
             this.TextBoxPassword.Size = new System.Drawing.Size(168, 27);
             this.TextBoxPassword.TabIndex = 1;
             // 
@@ -89,7 +88,7 @@ namespace MeterReports
             this.ButtonCancel.Location = new System.Drawing.Point(96, 198);
             this.ButtonCancel.Name = "ButtonCancel";
             this.ButtonCancel.Size = new System.Drawing.Size(288, 56);
-            this.ButtonCancel.TabIndex = 2;
+            this.ButtonCancel.TabIndex = 3;
             this.ButtonCancel.Text = "CANCEL";
             this.ButtonCancel.UseVisualStyleBackColor = true;
             this.ButtonCancel.Click += new System.EventHandler(this.ButtonCancel_Click);
@@ -115,22 +114,15 @@ namespace MeterReports
 
         private void ButtonLogin_Click(object sender, EventArgs e)
         {
-            var userStore = new UserStore<IdentityUser>();
-            var userManager = new UserManager<IdentityUser>(userStore);
-
-            var user = userManager.FindByName("junarjacob");
-            var checkPassword = userManager.CheckPassword(user, "Password123!");
-
-            if (checkPassword)
+            if (TMF.Reports.BLL.User.CheckPassword(TextBoxUsername.Text.Trim(), TextBoxPassword.Text.Trim()))
             {
-                MessageBox.Show("Find User");
                 var f = new MainForm();
                 f.Show();
                 this.Hide();
             }
             else
             {
-                MessageBox.Show("User not found!");
+                MessageBox.Show("Username or Password not match.");
             }
         }
 

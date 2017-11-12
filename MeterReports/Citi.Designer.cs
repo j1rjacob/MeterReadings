@@ -29,86 +29,86 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Citi));
-            this.label5 = new System.Windows.Forms.Label();
-            this.button4 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
+            this.LabelShow = new System.Windows.Forms.Label();
+            this.ButtonDelete = new System.Windows.Forms.Button();
+            this.ButtonSave = new System.Windows.Forms.Button();
+            this.ButtonEdit = new System.Windows.Forms.Button();
+            this.ButtonNew = new System.Windows.Forms.Button();
             this.ButtonSearch = new System.Windows.Forms.Button();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.textBox5 = new System.Windows.Forms.TextBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.DataGridViewCity = new System.Windows.Forms.DataGridView();
+            this.textBoxTotalMeters = new System.Windows.Forms.TextBox();
+            this.TextBoxSearch = new System.Windows.Forms.TextBox();
+            this.TextBoxDescription = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.DataGridViewCity)).BeginInit();
             this.SuspendLayout();
             // 
-            // label5
+            // LabelShow
             // 
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(19, 208);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(262, 22);
-            this.label5.TabIndex = 24;
-            this.label5.Text = "SHOWING 1 OF 10 RECORDS";
+            this.LabelShow.AutoSize = true;
+            this.LabelShow.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LabelShow.Location = new System.Drawing.Point(19, 208);
+            this.LabelShow.Name = "LabelShow";
+            this.LabelShow.Size = new System.Drawing.Size(262, 22);
+            this.LabelShow.TabIndex = 24;
+            this.LabelShow.Text = "SHOWING 1 OF 10 RECORDS";
             // 
-            // button4
+            // ButtonDelete
             // 
-            this.button4.AutoSize = true;
-            this.button4.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("button4.BackgroundImage")));
-            this.button4.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.button4.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button4.Location = new System.Drawing.Point(504, 140);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(151, 56);
-            this.button4.TabIndex = 19;
-            this.button4.Text = "DELETE";
-            this.button4.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.button4.UseVisualStyleBackColor = true;
+            this.ButtonDelete.AutoSize = true;
+            this.ButtonDelete.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("ButtonDelete.BackgroundImage")));
+            this.ButtonDelete.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.ButtonDelete.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ButtonDelete.Location = new System.Drawing.Point(504, 140);
+            this.ButtonDelete.Name = "ButtonDelete";
+            this.ButtonDelete.Size = new System.Drawing.Size(151, 56);
+            this.ButtonDelete.TabIndex = 19;
+            this.ButtonDelete.Text = "DELETE";
+            this.ButtonDelete.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.ButtonDelete.UseVisualStyleBackColor = true;
             // 
-            // button3
+            // ButtonSave
             // 
-            this.button3.AutoSize = true;
-            this.button3.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("button3.BackgroundImage")));
-            this.button3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.button3.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button3.Location = new System.Drawing.Point(344, 140);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(151, 56);
-            this.button3.TabIndex = 20;
-            this.button3.Text = "SAVE";
-            this.button3.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.button3.UseVisualStyleBackColor = true;
+            this.ButtonSave.AutoSize = true;
+            this.ButtonSave.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("ButtonSave.BackgroundImage")));
+            this.ButtonSave.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.ButtonSave.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ButtonSave.Location = new System.Drawing.Point(344, 140);
+            this.ButtonSave.Name = "ButtonSave";
+            this.ButtonSave.Size = new System.Drawing.Size(151, 56);
+            this.ButtonSave.TabIndex = 20;
+            this.ButtonSave.Text = "SAVE";
+            this.ButtonSave.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.ButtonSave.UseVisualStyleBackColor = true;
             // 
-            // button2
+            // ButtonEdit
             // 
-            this.button2.AutoSize = true;
-            this.button2.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("button2.BackgroundImage")));
-            this.button2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button2.Location = new System.Drawing.Point(184, 140);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(151, 56);
-            this.button2.TabIndex = 21;
-            this.button2.Text = "EDIT";
-            this.button2.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.button2.UseVisualStyleBackColor = true;
+            this.ButtonEdit.AutoSize = true;
+            this.ButtonEdit.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("ButtonEdit.BackgroundImage")));
+            this.ButtonEdit.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.ButtonEdit.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ButtonEdit.Location = new System.Drawing.Point(184, 140);
+            this.ButtonEdit.Name = "ButtonEdit";
+            this.ButtonEdit.Size = new System.Drawing.Size(151, 56);
+            this.ButtonEdit.TabIndex = 21;
+            this.ButtonEdit.Text = "EDIT";
+            this.ButtonEdit.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.ButtonEdit.UseVisualStyleBackColor = true;
             // 
-            // button1
+            // ButtonNew
             // 
-            this.button1.AutoSize = true;
-            this.button1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("button1.BackgroundImage")));
-            this.button1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.Location = new System.Drawing.Point(16, 140);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(151, 56);
-            this.button1.TabIndex = 22;
-            this.button1.Text = "NEW";
-            this.button1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.button1.UseVisualStyleBackColor = true;
+            this.ButtonNew.AutoSize = true;
+            this.ButtonNew.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("ButtonNew.BackgroundImage")));
+            this.ButtonNew.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.ButtonNew.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ButtonNew.Location = new System.Drawing.Point(16, 140);
+            this.ButtonNew.Name = "ButtonNew";
+            this.ButtonNew.Size = new System.Drawing.Size(151, 56);
+            this.ButtonNew.TabIndex = 22;
+            this.ButtonNew.Text = "NEW";
+            this.ButtonNew.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.ButtonNew.UseVisualStyleBackColor = true;
             // 
             // ButtonSearch
             // 
@@ -124,37 +124,39 @@
             this.ButtonSearch.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.ButtonSearch.UseVisualStyleBackColor = true;
             // 
-            // dataGridView1
+            // DataGridViewCity
             // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(16, 236);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(640, 150);
-            this.dataGridView1.TabIndex = 18;
+            this.DataGridViewCity.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.DataGridViewCity.Location = new System.Drawing.Point(16, 236);
+            this.DataGridViewCity.Name = "DataGridViewCity";
+            this.DataGridViewCity.Size = new System.Drawing.Size(640, 150);
+            this.DataGridViewCity.TabIndex = 18;
             // 
-            // textBox2
+            // textBoxTotalMeters
             // 
-            this.textBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox2.Location = new System.Drawing.Point(280, 105);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(376, 27);
-            this.textBox2.TabIndex = 14;
+            this.textBoxTotalMeters.Enabled = false;
+            this.textBoxTotalMeters.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBoxTotalMeters.Location = new System.Drawing.Point(280, 105);
+            this.textBoxTotalMeters.Name = "textBoxTotalMeters";
+            this.textBoxTotalMeters.Size = new System.Drawing.Size(376, 27);
+            this.textBoxTotalMeters.TabIndex = 14;
             // 
-            // textBox5
+            // TextBoxSearch
             // 
-            this.textBox5.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox5.Location = new System.Drawing.Point(217, 12);
-            this.textBox5.Name = "textBox5";
-            this.textBox5.Size = new System.Drawing.Size(280, 27);
-            this.textBox5.TabIndex = 16;
+            this.TextBoxSearch.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TextBoxSearch.Location = new System.Drawing.Point(217, 12);
+            this.TextBoxSearch.Name = "TextBoxSearch";
+            this.TextBoxSearch.Size = new System.Drawing.Size(280, 27);
+            this.TextBoxSearch.TabIndex = 16;
             // 
-            // textBox1
+            // TextBoxDescription
             // 
-            this.textBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox1.Location = new System.Drawing.Point(280, 70);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(376, 27);
-            this.textBox1.TabIndex = 17;
+            this.TextBoxDescription.Enabled = false;
+            this.TextBoxDescription.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TextBoxDescription.Location = new System.Drawing.Point(280, 70);
+            this.TextBoxDescription.Name = "TextBoxDescription";
+            this.TextBoxDescription.Size = new System.Drawing.Size(376, 27);
+            this.TextBoxDescription.TabIndex = 17;
             // 
             // label2
             // 
@@ -181,37 +183,37 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(671, 397);
-            this.Controls.Add(this.label5);
-            this.Controls.Add(this.button4);
-            this.Controls.Add(this.button3);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.LabelShow);
+            this.Controls.Add(this.ButtonDelete);
+            this.Controls.Add(this.ButtonSave);
+            this.Controls.Add(this.ButtonEdit);
+            this.Controls.Add(this.ButtonNew);
             this.Controls.Add(this.ButtonSearch);
-            this.Controls.Add(this.dataGridView1);
-            this.Controls.Add(this.textBox2);
-            this.Controls.Add(this.textBox5);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.DataGridViewCity);
+            this.Controls.Add(this.textBoxTotalMeters);
+            this.Controls.Add(this.TextBoxSearch);
+            this.Controls.Add(this.TextBoxDescription);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Name = "Citi";
             this.Text = "City";
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.DataGridViewCity)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
 
         #endregion
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Button button4;
-        private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Label LabelShow;
+        private System.Windows.Forms.Button ButtonDelete;
+        private System.Windows.Forms.Button ButtonSave;
+        private System.Windows.Forms.Button ButtonEdit;
+        private System.Windows.Forms.Button ButtonNew;
         private System.Windows.Forms.Button ButtonSearch;
-        private System.Windows.Forms.DataGridView dataGridView1;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.TextBox textBox5;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.DataGridView DataGridViewCity;
+        private System.Windows.Forms.TextBox textBoxTotalMeters;
+        private System.Windows.Forms.TextBox TextBoxSearch;
+        private System.Windows.Forms.TextBox TextBoxDescription;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
     }
