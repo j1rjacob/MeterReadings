@@ -77,6 +77,9 @@
     <Compile Include="Gateway.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="GatewayLogs.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Login.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -137,6 +140,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Gateway.resx">
       <DependentUpon>Gateway.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GatewayLogs.resx">
+      <DependentUpon>GatewayLogs.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Login.resx">
       <DependentUpon>Login.cs</DependentUpon>
