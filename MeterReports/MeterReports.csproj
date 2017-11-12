@@ -86,6 +86,12 @@
     <Compile Include="MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="MeterProtocol.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MeterProtocol.Designer.cs">
+      <DependentUpon>MeterProtocol.cs</DependentUpon>
+    </Compile>
     <Compile Include="MeterSize.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -131,6 +137,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MeterProtocol.resx">
+      <DependentUpon>MeterProtocol.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MeterSize.resx">
       <DependentUpon>MeterSize.cs</DependentUpon>
