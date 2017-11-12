@@ -59,11 +59,20 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Citi.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Citi.Designer.cs">
+      <DependentUpon>Citi.cs</DependentUpon>
+    </Compile>
     <Compile Include="City.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="City.Designer.cs">
       <DependentUpon>City.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Gateway.cs">
+      <SubType>Form</SubType>
     </Compile>
     <Compile Include="Login.cs">
       <SubType>Form</SubType>
@@ -90,11 +99,17 @@
       <DependentUpon>User.cs</DependentUpon>
     </Compile>
     <Compile Include="Util\Db.cs" />
+    <EmbeddedResource Include="Citi.resx">
+      <DependentUpon>Citi.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="City.resx">
       <DependentUpon>City.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Gateway.resx">
+      <DependentUpon>Gateway.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Login.resx">
       <DependentUpon>Login.cs</DependentUpon>
