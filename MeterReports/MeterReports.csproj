@@ -86,6 +86,9 @@
     <Compile Include="MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="MeterSize.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="MeterType.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -128,6 +131,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MeterSize.resx">
+      <DependentUpon>MeterSize.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MeterType.resx">
       <DependentUpon>MeterType.cs</DependentUpon>

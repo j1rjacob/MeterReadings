@@ -37,7 +37,7 @@
             this.ClientSize = new System.Drawing.Size(767, 423);
             this.IsMdiContainer = true;
             this.Name = "MainForm";
-            this.Text = "MainForm";
+            this.Text = "Main";
             this.ResumeLayout(false);
 
         }
