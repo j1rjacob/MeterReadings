@@ -71,6 +71,9 @@
     <Compile Include="City.Designer.cs">
       <DependentUpon>City.cs</DependentUpon>
     </Compile>
+    <Compile Include="DMZ.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Gateway.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -104,6 +107,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="City.resx">
       <DependentUpon>City.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DMZ.resx">
+      <DependentUpon>DMZ.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
