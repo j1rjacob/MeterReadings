@@ -34,6 +34,10 @@ namespace MeterReports
         private void ButtonEdit_Click(object sender, EventArgs e)
         {
             TextBoxDescription.Enabled = true;
+            ButtonNew.Enabled = false;
+            ButtonEdit.Enabled = false;
+            ButtonSave.Enabled = true;
+            ButtonDelete.Enabled = false;
             _save = false;
         }
 
@@ -99,6 +103,7 @@ namespace MeterReports
                 {
                     MessageBox.Show("City Updated");
                     ResetControls();
+                    BindCityWithDataGrid();
                 }
                 else
                 {
@@ -113,13 +118,15 @@ namespace MeterReports
         private void ButtonDelete_Click(object sender, EventArgs e)
         {
             if (!string.IsNullOrWhiteSpace(TextBoxDescription.Text))
-            {   
+            {
                 var deleteCity = _city.Delete(new SmartDB(), _cityId);
 
                 bool flag = deleteCity.Code == ErrorEnum.NoError;
                 if (flag)
                 {
                     MessageBox.Show("City Deleted");
+                    ResetControls();
+                    BindCityWithDataGrid();
                 }
                 else
                 {
@@ -139,6 +146,7 @@ namespace MeterReports
         private void ResetControls()
         {
             TextBoxDescription.Enabled = false;
+            TextBoxSearch.Text = "";
             TextBoxDescription.Text = "";
             TextBoxTotalMeters.Text = "";
             ButtonNew.Enabled = true;
@@ -163,7 +171,7 @@ namespace MeterReports
             return lockcount;
         }
         private void BindCityWithDataGrid()
-        {
+        {   //TODO: Refactor this for reuse.
             ReturnInfo getCityList = _city.GetCityByDescription(new SmartDB(), TextBoxSearch.Text);
             //bool flag = getCityList.Code == ErrorEnum.NoError;
             List<TMF.Reports.Model.City> city = (List<TMF.Reports.Model.City>)getCityList.BizObject;
@@ -171,24 +179,32 @@ namespace MeterReports
             var source = new BindingSource(bindingList, null);
             DataGridViewCity.AutoGenerateColumns = false;
             DataGridViewCity.DataSource = source;
+            LabelShow.Text = $"Showing {DataGridViewCity.CurrentRow.Index + 1} index of {DataGridViewCity.RowCount} records";
         }
         private void Citi_Load(object sender, EventArgs e)
         {
             BindCityWithDataGrid();
+            ResetControls();
         }
 
         private void DataGridViewCity_SelectionChanged(object sender, EventArgs e)
         {
+            LabelShow.Text = $"Showing {DataGridViewCity.CurrentRow.Index + 1} index of {DataGridViewCity.RowCount} records";
+
             var cityId = DataGridViewCity.CurrentRow.Cells[0].Value.ToString();
             ReturnInfo getCity = _city.GetCityById(new SmartDB(), cityId);
 
             bool flag = getCity.Code == ErrorEnum.NoError;
 
             TMF.Reports.Model.City city = (TMF.Reports.Model.City)getCity.BizObject;
-
-            TextBoxDescription.Text = city.Description;
-            TextBoxTotalMeters.Text = city.TotalNumberOfMeters.ToString();
-            _cityId = city.Id;
+            if (!string.IsNullOrEmpty(city.Id))
+            {
+                TextBoxDescription.Text = city.Description;
+                TextBoxTotalMeters.Text = city.TotalNumberOfMeters.ToString();
+                _cityId = city.Id;
+                ButtonEdit.Enabled = true;
+                ButtonDelete.Enabled = true;
+            }
         }
     }
 }
