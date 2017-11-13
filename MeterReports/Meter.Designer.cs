@@ -29,169 +29,169 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Meter));
-            this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
-            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
-            this.comboBox4 = new System.Windows.Forms.ComboBox();
-            this.comboBox3 = new System.Windows.Forms.ComboBox();
-            this.comboBox2 = new System.Windows.Forms.ComboBox();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.label5 = new System.Windows.Forms.Label();
-            this.button4 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
+            this.DateTimePickerMaintenanceDate = new System.Windows.Forms.DateTimePicker();
+            this.DateTimePickerInstallationDate = new System.Windows.Forms.DateTimePicker();
+            this.ComboBoxDMZ = new System.Windows.Forms.ComboBox();
+            this.ComboBoxMeterProtocol = new System.Windows.Forms.ComboBox();
+            this.ComboBoxMeterType = new System.Windows.Forms.ComboBox();
+            this.ComboBoxStatus = new System.Windows.Forms.ComboBox();
+            this.LabelShow = new System.Windows.Forms.Label();
+            this.ButtonDelete = new System.Windows.Forms.Button();
+            this.ButtonSave = new System.Windows.Forms.Button();
+            this.ButtonEdit = new System.Windows.Forms.Button();
+            this.ButtonNew = new System.Windows.Forms.Button();
             this.ButtonSearch = new System.Windows.Forms.Button();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.textBox4 = new System.Windows.Forms.TextBox();
-            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.DataGridViewMeter = new System.Windows.Forms.DataGridView();
+            this.TextBoxX = new System.Windows.Forms.TextBox();
+            this.TextBox4HCN = new System.Windows.Forms.TextBox();
+            this.TextBoxY = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
-            this.textBox5 = new System.Windows.Forms.TextBox();
+            this.TextBoxSearch = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.TextBoxSerialNumber = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
-            this.comboBox5 = new System.Windows.Forms.ComboBox();
-            this.comboBox6 = new System.Windows.Forms.ComboBox();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            this.ComboBoxCity = new System.Windows.Forms.ComboBox();
+            this.ComboBoxMeterSize = new System.Windows.Forms.ComboBox();
+            ((System.ComponentModel.ISupportInitialize)(this.DataGridViewMeter)).BeginInit();
             this.SuspendLayout();
             // 
-            // dateTimePicker2
+            // DateTimePickerMaintenanceDate
             // 
-            this.dateTimePicker2.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dateTimePicker2.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dateTimePicker2.Location = new System.Drawing.Point(672, 80);
-            this.dateTimePicker2.Name = "dateTimePicker2";
-            this.dateTimePicker2.Size = new System.Drawing.Size(216, 27);
-            this.dateTimePicker2.TabIndex = 56;
+            this.DateTimePickerMaintenanceDate.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.DateTimePickerMaintenanceDate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.DateTimePickerMaintenanceDate.Location = new System.Drawing.Point(672, 80);
+            this.DateTimePickerMaintenanceDate.Name = "DateTimePickerMaintenanceDate";
+            this.DateTimePickerMaintenanceDate.Size = new System.Drawing.Size(216, 27);
+            this.DateTimePickerMaintenanceDate.TabIndex = 56;
             // 
-            // dateTimePicker1
+            // DateTimePickerInstallationDate
             // 
-            this.dateTimePicker1.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dateTimePicker1.Location = new System.Drawing.Point(216, 240);
-            this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(216, 27);
-            this.dateTimePicker1.TabIndex = 55;
+            this.DateTimePickerInstallationDate.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.DateTimePickerInstallationDate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.DateTimePickerInstallationDate.Location = new System.Drawing.Point(216, 240);
+            this.DateTimePickerInstallationDate.Name = "DateTimePickerInstallationDate";
+            this.DateTimePickerInstallationDate.Size = new System.Drawing.Size(216, 27);
+            this.DateTimePickerInstallationDate.TabIndex = 55;
             // 
-            // comboBox4
+            // ComboBoxDMZ
             // 
-            this.comboBox4.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.comboBox4.FormattingEnabled = true;
-            this.comboBox4.Items.AddRange(new object[] {
+            this.ComboBoxDMZ.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ComboBoxDMZ.FormattingEnabled = true;
+            this.ComboBoxDMZ.Items.AddRange(new object[] {
             "ACTIVE",
             "NOT ACTIVE"});
-            this.comboBox4.Location = new System.Drawing.Point(672, 208);
-            this.comboBox4.Name = "comboBox4";
-            this.comboBox4.Size = new System.Drawing.Size(216, 28);
-            this.comboBox4.TabIndex = 54;
+            this.ComboBoxDMZ.Location = new System.Drawing.Point(672, 208);
+            this.ComboBoxDMZ.Name = "ComboBoxDMZ";
+            this.ComboBoxDMZ.Size = new System.Drawing.Size(216, 28);
+            this.ComboBoxDMZ.TabIndex = 54;
             // 
-            // comboBox3
+            // ComboBoxMeterProtocol
             // 
-            this.comboBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.comboBox3.FormattingEnabled = true;
-            this.comboBox3.Items.AddRange(new object[] {
+            this.ComboBoxMeterProtocol.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ComboBoxMeterProtocol.FormattingEnabled = true;
+            this.ComboBoxMeterProtocol.Items.AddRange(new object[] {
             "ACTIVE",
             "NOT ACTIVE"});
-            this.comboBox3.Location = new System.Drawing.Point(672, 176);
-            this.comboBox3.Name = "comboBox3";
-            this.comboBox3.Size = new System.Drawing.Size(216, 28);
-            this.comboBox3.TabIndex = 53;
+            this.ComboBoxMeterProtocol.Location = new System.Drawing.Point(672, 176);
+            this.ComboBoxMeterProtocol.Name = "ComboBoxMeterProtocol";
+            this.ComboBoxMeterProtocol.Size = new System.Drawing.Size(216, 28);
+            this.ComboBoxMeterProtocol.TabIndex = 53;
             // 
-            // comboBox2
+            // ComboBoxMeterType
             // 
-            this.comboBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Items.AddRange(new object[] {
+            this.ComboBoxMeterType.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ComboBoxMeterType.FormattingEnabled = true;
+            this.ComboBoxMeterType.Items.AddRange(new object[] {
             "ACTIVE",
             "NOT ACTIVE"});
-            this.comboBox2.Location = new System.Drawing.Point(672, 112);
-            this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(216, 28);
-            this.comboBox2.TabIndex = 52;
+            this.ComboBoxMeterType.Location = new System.Drawing.Point(672, 112);
+            this.ComboBoxMeterType.Name = "ComboBoxMeterType";
+            this.ComboBoxMeterType.Size = new System.Drawing.Size(216, 28);
+            this.ComboBoxMeterType.TabIndex = 52;
             // 
-            // comboBox1
+            // ComboBoxStatus
             // 
-            this.comboBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(216, 176);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(216, 28);
-            this.comboBox1.TabIndex = 51;
+            this.ComboBoxStatus.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ComboBoxStatus.FormattingEnabled = true;
+            this.ComboBoxStatus.Location = new System.Drawing.Point(216, 176);
+            this.ComboBoxStatus.Name = "ComboBoxStatus";
+            this.ComboBoxStatus.Size = new System.Drawing.Size(216, 28);
+            this.ComboBoxStatus.TabIndex = 51;
             // 
-            // label5
+            // LabelShow
             // 
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(16, 344);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(262, 22);
-            this.label5.TabIndex = 50;
-            this.label5.Text = "SHOWING 1 OF 10 RECORDS";
+            this.LabelShow.AutoSize = true;
+            this.LabelShow.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LabelShow.Location = new System.Drawing.Point(16, 344);
+            this.LabelShow.Name = "LabelShow";
+            this.LabelShow.Size = new System.Drawing.Size(262, 22);
+            this.LabelShow.TabIndex = 50;
+            this.LabelShow.Text = "SHOWING 1 OF 10 RECORDS";
             // 
-            // button4
+            // ButtonDelete
             // 
-            this.button4.AutoSize = true;
-            this.button4.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("button4.BackgroundImage")));
-            this.button4.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.button4.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button4.Location = new System.Drawing.Point(632, 277);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(151, 56);
-            this.button4.TabIndex = 45;
-            this.button4.Text = "DELETE";
-            this.button4.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.button4.UseVisualStyleBackColor = true;
+            this.ButtonDelete.AutoSize = true;
+            this.ButtonDelete.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("ButtonDelete.BackgroundImage")));
+            this.ButtonDelete.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.ButtonDelete.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ButtonDelete.Location = new System.Drawing.Point(632, 277);
+            this.ButtonDelete.Name = "ButtonDelete";
+            this.ButtonDelete.Size = new System.Drawing.Size(151, 56);
+            this.ButtonDelete.TabIndex = 45;
+            this.ButtonDelete.Text = "DELETE";
+            this.ButtonDelete.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.ButtonDelete.UseVisualStyleBackColor = true;
             // 
-            // button3
+            // ButtonSave
             // 
-            this.button3.AutoSize = true;
-            this.button3.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("button3.BackgroundImage")));
-            this.button3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.button3.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button3.Location = new System.Drawing.Point(472, 277);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(151, 56);
-            this.button3.TabIndex = 46;
-            this.button3.Text = "SAVE";
-            this.button3.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.button3.UseVisualStyleBackColor = true;
+            this.ButtonSave.AutoSize = true;
+            this.ButtonSave.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("ButtonSave.BackgroundImage")));
+            this.ButtonSave.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.ButtonSave.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ButtonSave.Location = new System.Drawing.Point(472, 277);
+            this.ButtonSave.Name = "ButtonSave";
+            this.ButtonSave.Size = new System.Drawing.Size(151, 56);
+            this.ButtonSave.TabIndex = 46;
+            this.ButtonSave.Text = "SAVE";
+            this.ButtonSave.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.ButtonSave.UseVisualStyleBackColor = true;
             // 
-            // button2
+            // ButtonEdit
             // 
-            this.button2.AutoSize = true;
-            this.button2.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("button2.BackgroundImage")));
-            this.button2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button2.Location = new System.Drawing.Point(312, 277);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(151, 56);
-            this.button2.TabIndex = 47;
-            this.button2.Text = "EDIT";
-            this.button2.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.button2.UseVisualStyleBackColor = true;
+            this.ButtonEdit.AutoSize = true;
+            this.ButtonEdit.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("ButtonEdit.BackgroundImage")));
+            this.ButtonEdit.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.ButtonEdit.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ButtonEdit.Location = new System.Drawing.Point(312, 277);
+            this.ButtonEdit.Name = "ButtonEdit";
+            this.ButtonEdit.Size = new System.Drawing.Size(151, 56);
+            this.ButtonEdit.TabIndex = 47;
+            this.ButtonEdit.Text = "EDIT";
+            this.ButtonEdit.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.ButtonEdit.UseVisualStyleBackColor = true;
             // 
-            // button1
+            // ButtonNew
             // 
-            this.button1.AutoSize = true;
-            this.button1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("button1.BackgroundImage")));
-            this.button1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.Location = new System.Drawing.Point(144, 277);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(151, 56);
-            this.button1.TabIndex = 48;
-            this.button1.Text = "NEW";
-            this.button1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.button1.UseVisualStyleBackColor = true;
+            this.ButtonNew.AutoSize = true;
+            this.ButtonNew.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("ButtonNew.BackgroundImage")));
+            this.ButtonNew.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.ButtonNew.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ButtonNew.Location = new System.Drawing.Point(144, 277);
+            this.ButtonNew.Name = "ButtonNew";
+            this.ButtonNew.Size = new System.Drawing.Size(151, 56);
+            this.ButtonNew.TabIndex = 48;
+            this.ButtonNew.Text = "NEW";
+            this.ButtonNew.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.ButtonNew.UseVisualStyleBackColor = true;
             // 
             // ButtonSearch
             // 
@@ -207,37 +207,37 @@
             this.ButtonSearch.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.ButtonSearch.UseVisualStyleBackColor = true;
             // 
-            // dataGridView1
+            // DataGridViewMeter
             // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(16, 372);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(872, 150);
-            this.dataGridView1.TabIndex = 44;
+            this.DataGridViewMeter.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.DataGridViewMeter.Location = new System.Drawing.Point(16, 372);
+            this.DataGridViewMeter.Name = "DataGridViewMeter";
+            this.DataGridViewMeter.Size = new System.Drawing.Size(872, 150);
+            this.DataGridViewMeter.TabIndex = 44;
             // 
-            // textBox2
+            // TextBoxX
             // 
-            this.textBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox2.Location = new System.Drawing.Point(216, 114);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(216, 27);
-            this.textBox2.TabIndex = 38;
+            this.TextBoxX.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TextBoxX.Location = new System.Drawing.Point(216, 114);
+            this.TextBoxX.Name = "TextBoxX";
+            this.TextBoxX.Size = new System.Drawing.Size(216, 27);
+            this.TextBoxX.TabIndex = 38;
             // 
-            // textBox4
+            // TextBox4HCN
             // 
-            this.textBox4.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox4.Location = new System.Drawing.Point(216, 209);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(216, 27);
-            this.textBox4.TabIndex = 40;
+            this.TextBox4HCN.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TextBox4HCN.Location = new System.Drawing.Point(216, 209);
+            this.TextBox4HCN.Name = "TextBox4HCN";
+            this.TextBox4HCN.Size = new System.Drawing.Size(216, 27);
+            this.TextBox4HCN.TabIndex = 40;
             // 
-            // textBox3
+            // TextBoxY
             // 
-            this.textBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox3.Location = new System.Drawing.Point(216, 145);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(216, 27);
-            this.textBox3.TabIndex = 39;
+            this.TextBoxY.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TextBoxY.Location = new System.Drawing.Point(216, 145);
+            this.TextBoxY.Name = "TextBoxY";
+            this.TextBoxY.Size = new System.Drawing.Size(216, 27);
+            this.TextBoxY.TabIndex = 39;
             // 
             // label9
             // 
@@ -249,13 +249,13 @@
             this.label9.TabIndex = 36;
             this.label9.Text = "MAINTENANCE DATE";
             // 
-            // textBox5
+            // TextBoxSearch
             // 
-            this.textBox5.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox5.Location = new System.Drawing.Point(336, 8);
-            this.textBox5.Name = "textBox5";
-            this.textBox5.Size = new System.Drawing.Size(384, 27);
-            this.textBox5.TabIndex = 42;
+            this.TextBoxSearch.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TextBoxSearch.Location = new System.Drawing.Point(336, 8);
+            this.TextBoxSearch.Name = "TextBoxSearch";
+            this.TextBoxSearch.Size = new System.Drawing.Size(384, 27);
+            this.TextBoxSearch.TabIndex = 42;
             // 
             // label7
             // 
@@ -307,13 +307,13 @@
             this.label10.TabIndex = 31;
             this.label10.Text = "METER SIZE";
             // 
-            // textBox1
+            // TextBoxSerialNumber
             // 
-            this.textBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox1.Location = new System.Drawing.Point(216, 82);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(216, 27);
-            this.textBox1.TabIndex = 43;
+            this.TextBoxSerialNumber.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TextBoxSerialNumber.Location = new System.Drawing.Point(216, 82);
+            this.TextBoxSerialNumber.Name = "TextBoxSerialNumber";
+            this.TextBoxSerialNumber.Size = new System.Drawing.Size(216, 27);
+            this.TextBoxSerialNumber.TabIndex = 43;
             // 
             // label6
             // 
@@ -375,62 +375,62 @@
             this.label13.TabIndex = 34;
             this.label13.Text = "CITY";
             // 
-            // comboBox5
+            // ComboBoxCity
             // 
-            this.comboBox5.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.comboBox5.FormattingEnabled = true;
-            this.comboBox5.Items.AddRange(new object[] {
+            this.ComboBoxCity.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ComboBoxCity.FormattingEnabled = true;
+            this.ComboBoxCity.Items.AddRange(new object[] {
             "ACTIVE",
             "NOT ACTIVE"});
-            this.comboBox5.Location = new System.Drawing.Point(672, 240);
-            this.comboBox5.Name = "comboBox5";
-            this.comboBox5.Size = new System.Drawing.Size(216, 28);
-            this.comboBox5.TabIndex = 54;
+            this.ComboBoxCity.Location = new System.Drawing.Point(672, 240);
+            this.ComboBoxCity.Name = "ComboBoxCity";
+            this.ComboBoxCity.Size = new System.Drawing.Size(216, 28);
+            this.ComboBoxCity.TabIndex = 54;
             // 
-            // comboBox6
+            // ComboBoxMeterSize
             // 
-            this.comboBox6.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.comboBox6.FormattingEnabled = true;
-            this.comboBox6.Items.AddRange(new object[] {
+            this.ComboBoxMeterSize.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ComboBoxMeterSize.FormattingEnabled = true;
+            this.ComboBoxMeterSize.Items.AddRange(new object[] {
             "ACTIVE",
             "NOT ACTIVE"});
-            this.comboBox6.Location = new System.Drawing.Point(672, 144);
-            this.comboBox6.Name = "comboBox6";
-            this.comboBox6.Size = new System.Drawing.Size(216, 28);
-            this.comboBox6.TabIndex = 52;
+            this.ComboBoxMeterSize.Location = new System.Drawing.Point(672, 144);
+            this.ComboBoxMeterSize.Name = "ComboBoxMeterSize";
+            this.ComboBoxMeterSize.Size = new System.Drawing.Size(216, 28);
+            this.ComboBoxMeterSize.TabIndex = 52;
             // 
             // Meter
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(906, 532);
-            this.Controls.Add(this.dateTimePicker2);
-            this.Controls.Add(this.dateTimePicker1);
-            this.Controls.Add(this.comboBox5);
-            this.Controls.Add(this.comboBox4);
-            this.Controls.Add(this.comboBox3);
-            this.Controls.Add(this.comboBox6);
-            this.Controls.Add(this.comboBox2);
-            this.Controls.Add(this.comboBox1);
-            this.Controls.Add(this.label5);
-            this.Controls.Add(this.button4);
-            this.Controls.Add(this.button3);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.DateTimePickerMaintenanceDate);
+            this.Controls.Add(this.DateTimePickerInstallationDate);
+            this.Controls.Add(this.ComboBoxCity);
+            this.Controls.Add(this.ComboBoxDMZ);
+            this.Controls.Add(this.ComboBoxMeterProtocol);
+            this.Controls.Add(this.ComboBoxMeterSize);
+            this.Controls.Add(this.ComboBoxMeterType);
+            this.Controls.Add(this.ComboBoxStatus);
+            this.Controls.Add(this.LabelShow);
+            this.Controls.Add(this.ButtonDelete);
+            this.Controls.Add(this.ButtonSave);
+            this.Controls.Add(this.ButtonEdit);
+            this.Controls.Add(this.ButtonNew);
             this.Controls.Add(this.ButtonSearch);
-            this.Controls.Add(this.dataGridView1);
-            this.Controls.Add(this.textBox2);
-            this.Controls.Add(this.textBox4);
-            this.Controls.Add(this.textBox3);
+            this.Controls.Add(this.DataGridViewMeter);
+            this.Controls.Add(this.TextBoxX);
+            this.Controls.Add(this.TextBox4HCN);
+            this.Controls.Add(this.TextBoxY);
             this.Controls.Add(this.label9);
-            this.Controls.Add(this.textBox5);
+            this.Controls.Add(this.TextBoxSearch);
             this.Controls.Add(this.label13);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.label12);
             this.Controls.Add(this.label11);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.label10);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.TextBoxSerialNumber);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
@@ -438,7 +438,7 @@
             this.Controls.Add(this.label1);
             this.Name = "Meter";
             this.Text = "Meter";
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.DataGridViewMeter)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -446,37 +446,37 @@
 
         #endregion
 
-        private System.Windows.Forms.DateTimePicker dateTimePicker2;
-        private System.Windows.Forms.DateTimePicker dateTimePicker1;
-        private System.Windows.Forms.ComboBox comboBox4;
-        private System.Windows.Forms.ComboBox comboBox3;
-        private System.Windows.Forms.ComboBox comboBox2;
-        private System.Windows.Forms.ComboBox comboBox1;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Button button4;
-        private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.DateTimePicker DateTimePickerMaintenanceDate;
+        private System.Windows.Forms.DateTimePicker DateTimePickerInstallationDate;
+        private System.Windows.Forms.ComboBox ComboBoxDMZ;
+        private System.Windows.Forms.ComboBox ComboBoxMeterProtocol;
+        private System.Windows.Forms.ComboBox ComboBoxMeterType;
+        private System.Windows.Forms.ComboBox ComboBoxStatus;
+        private System.Windows.Forms.Label LabelShow;
+        private System.Windows.Forms.Button ButtonDelete;
+        private System.Windows.Forms.Button ButtonSave;
+        private System.Windows.Forms.Button ButtonEdit;
+        private System.Windows.Forms.Button ButtonNew;
         private System.Windows.Forms.Button ButtonSearch;
-        private System.Windows.Forms.DataGridView dataGridView1;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.TextBox textBox4;
-        private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.DataGridView DataGridViewMeter;
+        private System.Windows.Forms.TextBox TextBoxX;
+        private System.Windows.Forms.TextBox TextBox4HCN;
+        private System.Windows.Forms.TextBox TextBoxY;
         private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.TextBox textBox5;
+        private System.Windows.Forms.TextBox TextBoxSearch;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox TextBoxSerialNumber;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label13;
-        private System.Windows.Forms.ComboBox comboBox5;
-        private System.Windows.Forms.ComboBox comboBox6;
+        private System.Windows.Forms.ComboBox ComboBoxCity;
+        private System.Windows.Forms.ComboBox ComboBoxMeterSize;
     }
 }

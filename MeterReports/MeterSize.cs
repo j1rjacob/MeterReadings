@@ -1,12 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
+using TMF.Core;
+using TMF.Core.Model;
 
 namespace MeterReports
 {
@@ -25,11 +22,16 @@ namespace MeterReports
         private Label label2;
         private Label label1;
 
+        private readonly TMF.Reports.BLL.MeterSize _meterSize;
+        private bool _save;
+        private string _meterSizeId;
         public MeterSize()
         {
             InitializeComponent();
+            _meterSize = new TMF.Reports.BLL.MeterSize();
+            _save = true;
+            _meterSizeId = "";
         }
-
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MeterSize));
@@ -71,6 +73,7 @@ namespace MeterReports
             this.ButtonDelete.Text = "DELETE";
             this.ButtonDelete.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.ButtonDelete.UseVisualStyleBackColor = true;
+            this.ButtonDelete.Click += new System.EventHandler(this.ButtonDelete_Click);
             // 
             // ButtonSave
             // 
@@ -85,6 +88,7 @@ namespace MeterReports
             this.ButtonSave.Text = "SAVE";
             this.ButtonSave.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.ButtonSave.UseVisualStyleBackColor = true;
+            this.ButtonSave.Click += new System.EventHandler(this.ButtonSave_Click);
             // 
             // ButtonEdit
             // 
@@ -99,6 +103,7 @@ namespace MeterReports
             this.ButtonEdit.Text = "EDIT";
             this.ButtonEdit.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.ButtonEdit.UseVisualStyleBackColor = true;
+            this.ButtonEdit.Click += new System.EventHandler(this.ButtonEdit_Click);
             // 
             // ButtonNew
             // 
@@ -113,6 +118,7 @@ namespace MeterReports
             this.ButtonNew.Text = "NEW";
             this.ButtonNew.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.ButtonNew.UseVisualStyleBackColor = true;
+            this.ButtonNew.Click += new System.EventHandler(this.ButtonNew_Click);
             // 
             // ButtonSearch
             // 
@@ -127,6 +133,7 @@ namespace MeterReports
             this.ButtonSearch.Text = "SEARCH";
             this.ButtonSearch.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.ButtonSearch.UseVisualStyleBackColor = true;
+            this.ButtonSearch.Click += new System.EventHandler(this.ButtonSearch_Click);
             // 
             // DataGridViewMeterSize
             // 
@@ -135,6 +142,7 @@ namespace MeterReports
             this.DataGridViewMeterSize.Name = "DataGridViewMeterSize";
             this.DataGridViewMeterSize.Size = new System.Drawing.Size(640, 150);
             this.DataGridViewMeterSize.TabIndex = 42;
+            this.DataGridViewMeterSize.SelectionChanged += new System.EventHandler(this.DataGridViewMeterSize_SelectionChanged);
             // 
             // TextBoxDescription
             // 
@@ -199,10 +207,194 @@ namespace MeterReports
             this.Name = "MeterSize";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Meter Size";
+            this.Load += new System.EventHandler(this.MeterSize_Load);
             ((System.ComponentModel.ISupportInitialize)(this.DataGridViewMeterSize)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
+        private void MeterSize_Load(object sender, EventArgs e)
+        {
+            BindMeterSizeWithDataGrid();
+            ResetControls();
+        }
+
+        private void ButtonNew_Click(object sender, EventArgs e)
+        {
+            TextBoxDescription.Enabled = true;
+            ButtonEdit.Enabled = false;
+            ButtonSave.Enabled = true;
+            ButtonDelete.Enabled = false;
+            TextBoxDescription.Text = "";
+            _meterSizeId = "";
+        }
+        private void ButtonEdit_Click(object sender, EventArgs e)
+        {
+            TextBoxDescription.Enabled = true;
+            ButtonNew.Enabled = false;
+            ButtonEdit.Enabled = false;
+            ButtonSave.Enabled = true;
+            ButtonDelete.Enabled = false;
+            _save = false;
+        }
+        private void ButtonSave_Click(object sender, EventArgs e)
+        {
+            if (_save)
+                SaveMeterSize();
+            else
+                EditMeterSize();
+        }
+        private void ButtonDelete_Click(object sender, EventArgs e)
+        {
+            if (!string.IsNullOrWhiteSpace(TextBoxDescription.Text))
+            {
+                var deleteMeterSize = _meterSize.Delete(new SmartDB(), _meterSizeId);
+
+                bool flag = deleteMeterSize.Code == ErrorEnum.NoError;
+                if (flag)
+                {
+                    MessageBox.Show("Meter Size Deleted");
+                    ResetControls();
+                    BindMeterSizeWithDataGrid();
+                }
+                else
+                {
+                    MessageBox.Show(deleteMeterSize.Message);
+                }
+            }
+            else
+            {
+                MessageBox.Show("No city to delete.");
+            }
+        }
+        private void ButtonSearch_Click(object sender, EventArgs e)
+        {
+            BindMeterSizeWithDataGrid();
+        }
+        private void DataGridViewMeterSize_SelectionChanged(object sender, EventArgs e)
+        {
+            LabelShow.Text = $"Showing {DataGridViewMeterSize.CurrentRow.Index + 1} index of {DataGridViewMeterSize.RowCount} records";
+
+            var meterSizeId = DataGridViewMeterSize.CurrentRow.Cells[0].Value.ToString();
+            ReturnInfo getMeterSize = _meterSize.GetMeterSizeById(new SmartDB(), meterSizeId);
+
+            bool flag = getMeterSize.Code == ErrorEnum.NoError;
+
+            TMF.Reports.Model.MeterSize meterSize = (TMF.Reports.Model.MeterSize)getMeterSize.BizObject;
+            if (!string.IsNullOrEmpty(meterSize.Id))
+            {
+                TextBoxDescription.Text = meterSize.Description;
+                _meterSizeId = meterSize.Id;
+                ButtonEdit.Enabled = true;
+                ButtonDelete.Enabled = true;
+            }
+        }
+        #region PriveteMethod
+        private void SaveMeterSize()
+        {
+            if (!string.IsNullOrWhiteSpace(TextBoxDescription.Text))
+            {
+                TMF.Reports.Model.City city = new TMF.Reports.Model.City()
+                {   //TODO User id for CreatedBy
+                    Id = Guid.NewGuid().ToString("N"),
+                    Description = TextBoxDescription.Text,
+                    TotalNumberOfMeters = 0,
+                    CreatedBy = "646f18f9-6425-4769-aa79-16ecdb7cf816",
+                    DocDate = DateTime.Now,
+                    Show = 1,
+                    LockCount = 0
+                };
+
+                var createCity = _city.Create(new SmartDB(), ref city);
+
+                bool flag = createCity.Code == ErrorEnum.NoError;
+                if (flag)
+                {
+                    MessageBox.Show("City Created");
+                    ResetControls();
+                    BindMeterSizeWithDataGrid();
+                }
+                else
+                {
+                    MessageBox.Show(createCity.Code.ToString());
+                }
+            }
+            else
+                MessageBox.Show("No city to save.");
+        }
+        private void EditMeterSize()
+        {
+            if (!string.IsNullOrWhiteSpace(TextBoxDescription.Text))
+            {   //Todo EditedBy
+                var lockcount = GetLockCount(_cityId);
+
+                TMF.Reports.Model.City city = new TMF.Reports.Model.City()
+                {
+                    Id = _cityId,
+                    Description = TextBoxDescription.Text,
+                    EditedBy = "646f18f9-6425-4769-aa79-16ecdb7cf816",
+                    DocDate = DateTime.Now,
+                    Show = 1,
+                    LockCount = lockcount
+                };
+
+                var updateCity = _city.Update(new SmartDB(), city);
+
+                bool flag = updateCity.Code == ErrorEnum.NoError;
+                if (flag)
+                {
+                    MessageBox.Show("City Updated");
+                    ResetControls();
+                    BindMeterSizeWithDataGrid();
+                }
+                else
+                {
+                    MessageBox.Show(updateCity.Message);
+                }
+            }
+            else
+            {
+                MessageBox.Show("No city to edit.");
+            }
+        }
+        private void ResetControls()
+        {
+            TextBoxDescription.Enabled = false;
+            TextBoxSearch.Text = "";
+            TextBoxDescription.Text = "";
+            TextBoxTotalMeters.Text = "";
+            ButtonNew.Enabled = true;
+            ButtonEdit.Enabled = false;
+            ButtonSave.Enabled = false;
+            ButtonDelete.Enabled = false;
+            _save = true;
+        }
+        protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
+        {
+            if (keyData == Keys.Escape)
+            {
+                ResetControls();
+                return true;
+            }
+            return base.ProcessCmdKey(ref msg, keyData);
+        }
+        private int GetLockCount(string Id)
+        {
+            IInfo info = _city.GetCityById(new SmartDB(), Id);
+            var lockcount = (info.BizObject as TMF.Reports.Model.City).LockCount;
+            return lockcount;
+        }
+        private void BindMeterSizeWithDataGrid()
+        {   //TODO: Refactor this for reuse.
+            ReturnInfo getCityList = _city.GetCityByDescription(new SmartDB(), TextBoxSearch.Text);
+            //bool flag = getCityList.Code == ErrorEnum.NoError;
+            List<TMF.Reports.Model.City> city = (List<TMF.Reports.Model.City>)getCityList.BizObject;
+            var bindingList = new BindingList<TMF.Reports.Model.City>(city);
+            var source = new BindingSource(bindingList, null);
+            DataGridViewCity.AutoGenerateColumns = false;
+            DataGridViewCity.DataSource = source;
+            LabelShow.Text = $"Showing {DataGridViewCity.CurrentRow.Index + 1} index of {DataGridViewCity.RowCount} records";
+        }
+        #endregion
     }
 }

@@ -19,7 +19,11 @@ namespace MeterReports
             _save = true;
             _cityId = "";
         }
-
+        private void Citi_Load(object sender, EventArgs e)
+        {
+            BindCityWithDataGrid();
+            ResetControls();
+        }
         private void ButtonNew_Click(object sender, EventArgs e)
         {
             TextBoxDescription.Enabled = true;
@@ -30,7 +34,6 @@ namespace MeterReports
             TextBoxTotalMeters.Text = "";
             _cityId = "";
         }
-
         private void ButtonEdit_Click(object sender, EventArgs e)
         {
             TextBoxDescription.Enabled = true;
@@ -40,7 +43,6 @@ namespace MeterReports
             ButtonDelete.Enabled = false;
             _save = false;
         }
-
         private void ButtonSave_Click(object sender, EventArgs e)
         {
             if (_save)
@@ -48,6 +50,53 @@ namespace MeterReports
             else
                 EditCity();
         }
+        private void ButtonDelete_Click(object sender, EventArgs e)
+        {
+            if (!string.IsNullOrWhiteSpace(TextBoxDescription.Text))
+            {
+                var deleteCity = _city.Delete(new SmartDB(), _cityId);
+
+                bool flag = deleteCity.Code == ErrorEnum.NoError;
+                if (flag)
+                {
+                    MessageBox.Show("City Deleted");
+                    ResetControls();
+                    BindCityWithDataGrid();
+                }
+                else
+                {
+                    MessageBox.Show(deleteCity.Message);
+                }
+            }
+            else
+            {
+                MessageBox.Show("No city to delete.");
+            }
+        }
+        private void ButtonSearch_Click(object sender, EventArgs e)
+        {
+            BindCityWithDataGrid();
+        }
+        private void DataGridViewCity_SelectionChanged(object sender, EventArgs e)
+        {
+            LabelShow.Text = $"Showing {DataGridViewCity.CurrentRow.Index + 1} index of {DataGridViewCity.RowCount} records";
+
+            var cityId = DataGridViewCity.CurrentRow.Cells[0].Value.ToString();
+            ReturnInfo getCity = _city.GetCityById(new SmartDB(), cityId);
+
+            bool flag = getCity.Code == ErrorEnum.NoError;
+
+            TMF.Reports.Model.City city = (TMF.Reports.Model.City)getCity.BizObject;
+            if (!string.IsNullOrEmpty(city.Id))
+            {
+                TextBoxDescription.Text = city.Description;
+                TextBoxTotalMeters.Text = city.TotalNumberOfMeters.ToString();
+                _cityId = city.Id;
+                ButtonEdit.Enabled = true;
+                ButtonDelete.Enabled = true;
+            }
+        }
+        #region PriveteMethod
         private void SaveCity()
         {
             if (!string.IsNullOrWhiteSpace(TextBoxDescription.Text))
@@ -115,34 +164,6 @@ namespace MeterReports
                 MessageBox.Show("No city to edit.");
             }
         }
-        private void ButtonDelete_Click(object sender, EventArgs e)
-        {
-            if (!string.IsNullOrWhiteSpace(TextBoxDescription.Text))
-            {
-                var deleteCity = _city.Delete(new SmartDB(), _cityId);
-
-                bool flag = deleteCity.Code == ErrorEnum.NoError;
-                if (flag)
-                {
-                    MessageBox.Show("City Deleted");
-                    ResetControls();
-                    BindCityWithDataGrid();
-                }
-                else
-                {
-                    MessageBox.Show(deleteCity.Message);
-                }
-            }
-            else
-            {
-                MessageBox.Show("No city to delete.");
-            }
-        }
-
-        private void ButtonSearch_Click(object sender, EventArgs e)
-        {
-            BindCityWithDataGrid();
-        }
         private void ResetControls()
         {
             TextBoxDescription.Enabled = false;
@@ -181,30 +202,6 @@ namespace MeterReports
             DataGridViewCity.DataSource = source;
             LabelShow.Text = $"Showing {DataGridViewCity.CurrentRow.Index + 1} index of {DataGridViewCity.RowCount} records";
         }
-        private void Citi_Load(object sender, EventArgs e)
-        {
-            BindCityWithDataGrid();
-            ResetControls();
-        }
-
-        private void DataGridViewCity_SelectionChanged(object sender, EventArgs e)
-        {
-            LabelShow.Text = $"Showing {DataGridViewCity.CurrentRow.Index + 1} index of {DataGridViewCity.RowCount} records";
-
-            var cityId = DataGridViewCity.CurrentRow.Cells[0].Value.ToString();
-            ReturnInfo getCity = _city.GetCityById(new SmartDB(), cityId);
-
-            bool flag = getCity.Code == ErrorEnum.NoError;
-
-            TMF.Reports.Model.City city = (TMF.Reports.Model.City)getCity.BizObject;
-            if (!string.IsNullOrEmpty(city.Id))
-            {
-                TextBoxDescription.Text = city.Description;
-                TextBoxTotalMeters.Text = city.TotalNumberOfMeters.ToString();
-                _cityId = city.Id;
-                ButtonEdit.Enabled = true;
-                ButtonDelete.Enabled = true;
-            }
-        }
+        #endregion
     }
 }

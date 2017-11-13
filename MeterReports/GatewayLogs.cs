@@ -14,10 +14,10 @@ namespace MeterReports
     {
         private Button ButtonSearch;
         private Label label1;
-        private Label label5;
-        private DataGridView dataGridView1;
-        private DateTimePicker dateTimePicker1;
-        private DateTimePicker dateTimePicker2;
+        private Label LabelShow;
+        private DataGridView DataGridViewGatewayLogs;
+        private DateTimePicker DateTimePickerDateFrom;
+        private DateTimePicker DateTimePickerDateTo;
         private Label label2;
 
         public GatewayLogs()
@@ -31,11 +31,11 @@ namespace MeterReports
             this.ButtonSearch = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
-            this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            this.LabelShow = new System.Windows.Forms.Label();
+            this.DataGridViewGatewayLogs = new System.Windows.Forms.DataGridView();
+            this.DateTimePickerDateFrom = new System.Windows.Forms.DateTimePicker();
+            this.DateTimePickerDateTo = new System.Windows.Forms.DateTimePicker();
+            ((System.ComponentModel.ISupportInitialize)(this.DataGridViewGatewayLogs)).BeginInit();
             this.SuspendLayout();
             // 
             // ButtonSearch
@@ -72,57 +72,57 @@ namespace MeterReports
             this.label2.TabIndex = 26;
             this.label2.Text = "Date To";
             // 
-            // label5
+            // LabelShow
             // 
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(16, 72);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(262, 22);
-            this.label5.TabIndex = 28;
-            this.label5.Text = "SHOWING 1 OF 10 RECORDS";
+            this.LabelShow.AutoSize = true;
+            this.LabelShow.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LabelShow.Location = new System.Drawing.Point(16, 72);
+            this.LabelShow.Name = "LabelShow";
+            this.LabelShow.Size = new System.Drawing.Size(262, 22);
+            this.LabelShow.TabIndex = 28;
+            this.LabelShow.Text = "SHOWING 1 OF 10 RECORDS";
             // 
-            // dataGridView1
+            // DataGridViewGatewayLogs
             // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(16, 96);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(712, 344);
-            this.dataGridView1.TabIndex = 27;
+            this.DataGridViewGatewayLogs.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.DataGridViewGatewayLogs.Location = new System.Drawing.Point(16, 96);
+            this.DataGridViewGatewayLogs.Name = "DataGridViewGatewayLogs";
+            this.DataGridViewGatewayLogs.Size = new System.Drawing.Size(712, 344);
+            this.DataGridViewGatewayLogs.TabIndex = 27;
             // 
-            // dateTimePicker1
+            // DateTimePickerDateFrom
             // 
-            this.dateTimePicker1.CalendarFont = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dateTimePicker1.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dateTimePicker1.Location = new System.Drawing.Point(112, 16);
-            this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(160, 27);
-            this.dateTimePicker1.TabIndex = 29;
+            this.DateTimePickerDateFrom.CalendarFont = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.DateTimePickerDateFrom.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.DateTimePickerDateFrom.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.DateTimePickerDateFrom.Location = new System.Drawing.Point(112, 16);
+            this.DateTimePickerDateFrom.Name = "DateTimePickerDateFrom";
+            this.DateTimePickerDateFrom.Size = new System.Drawing.Size(160, 27);
+            this.DateTimePickerDateFrom.TabIndex = 29;
             // 
-            // dateTimePicker2
+            // DateTimePickerDateTo
             // 
-            this.dateTimePicker2.CalendarFont = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dateTimePicker2.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dateTimePicker2.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dateTimePicker2.Location = new System.Drawing.Point(390, 16);
-            this.dateTimePicker2.Name = "dateTimePicker2";
-            this.dateTimePicker2.Size = new System.Drawing.Size(160, 27);
-            this.dateTimePicker2.TabIndex = 29;
+            this.DateTimePickerDateTo.CalendarFont = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.DateTimePickerDateTo.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.DateTimePickerDateTo.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.DateTimePickerDateTo.Location = new System.Drawing.Point(390, 16);
+            this.DateTimePickerDateTo.Name = "DateTimePickerDateTo";
+            this.DateTimePickerDateTo.Size = new System.Drawing.Size(160, 27);
+            this.DateTimePickerDateTo.TabIndex = 29;
             // 
             // GatewayLogs
             // 
             this.ClientSize = new System.Drawing.Size(742, 453);
-            this.Controls.Add(this.dateTimePicker2);
-            this.Controls.Add(this.dateTimePicker1);
-            this.Controls.Add(this.label5);
-            this.Controls.Add(this.dataGridView1);
+            this.Controls.Add(this.DateTimePickerDateTo);
+            this.Controls.Add(this.DateTimePickerDateFrom);
+            this.Controls.Add(this.LabelShow);
+            this.Controls.Add(this.DataGridViewGatewayLogs);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.ButtonSearch);
             this.Name = "GatewayLogs";
             this.Text = "Gateway Logs";
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.DataGridViewGatewayLogs)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

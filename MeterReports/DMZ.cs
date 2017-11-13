@@ -222,9 +222,15 @@ namespace MeterReports
             this.Controls.Add(this.label1);
             this.Name = "DMZ";
             this.Text = "DMZ";
+            this.Load += new System.EventHandler(this.DMZ_Load);
             ((System.ComponentModel.ISupportInitialize)(this.DataGridViewDMZ)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
+
+        }
+
+        private void DMZ_Load(object sender, EventArgs e)
+        {
 
         }
     }
