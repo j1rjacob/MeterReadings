@@ -41,6 +41,7 @@
             this.TextBoxDescription = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
+            this.ColId = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColDescription = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColTotalMeters = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.DataGridViewCity)).BeginInit();
@@ -137,13 +138,16 @@
             this.DataGridViewCity.AllowUserToDeleteRows = false;
             this.DataGridViewCity.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.DataGridViewCity.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.ColId,
             this.ColDescription,
             this.ColTotalMeters});
             this.DataGridViewCity.Location = new System.Drawing.Point(16, 236);
             this.DataGridViewCity.Name = "DataGridViewCity";
             this.DataGridViewCity.ReadOnly = true;
+            this.DataGridViewCity.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.DataGridViewCity.Size = new System.Drawing.Size(640, 150);
             this.DataGridViewCity.TabIndex = 18;
+            this.DataGridViewCity.SelectionChanged += new System.EventHandler(this.DataGridViewCity_SelectionChanged);
             // 
             // TextBoxTotalMeters
             // 
@@ -190,6 +194,14 @@
             this.label1.Size = new System.Drawing.Size(132, 22);
             this.label1.TabIndex = 13;
             this.label1.Text = "DESCRIPTION";
+            // 
+            // ColId
+            // 
+            this.ColId.DataPropertyName = "Id";
+            this.ColId.HeaderText = "Id";
+            this.ColId.Name = "ColId";
+            this.ColId.ReadOnly = true;
+            this.ColId.Visible = false;
             // 
             // ColDescription
             // 
@@ -248,6 +260,7 @@
         private System.Windows.Forms.TextBox TextBoxDescription;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColId;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColDescription;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColTotalMeters;
     }

@@ -31,63 +31,63 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MeterReading));
             this.TabControlMeterReading = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.button4 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
+            this.ButtonDelete = new System.Windows.Forms.Button();
+            this.ButtonSave = new System.Windows.Forms.Button();
+            this.ButtonEdit = new System.Windows.Forms.Button();
+            this.ButtonNew = new System.Windows.Forms.Button();
             this.ButtonSearch = new System.Windows.Forms.Button();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.textBox4 = new System.Windows.Forms.TextBox();
-            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.TextBoxPermErrAlr = new System.Windows.Forms.TextBox();
+            this.TextBoxLeakAlr = new System.Windows.Forms.TextBox();
+            this.TextBoxSpecificErr = new System.Windows.Forms.TextBox();
+            this.TextBoxReadingDate = new System.Windows.Forms.TextBox();
+            this.TextBoxSpecErr3 = new System.Windows.Forms.TextBox();
+            this.TextBoxBrokenPipeAlr = new System.Windows.Forms.TextBox();
+            this.TextBoxSpecErr2 = new System.Windows.Forms.TextBox();
+            this.TextBoxBackflowAlr = new System.Windows.Forms.TextBox();
+            this.TextBoxSpecErr1 = new System.Windows.Forms.TextBox();
+            this.TextBoxErrorAlr = new System.Windows.Forms.TextBox();
+            this.TextBoxTempErrAlr = new System.Windows.Forms.TextBox();
+            this.TextBoxMagneticTmprAlr = new System.Windows.Forms.TextBox();
+            this.TextBoxAbnCondAlr = new System.Windows.Forms.TextBox();
+            this.TextBoxLowBattAlr = new System.Windows.Forms.TextBox();
+            this.TextBoxAnyAppErrAlr = new System.Windows.Forms.TextBox();
+            this.TextBoxDescription = new System.Windows.Forms.TextBox();
+            this.TextBoxAppBusyAlr = new System.Windows.Forms.TextBox();
+            this.TextBoxReadingValue = new System.Windows.Forms.TextBox();
+            this.TextBoxFlowRateValue = new System.Windows.Forms.TextBox();
+            this.TextBoxCsvType = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
-            this.textBox5 = new System.Windows.Forms.TextBox();
+            this.label23 = new System.Windows.Forms.Label();
+            this.TextBoxSearch = new System.Windows.Forms.TextBox();
+            this.label22 = new System.Windows.Forms.Label();
+            this.label18 = new System.Windows.Forms.Label();
+            this.label13 = new System.Windows.Forms.Label();
+            this.label21 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
+            this.label20 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
+            this.label19 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.label17 = new System.Windows.Forms.Label();
+            this.TextBoxEmptyPipeAlr = new System.Windows.Forms.TextBox();
+            this.TextBoxSerialNumber = new System.Windows.Forms.TextBox();
+            this.label16 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
+            this.label15 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
+            this.label14 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.label13 = new System.Windows.Forms.Label();
-            this.label14 = new System.Windows.Forms.Label();
-            this.label15 = new System.Windows.Forms.Label();
-            this.label16 = new System.Windows.Forms.Label();
-            this.label17 = new System.Windows.Forms.Label();
-            this.label18 = new System.Windows.Forms.Label();
-            this.textBox7 = new System.Windows.Forms.TextBox();
-            this.textBox8 = new System.Windows.Forms.TextBox();
-            this.textBox9 = new System.Windows.Forms.TextBox();
-            this.label19 = new System.Windows.Forms.Label();
-            this.label20 = new System.Windows.Forms.Label();
-            this.label21 = new System.Windows.Forms.Label();
-            this.label22 = new System.Windows.Forms.Label();
-            this.label23 = new System.Windows.Forms.Label();
-            this.textBox11 = new System.Windows.Forms.TextBox();
-            this.textBox12 = new System.Windows.Forms.TextBox();
-            this.textBox13 = new System.Windows.Forms.TextBox();
-            this.textBox14 = new System.Windows.Forms.TextBox();
-            this.textBox6 = new System.Windows.Forms.TextBox();
-            this.textBox10 = new System.Windows.Forms.TextBox();
-            this.textBox15 = new System.Windows.Forms.TextBox();
-            this.textBox16 = new System.Windows.Forms.TextBox();
-            this.textBox17 = new System.Windows.Forms.TextBox();
-            this.textBox18 = new System.Windows.Forms.TextBox();
-            this.textBox19 = new System.Windows.Forms.TextBox();
-            this.textBox20 = new System.Windows.Forms.TextBox();
-            this.textBox21 = new System.Windows.Forms.TextBox();
-            this.textBox22 = new System.Windows.Forms.TextBox();
-            this.textBox23 = new System.Windows.Forms.TextBox();
+            this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.LabelShow = new System.Windows.Forms.Label();
+            this.DataGridViewMeterReading = new System.Windows.Forms.DataGridView();
             this.TabControlMeterReading.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.DataGridViewMeterReading)).BeginInit();
             this.SuspendLayout();
             // 
             // TabControlMeterReading
@@ -106,34 +106,34 @@
             // 
             // tabPage1
             // 
-            this.tabPage1.Controls.Add(this.button4);
-            this.tabPage1.Controls.Add(this.button3);
-            this.tabPage1.Controls.Add(this.button2);
-            this.tabPage1.Controls.Add(this.button1);
+            this.tabPage1.Controls.Add(this.ButtonDelete);
+            this.tabPage1.Controls.Add(this.ButtonSave);
+            this.tabPage1.Controls.Add(this.ButtonEdit);
+            this.tabPage1.Controls.Add(this.ButtonNew);
             this.tabPage1.Controls.Add(this.ButtonSearch);
-            this.tabPage1.Controls.Add(this.textBox23);
-            this.tabPage1.Controls.Add(this.textBox9);
-            this.tabPage1.Controls.Add(this.textBox22);
-            this.tabPage1.Controls.Add(this.textBox2);
-            this.tabPage1.Controls.Add(this.textBox21);
-            this.tabPage1.Controls.Add(this.textBox14);
-            this.tabPage1.Controls.Add(this.textBox20);
-            this.tabPage1.Controls.Add(this.textBox8);
-            this.tabPage1.Controls.Add(this.textBox19);
-            this.tabPage1.Controls.Add(this.textBox13);
-            this.tabPage1.Controls.Add(this.textBox18);
-            this.tabPage1.Controls.Add(this.textBox7);
-            this.tabPage1.Controls.Add(this.textBox17);
-            this.tabPage1.Controls.Add(this.textBox12);
-            this.tabPage1.Controls.Add(this.textBox16);
-            this.tabPage1.Controls.Add(this.textBox4);
-            this.tabPage1.Controls.Add(this.textBox15);
-            this.tabPage1.Controls.Add(this.textBox11);
-            this.tabPage1.Controls.Add(this.textBox10);
-            this.tabPage1.Controls.Add(this.textBox3);
+            this.tabPage1.Controls.Add(this.TextBoxPermErrAlr);
+            this.tabPage1.Controls.Add(this.TextBoxLeakAlr);
+            this.tabPage1.Controls.Add(this.TextBoxSpecificErr);
+            this.tabPage1.Controls.Add(this.TextBoxReadingDate);
+            this.tabPage1.Controls.Add(this.TextBoxSpecErr3);
+            this.tabPage1.Controls.Add(this.TextBoxBrokenPipeAlr);
+            this.tabPage1.Controls.Add(this.TextBoxSpecErr2);
+            this.tabPage1.Controls.Add(this.TextBoxBackflowAlr);
+            this.tabPage1.Controls.Add(this.TextBoxSpecErr1);
+            this.tabPage1.Controls.Add(this.TextBoxErrorAlr);
+            this.tabPage1.Controls.Add(this.TextBoxTempErrAlr);
+            this.tabPage1.Controls.Add(this.TextBoxMagneticTmprAlr);
+            this.tabPage1.Controls.Add(this.TextBoxAbnCondAlr);
+            this.tabPage1.Controls.Add(this.TextBoxLowBattAlr);
+            this.tabPage1.Controls.Add(this.TextBoxAnyAppErrAlr);
+            this.tabPage1.Controls.Add(this.TextBoxDescription);
+            this.tabPage1.Controls.Add(this.TextBoxAppBusyAlr);
+            this.tabPage1.Controls.Add(this.TextBoxReadingValue);
+            this.tabPage1.Controls.Add(this.TextBoxFlowRateValue);
+            this.tabPage1.Controls.Add(this.TextBoxCsvType);
             this.tabPage1.Controls.Add(this.label9);
             this.tabPage1.Controls.Add(this.label23);
-            this.tabPage1.Controls.Add(this.textBox5);
+            this.tabPage1.Controls.Add(this.TextBoxSearch);
             this.tabPage1.Controls.Add(this.label22);
             this.tabPage1.Controls.Add(this.label18);
             this.tabPage1.Controls.Add(this.label13);
@@ -146,8 +146,8 @@
             this.tabPage1.Controls.Add(this.label8);
             this.tabPage1.Controls.Add(this.label10);
             this.tabPage1.Controls.Add(this.label17);
-            this.tabPage1.Controls.Add(this.textBox6);
-            this.tabPage1.Controls.Add(this.textBox1);
+            this.tabPage1.Controls.Add(this.TextBoxEmptyPipeAlr);
+            this.tabPage1.Controls.Add(this.TextBoxSerialNumber);
             this.tabPage1.Controls.Add(this.label16);
             this.tabPage1.Controls.Add(this.label6);
             this.tabPage1.Controls.Add(this.label15);
@@ -164,73 +164,61 @@
             this.tabPage1.Text = "METER INFORMATION";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
-            // tabPage2
+            // ButtonDelete
             // 
-            this.tabPage2.Controls.Add(this.label5);
-            this.tabPage2.Controls.Add(this.dataGridView1);
-            this.tabPage2.Location = new System.Drawing.Point(4, 4);
-            this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(885, 494);
-            this.tabPage2.TabIndex = 1;
-            this.tabPage2.Text = "LIST OF RECORDS";
-            this.tabPage2.UseVisualStyleBackColor = true;
+            this.ButtonDelete.AutoSize = true;
+            this.ButtonDelete.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("ButtonDelete.BackgroundImage")));
+            this.ButtonDelete.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.ButtonDelete.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ButtonDelete.Location = new System.Drawing.Point(632, 432);
+            this.ButtonDelete.Name = "ButtonDelete";
+            this.ButtonDelete.Size = new System.Drawing.Size(151, 56);
+            this.ButtonDelete.TabIndex = 75;
+            this.ButtonDelete.Text = "DELETE";
+            this.ButtonDelete.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.ButtonDelete.UseVisualStyleBackColor = true;
             // 
-            // button4
+            // ButtonSave
             // 
-            this.button4.AutoSize = true;
-            this.button4.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("button4.BackgroundImage")));
-            this.button4.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.button4.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button4.Location = new System.Drawing.Point(632, 432);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(151, 56);
-            this.button4.TabIndex = 75;
-            this.button4.Text = "DELETE";
-            this.button4.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.button4.UseVisualStyleBackColor = true;
+            this.ButtonSave.AutoSize = true;
+            this.ButtonSave.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("ButtonSave.BackgroundImage")));
+            this.ButtonSave.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.ButtonSave.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ButtonSave.Location = new System.Drawing.Point(472, 432);
+            this.ButtonSave.Name = "ButtonSave";
+            this.ButtonSave.Size = new System.Drawing.Size(151, 56);
+            this.ButtonSave.TabIndex = 76;
+            this.ButtonSave.Text = "SAVE";
+            this.ButtonSave.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.ButtonSave.UseVisualStyleBackColor = true;
             // 
-            // button3
+            // ButtonEdit
             // 
-            this.button3.AutoSize = true;
-            this.button3.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("button3.BackgroundImage")));
-            this.button3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.button3.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button3.Location = new System.Drawing.Point(472, 432);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(151, 56);
-            this.button3.TabIndex = 76;
-            this.button3.Text = "SAVE";
-            this.button3.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.button3.UseVisualStyleBackColor = true;
+            this.ButtonEdit.AutoSize = true;
+            this.ButtonEdit.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("ButtonEdit.BackgroundImage")));
+            this.ButtonEdit.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.ButtonEdit.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ButtonEdit.Location = new System.Drawing.Point(312, 432);
+            this.ButtonEdit.Name = "ButtonEdit";
+            this.ButtonEdit.Size = new System.Drawing.Size(151, 56);
+            this.ButtonEdit.TabIndex = 77;
+            this.ButtonEdit.Text = "EDIT";
+            this.ButtonEdit.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.ButtonEdit.UseVisualStyleBackColor = true;
             // 
-            // button2
+            // ButtonNew
             // 
-            this.button2.AutoSize = true;
-            this.button2.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("button2.BackgroundImage")));
-            this.button2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button2.Location = new System.Drawing.Point(312, 432);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(151, 56);
-            this.button2.TabIndex = 77;
-            this.button2.Text = "EDIT";
-            this.button2.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.button2.UseVisualStyleBackColor = true;
-            // 
-            // button1
-            // 
-            this.button1.AutoSize = true;
-            this.button1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("button1.BackgroundImage")));
-            this.button1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.Location = new System.Drawing.Point(144, 432);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(151, 56);
-            this.button1.TabIndex = 78;
-            this.button1.Text = "NEW";
-            this.button1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.button1.UseVisualStyleBackColor = true;
+            this.ButtonNew.AutoSize = true;
+            this.ButtonNew.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("ButtonNew.BackgroundImage")));
+            this.ButtonNew.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.ButtonNew.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ButtonNew.Location = new System.Drawing.Point(144, 432);
+            this.ButtonNew.Name = "ButtonNew";
+            this.ButtonNew.Size = new System.Drawing.Size(151, 56);
+            this.ButtonNew.TabIndex = 78;
+            this.ButtonNew.Text = "NEW";
+            this.ButtonNew.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.ButtonNew.UseVisualStyleBackColor = true;
             // 
             // ButtonSearch
             // 
@@ -246,29 +234,165 @@
             this.ButtonSearch.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.ButtonSearch.UseVisualStyleBackColor = true;
             // 
-            // textBox2
+            // TextBoxPermErrAlr
             // 
-            this.textBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox2.Location = new System.Drawing.Point(216, 112);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(216, 27);
-            this.textBox2.TabIndex = 68;
+            this.TextBoxPermErrAlr.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TextBoxPermErrAlr.Location = new System.Drawing.Point(655, 269);
+            this.TextBoxPermErrAlr.Name = "TextBoxPermErrAlr";
+            this.TextBoxPermErrAlr.Size = new System.Drawing.Size(216, 27);
+            this.TextBoxPermErrAlr.TabIndex = 68;
             // 
-            // textBox4
+            // TextBoxLeakAlr
             // 
-            this.textBox4.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox4.Location = new System.Drawing.Point(216, 207);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(216, 27);
-            this.textBox4.TabIndex = 70;
+            this.TextBoxLeakAlr.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TextBoxLeakAlr.Location = new System.Drawing.Point(216, 269);
+            this.TextBoxLeakAlr.Name = "TextBoxLeakAlr";
+            this.TextBoxLeakAlr.Size = new System.Drawing.Size(216, 27);
+            this.TextBoxLeakAlr.TabIndex = 68;
             // 
-            // textBox3
+            // TextBoxSpecificErr
             // 
-            this.textBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox3.Location = new System.Drawing.Point(216, 143);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(216, 27);
-            this.textBox3.TabIndex = 69;
+            this.TextBoxSpecificErr.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TextBoxSpecificErr.Location = new System.Drawing.Point(655, 112);
+            this.TextBoxSpecificErr.Name = "TextBoxSpecificErr";
+            this.TextBoxSpecificErr.Size = new System.Drawing.Size(216, 27);
+            this.TextBoxSpecificErr.TabIndex = 68;
+            // 
+            // TextBoxReadingDate
+            // 
+            this.TextBoxReadingDate.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TextBoxReadingDate.Location = new System.Drawing.Point(216, 112);
+            this.TextBoxReadingDate.Name = "TextBoxReadingDate";
+            this.TextBoxReadingDate.Size = new System.Drawing.Size(216, 27);
+            this.TextBoxReadingDate.TabIndex = 68;
+            // 
+            // TextBoxSpecErr3
+            // 
+            this.TextBoxSpecErr3.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TextBoxSpecErr3.Location = new System.Drawing.Point(655, 394);
+            this.TextBoxSpecErr3.Name = "TextBoxSpecErr3";
+            this.TextBoxSpecErr3.Size = new System.Drawing.Size(216, 27);
+            this.TextBoxSpecErr3.TabIndex = 70;
+            // 
+            // TextBoxBrokenPipeAlr
+            // 
+            this.TextBoxBrokenPipeAlr.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TextBoxBrokenPipeAlr.Location = new System.Drawing.Point(216, 394);
+            this.TextBoxBrokenPipeAlr.Name = "TextBoxBrokenPipeAlr";
+            this.TextBoxBrokenPipeAlr.Size = new System.Drawing.Size(216, 27);
+            this.TextBoxBrokenPipeAlr.TabIndex = 70;
+            // 
+            // TextBoxSpecErr2
+            // 
+            this.TextBoxSpecErr2.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TextBoxSpecErr2.Location = new System.Drawing.Point(655, 364);
+            this.TextBoxSpecErr2.Name = "TextBoxSpecErr2";
+            this.TextBoxSpecErr2.Size = new System.Drawing.Size(216, 27);
+            this.TextBoxSpecErr2.TabIndex = 70;
+            // 
+            // TextBoxBackflowAlr
+            // 
+            this.TextBoxBackflowAlr.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TextBoxBackflowAlr.Location = new System.Drawing.Point(216, 364);
+            this.TextBoxBackflowAlr.Name = "TextBoxBackflowAlr";
+            this.TextBoxBackflowAlr.Size = new System.Drawing.Size(216, 27);
+            this.TextBoxBackflowAlr.TabIndex = 70;
+            // 
+            // TextBoxSpecErr1
+            // 
+            this.TextBoxSpecErr1.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TextBoxSpecErr1.Location = new System.Drawing.Point(655, 331);
+            this.TextBoxSpecErr1.Name = "TextBoxSpecErr1";
+            this.TextBoxSpecErr1.Size = new System.Drawing.Size(216, 27);
+            this.TextBoxSpecErr1.TabIndex = 69;
+            // 
+            // TextBoxErrorAlr
+            // 
+            this.TextBoxErrorAlr.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TextBoxErrorAlr.Location = new System.Drawing.Point(216, 331);
+            this.TextBoxErrorAlr.Name = "TextBoxErrorAlr";
+            this.TextBoxErrorAlr.Size = new System.Drawing.Size(216, 27);
+            this.TextBoxErrorAlr.TabIndex = 69;
+            // 
+            // TextBoxTempErrAlr
+            // 
+            this.TextBoxTempErrAlr.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TextBoxTempErrAlr.Location = new System.Drawing.Point(655, 300);
+            this.TextBoxTempErrAlr.Name = "TextBoxTempErrAlr";
+            this.TextBoxTempErrAlr.Size = new System.Drawing.Size(216, 27);
+            this.TextBoxTempErrAlr.TabIndex = 69;
+            // 
+            // TextBoxMagneticTmprAlr
+            // 
+            this.TextBoxMagneticTmprAlr.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TextBoxMagneticTmprAlr.Location = new System.Drawing.Point(216, 300);
+            this.TextBoxMagneticTmprAlr.Name = "TextBoxMagneticTmprAlr";
+            this.TextBoxMagneticTmprAlr.Size = new System.Drawing.Size(216, 27);
+            this.TextBoxMagneticTmprAlr.TabIndex = 69;
+            // 
+            // TextBoxAbnCondAlr
+            // 
+            this.TextBoxAbnCondAlr.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TextBoxAbnCondAlr.Location = new System.Drawing.Point(655, 237);
+            this.TextBoxAbnCondAlr.Name = "TextBoxAbnCondAlr";
+            this.TextBoxAbnCondAlr.Size = new System.Drawing.Size(216, 27);
+            this.TextBoxAbnCondAlr.TabIndex = 70;
+            // 
+            // TextBoxLowBattAlr
+            // 
+            this.TextBoxLowBattAlr.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TextBoxLowBattAlr.Location = new System.Drawing.Point(216, 237);
+            this.TextBoxLowBattAlr.Name = "TextBoxLowBattAlr";
+            this.TextBoxLowBattAlr.Size = new System.Drawing.Size(216, 27);
+            this.TextBoxLowBattAlr.TabIndex = 70;
+            // 
+            // TextBoxAnyAppErrAlr
+            // 
+            this.TextBoxAnyAppErrAlr.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TextBoxAnyAppErrAlr.Location = new System.Drawing.Point(655, 207);
+            this.TextBoxAnyAppErrAlr.Name = "TextBoxAnyAppErrAlr";
+            this.TextBoxAnyAppErrAlr.Size = new System.Drawing.Size(216, 27);
+            this.TextBoxAnyAppErrAlr.TabIndex = 70;
+            // 
+            // TextBoxDescription
+            // 
+            this.TextBoxDescription.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TextBoxDescription.Location = new System.Drawing.Point(216, 207);
+            this.TextBoxDescription.Name = "TextBoxDescription";
+            this.TextBoxDescription.Size = new System.Drawing.Size(216, 27);
+            this.TextBoxDescription.TabIndex = 70;
+            // 
+            // TextBoxAppBusyAlr
+            // 
+            this.TextBoxAppBusyAlr.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TextBoxAppBusyAlr.Location = new System.Drawing.Point(655, 176);
+            this.TextBoxAppBusyAlr.Name = "TextBoxAppBusyAlr";
+            this.TextBoxAppBusyAlr.Size = new System.Drawing.Size(216, 27);
+            this.TextBoxAppBusyAlr.TabIndex = 69;
+            // 
+            // TextBoxReadingValue
+            // 
+            this.TextBoxReadingValue.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TextBoxReadingValue.Location = new System.Drawing.Point(216, 176);
+            this.TextBoxReadingValue.Name = "TextBoxReadingValue";
+            this.TextBoxReadingValue.Size = new System.Drawing.Size(216, 27);
+            this.TextBoxReadingValue.TabIndex = 69;
+            // 
+            // TextBoxFlowRateValue
+            // 
+            this.TextBoxFlowRateValue.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TextBoxFlowRateValue.Location = new System.Drawing.Point(655, 143);
+            this.TextBoxFlowRateValue.Name = "TextBoxFlowRateValue";
+            this.TextBoxFlowRateValue.Size = new System.Drawing.Size(216, 27);
+            this.TextBoxFlowRateValue.TabIndex = 69;
+            // 
+            // TextBoxCsvType
+            // 
+            this.TextBoxCsvType.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TextBoxCsvType.Location = new System.Drawing.Point(216, 143);
+            this.TextBoxCsvType.Name = "TextBoxCsvType";
+            this.TextBoxCsvType.Size = new System.Drawing.Size(216, 27);
+            this.TextBoxCsvType.TabIndex = 69;
             // 
             // label9
             // 
@@ -280,13 +404,63 @@
             this.label9.TabIndex = 66;
             this.label9.Text = "EMPTY PIPE ALR";
             // 
-            // textBox5
+            // label23
             // 
-            this.textBox5.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox5.Location = new System.Drawing.Point(320, 8);
-            this.textBox5.Name = "textBox5";
-            this.textBox5.Size = new System.Drawing.Size(384, 27);
-            this.textBox5.TabIndex = 72;
+            this.label23.AutoSize = true;
+            this.label23.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label23.Location = new System.Drawing.Point(494, 400);
+            this.label23.Name = "label23";
+            this.label23.Size = new System.Drawing.Size(152, 22);
+            this.label23.TabIndex = 64;
+            this.label23.Text = "SPEC ERR3 ALR";
+            // 
+            // TextBoxSearch
+            // 
+            this.TextBoxSearch.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TextBoxSearch.Location = new System.Drawing.Point(320, 8);
+            this.TextBoxSearch.Name = "TextBoxSearch";
+            this.TextBoxSearch.Size = new System.Drawing.Size(384, 27);
+            this.TextBoxSearch.TabIndex = 72;
+            // 
+            // label22
+            // 
+            this.label22.AutoSize = true;
+            this.label22.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label22.Location = new System.Drawing.Point(493, 368);
+            this.label22.Name = "label22";
+            this.label22.Size = new System.Drawing.Size(152, 22);
+            this.label22.TabIndex = 64;
+            this.label22.Text = "SPEC ERR2 ALR";
+            // 
+            // label18
+            // 
+            this.label18.AutoSize = true;
+            this.label18.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label18.Location = new System.Drawing.Point(28, 397);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(171, 22);
+            this.label18.TabIndex = 65;
+            this.label18.Text = "BROKEN PIPE ALR";
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label13.Location = new System.Drawing.Point(498, 241);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(145, 22);
+            this.label13.TabIndex = 64;
+            this.label13.Text = "ABN COND ALR";
+            // 
+            // label21
+            // 
+            this.label21.AutoSize = true;
+            this.label21.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label21.Location = new System.Drawing.Point(494, 336);
+            this.label21.Name = "label21";
+            this.label21.Size = new System.Drawing.Size(152, 22);
+            this.label21.TabIndex = 64;
+            this.label21.Text = "SPEC ERR1 ALR";
             // 
             // label7
             // 
@@ -297,6 +471,16 @@
             this.label7.Size = new System.Drawing.Size(144, 22);
             this.label7.TabIndex = 65;
             this.label7.Text = "LOW BATT ALR";
+            // 
+            // label20
+            // 
+            this.label20.AutoSize = true;
+            this.label20.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label20.Location = new System.Drawing.Point(503, 303);
+            this.label20.Name = "label20";
+            this.label20.Size = new System.Drawing.Size(143, 22);
+            this.label20.TabIndex = 63;
+            this.label20.Text = "TEMP ERR ALR";
             // 
             // label12
             // 
@@ -318,6 +502,16 @@
             this.label11.TabIndex = 63;
             this.label11.Text = "APP BUSY ALR";
             // 
+            // label19
+            // 
+            this.label19.AutoSize = true;
+            this.label19.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label19.Location = new System.Drawing.Point(500, 272);
+            this.label19.Name = "label19";
+            this.label19.Size = new System.Drawing.Size(144, 22);
+            this.label19.TabIndex = 61;
+            this.label19.Text = "PERM ERR ALR";
+            // 
             // label8
             // 
             this.label8.AutoSize = true;
@@ -338,13 +532,41 @@
             this.label10.TabIndex = 61;
             this.label10.Text = "FLOW RATE VALUE";
             // 
-            // textBox1
+            // label17
             // 
-            this.textBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox1.Location = new System.Drawing.Point(216, 80);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(216, 27);
-            this.textBox1.TabIndex = 73;
+            this.label17.AutoSize = true;
+            this.label17.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label17.Location = new System.Drawing.Point(48, 368);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(151, 22);
+            this.label17.TabIndex = 60;
+            this.label17.Text = "BACKFLOW ALR";
+            // 
+            // TextBoxEmptyPipeAlr
+            // 
+            this.TextBoxEmptyPipeAlr.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TextBoxEmptyPipeAlr.Location = new System.Drawing.Point(655, 80);
+            this.TextBoxEmptyPipeAlr.Name = "TextBoxEmptyPipeAlr";
+            this.TextBoxEmptyPipeAlr.Size = new System.Drawing.Size(216, 27);
+            this.TextBoxEmptyPipeAlr.TabIndex = 73;
+            // 
+            // TextBoxSerialNumber
+            // 
+            this.TextBoxSerialNumber.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TextBoxSerialNumber.Location = new System.Drawing.Point(216, 80);
+            this.TextBoxSerialNumber.Name = "TextBoxSerialNumber";
+            this.TextBoxSerialNumber.Size = new System.Drawing.Size(216, 27);
+            this.TextBoxSerialNumber.TabIndex = 73;
+            // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label16.Location = new System.Drawing.Point(85, 335);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(115, 22);
+            this.label16.TabIndex = 57;
+            this.label16.Text = "ERROR ALR";
             // 
             // label6
             // 
@@ -356,6 +578,16 @@
             this.label6.TabIndex = 60;
             this.label6.Text = "DESCRIPTION";
             // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label15.Location = new System.Drawing.Point(0, 301);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(200, 22);
+            this.label15.TabIndex = 59;
+            this.label15.Text = "MAGNETIC TMPR ALR";
+            // 
             // label4
             // 
             this.label4.AutoSize = true;
@@ -365,6 +597,16 @@
             this.label4.Size = new System.Drawing.Size(155, 22);
             this.label4.TabIndex = 57;
             this.label4.Text = "READING VALUE";
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label14.Location = new System.Drawing.Point(104, 272);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(96, 22);
+            this.label14.TabIndex = 58;
+            this.label14.Text = "LEAK ALR";
             // 
             // label3
             // 
@@ -396,277 +638,35 @@
             this.label1.TabIndex = 67;
             this.label1.Text = "SERIAL NUMBER";
             // 
-            // label5
+            // tabPage2
             // 
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(8, 5);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(262, 22);
-            this.label5.TabIndex = 82;
-            this.label5.Text = "SHOWING 1 OF 10 RECORDS";
+            this.tabPage2.Controls.Add(this.LabelShow);
+            this.tabPage2.Controls.Add(this.DataGridViewMeterReading);
+            this.tabPage2.Location = new System.Drawing.Point(4, 4);
+            this.tabPage2.Name = "tabPage2";
+            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage2.Size = new System.Drawing.Size(885, 494);
+            this.tabPage2.TabIndex = 1;
+            this.tabPage2.Text = "LIST OF RECORDS";
+            this.tabPage2.UseVisualStyleBackColor = true;
             // 
-            // dataGridView1
+            // LabelShow
             // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(8, 31);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(872, 457);
-            this.dataGridView1.TabIndex = 81;
+            this.LabelShow.AutoSize = true;
+            this.LabelShow.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LabelShow.Location = new System.Drawing.Point(8, 5);
+            this.LabelShow.Name = "LabelShow";
+            this.LabelShow.Size = new System.Drawing.Size(262, 22);
+            this.LabelShow.TabIndex = 82;
+            this.LabelShow.Text = "SHOWING 1 OF 10 RECORDS";
             // 
-            // label13
+            // DataGridViewMeterReading
             // 
-            this.label13.AutoSize = true;
-            this.label13.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label13.Location = new System.Drawing.Point(498, 241);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(145, 22);
-            this.label13.TabIndex = 64;
-            this.label13.Text = "ABN COND ALR";
-            // 
-            // label14
-            // 
-            this.label14.AutoSize = true;
-            this.label14.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label14.Location = new System.Drawing.Point(104, 272);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(96, 22);
-            this.label14.TabIndex = 58;
-            this.label14.Text = "LEAK ALR";
-            // 
-            // label15
-            // 
-            this.label15.AutoSize = true;
-            this.label15.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label15.Location = new System.Drawing.Point(0, 301);
-            this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(200, 22);
-            this.label15.TabIndex = 59;
-            this.label15.Text = "MAGNETIC TMPR ALR";
-            // 
-            // label16
-            // 
-            this.label16.AutoSize = true;
-            this.label16.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label16.Location = new System.Drawing.Point(85, 335);
-            this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(115, 22);
-            this.label16.TabIndex = 57;
-            this.label16.Text = "ERROR ALR";
-            // 
-            // label17
-            // 
-            this.label17.AutoSize = true;
-            this.label17.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label17.Location = new System.Drawing.Point(48, 368);
-            this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(151, 22);
-            this.label17.TabIndex = 60;
-            this.label17.Text = "BACKFLOW ALR";
-            // 
-            // label18
-            // 
-            this.label18.AutoSize = true;
-            this.label18.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label18.Location = new System.Drawing.Point(28, 397);
-            this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(171, 22);
-            this.label18.TabIndex = 65;
-            this.label18.Text = "BROKEN PIPE ALR";
-            // 
-            // textBox7
-            // 
-            this.textBox7.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox7.Location = new System.Drawing.Point(216, 300);
-            this.textBox7.Name = "textBox7";
-            this.textBox7.Size = new System.Drawing.Size(216, 27);
-            this.textBox7.TabIndex = 69;
-            // 
-            // textBox8
-            // 
-            this.textBox8.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox8.Location = new System.Drawing.Point(216, 364);
-            this.textBox8.Name = "textBox8";
-            this.textBox8.Size = new System.Drawing.Size(216, 27);
-            this.textBox8.TabIndex = 70;
-            // 
-            // textBox9
-            // 
-            this.textBox9.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox9.Location = new System.Drawing.Point(216, 269);
-            this.textBox9.Name = "textBox9";
-            this.textBox9.Size = new System.Drawing.Size(216, 27);
-            this.textBox9.TabIndex = 68;
-            // 
-            // label19
-            // 
-            this.label19.AutoSize = true;
-            this.label19.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label19.Location = new System.Drawing.Point(500, 272);
-            this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(144, 22);
-            this.label19.TabIndex = 61;
-            this.label19.Text = "PERM ERR ALR";
-            // 
-            // label20
-            // 
-            this.label20.AutoSize = true;
-            this.label20.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label20.Location = new System.Drawing.Point(503, 303);
-            this.label20.Name = "label20";
-            this.label20.Size = new System.Drawing.Size(143, 22);
-            this.label20.TabIndex = 63;
-            this.label20.Text = "TEMP ERR ALR";
-            // 
-            // label21
-            // 
-            this.label21.AutoSize = true;
-            this.label21.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label21.Location = new System.Drawing.Point(494, 336);
-            this.label21.Name = "label21";
-            this.label21.Size = new System.Drawing.Size(152, 22);
-            this.label21.TabIndex = 64;
-            this.label21.Text = "SPEC ERR1 ALR";
-            // 
-            // label22
-            // 
-            this.label22.AutoSize = true;
-            this.label22.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label22.Location = new System.Drawing.Point(493, 368);
-            this.label22.Name = "label22";
-            this.label22.Size = new System.Drawing.Size(152, 22);
-            this.label22.TabIndex = 64;
-            this.label22.Text = "SPEC ERR2 ALR";
-            // 
-            // label23
-            // 
-            this.label23.AutoSize = true;
-            this.label23.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label23.Location = new System.Drawing.Point(494, 400);
-            this.label23.Name = "label23";
-            this.label23.Size = new System.Drawing.Size(152, 22);
-            this.label23.TabIndex = 64;
-            this.label23.Text = "SPEC ERR3 ALR";
-            // 
-            // textBox11
-            // 
-            this.textBox11.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox11.Location = new System.Drawing.Point(216, 176);
-            this.textBox11.Name = "textBox11";
-            this.textBox11.Size = new System.Drawing.Size(216, 27);
-            this.textBox11.TabIndex = 69;
-            // 
-            // textBox12
-            // 
-            this.textBox12.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox12.Location = new System.Drawing.Point(216, 237);
-            this.textBox12.Name = "textBox12";
-            this.textBox12.Size = new System.Drawing.Size(216, 27);
-            this.textBox12.TabIndex = 70;
-            // 
-            // textBox13
-            // 
-            this.textBox13.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox13.Location = new System.Drawing.Point(216, 331);
-            this.textBox13.Name = "textBox13";
-            this.textBox13.Size = new System.Drawing.Size(216, 27);
-            this.textBox13.TabIndex = 69;
-            // 
-            // textBox14
-            // 
-            this.textBox14.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox14.Location = new System.Drawing.Point(216, 394);
-            this.textBox14.Name = "textBox14";
-            this.textBox14.Size = new System.Drawing.Size(216, 27);
-            this.textBox14.TabIndex = 70;
-            // 
-            // textBox6
-            // 
-            this.textBox6.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox6.Location = new System.Drawing.Point(655, 80);
-            this.textBox6.Name = "textBox6";
-            this.textBox6.Size = new System.Drawing.Size(216, 27);
-            this.textBox6.TabIndex = 73;
-            // 
-            // textBox10
-            // 
-            this.textBox10.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox10.Location = new System.Drawing.Point(655, 143);
-            this.textBox10.Name = "textBox10";
-            this.textBox10.Size = new System.Drawing.Size(216, 27);
-            this.textBox10.TabIndex = 69;
-            // 
-            // textBox15
-            // 
-            this.textBox15.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox15.Location = new System.Drawing.Point(655, 176);
-            this.textBox15.Name = "textBox15";
-            this.textBox15.Size = new System.Drawing.Size(216, 27);
-            this.textBox15.TabIndex = 69;
-            // 
-            // textBox16
-            // 
-            this.textBox16.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox16.Location = new System.Drawing.Point(655, 207);
-            this.textBox16.Name = "textBox16";
-            this.textBox16.Size = new System.Drawing.Size(216, 27);
-            this.textBox16.TabIndex = 70;
-            // 
-            // textBox17
-            // 
-            this.textBox17.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox17.Location = new System.Drawing.Point(655, 237);
-            this.textBox17.Name = "textBox17";
-            this.textBox17.Size = new System.Drawing.Size(216, 27);
-            this.textBox17.TabIndex = 70;
-            // 
-            // textBox18
-            // 
-            this.textBox18.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox18.Location = new System.Drawing.Point(655, 300);
-            this.textBox18.Name = "textBox18";
-            this.textBox18.Size = new System.Drawing.Size(216, 27);
-            this.textBox18.TabIndex = 69;
-            // 
-            // textBox19
-            // 
-            this.textBox19.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox19.Location = new System.Drawing.Point(655, 331);
-            this.textBox19.Name = "textBox19";
-            this.textBox19.Size = new System.Drawing.Size(216, 27);
-            this.textBox19.TabIndex = 69;
-            // 
-            // textBox20
-            // 
-            this.textBox20.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox20.Location = new System.Drawing.Point(655, 364);
-            this.textBox20.Name = "textBox20";
-            this.textBox20.Size = new System.Drawing.Size(216, 27);
-            this.textBox20.TabIndex = 70;
-            // 
-            // textBox21
-            // 
-            this.textBox21.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox21.Location = new System.Drawing.Point(655, 394);
-            this.textBox21.Name = "textBox21";
-            this.textBox21.Size = new System.Drawing.Size(216, 27);
-            this.textBox21.TabIndex = 70;
-            // 
-            // textBox22
-            // 
-            this.textBox22.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox22.Location = new System.Drawing.Point(655, 112);
-            this.textBox22.Name = "textBox22";
-            this.textBox22.Size = new System.Drawing.Size(216, 27);
-            this.textBox22.TabIndex = 68;
-            // 
-            // textBox23
-            // 
-            this.textBox23.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox23.Location = new System.Drawing.Point(655, 269);
-            this.textBox23.Name = "textBox23";
-            this.textBox23.Size = new System.Drawing.Size(216, 27);
-            this.textBox23.TabIndex = 68;
+            this.DataGridViewMeterReading.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.DataGridViewMeterReading.Location = new System.Drawing.Point(8, 31);
+            this.DataGridViewMeterReading.Name = "DataGridViewMeterReading";
+            this.DataGridViewMeterReading.Size = new System.Drawing.Size(872, 457);
+            this.DataGridViewMeterReading.TabIndex = 81;
             // 
             // MeterReading
             // 
@@ -684,7 +684,7 @@
             this.tabPage1.PerformLayout();
             this.tabPage2.ResumeLayout(false);
             this.tabPage2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.DataGridViewMeterReading)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -693,33 +693,33 @@
 
         private System.Windows.Forms.TabControl TabControlMeterReading;
         private System.Windows.Forms.TabPage tabPage1;
-        private System.Windows.Forms.Button button4;
-        private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button ButtonDelete;
+        private System.Windows.Forms.Button ButtonSave;
+        private System.Windows.Forms.Button ButtonEdit;
+        private System.Windows.Forms.Button ButtonNew;
         private System.Windows.Forms.Button ButtonSearch;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.TextBox textBox4;
-        private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.TextBox TextBoxReadingDate;
+        private System.Windows.Forms.TextBox TextBoxDescription;
+        private System.Windows.Forms.TextBox TextBoxCsvType;
         private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.TextBox textBox5;
+        private System.Windows.Forms.TextBox TextBoxSearch;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox TextBoxSerialNumber;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TabPage tabPage2;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.DataGridView dataGridView1;
-        private System.Windows.Forms.TextBox textBox9;
-        private System.Windows.Forms.TextBox textBox8;
-        private System.Windows.Forms.TextBox textBox7;
+        private System.Windows.Forms.Label LabelShow;
+        private System.Windows.Forms.DataGridView DataGridViewMeterReading;
+        private System.Windows.Forms.TextBox TextBoxLeakAlr;
+        private System.Windows.Forms.TextBox TextBoxBackflowAlr;
+        private System.Windows.Forms.TextBox TextBoxMagneticTmprAlr;
         private System.Windows.Forms.Label label22;
         private System.Windows.Forms.Label label18;
         private System.Windows.Forms.Label label13;
@@ -731,20 +731,20 @@
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.Label label23;
-        private System.Windows.Forms.TextBox textBox23;
-        private System.Windows.Forms.TextBox textBox22;
-        private System.Windows.Forms.TextBox textBox21;
-        private System.Windows.Forms.TextBox textBox14;
-        private System.Windows.Forms.TextBox textBox20;
-        private System.Windows.Forms.TextBox textBox19;
-        private System.Windows.Forms.TextBox textBox13;
-        private System.Windows.Forms.TextBox textBox18;
-        private System.Windows.Forms.TextBox textBox17;
-        private System.Windows.Forms.TextBox textBox12;
-        private System.Windows.Forms.TextBox textBox16;
-        private System.Windows.Forms.TextBox textBox15;
-        private System.Windows.Forms.TextBox textBox11;
-        private System.Windows.Forms.TextBox textBox10;
-        private System.Windows.Forms.TextBox textBox6;
+        private System.Windows.Forms.TextBox TextBoxPermErrAlr;
+        private System.Windows.Forms.TextBox TextBoxSpecificErr;
+        private System.Windows.Forms.TextBox TextBoxSpecErr3;
+        private System.Windows.Forms.TextBox TextBoxBrokenPipeAlr;
+        private System.Windows.Forms.TextBox TextBoxSpecErr2;
+        private System.Windows.Forms.TextBox TextBoxSpecErr1;
+        private System.Windows.Forms.TextBox TextBoxErrorAlr;
+        private System.Windows.Forms.TextBox TextBoxTempErrAlr;
+        private System.Windows.Forms.TextBox TextBoxAbnCondAlr;
+        private System.Windows.Forms.TextBox TextBoxLowBattAlr;
+        private System.Windows.Forms.TextBox TextBoxAnyAppErrAlr;
+        private System.Windows.Forms.TextBox TextBoxAppBusyAlr;
+        private System.Windows.Forms.TextBox TextBoxReadingValue;
+        private System.Windows.Forms.TextBox TextBoxFlowRateValue;
+        private System.Windows.Forms.TextBox TextBoxEmptyPipeAlr;
     }
 }

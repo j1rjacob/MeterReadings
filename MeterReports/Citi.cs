@@ -11,11 +11,13 @@ namespace MeterReports
     {
         private readonly TMF.Reports.BLL.City _city;
         private bool _save;
+        private string _cityId;
         public Citi()
         {
             InitializeComponent();
             _city = new TMF.Reports.BLL.City();
             _save = true;
+            _cityId = "";
         }
 
         private void ButtonNew_Click(object sender, EventArgs e)
@@ -24,6 +26,9 @@ namespace MeterReports
             ButtonEdit.Enabled = false;
             ButtonSave.Enabled = true;
             ButtonDelete.Enabled = false;
+            TextBoxDescription.Text = "";
+            TextBoxTotalMeters.Text = "";
+            _cityId = "";
         }
 
         private void ButtonEdit_Click(object sender, EventArgs e)
@@ -35,13 +40,9 @@ namespace MeterReports
         private void ButtonSave_Click(object sender, EventArgs e)
         {
             if (_save)
-            {
                 SaveCity();
-            }
             else
-            {
                 EditCity();
-            }
         }
         private void SaveCity()
         {
@@ -65,6 +66,7 @@ namespace MeterReports
                 {
                     MessageBox.Show("City Created");
                     ResetControls();
+                    BindCityWithDataGrid();
                 }
                 else
                 {
@@ -72,20 +74,18 @@ namespace MeterReports
                 }
             }
             else
-            {
                 MessageBox.Show("No city to save.");
-            }
         }
         private void EditCity()
         {
             if (!string.IsNullOrWhiteSpace(TextBoxDescription.Text))
-            {   //Todo City Id and EditedBy
-                var lockcount = GetLockCount("0b556630167441a5ae971049e66e4d89");
+            {   //Todo EditedBy
+                var lockcount = GetLockCount(_cityId);
 
                 TMF.Reports.Model.City city = new TMF.Reports.Model.City()
                 {
-                    Id = "0b556630167441a5ae971049e66e4d89",
-                    Description = "Al Dammam",
+                    Id = _cityId,
+                    Description = TextBoxDescription.Text,
                     EditedBy = "646f18f9-6425-4769-aa79-16ecdb7cf816",
                     DocDate = DateTime.Now,
                     Show = 1,
@@ -113,8 +113,8 @@ namespace MeterReports
         private void ButtonDelete_Click(object sender, EventArgs e)
         {
             if (!string.IsNullOrWhiteSpace(TextBoxDescription.Text))
-            {   //TODO City Id
-                var deleteCity = _city.Delete(new SmartDB(), "5d7ec79f53ac4fff9df8d71eca290da8");
+            {   
+                var deleteCity = _city.Delete(new SmartDB(), _cityId);
 
                 bool flag = deleteCity.Code == ErrorEnum.NoError;
                 if (flag)
@@ -134,7 +134,7 @@ namespace MeterReports
 
         private void ButtonSearch_Click(object sender, EventArgs e)
         {
-
+            BindCityWithDataGrid();
         }
         private void ResetControls()
         {
@@ -164,8 +164,8 @@ namespace MeterReports
         }
         private void BindCityWithDataGrid()
         {
-            ReturnInfo getCityList = _city.GetCityList(new SmartDB());
-            bool flag = getCityList.Code == ErrorEnum.NoError;
+            ReturnInfo getCityList = _city.GetCityByDescription(new SmartDB(), TextBoxSearch.Text);
+            //bool flag = getCityList.Code == ErrorEnum.NoError;
             List<TMF.Reports.Model.City> city = (List<TMF.Reports.Model.City>)getCityList.BizObject;
             var bindingList = new BindingList<TMF.Reports.Model.City>(city);
             var source = new BindingSource(bindingList, null);
@@ -174,11 +174,21 @@ namespace MeterReports
         }
         private void Citi_Load(object sender, EventArgs e)
         {
-            TextBoxDescription.Text = "Al Jeddah";
-
             BindCityWithDataGrid();
         }
 
+        private void DataGridViewCity_SelectionChanged(object sender, EventArgs e)
+        {
+            var cityId = DataGridViewCity.CurrentRow.Cells[0].Value.ToString();
+            ReturnInfo getCity = _city.GetCityById(new SmartDB(), cityId);
 
+            bool flag = getCity.Code == ErrorEnum.NoError;
+
+            TMF.Reports.Model.City city = (TMF.Reports.Model.City)getCity.BizObject;
+
+            TextBoxDescription.Text = city.Description;
+            TextBoxTotalMeters.Text = city.TotalNumberOfMeters.ToString();
+            _cityId = city.Id;
+        }
     }
 }
