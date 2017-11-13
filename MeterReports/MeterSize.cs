@@ -218,7 +218,6 @@ namespace MeterReports
             BindMeterSizeWithDataGrid();
             ResetControls();
         }
-
         private void ButtonNew_Click(object sender, EventArgs e)
         {
             TextBoxDescription.Enabled = true;
@@ -294,43 +293,42 @@ namespace MeterReports
         {
             if (!string.IsNullOrWhiteSpace(TextBoxDescription.Text))
             {
-                TMF.Reports.Model.City city = new TMF.Reports.Model.City()
+                TMF.Reports.Model.MeterSize meterType = new TMF.Reports.Model.MeterSize()
                 {   //TODO User id for CreatedBy
                     Id = Guid.NewGuid().ToString("N"),
                     Description = TextBoxDescription.Text,
-                    TotalNumberOfMeters = 0,
                     CreatedBy = "646f18f9-6425-4769-aa79-16ecdb7cf816",
                     DocDate = DateTime.Now,
                     Show = 1,
                     LockCount = 0
                 };
 
-                var createCity = _city.Create(new SmartDB(), ref city);
+                var createMeterSize = _meterSize.Create(new SmartDB(), ref meterType);
 
-                bool flag = createCity.Code == ErrorEnum.NoError;
+                bool flag = createMeterSize.Code == ErrorEnum.NoError;
                 if (flag)
                 {
-                    MessageBox.Show("City Created");
+                    MessageBox.Show("Meter Size Created");
                     ResetControls();
                     BindMeterSizeWithDataGrid();
                 }
                 else
                 {
-                    MessageBox.Show(createCity.Code.ToString());
+                    MessageBox.Show(createMeterSize.Message);
                 }
             }
             else
-                MessageBox.Show("No city to save.");
+                MessageBox.Show("No meter size to save.");
         }
         private void EditMeterSize()
         {
             if (!string.IsNullOrWhiteSpace(TextBoxDescription.Text))
             {   //Todo EditedBy
-                var lockcount = GetLockCount(_cityId);
+                var lockcount = GetLockCount(_meterSizeId);
 
-                TMF.Reports.Model.City city = new TMF.Reports.Model.City()
+                TMF.Reports.Model.MeterSize meterSize = new TMF.Reports.Model.MeterSize()
                 {
-                    Id = _cityId,
+                    Id = _meterSizeId,
                     Description = TextBoxDescription.Text,
                     EditedBy = "646f18f9-6425-4769-aa79-16ecdb7cf816",
                     DocDate = DateTime.Now,
@@ -338,23 +336,23 @@ namespace MeterReports
                     LockCount = lockcount
                 };
 
-                var updateCity = _city.Update(new SmartDB(), city);
+                var updateMeterSize = _meterSize.Update(new SmartDB(), meterSize);
 
-                bool flag = updateCity.Code == ErrorEnum.NoError;
+                bool flag = updateMeterSize.Code == ErrorEnum.NoError;
                 if (flag)
                 {
-                    MessageBox.Show("City Updated");
+                    MessageBox.Show("Meter Size Updated");
                     ResetControls();
                     BindMeterSizeWithDataGrid();
                 }
                 else
                 {
-                    MessageBox.Show(updateCity.Message);
+                    MessageBox.Show(updateMeterSize.Message);
                 }
             }
             else
             {
-                MessageBox.Show("No city to edit.");
+                MessageBox.Show("No meter size to edit.");
             }
         }
         private void ResetControls()
@@ -362,7 +360,6 @@ namespace MeterReports
             TextBoxDescription.Enabled = false;
             TextBoxSearch.Text = "";
             TextBoxDescription.Text = "";
-            TextBoxTotalMeters.Text = "";
             ButtonNew.Enabled = true;
             ButtonEdit.Enabled = false;
             ButtonSave.Enabled = false;
@@ -380,20 +377,20 @@ namespace MeterReports
         }
         private int GetLockCount(string Id)
         {
-            IInfo info = _city.GetCityById(new SmartDB(), Id);
-            var lockcount = (info.BizObject as TMF.Reports.Model.City).LockCount;
+            IInfo info = _meterSize.GetMeterSizeById(new SmartDB(), Id);
+            var lockcount = (info.BizObject as TMF.Reports.Model.MeterSize).LockCount;
             return lockcount;
         }
         private void BindMeterSizeWithDataGrid()
         {   //TODO: Refactor this for reuse.
-            ReturnInfo getCityList = _city.GetCityByDescription(new SmartDB(), TextBoxSearch.Text);
+            ReturnInfo getMeterSizeList = _meterSize.GetMeterSizeByDescription(new SmartDB(), TextBoxSearch.Text);
             //bool flag = getCityList.Code == ErrorEnum.NoError;
-            List<TMF.Reports.Model.City> city = (List<TMF.Reports.Model.City>)getCityList.BizObject;
-            var bindingList = new BindingList<TMF.Reports.Model.City>(city);
+            List<TMF.Reports.Model.MeterSize> meterSize = (List<TMF.Reports.Model.MeterSize>)getMeterSizeList.BizObject;
+            var bindingList = new BindingList<TMF.Reports.Model.MeterSize>(meterSize);
             var source = new BindingSource(bindingList, null);
-            DataGridViewCity.AutoGenerateColumns = false;
-            DataGridViewCity.DataSource = source;
-            LabelShow.Text = $"Showing {DataGridViewCity.CurrentRow.Index + 1} index of {DataGridViewCity.RowCount} records";
+            DataGridViewMeterSize.AutoGenerateColumns = false;
+            DataGridViewMeterSize.DataSource = source;
+            LabelShow.Text = $"Showing {DataGridViewMeterSize.CurrentRow.Index + 1} index of {DataGridViewMeterSize.RowCount} records";
         }
         #endregion
     }
