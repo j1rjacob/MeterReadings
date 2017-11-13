@@ -20,10 +20,9 @@ namespace MeterReports.Test
             TMF.Reports.Model.City city = new TMF.Reports.Model.City()
             {
                 Id = Guid.NewGuid().ToString("N"),
-                Description = "Al Jeddah",
+                Description = "Al Riyadh",
                 TotalNumberOfMeters = 50,
                 CreatedBy = "646f18f9-6425-4769-aa79-16ecdb7cf816",
-                EditedBy = "646f18f9-6425-4769-aa79-16ecdb7cf816",
                 DocDate = DateTime.Now,
                 Show = 1,
                 LockCount = 0
@@ -64,10 +63,8 @@ namespace MeterReports.Test
             //Arrange
             TMF.Reports.Model.City city = new TMF.Reports.Model.City()
             {
-                Id = "6ca10b442a894258bd135cc9b0ddcb1e",
-                Description = "Al Kharj",
-                TotalNumberOfMeters = 50,
-                CreatedBy = "646f18f9-6425-4769-aa79-16ecdb7cf816",
+                Id = "5d7ec79f53ac4fff9df8d71eca290da8",
+                Description = "AL JEDDAH",
                 EditedBy = "646f18f9-6425-4769-aa79-16ecdb7cf816",
                 DocDate = DateTime.Now,
                 Show = 1,

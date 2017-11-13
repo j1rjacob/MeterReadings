@@ -158,7 +158,7 @@ namespace TMF.Core.Model
             this.Is_Login = false;
             this.Is_Active = false;
             this.Title = "";
-            this.Office = "Kota Kemuning, HQ";
+            this.Office = "TMF";
             this.Manager = "";
         }
 

@@ -36,11 +36,13 @@
             this.ButtonNew = new System.Windows.Forms.Button();
             this.ButtonSearch = new System.Windows.Forms.Button();
             this.DataGridViewCity = new System.Windows.Forms.DataGridView();
-            this.textBoxTotalMeters = new System.Windows.Forms.TextBox();
+            this.TextBoxTotalMeters = new System.Windows.Forms.TextBox();
             this.TextBoxSearch = new System.Windows.Forms.TextBox();
             this.TextBoxDescription = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
+            this.ColDescription = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColTotalMeters = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.DataGridViewCity)).BeginInit();
             this.SuspendLayout();
             // 
@@ -67,6 +69,7 @@
             this.ButtonDelete.Text = "DELETE";
             this.ButtonDelete.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.ButtonDelete.UseVisualStyleBackColor = true;
+            this.ButtonDelete.Click += new System.EventHandler(this.ButtonDelete_Click);
             // 
             // ButtonSave
             // 
@@ -81,6 +84,7 @@
             this.ButtonSave.Text = "SAVE";
             this.ButtonSave.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.ButtonSave.UseVisualStyleBackColor = true;
+            this.ButtonSave.Click += new System.EventHandler(this.ButtonSave_Click);
             // 
             // ButtonEdit
             // 
@@ -95,6 +99,7 @@
             this.ButtonEdit.Text = "EDIT";
             this.ButtonEdit.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.ButtonEdit.UseVisualStyleBackColor = true;
+            this.ButtonEdit.Click += new System.EventHandler(this.ButtonEdit_Click);
             // 
             // ButtonNew
             // 
@@ -109,6 +114,7 @@
             this.ButtonNew.Text = "NEW";
             this.ButtonNew.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.ButtonNew.UseVisualStyleBackColor = true;
+            this.ButtonNew.Click += new System.EventHandler(this.ButtonNew_Click);
             // 
             // ButtonSearch
             // 
@@ -123,23 +129,30 @@
             this.ButtonSearch.Text = "SEARCH";
             this.ButtonSearch.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.ButtonSearch.UseVisualStyleBackColor = true;
+            this.ButtonSearch.Click += new System.EventHandler(this.ButtonSearch_Click);
             // 
             // DataGridViewCity
             // 
+            this.DataGridViewCity.AllowUserToAddRows = false;
+            this.DataGridViewCity.AllowUserToDeleteRows = false;
             this.DataGridViewCity.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.DataGridViewCity.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.ColDescription,
+            this.ColTotalMeters});
             this.DataGridViewCity.Location = new System.Drawing.Point(16, 236);
             this.DataGridViewCity.Name = "DataGridViewCity";
+            this.DataGridViewCity.ReadOnly = true;
             this.DataGridViewCity.Size = new System.Drawing.Size(640, 150);
             this.DataGridViewCity.TabIndex = 18;
             // 
-            // textBoxTotalMeters
+            // TextBoxTotalMeters
             // 
-            this.textBoxTotalMeters.Enabled = false;
-            this.textBoxTotalMeters.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBoxTotalMeters.Location = new System.Drawing.Point(280, 105);
-            this.textBoxTotalMeters.Name = "textBoxTotalMeters";
-            this.textBoxTotalMeters.Size = new System.Drawing.Size(376, 27);
-            this.textBoxTotalMeters.TabIndex = 14;
+            this.TextBoxTotalMeters.Enabled = false;
+            this.TextBoxTotalMeters.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TextBoxTotalMeters.Location = new System.Drawing.Point(280, 105);
+            this.TextBoxTotalMeters.Name = "TextBoxTotalMeters";
+            this.TextBoxTotalMeters.Size = new System.Drawing.Size(376, 27);
+            this.TextBoxTotalMeters.TabIndex = 14;
             // 
             // TextBoxSearch
             // 
@@ -178,6 +191,22 @@
             this.label1.TabIndex = 13;
             this.label1.Text = "DESCRIPTION";
             // 
+            // ColDescription
+            // 
+            this.ColDescription.DataPropertyName = "Description";
+            this.ColDescription.HeaderText = "Description";
+            this.ColDescription.Name = "ColDescription";
+            this.ColDescription.ReadOnly = true;
+            this.ColDescription.Width = 300;
+            // 
+            // ColTotalMeters
+            // 
+            this.ColTotalMeters.DataPropertyName = "TotalNumberOfMeters";
+            this.ColTotalMeters.HeaderText = "Total Number of Meters";
+            this.ColTotalMeters.Name = "ColTotalMeters";
+            this.ColTotalMeters.ReadOnly = true;
+            this.ColTotalMeters.Width = 280;
+            // 
             // Citi
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -190,13 +219,16 @@
             this.Controls.Add(this.ButtonNew);
             this.Controls.Add(this.ButtonSearch);
             this.Controls.Add(this.DataGridViewCity);
-            this.Controls.Add(this.textBoxTotalMeters);
+            this.Controls.Add(this.TextBoxTotalMeters);
             this.Controls.Add(this.TextBoxSearch);
             this.Controls.Add(this.TextBoxDescription);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
+            this.KeyPreview = true;
             this.Name = "Citi";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "City";
+            this.Load += new System.EventHandler(this.Citi_Load);
             ((System.ComponentModel.ISupportInitialize)(this.DataGridViewCity)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -211,10 +243,12 @@
         private System.Windows.Forms.Button ButtonNew;
         private System.Windows.Forms.Button ButtonSearch;
         private System.Windows.Forms.DataGridView DataGridViewCity;
-        private System.Windows.Forms.TextBox textBoxTotalMeters;
+        private System.Windows.Forms.TextBox TextBoxTotalMeters;
         private System.Windows.Forms.TextBox TextBoxSearch;
         private System.Windows.Forms.TextBox TextBoxDescription;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColDescription;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColTotalMeters;
     }
 }
