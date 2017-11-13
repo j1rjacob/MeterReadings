@@ -1,12 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
+using TMF.Core;
+using TMF.Core.Model;
 
 namespace MeterReports
 {
@@ -27,9 +24,15 @@ namespace MeterReports
         private ComboBox ComboBoxCity;
         private Label label1;
 
+        private readonly TMF.Reports.BLL.DMZ _dmz;
+        private bool _save;
+        private string _dmzId;
         public DMZ()
         {
             InitializeComponent();
+            _dmz = new TMF.Reports.BLL.DMZ();
+            _save = true;
+            _dmzId = "";
         }
 
         private void InitializeComponent()
@@ -75,6 +78,7 @@ namespace MeterReports
             this.ButtonDelete.Text = "DELETE";
             this.ButtonDelete.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.ButtonDelete.UseVisualStyleBackColor = true;
+            this.ButtonDelete.Click += new System.EventHandler(this.ButtonDelete_Click);
             // 
             // ButtonSave
             // 
@@ -89,6 +93,7 @@ namespace MeterReports
             this.ButtonSave.Text = "SAVE";
             this.ButtonSave.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.ButtonSave.UseVisualStyleBackColor = true;
+            this.ButtonSave.Click += new System.EventHandler(this.ButtonSave_Click);
             // 
             // ButtonEdit
             // 
@@ -103,6 +108,7 @@ namespace MeterReports
             this.ButtonEdit.Text = "EDIT";
             this.ButtonEdit.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.ButtonEdit.UseVisualStyleBackColor = true;
+            this.ButtonEdit.Click += new System.EventHandler(this.ButtonEdit_Click);
             // 
             // ButtonNew
             // 
@@ -117,6 +123,7 @@ namespace MeterReports
             this.ButtonNew.Text = "NEW";
             this.ButtonNew.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.ButtonNew.UseVisualStyleBackColor = true;
+            this.ButtonNew.Click += new System.EventHandler(this.ButtonNew_Click);
             // 
             // ButtonSearch
             // 
@@ -131,6 +138,7 @@ namespace MeterReports
             this.ButtonSearch.Text = "SEARCH";
             this.ButtonSearch.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.ButtonSearch.UseVisualStyleBackColor = true;
+            this.ButtonSearch.Click += new System.EventHandler(this.ButtonSearch_Click);
             // 
             // DataGridViewDMZ
             // 
@@ -139,6 +147,7 @@ namespace MeterReports
             this.DataGridViewDMZ.Name = "DataGridViewDMZ";
             this.DataGridViewDMZ.Size = new System.Drawing.Size(640, 150);
             this.DataGridViewDMZ.TabIndex = 30;
+            this.DataGridViewDMZ.SelectionChanged += new System.EventHandler(this.DataGridViewDMZ_SelectionChanged);
             // 
             // TextBoxTotalMeters
             // 
@@ -233,5 +242,142 @@ namespace MeterReports
         {
 
         }
+
+        private void ButtonNew_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void ButtonEdit_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void ButtonSave_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void ButtonDelete_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void ButtonSearch_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void DataGridViewDMZ_SelectionChanged(object sender, EventArgs e)
+        {
+
+        }
+        #region PriveteMethod
+        private void SaveDMZ()
+        {
+            if (!string.IsNullOrWhiteSpace(TextBoxDescription.Text))
+            {
+                TMF.Reports.Model.DMZ dmz = new TMF.Reports.Model.DMZ()
+                {   //TODO User id for CreatedBy
+                    Id = Guid.NewGuid().ToString("N"),
+                    Description = TextBoxDescription.Text,
+                    TotalNumberOfMeters = 0,
+                    CreatedBy = "646f18f9-6425-4769-aa79-16ecdb7cf816",
+                    DocDate = DateTime.Now,
+                    Show = 1,
+                    LockCount = 0
+                };
+
+                var createDMZ = _dmz.Create(new SmartDB(), ref dmz);
+
+                bool flag = createDMZ.Code == ErrorEnum.NoError;
+                if (flag)
+                {
+                    MessageBox.Show("DMZ Created");
+                    ResetControls();
+                    BindDMZWithDataGrid();
+                }
+                else
+                {
+                    MessageBox.Show(createDMZ.Code.ToString());
+                }
+            }
+            else
+                MessageBox.Show("No DMZ to save.");
+        }
+        private void EditDMZ()
+        {
+            if (!string.IsNullOrWhiteSpace(TextBoxDescription.Text))
+            {   //Todo EditedBy
+                var lockcount = GetLockCount(_dmzId);
+
+                TMF.Reports.Model.DMZ dmz = new TMF.Reports.Model.DMZ()
+                {
+                    Id = _dmzId,
+                    Description = TextBoxDescription.Text,
+                    EditedBy = "646f18f9-6425-4769-aa79-16ecdb7cf816",
+                    DocDate = DateTime.Now,
+                    Show = 1,
+                    LockCount = lockcount
+                };
+
+                var updateDMZ = _dmz.Update(new SmartDB(), dmz);
+
+                bool flag = updateDMZ.Code == ErrorEnum.NoError;
+                if (flag)
+                {
+                    MessageBox.Show("DMZ Updated");
+                    ResetControls();
+                    BindDMZWithDataGrid();
+                }
+                else
+                {
+                    MessageBox.Show(updateDMZ.Message);
+                }
+            }
+            else
+            {
+                MessageBox.Show("No DMZ to edit.");
+            }
+        }
+        private void ResetControls()
+        {
+            TextBoxDescription.Enabled = false;
+            TextBoxSearch.Text = "";
+            TextBoxDescription.Text = "";
+            TextBoxTotalMeters.Text = "";
+            ButtonNew.Enabled = true;
+            ButtonEdit.Enabled = false;
+            ButtonSave.Enabled = false;
+            ButtonDelete.Enabled = false;
+            _save = true;
+        }
+        protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
+        {
+            if (keyData == Keys.Escape)
+            {
+                ResetControls();
+                return true;
+            }
+            return base.ProcessCmdKey(ref msg, keyData);
+        }
+        private int GetLockCount(string Id)
+        {
+            IInfo info = _dmz.GetDMZById(new SmartDB(), Id);
+            var lockcount = (info.BizObject as TMF.Reports.Model.DMZ).LockCount;
+            return lockcount;
+        }
+        private void BindDMZWithDataGrid()
+        {   //TODO: Refactor this for reuse.
+            ReturnInfo getDMZList = _dmz.GetDMZByDescription(new SmartDB(), TextBoxSearch.Text);
+            //bool flag = getCityList.Code == ErrorEnum.NoError;
+            List<TMF.Reports.Model.DMZ> dmz = (List<TMF.Reports.Model.DMZ>)getDMZList.BizObject;
+            var bindingList = new BindingList<TMF.Reports.Model.DMZ>(dmz);
+            var source = new BindingSource(bindingList, null);
+            DataGridViewDMZ.AutoGenerateColumns = false;
+            DataGridViewDMZ.DataSource = source;
+            LabelShow.Text = $"Showing {DataGridViewDMZ.CurrentRow.Index + 1} index of {DataGridViewDMZ.RowCount} records";
+        }
+        #endregion
     }
 }
