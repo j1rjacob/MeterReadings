@@ -29,40 +29,40 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(User));
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.TextBoxUsername = new System.Windows.Forms.TextBox();
+            this.TextBoxName = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
-            this.textBox3 = new System.Windows.Forms.TextBox();
-            this.textBox5 = new System.Windows.Forms.TextBox();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.TextBoxPassword = new System.Windows.Forms.TextBox();
+            this.TextBoxSearch = new System.Windows.Forms.TextBox();
+            this.DataGridViewUser = new System.Windows.Forms.DataGridView();
             this.ButtonSearch = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
-            this.button4 = new System.Windows.Forms.Button();
-            this.label5 = new System.Windows.Forms.Label();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            this.ButtonNew = new System.Windows.Forms.Button();
+            this.ButtonEdit = new System.Windows.Forms.Button();
+            this.ButtonSave = new System.Windows.Forms.Button();
+            this.ButtonDelete = new System.Windows.Forms.Button();
+            this.LabelShow = new System.Windows.Forms.Label();
+            this.ComboBoxRole = new System.Windows.Forms.ComboBox();
+            ((System.ComponentModel.ISupportInitialize)(this.DataGridViewUser)).BeginInit();
             this.SuspendLayout();
             // 
-            // textBox2
+            // TextBoxUsername
             // 
-            this.textBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox2.Location = new System.Drawing.Point(163, 96);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(216, 27);
-            this.textBox2.TabIndex = 4;
+            this.TextBoxUsername.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TextBoxUsername.Location = new System.Drawing.Point(163, 96);
+            this.TextBoxUsername.Name = "TextBoxUsername";
+            this.TextBoxUsername.Size = new System.Drawing.Size(216, 27);
+            this.TextBoxUsername.TabIndex = 4;
             // 
-            // textBox1
+            // TextBoxName
             // 
-            this.textBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox1.Location = new System.Drawing.Point(163, 61);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(216, 27);
-            this.textBox1.TabIndex = 5;
+            this.TextBoxName.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TextBoxName.Location = new System.Drawing.Point(163, 61);
+            this.TextBoxName.Name = "TextBoxName";
+            this.TextBoxName.Size = new System.Drawing.Size(216, 27);
+            this.TextBoxName.TabIndex = 5;
             // 
             // label2
             // 
@@ -104,29 +104,29 @@
             this.label4.TabIndex = 2;
             this.label4.Text = "ROLE";
             // 
-            // textBox3
+            // TextBoxPassword
             // 
-            this.textBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox3.Location = new System.Drawing.Point(163, 136);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(216, 27);
-            this.textBox3.TabIndex = 5;
+            this.TextBoxPassword.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TextBoxPassword.Location = new System.Drawing.Point(163, 136);
+            this.TextBoxPassword.Name = "TextBoxPassword";
+            this.TextBoxPassword.Size = new System.Drawing.Size(216, 27);
+            this.TextBoxPassword.TabIndex = 5;
             // 
-            // textBox5
+            // TextBoxSearch
             // 
-            this.textBox5.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox5.Location = new System.Drawing.Point(163, 12);
-            this.textBox5.Name = "textBox5";
-            this.textBox5.Size = new System.Drawing.Size(280, 27);
-            this.textBox5.TabIndex = 5;
+            this.TextBoxSearch.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TextBoxSearch.Location = new System.Drawing.Point(163, 12);
+            this.TextBoxSearch.Name = "TextBoxSearch";
+            this.TextBoxSearch.Size = new System.Drawing.Size(280, 27);
+            this.TextBoxSearch.TabIndex = 5;
             // 
-            // dataGridView1
+            // DataGridViewUser
             // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(19, 304);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(640, 150);
-            this.dataGridView1.TabIndex = 6;
+            this.DataGridViewUser.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.DataGridViewUser.Location = new System.Drawing.Point(19, 304);
+            this.DataGridViewUser.Name = "DataGridViewUser";
+            this.DataGridViewUser.Size = new System.Drawing.Size(640, 150);
+            this.DataGridViewUser.TabIndex = 6;
             // 
             // ButtonSearch
             // 
@@ -142,98 +142,101 @@
             this.ButtonSearch.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.ButtonSearch.UseVisualStyleBackColor = true;
             // 
-            // button1
+            // ButtonNew
             // 
-            this.button1.AutoSize = true;
-            this.button1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("button1.BackgroundImage")));
-            this.button1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.Location = new System.Drawing.Point(19, 208);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(151, 56);
-            this.button1.TabIndex = 7;
-            this.button1.Text = "NEW";
-            this.button1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.button1.UseVisualStyleBackColor = true;
+            this.ButtonNew.AutoSize = true;
+            this.ButtonNew.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("ButtonNew.BackgroundImage")));
+            this.ButtonNew.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.ButtonNew.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ButtonNew.Location = new System.Drawing.Point(19, 208);
+            this.ButtonNew.Name = "ButtonNew";
+            this.ButtonNew.Size = new System.Drawing.Size(151, 56);
+            this.ButtonNew.TabIndex = 7;
+            this.ButtonNew.Text = "NEW";
+            this.ButtonNew.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.ButtonNew.UseVisualStyleBackColor = true;
             // 
-            // button2
+            // ButtonEdit
             // 
-            this.button2.AutoSize = true;
-            this.button2.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("button2.BackgroundImage")));
-            this.button2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button2.Location = new System.Drawing.Point(187, 208);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(151, 56);
-            this.button2.TabIndex = 7;
-            this.button2.Text = "EDIT";
-            this.button2.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.button2.UseVisualStyleBackColor = true;
+            this.ButtonEdit.AutoSize = true;
+            this.ButtonEdit.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("ButtonEdit.BackgroundImage")));
+            this.ButtonEdit.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.ButtonEdit.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ButtonEdit.Location = new System.Drawing.Point(187, 208);
+            this.ButtonEdit.Name = "ButtonEdit";
+            this.ButtonEdit.Size = new System.Drawing.Size(151, 56);
+            this.ButtonEdit.TabIndex = 7;
+            this.ButtonEdit.Text = "EDIT";
+            this.ButtonEdit.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.ButtonEdit.UseVisualStyleBackColor = true;
             // 
-            // button3
+            // ButtonSave
             // 
-            this.button3.AutoSize = true;
-            this.button3.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("button3.BackgroundImage")));
-            this.button3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.button3.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button3.Location = new System.Drawing.Point(347, 208);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(151, 56);
-            this.button3.TabIndex = 7;
-            this.button3.Text = "SAVE";
-            this.button3.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.button3.UseVisualStyleBackColor = true;
+            this.ButtonSave.AutoSize = true;
+            this.ButtonSave.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("ButtonSave.BackgroundImage")));
+            this.ButtonSave.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.ButtonSave.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ButtonSave.Location = new System.Drawing.Point(347, 208);
+            this.ButtonSave.Name = "ButtonSave";
+            this.ButtonSave.Size = new System.Drawing.Size(151, 56);
+            this.ButtonSave.TabIndex = 7;
+            this.ButtonSave.Text = "SAVE";
+            this.ButtonSave.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.ButtonSave.UseVisualStyleBackColor = true;
             // 
-            // button4
+            // ButtonDelete
             // 
-            this.button4.AutoSize = true;
-            this.button4.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("button4.BackgroundImage")));
-            this.button4.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.button4.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button4.Location = new System.Drawing.Point(507, 208);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(151, 56);
-            this.button4.TabIndex = 7;
-            this.button4.Text = "DELETE";
-            this.button4.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.button4.UseVisualStyleBackColor = true;
+            this.ButtonDelete.AutoSize = true;
+            this.ButtonDelete.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("ButtonDelete.BackgroundImage")));
+            this.ButtonDelete.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.ButtonDelete.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ButtonDelete.Location = new System.Drawing.Point(507, 208);
+            this.ButtonDelete.Name = "ButtonDelete";
+            this.ButtonDelete.Size = new System.Drawing.Size(151, 56);
+            this.ButtonDelete.TabIndex = 7;
+            this.ButtonDelete.Text = "DELETE";
+            this.ButtonDelete.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.ButtonDelete.UseVisualStyleBackColor = true;
             // 
-            // label5
+            // LabelShow
             // 
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(22, 276);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(262, 22);
-            this.label5.TabIndex = 8;
-            this.label5.Text = "SHOWING 1 OF 10 RECORDS";
+            this.LabelShow.AutoSize = true;
+            this.LabelShow.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LabelShow.Location = new System.Drawing.Point(22, 276);
+            this.LabelShow.Name = "LabelShow";
+            this.LabelShow.Size = new System.Drawing.Size(262, 22);
+            this.LabelShow.TabIndex = 8;
+            this.LabelShow.Text = "SHOWING 1 OF 10 RECORDS";
             // 
-            // comboBox1
+            // ComboBoxRole
             // 
-            this.comboBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(163, 176);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(216, 28);
-            this.comboBox1.TabIndex = 9;
+            this.ComboBoxRole.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ComboBoxRole.FormattingEnabled = true;
+            this.ComboBoxRole.Items.AddRange(new object[] {
+            "Administrator",
+            "Encoder"});
+            this.ComboBoxRole.Location = new System.Drawing.Point(163, 176);
+            this.ComboBoxRole.Name = "ComboBoxRole";
+            this.ComboBoxRole.Size = new System.Drawing.Size(216, 28);
+            this.ComboBoxRole.TabIndex = 9;
             // 
             // User
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(680, 464);
-            this.Controls.Add(this.comboBox1);
-            this.Controls.Add(this.label5);
-            this.Controls.Add(this.button4);
-            this.Controls.Add(this.button3);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.ComboBoxRole);
+            this.Controls.Add(this.LabelShow);
+            this.Controls.Add(this.ButtonDelete);
+            this.Controls.Add(this.ButtonSave);
+            this.Controls.Add(this.ButtonEdit);
+            this.Controls.Add(this.ButtonNew);
             this.Controls.Add(this.ButtonSearch);
-            this.Controls.Add(this.dataGridView1);
-            this.Controls.Add(this.textBox2);
-            this.Controls.Add(this.textBox3);
-            this.Controls.Add(this.textBox5);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.DataGridViewUser);
+            this.Controls.Add(this.TextBoxUsername);
+            this.Controls.Add(this.TextBoxPassword);
+            this.Controls.Add(this.TextBoxSearch);
+            this.Controls.Add(this.TextBoxName);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
@@ -244,7 +247,8 @@
             this.Name = "User";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "User";
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            this.Load += new System.EventHandler(this.User_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.DataGridViewUser)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -252,21 +256,21 @@
 
         #endregion
 
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox TextBoxUsername;
+        private System.Windows.Forms.TextBox TextBoxName;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.TextBox textBox3;
-        private System.Windows.Forms.TextBox textBox5;
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.TextBox TextBoxPassword;
+        private System.Windows.Forms.TextBox TextBoxSearch;
+        private System.Windows.Forms.DataGridView DataGridViewUser;
         private System.Windows.Forms.Button ButtonSearch;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.Button button4;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.Button ButtonNew;
+        private System.Windows.Forms.Button ButtonEdit;
+        private System.Windows.Forms.Button ButtonSave;
+        private System.Windows.Forms.Button ButtonDelete;
+        private System.Windows.Forms.Label LabelShow;
+        private System.Windows.Forms.ComboBox ComboBoxRole;
     }
 }

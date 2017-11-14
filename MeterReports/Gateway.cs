@@ -427,9 +427,15 @@ namespace MeterReports
             this.Controls.Add(this.label1);
             this.Name = "Gateway";
             this.Text = "Gateway";
+            this.Load += new System.EventHandler(this.Gateway_Load);
             ((System.ComponentModel.ISupportInitialize)(this.DataGridViewGateway)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
+
+        }
+
+        private void Gateway_Load(object sender, EventArgs e)
+        {
 
         }
     }

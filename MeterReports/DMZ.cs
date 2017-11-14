@@ -240,37 +240,86 @@ namespace MeterReports
 
         private void DMZ_Load(object sender, EventArgs e)
         {
-
+            BindDMZWithDataGrid();
+            ResetControls();
         }
 
         private void ButtonNew_Click(object sender, EventArgs e)
         {
-
+            TextBoxDescription.Enabled = true;
+            ButtonEdit.Enabled = false;
+            ButtonSave.Enabled = true;
+            ButtonDelete.Enabled = false;
+            TextBoxDescription.Text = "";
+            TextBoxTotalMeters.Text = "";
+            _dmzId = "";
         }
 
         private void ButtonEdit_Click(object sender, EventArgs e)
         {
-
+            TextBoxDescription.Enabled = true;
+            ButtonNew.Enabled = false;
+            ButtonEdit.Enabled = false;
+            ButtonSave.Enabled = true;
+            ButtonDelete.Enabled = false;
+            _save = false;
         }
 
         private void ButtonSave_Click(object sender, EventArgs e)
         {
-
+            if (_save)
+                SaveDMZ();
+            else
+                EditDMZ();
         }
 
         private void ButtonDelete_Click(object sender, EventArgs e)
         {
+            if (!string.IsNullOrWhiteSpace(TextBoxDescription.Text))
+            {
+                var deleteDMZ = _dmz.Delete(new SmartDB(), _dmzId);
 
+                bool flag = deleteDMZ.Code == ErrorEnum.NoError;
+                if (flag)
+                {
+                    MessageBox.Show("DMZ Deleted");
+                    ResetControls();
+                    BindDMZWithDataGrid();
+                }
+                else
+                {
+                    MessageBox.Show(deleteDMZ.Message);
+                }
+            }
+            else
+            {
+                MessageBox.Show("No DMZ to delete.");
+            }
         }
 
         private void ButtonSearch_Click(object sender, EventArgs e)
         {
-
+            BindDMZWithDataGrid();
         }
 
         private void DataGridViewDMZ_SelectionChanged(object sender, EventArgs e)
         {
+            LabelShow.Text = $"Showing {DataGridViewDMZ.CurrentRow.Index + 1} index of {DataGridViewDMZ.RowCount} records";
 
+            var dmzId = DataGridViewDMZ.CurrentRow.Cells[0].Value.ToString();
+            ReturnInfo getDMZ = _dmz.GetDMZById(new SmartDB(), dmzId);
+
+            bool flag = getDMZ.Code == ErrorEnum.NoError;
+
+            TMF.Reports.Model.DMZ dmz = (TMF.Reports.Model.DMZ)getDMZ.BizObject;
+            if (!string.IsNullOrEmpty(dmz.Id))
+            {
+                TextBoxDescription.Text = dmz.Description;
+                TextBoxTotalMeters.Text = dmz.TotalNumberOfMeters.ToString();
+                _dmzId = dmz.Id;
+                ButtonEdit.Enabled = true;
+                ButtonDelete.Enabled = true;
+            }
         }
         #region PriveteMethod
         private void SaveDMZ()

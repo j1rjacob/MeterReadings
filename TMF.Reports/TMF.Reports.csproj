@@ -82,6 +82,7 @@
     <Compile Include="Model\MeterReading.cs" />
     <Compile Include="Model\MeterSize.cs" />
     <Compile Include="Model\MeterType.cs" />
+    <Compile Include="Model\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
