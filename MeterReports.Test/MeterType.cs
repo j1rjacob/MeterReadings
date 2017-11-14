@@ -20,7 +20,6 @@ namespace MeterReports.Test
             //Arrange
             TMF.Reports.Model.MeterType meterType = new TMF.Reports.Model.MeterType()
             {
-                Id = Guid.NewGuid().ToString("N"),
                 Description = "B+",
                 CreatedBy = "646f18f9-6425-4769-aa79-16ecdb7cf816",
                 EditedBy = "646f18f9-6425-4769-aa79-16ecdb7cf816",
@@ -41,7 +40,7 @@ namespace MeterReports.Test
         {
             //Arrange
             //Act
-            ReturnInfo getMeterType = _meterType.GetMeterTypeById(new SmartDB(), "4fd614746950416d909ee2446cd29c1e");
+            ReturnInfo getMeterType = _meterType.GetMeterTypeById(new SmartDB(), 1);
             bool flag = getMeterType.Code == ErrorEnum.NoError;
 
             //Assert
@@ -64,7 +63,7 @@ namespace MeterReports.Test
             //Arrange
             TMF.Reports.Model.MeterType meterType = new TMF.Reports.Model.MeterType()
             {
-                Id = "e222c1a6c8b04e6ab0b5ae22abb711c7",
+                Id = 1,
                 Description = "B-",
                 CreatedBy = "646f18f9-6425-4769-aa79-16ecdb7cf816",
                 EditedBy = "646f18f9-6425-4769-aa79-16ecdb7cf816",
@@ -85,7 +84,7 @@ namespace MeterReports.Test
         {
             //Arrange
             //Act
-            var deleteMeterType = _meterType.Delete(new SmartDB(), "e222c1a6c8b04e6ab0b5ae22abb711c7");
+            var deleteMeterType = _meterType.Delete(new SmartDB(), 1);
             bool flag = deleteMeterType.Code == ErrorEnum.NoError;
 
             //Assert

@@ -28,7 +28,7 @@ namespace TMF.Reports.BLL
 
         public ReturnInfo IsValid(Model.MeterType info)
         {
-            bool flag = string.IsNullOrEmpty(info.Id);
+            bool flag = info.Id == 0 ? false : true;
             ReturnInfo result;
             if (flag)
             {
@@ -74,9 +74,9 @@ namespace TMF.Reports.BLL
             return result;
         }
 
-        public ReturnInfo Delete(SmartDB dbInstance, string Id)
+        public ReturnInfo Delete(SmartDB dbInstance, int Id)
         {
-            bool flag = Id == null;
+            bool flag = Id == 0 ? false : true;
             ReturnInfo result;
             if (flag)
             {
@@ -90,7 +90,7 @@ namespace TMF.Reports.BLL
             return result;
         }
 
-        public ReturnInfo GetMeterTypeById(SmartDB dbInstance, string Id)
+        public ReturnInfo GetMeterTypeById(SmartDB dbInstance, int Id)
         {
             IInfo record = _dal.GetRecord(dbInstance, Id);
             return new ReturnInfo

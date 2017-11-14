@@ -11,13 +11,13 @@ namespace MeterReports
     {
         private readonly TMF.Reports.BLL.MeterType _meterType;
         private bool _save;
-        private string _meterTypeId;
+        private int _meterTypeId;
         public MeterType()
         {
             InitializeComponent();
             _meterType = new TMF.Reports.BLL.MeterType();
             _save = true;
-            _meterTypeId = "";
+            _meterTypeId = 0;
         }
         private void MeterType_Load(object sender, EventArgs e)
         {
@@ -31,7 +31,7 @@ namespace MeterReports
             ButtonSave.Enabled = true;
             ButtonDelete.Enabled = false;
             TextBoxDescription.Text = "";
-            _meterTypeId = "";
+            _meterTypeId = 0;
         }
         private void ButtonEdit_Click(object sender, EventArgs e)
         {
@@ -79,13 +79,13 @@ namespace MeterReports
         {
             LabelShow.Text = $"Showing {DataGridViewMeterType.CurrentRow.Index + 1} index of {DataGridViewMeterType.RowCount} records";
 
-            var meterId = DataGridViewMeterType.CurrentRow.Cells[0].Value.ToString();
+            var meterId = (int)DataGridViewMeterType.CurrentRow.Cells[0].Value;
             ReturnInfo getMeterType = _meterType.GetMeterTypeById(new SmartDB(), meterId);
 
             bool flag = getMeterType.Code == ErrorEnum.NoError;
 
             TMF.Reports.Model.MeterType meterType = (TMF.Reports.Model.MeterType)getMeterType.BizObject;
-            if (!string.IsNullOrEmpty(meterType.Id))
+            if (meterType.Id == 0 ? false : true)
             {
                 TextBoxDescription.Text = meterType.Description;
                 _meterTypeId = meterType.Id;
@@ -100,7 +100,6 @@ namespace MeterReports
             {
                 TMF.Reports.Model.MeterType meterType = new TMF.Reports.Model.MeterType()
                 {   //TODO User id for CreatedBy
-                    Id = Guid.NewGuid().ToString("N"),
                     Description = TextBoxDescription.Text,
                     CreatedBy = "646f18f9-6425-4769-aa79-16ecdb7cf816",
                     DocDate = DateTime.Now,
@@ -180,7 +179,7 @@ namespace MeterReports
             }
             return base.ProcessCmdKey(ref msg, keyData);
         }
-        private int GetLockCount(string Id)
+        private int GetLockCount(int Id)
         {
             IInfo info = _meterType.GetMeterTypeById(new SmartDB(), Id);
             var lockcount = (info.BizObject as TMF.Reports.Model.MeterType).LockCount;
