@@ -1,12 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
+using TMF.Core;
+using TMF.Core.Model;
 
 namespace MeterReports
 {
@@ -43,9 +40,15 @@ namespace MeterReports
         private TextBox TextBoxY;
         private Label label1;
 
+        private readonly TMF.Reports.BLL.Gateway _gateway;
+        private bool _save;
+        private string _gatewayId;
         public Gateway()
         {
             InitializeComponent();
+            _gateway = new TMF.Reports.BLL.Gateway();
+            _save = true;
+            _gatewayId = "";
         }
 
         private void InitializeComponent()
@@ -107,6 +110,7 @@ namespace MeterReports
             this.ButtonDelete.Text = "DELETE";
             this.ButtonDelete.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.ButtonDelete.UseVisualStyleBackColor = true;
+            this.ButtonDelete.Click += new System.EventHandler(this.ButtonDelete_Click);
             // 
             // ButtonSave
             // 
@@ -121,6 +125,7 @@ namespace MeterReports
             this.ButtonSave.Text = "SAVE";
             this.ButtonSave.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.ButtonSave.UseVisualStyleBackColor = true;
+            this.ButtonSave.Click += new System.EventHandler(this.ButtonSave_Click);
             // 
             // ButtonEdit
             // 
@@ -135,6 +140,7 @@ namespace MeterReports
             this.ButtonEdit.Text = "EDIT";
             this.ButtonEdit.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.ButtonEdit.UseVisualStyleBackColor = true;
+            this.ButtonEdit.Click += new System.EventHandler(this.ButtonEdit_Click);
             // 
             // ButtonNew
             // 
@@ -149,6 +155,7 @@ namespace MeterReports
             this.ButtonNew.Text = "NEW";
             this.ButtonNew.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.ButtonNew.UseVisualStyleBackColor = true;
+            this.ButtonNew.Click += new System.EventHandler(this.ButtonNew_Click);
             // 
             // ButtonSearch
             // 
@@ -163,6 +170,7 @@ namespace MeterReports
             this.ButtonSearch.Text = "SEARCH";
             this.ButtonSearch.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.ButtonSearch.UseVisualStyleBackColor = true;
+            this.ButtonSearch.Click += new System.EventHandler(this.ButtonSearch_Click);
             // 
             // DataGridViewGateway
             // 
@@ -436,7 +444,171 @@ namespace MeterReports
 
         private void Gateway_Load(object sender, EventArgs e)
         {
-
+            BindGatewayWithDataGrid();
+            ResetControls();
         }
+
+        private void ButtonNew_Click(object sender, EventArgs e)
+        {
+            TextBoxDescription.Enabled = true;
+            ButtonEdit.Enabled = false;
+            ButtonSave.Enabled = true;
+            ButtonDelete.Enabled = false;
+            TextBoxDescription.Text = "";
+            TextBoxMac.Text = "";
+            _gatewayId = "";
+        }
+
+        private void ButtonEdit_Click(object sender, EventArgs e)
+        {
+            TextBoxDescription.Enabled = true;
+            ButtonNew.Enabled = false;
+            ButtonEdit.Enabled = false;
+            ButtonSave.Enabled = true;
+            ButtonDelete.Enabled = false;
+            _save = false;
+        }
+
+        private void ButtonSave_Click(object sender, EventArgs e)
+        {
+            if (_save)
+                SaveGateway();
+            else
+                EditGateway();
+        }
+
+        private void ButtonDelete_Click(object sender, EventArgs e)
+        {
+            if (!string.IsNullOrWhiteSpace(TextBoxDescription.Text))
+            {
+                var deleteGateway = _gateway.Delete(new SmartDB(), _gatewayId);
+
+                bool flag = deleteGateway.Code == ErrorEnum.NoError;
+                if (flag)
+                {
+                    MessageBox.Show("Gateway Deleted");
+                    ResetControls();
+                    BindGatewayWithDataGrid();
+                }
+                else
+                {
+                    MessageBox.Show(deleteGateway.Message);
+                }
+            }
+            else
+            {
+                MessageBox.Show("No gateway to delete.");
+            }
+        }
+
+        private void ButtonSearch_Click(object sender, EventArgs e)
+        {
+            BindGatewayWithDataGrid();
+        }
+        #region PriveteMethod
+        private void SaveGateway()
+        {
+            if (!string.IsNullOrWhiteSpace(TextBoxDescription.Text))
+            {
+                TMF.Reports.Model.Gateway gateway = new TMF.Reports.Model.Gateway()
+                {   //TODO User id for CreatedBy
+                    Id = Guid.NewGuid().ToString("N"),
+                    Description = TextBoxDescription.Text,
+                    CreatedBy = "646f18f9-6425-4769-aa79-16ecdb7cf816",
+                    DocDate = DateTime.Now,
+                    Show = 1,
+                    LockCount = 0
+                };
+
+                var createGateway = _gateway.Create(new SmartDB(), ref gateway);
+
+                bool flag = createGateway.Code == ErrorEnum.NoError;
+                if (flag)
+                {
+                    MessageBox.Show("Gateway Created");
+                    ResetControls();
+                    BindGatewayWithDataGrid();
+                }
+                else
+                {
+                    MessageBox.Show(createGateway.Code.ToString());
+                }
+            }
+            else
+                MessageBox.Show("No gateway to save.");
+        }
+        private void EditGateway()
+        {
+            if (!string.IsNullOrWhiteSpace(TextBoxDescription.Text))
+            {   //Todo EditedBy
+                var lockcount = GetLockCount(_gatewayId);
+
+                TMF.Reports.Model.Gateway gateway = new TMF.Reports.Model.Gateway()
+                {
+                    Id = _gatewayId,
+                    Description = TextBoxDescription.Text,
+                    EditedBy = "646f18f9-6425-4769-aa79-16ecdb7cf816",
+                    DocDate = DateTime.Now,
+                    Show = 1,
+                    LockCount = lockcount
+                };
+
+                var updateGateway = _gateway.Update(new SmartDB(), gateway);
+
+                bool flag = updateGateway.Code == ErrorEnum.NoError;
+                if (flag)
+                {
+                    MessageBox.Show("Gateway Updated");
+                    ResetControls();
+                    BindGatewayWithDataGrid();
+                }
+                else
+                {
+                    MessageBox.Show(updateGateway.Message);
+                }
+            }
+            else
+            {
+                MessageBox.Show("No gateway to edit.");
+            }
+        }
+        private void ResetControls()
+        {
+            TextBoxDescription.Enabled = false;
+            TextBoxSearch.Text = "";
+            TextBoxDescription.Text = "";
+            ButtonNew.Enabled = true;
+            ButtonEdit.Enabled = false;
+            ButtonSave.Enabled = false;
+            ButtonDelete.Enabled = false;
+            _save = true;
+        }
+        protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
+        {
+            if (keyData == Keys.Escape)
+            {
+                ResetControls();
+                return true;
+            }
+            return base.ProcessCmdKey(ref msg, keyData);
+        }
+        private int GetLockCount(string Id)
+        {
+            IInfo info = _gateway.GetGatewayById(new SmartDB(), Id);
+            var lockcount = (info.BizObject as TMF.Reports.Model.Gateway).LockCount;
+            return lockcount;
+        }
+        private void BindGatewayWithDataGrid()
+        {   //TODO: Refactor this for reuse.
+            ReturnInfo getGatewayList = _gateway.GetGatewayByDescription(new SmartDB(), TextBoxSearch.Text);
+            //bool flag = getCityList.Code == ErrorEnum.NoError;
+            List<TMF.Reports.Model.Gateway> gateway = (List<TMF.Reports.Model.Gateway>)getGatewayList.BizObject;
+            var bindingList = new BindingList<TMF.Reports.Model.Gateway>(gateway);
+            var source = new BindingSource(bindingList, null);
+            DataGridViewGateway.AutoGenerateColumns = false;
+            DataGridViewGateway.DataSource = source;
+            LabelShow.Text = $"Showing {DataGridViewGateway.CurrentRow.Index + 1} index of {DataGridViewGateway.RowCount} records";
+        }
+        #endregion
     }
 }
