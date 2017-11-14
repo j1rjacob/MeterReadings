@@ -72,6 +72,7 @@
     <Compile Include="DAL\MeterReading.cs" />
     <Compile Include="DAL\MeterSize.cs" />
     <Compile Include="DAL\MeterType.cs" />
+    <Compile Include="DAL\User.cs" />
     <Compile Include="Model\City.cs" />
     <Compile Include="DAL\City.cs" />
     <Compile Include="Model\DMZ.cs" />
