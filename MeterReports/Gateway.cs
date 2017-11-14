@@ -42,6 +42,17 @@ namespace MeterReports
 
         private readonly TMF.Reports.BLL.Gateway _gateway;
         private bool _save;
+        private DataGridViewTextBoxColumn ColMacAddress;
+        private DataGridViewTextBoxColumn ColSimCard;
+        private DataGridViewTextBoxColumn ColX;
+        private DataGridViewTextBoxColumn ColY;
+        private DataGridViewTextBoxColumn ColDescription;
+        private DataGridViewTextBoxColumn ColInstallationDate;
+        private DataGridViewTextBoxColumn ColMaintenanceDate;
+        private DataGridViewTextBoxColumn ColStatus;
+        private DataGridViewTextBoxColumn ColIPAddress;
+        private DataGridViewTextBoxColumn ColDMZ;
+        private DataGridViewTextBoxColumn ColCity;
         private string _gatewayId;
         public Gateway()
         {
@@ -84,6 +95,17 @@ namespace MeterReports
             this.label12 = new System.Windows.Forms.Label();
             this.ComboBoxCity = new System.Windows.Forms.ComboBox();
             this.TextBoxY = new System.Windows.Forms.TextBox();
+            this.ColMacAddress = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColSimCard = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColX = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColY = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColDescription = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColInstallationDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColMaintenanceDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColStatus = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColIPAddress = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColDMZ = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColCity = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.DataGridViewGateway)).BeginInit();
             this.SuspendLayout();
             // 
@@ -177,6 +199,18 @@ namespace MeterReports
             this.DataGridViewGateway.AllowUserToAddRows = false;
             this.DataGridViewGateway.AllowUserToDeleteRows = false;
             this.DataGridViewGateway.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.DataGridViewGateway.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.ColMacAddress,
+            this.ColSimCard,
+            this.ColX,
+            this.ColY,
+            this.ColDescription,
+            this.ColInstallationDate,
+            this.ColMaintenanceDate,
+            this.ColStatus,
+            this.ColIPAddress,
+            this.ColDMZ,
+            this.ColCity});
             this.DataGridViewGateway.Location = new System.Drawing.Point(16, 352);
             this.DataGridViewGateway.Name = "DataGridViewGateway";
             this.DataGridViewGateway.ReadOnly = true;
@@ -402,6 +436,72 @@ namespace MeterReports
             this.TextBoxY.Name = "TextBoxY";
             this.TextBoxY.Size = new System.Drawing.Size(216, 27);
             this.TextBoxY.TabIndex = 15;
+            // 
+            // ColMacAddress
+            // 
+            this.ColMacAddress.HeaderText = "MacAddress";
+            this.ColMacAddress.Name = "ColMacAddress";
+            this.ColMacAddress.ReadOnly = true;
+            // 
+            // ColSimCard
+            // 
+            this.ColSimCard.HeaderText = "Sim Card";
+            this.ColSimCard.Name = "ColSimCard";
+            this.ColSimCard.ReadOnly = true;
+            // 
+            // ColX
+            // 
+            this.ColX.HeaderText = "X";
+            this.ColX.Name = "ColX";
+            this.ColX.ReadOnly = true;
+            // 
+            // ColY
+            // 
+            this.ColY.HeaderText = "Y";
+            this.ColY.Name = "ColY";
+            this.ColY.ReadOnly = true;
+            // 
+            // ColDescription
+            // 
+            this.ColDescription.HeaderText = "Description";
+            this.ColDescription.Name = "ColDescription";
+            this.ColDescription.ReadOnly = true;
+            // 
+            // ColInstallationDate
+            // 
+            this.ColInstallationDate.HeaderText = "Installation Date";
+            this.ColInstallationDate.Name = "ColInstallationDate";
+            this.ColInstallationDate.ReadOnly = true;
+            // 
+            // ColMaintenanceDate
+            // 
+            this.ColMaintenanceDate.HeaderText = "ColMaintenanceDate";
+            this.ColMaintenanceDate.Name = "ColMaintenanceDate";
+            this.ColMaintenanceDate.ReadOnly = true;
+            // 
+            // ColStatus
+            // 
+            this.ColStatus.HeaderText = "Status";
+            this.ColStatus.Name = "ColStatus";
+            this.ColStatus.ReadOnly = true;
+            // 
+            // ColIPAddress
+            // 
+            this.ColIPAddress.HeaderText = "IPAddress";
+            this.ColIPAddress.Name = "ColIPAddress";
+            this.ColIPAddress.ReadOnly = true;
+            // 
+            // ColDMZ
+            // 
+            this.ColDMZ.HeaderText = "DMZ";
+            this.ColDMZ.Name = "ColDMZ";
+            this.ColDMZ.ReadOnly = true;
+            // 
+            // ColCity
+            // 
+            this.ColCity.HeaderText = "ColCity";
+            this.ColCity.Name = "ColCity";
+            this.ColCity.ReadOnly = true;
             // 
             // Gateway
             // 

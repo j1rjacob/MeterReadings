@@ -18,6 +18,10 @@ namespace MeterReports
         private DataGridView DataGridViewGatewayLogs;
         private DateTimePicker DateTimePickerDateFrom;
         private DateTimePicker DateTimePickerDateTo;
+        private DataGridViewTextBoxColumn colId;
+        private DataGridViewTextBoxColumn ColDate;
+        private DataGridViewTextBoxColumn ColMeterRAWCount;
+        private DataGridViewTextBoxColumn ColMeterOMSCount;
         private Label label2;
 
         public GatewayLogs()
@@ -35,6 +39,10 @@ namespace MeterReports
             this.DataGridViewGatewayLogs = new System.Windows.Forms.DataGridView();
             this.DateTimePickerDateFrom = new System.Windows.Forms.DateTimePicker();
             this.DateTimePickerDateTo = new System.Windows.Forms.DateTimePicker();
+            this.colId = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColMeterRAWCount = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColMeterOMSCount = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.DataGridViewGatewayLogs)).BeginInit();
             this.SuspendLayout();
             // 
@@ -84,9 +92,17 @@ namespace MeterReports
             // 
             // DataGridViewGatewayLogs
             // 
+            this.DataGridViewGatewayLogs.AllowUserToAddRows = false;
+            this.DataGridViewGatewayLogs.AllowUserToDeleteRows = false;
             this.DataGridViewGatewayLogs.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.DataGridViewGatewayLogs.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.colId,
+            this.ColDate,
+            this.ColMeterRAWCount,
+            this.ColMeterOMSCount});
             this.DataGridViewGatewayLogs.Location = new System.Drawing.Point(16, 96);
             this.DataGridViewGatewayLogs.Name = "DataGridViewGatewayLogs";
+            this.DataGridViewGatewayLogs.ReadOnly = true;
             this.DataGridViewGatewayLogs.Size = new System.Drawing.Size(712, 344);
             this.DataGridViewGatewayLogs.TabIndex = 27;
             // 
@@ -109,6 +125,30 @@ namespace MeterReports
             this.DateTimePickerDateTo.Name = "DateTimePickerDateTo";
             this.DateTimePickerDateTo.Size = new System.Drawing.Size(160, 27);
             this.DateTimePickerDateTo.TabIndex = 29;
+            // 
+            // colId
+            // 
+            this.colId.HeaderText = "Id";
+            this.colId.Name = "colId";
+            this.colId.ReadOnly = true;
+            // 
+            // ColDate
+            // 
+            this.ColDate.HeaderText = "Date";
+            this.ColDate.Name = "ColDate";
+            this.ColDate.ReadOnly = true;
+            // 
+            // ColMeterRAWCount
+            // 
+            this.ColMeterRAWCount.HeaderText = "MeterRAWCount";
+            this.ColMeterRAWCount.Name = "ColMeterRAWCount";
+            this.ColMeterRAWCount.ReadOnly = true;
+            // 
+            // ColMeterOMSCount
+            // 
+            this.ColMeterOMSCount.HeaderText = "MeterOMSCount";
+            this.ColMeterOMSCount.Name = "ColMeterOMSCount";
+            this.ColMeterOMSCount.ReadOnly = true;
             // 
             // GatewayLogs
             // 

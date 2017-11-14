@@ -61,6 +61,19 @@
             this.label13 = new System.Windows.Forms.Label();
             this.ComboBoxCity = new System.Windows.Forms.ComboBox();
             this.ComboBoxMeterSize = new System.Windows.Forms.ComboBox();
+            this.ColId = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColSerialNumber = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColX = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColY = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColStatus = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColHCN = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColInstallationDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColMaintenanceDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColMeterType = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColMeterSize = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColMeterProtocol = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColDMZ = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColCity = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.DataGridViewMeter)).BeginInit();
             this.SuspendLayout();
             // 
@@ -214,9 +227,26 @@
             // 
             // DataGridViewMeter
             // 
+            this.DataGridViewMeter.AllowUserToAddRows = false;
+            this.DataGridViewMeter.AllowUserToDeleteRows = false;
             this.DataGridViewMeter.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.DataGridViewMeter.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.ColId,
+            this.ColSerialNumber,
+            this.ColX,
+            this.ColY,
+            this.ColStatus,
+            this.ColHCN,
+            this.ColInstallationDate,
+            this.ColMaintenanceDate,
+            this.ColMeterType,
+            this.ColMeterSize,
+            this.ColMeterProtocol,
+            this.ColDMZ,
+            this.ColCity});
             this.DataGridViewMeter.Location = new System.Drawing.Point(16, 372);
             this.DataGridViewMeter.Name = "DataGridViewMeter";
+            this.DataGridViewMeter.ReadOnly = true;
             this.DataGridViewMeter.Size = new System.Drawing.Size(872, 150);
             this.DataGridViewMeter.TabIndex = 44;
             this.DataGridViewMeter.SelectionChanged += new System.EventHandler(this.DataGridViewMeter_SelectionChanged);
@@ -405,6 +435,97 @@
             this.ComboBoxMeterSize.Size = new System.Drawing.Size(216, 28);
             this.ComboBoxMeterSize.TabIndex = 52;
             // 
+            // ColId
+            // 
+            this.ColId.DataPropertyName = "Id";
+            this.ColId.HeaderText = "Id";
+            this.ColId.Name = "ColId";
+            this.ColId.ReadOnly = true;
+            // 
+            // ColSerialNumber
+            // 
+            this.ColSerialNumber.DataPropertyName = "SerialNumber";
+            this.ColSerialNumber.HeaderText = "SerialNumber";
+            this.ColSerialNumber.Name = "ColSerialNumber";
+            this.ColSerialNumber.ReadOnly = true;
+            // 
+            // ColX
+            // 
+            this.ColX.DataPropertyName = "X";
+            this.ColX.HeaderText = "X";
+            this.ColX.Name = "ColX";
+            this.ColX.ReadOnly = true;
+            // 
+            // ColY
+            // 
+            this.ColY.DataPropertyName = "Y";
+            this.ColY.HeaderText = "Y";
+            this.ColY.Name = "ColY";
+            this.ColY.ReadOnly = true;
+            // 
+            // ColStatus
+            // 
+            this.ColStatus.DataPropertyName = "Status";
+            this.ColStatus.HeaderText = "Status";
+            this.ColStatus.Name = "ColStatus";
+            this.ColStatus.ReadOnly = true;
+            // 
+            // ColHCN
+            // 
+            this.ColHCN.DataPropertyName = "HCN";
+            this.ColHCN.HeaderText = "HCN";
+            this.ColHCN.Name = "ColHCN";
+            this.ColHCN.ReadOnly = true;
+            // 
+            // ColInstallationDate
+            // 
+            this.ColInstallationDate.DataPropertyName = "InstallationDate";
+            this.ColInstallationDate.HeaderText = "InstallationDate";
+            this.ColInstallationDate.Name = "ColInstallationDate";
+            this.ColInstallationDate.ReadOnly = true;
+            // 
+            // ColMaintenanceDate
+            // 
+            this.ColMaintenanceDate.DataPropertyName = "MaintenanceDate";
+            this.ColMaintenanceDate.HeaderText = "MaintenanceDate";
+            this.ColMaintenanceDate.Name = "ColMaintenanceDate";
+            this.ColMaintenanceDate.ReadOnly = true;
+            // 
+            // ColMeterType
+            // 
+            this.ColMeterType.DataPropertyName = "MeterType";
+            this.ColMeterType.HeaderText = "MeterType";
+            this.ColMeterType.Name = "ColMeterType";
+            this.ColMeterType.ReadOnly = true;
+            // 
+            // ColMeterSize
+            // 
+            this.ColMeterSize.DataPropertyName = "MeterSize";
+            this.ColMeterSize.HeaderText = "MeterSize";
+            this.ColMeterSize.Name = "ColMeterSize";
+            this.ColMeterSize.ReadOnly = true;
+            // 
+            // ColMeterProtocol
+            // 
+            this.ColMeterProtocol.DataPropertyName = "MeterProtocol";
+            this.ColMeterProtocol.HeaderText = "MeterProtocol";
+            this.ColMeterProtocol.Name = "ColMeterProtocol";
+            this.ColMeterProtocol.ReadOnly = true;
+            // 
+            // ColDMZ
+            // 
+            this.ColDMZ.DataPropertyName = "DMZ";
+            this.ColDMZ.HeaderText = "DMZ";
+            this.ColDMZ.Name = "ColDMZ";
+            this.ColDMZ.ReadOnly = true;
+            // 
+            // ColCity
+            // 
+            this.ColCity.DataPropertyName = "City";
+            this.ColCity.HeaderText = "City";
+            this.ColCity.Name = "ColCity";
+            this.ColCity.ReadOnly = true;
+            // 
             // Meter
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -485,5 +606,18 @@
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.ComboBox ComboBoxCity;
         private System.Windows.Forms.ComboBox ComboBoxMeterSize;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColId;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColSerialNumber;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColX;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColY;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColStatus;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColHCN;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColInstallationDate;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColMaintenanceDate;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColMeterType;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColMeterSize;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColMeterProtocol;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColDMZ;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColCity;
     }
 }

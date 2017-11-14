@@ -32,7 +32,7 @@ namespace MeterReports
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(88, 24);
+            this.label1.Location = new System.Drawing.Point(96, 22);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(111, 22);
             this.label1.TabIndex = 0;
@@ -42,7 +42,7 @@ namespace MeterReports
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(88, 80);
+            this.label2.Location = new System.Drawing.Point(92, 100);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(115, 22);
             this.label2.TabIndex = 0;
@@ -51,18 +51,18 @@ namespace MeterReports
             // TextBoxUsername
             // 
             this.TextBoxUsername.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TextBoxUsername.Location = new System.Drawing.Point(216, 24);
+            this.TextBoxUsername.Location = new System.Drawing.Point(96, 48);
             this.TextBoxUsername.Name = "TextBoxUsername";
-            this.TextBoxUsername.Size = new System.Drawing.Size(168, 27);
+            this.TextBoxUsername.Size = new System.Drawing.Size(288, 27);
             this.TextBoxUsername.TabIndex = 0;
             // 
             // TextBoxPassword
             // 
             this.TextBoxPassword.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TextBoxPassword.Location = new System.Drawing.Point(216, 72);
+            this.TextBoxPassword.Location = new System.Drawing.Point(96, 127);
             this.TextBoxPassword.Name = "TextBoxPassword";
             this.TextBoxPassword.PasswordChar = '$';
-            this.TextBoxPassword.Size = new System.Drawing.Size(168, 27);
+            this.TextBoxPassword.Size = new System.Drawing.Size(288, 27);
             this.TextBoxPassword.TabIndex = 1;
             // 
             // ButtonLogin
@@ -71,7 +71,7 @@ namespace MeterReports
             this.ButtonLogin.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("ButtonLogin.BackgroundImage")));
             this.ButtonLogin.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.ButtonLogin.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ButtonLogin.Location = new System.Drawing.Point(96, 128);
+            this.ButtonLogin.Location = new System.Drawing.Point(96, 170);
             this.ButtonLogin.Name = "ButtonLogin";
             this.ButtonLogin.Size = new System.Drawing.Size(288, 56);
             this.ButtonLogin.TabIndex = 2;
@@ -85,7 +85,7 @@ namespace MeterReports
             this.ButtonCancel.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("ButtonCancel.BackgroundImage")));
             this.ButtonCancel.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.ButtonCancel.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ButtonCancel.Location = new System.Drawing.Point(96, 198);
+            this.ButtonCancel.Location = new System.Drawing.Point(96, 240);
             this.ButtonCancel.Name = "ButtonCancel";
             this.ButtonCancel.Size = new System.Drawing.Size(288, 56);
             this.ButtonCancel.TabIndex = 3;
@@ -95,7 +95,7 @@ namespace MeterReports
             // 
             // Login
             // 
-            this.ClientSize = new System.Drawing.Size(471, 265);
+            this.ClientSize = new System.Drawing.Size(471, 336);
             this.Controls.Add(this.ButtonCancel);
             this.Controls.Add(this.ButtonLogin);
             this.Controls.Add(this.TextBoxPassword);
