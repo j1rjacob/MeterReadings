@@ -27,7 +27,7 @@ namespace TMF.Reports.BLL
         }
         public ReturnInfo IsValid(Model.MeterSize info)
         {
-            bool flag = string.IsNullOrEmpty(info.Id);
+            bool flag = info.Id == 0 ? false : true;
             ReturnInfo result;
             if (flag)
             {
@@ -70,9 +70,9 @@ namespace TMF.Reports.BLL
             result = new ReturnInfo(info2.Code, info2.Message, info2.RowsAffected);
             return result;
         }
-        public ReturnInfo Delete(SmartDB dbInstance, string Id)
+        public ReturnInfo Delete(SmartDB dbInstance, int Id)
         {
-            bool flag = Id == null;
+            bool flag = Id == 0;
             ReturnInfo result;
             if (flag)
             {
@@ -85,7 +85,7 @@ namespace TMF.Reports.BLL
             }
             return result;
         }
-        public ReturnInfo GetMeterSizeById(SmartDB dbInstance, string Id)
+        public ReturnInfo GetMeterSizeById(SmartDB dbInstance, int Id)
         {
             IInfo record = _dal.GetRecord(dbInstance, Id);
             return new ReturnInfo

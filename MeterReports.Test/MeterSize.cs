@@ -20,10 +20,8 @@ namespace MeterReports.Test
             //Arrange
             TMF.Reports.Model.MeterSize meterSize = new TMF.Reports.Model.MeterSize()
             {
-                Id = Guid.NewGuid().ToString("N"),
-                Description = "20 inches",
+                Description = "10 meter",
                 CreatedBy = "646f18f9-6425-4769-aa79-16ecdb7cf816",
-                EditedBy = "646f18f9-6425-4769-aa79-16ecdb7cf816",
                 DocDate = DateTime.Now,
                 Show = 1,
                 LockCount = 0
@@ -41,7 +39,7 @@ namespace MeterReports.Test
         {
             //Arrange
             //Act
-            ReturnInfo getMeterSize = _meterSize.GetMeterSizeById(new SmartDB(), "5942a09dd01e4fc0ba63af02354c4094");
+            ReturnInfo getMeterSize = _meterSize.GetMeterSizeById(new SmartDB(), 1);
             bool flag = getMeterSize.Code == ErrorEnum.NoError;
 
             //Assert
@@ -52,7 +50,7 @@ namespace MeterReports.Test
         {
             //Arrange
             //Act
-            ReturnInfo getMeterSize = _meterSize.GetMeterSizeByDescription(new SmartDB(), "10 inches");
+            ReturnInfo getMeterSize = _meterSize.GetMeterSizeByDescription(new SmartDB(), "");
             bool flag = getMeterSize.Code == ErrorEnum.NoError;
 
             //Assert
@@ -64,9 +62,8 @@ namespace MeterReports.Test
             //Arrange
             TMF.Reports.Model.MeterSize meterSize = new TMF.Reports.Model.MeterSize()
             {
-                Id = "e8d97e5e87314e3c8b59e639cce2e546",
-                Description = "20 inches",
-                CreatedBy = "646f18f9-6425-4769-aa79-16ecdb7cf816",
+                Id = 1,
+                Description = "1 m",
                 EditedBy = "646f18f9-6425-4769-aa79-16ecdb7cf816",
                 DocDate = DateTime.Now,
                 Show = 1,
@@ -85,7 +82,7 @@ namespace MeterReports.Test
         {
             //Arrange
             //Act
-            var deleteMeterSize = _meterSize.Delete(new SmartDB(), "e8d97e5e87314e3c8b59e639cce2e546");
+            var deleteMeterSize = _meterSize.Delete(new SmartDB(), 3);
             bool flag = deleteMeterSize.Code == ErrorEnum.NoError;
 
             //Assert

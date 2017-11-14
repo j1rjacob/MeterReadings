@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
+using System.Collections.Generic;
 using TMF.Core;
 using TMF.Core.Model;
 
@@ -116,12 +118,12 @@ namespace TMF.Reports.BLL
                 BizObject = ((records.Code == ErrorEnum.NoError) ? records.BizObject : new List<Model.City>())
             };
         }
-        //public static bool CheckPassword(string Username, string Password)
-        //{
-        //    var userManager = new UserManager<IdentityUser>(new UserStore<IdentityUser>());
-        //    var user = userManager.FindByName(Username);
-        //    var checkPassword = userManager.CheckPassword(user, Password);
-        //    return checkPassword;
-        //}
+        public static bool CheckPassword(string Username, string Password)
+        {
+            var userManager = new UserManager<IdentityUser>(new UserStore<IdentityUser>());
+            var user = userManager.FindByName(Username);
+            var checkPassword = userManager.CheckPassword(user, Password);
+            return checkPassword;
+        }
     }
 }

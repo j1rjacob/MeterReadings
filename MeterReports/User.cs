@@ -21,5 +21,10 @@ namespace MeterReports
         {
 
         }
+
+        private void ButtonDelete_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

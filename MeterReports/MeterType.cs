@@ -79,18 +79,34 @@ namespace MeterReports
         {
             LabelShow.Text = $"Showing {DataGridViewMeterType.CurrentRow.Index + 1} index of {DataGridViewMeterType.RowCount} records";
 
-            var meterId = (int)DataGridViewMeterType.CurrentRow.Cells[0].Value;
+            int meterId;
+            try
+            {
+                meterId = (int)DataGridViewMeterType.CurrentRow.Cells[0].Value;
+            }
+            catch (Exception exception)
+            {
+                return;
+            }
             ReturnInfo getMeterType = _meterType.GetMeterTypeById(new SmartDB(), meterId);
 
             bool flag = getMeterType.Code == ErrorEnum.NoError;
 
             TMF.Reports.Model.MeterType meterType = (TMF.Reports.Model.MeterType)getMeterType.BizObject;
-            if (meterType.Id == 0 ? false : true)
+
+            try
             {
-                TextBoxDescription.Text = meterType.Description;
-                _meterTypeId = meterType.Id;
-                ButtonEdit.Enabled = true;
-                ButtonDelete.Enabled = true;
+                if (meterType.Id == 0 ? false : true)
+                {
+                    TextBoxDescription.Text = meterType.Description;
+                    _meterTypeId = meterType.Id;
+                    ButtonEdit.Enabled = true;
+                    ButtonDelete.Enabled = true;
+                }
+            }
+            catch (Exception jerry)
+            {
+                return;
             }
         }
         #region PriveteMethod
@@ -169,6 +185,7 @@ namespace MeterReports
             ButtonSave.Enabled = false;
             ButtonDelete.Enabled = false;
             _save = true;
+            BindMeterTypeWithDataGrid();
         }
         protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
         {

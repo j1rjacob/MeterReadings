@@ -26,6 +26,10 @@ namespace MeterReports
 
         private readonly TMF.Reports.BLL.DMZ _dmz;
         private bool _save;
+        private DataGridViewTextBoxColumn ColId;
+        private DataGridViewTextBoxColumn ColDescription;
+        private DataGridViewTextBoxColumn ColCity;
+        private DataGridViewTextBoxColumn ColTotMeter;
         private string _dmzId;
         public DMZ()
         {
@@ -52,6 +56,10 @@ namespace MeterReports
             this.label1 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.ComboBoxCity = new System.Windows.Forms.ComboBox();
+            this.ColId = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColDescription = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColCity = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColTotMeter = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.DataGridViewDMZ)).BeginInit();
             this.SuspendLayout();
             // 
@@ -142,9 +150,17 @@ namespace MeterReports
             // 
             // DataGridViewDMZ
             // 
+            this.DataGridViewDMZ.AllowUserToAddRows = false;
+            this.DataGridViewDMZ.AllowUserToDeleteRows = false;
             this.DataGridViewDMZ.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.DataGridViewDMZ.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.ColId,
+            this.ColDescription,
+            this.ColCity,
+            this.ColTotMeter});
             this.DataGridViewDMZ.Location = new System.Drawing.Point(16, 268);
             this.DataGridViewDMZ.Name = "DataGridViewDMZ";
+            this.DataGridViewDMZ.ReadOnly = true;
             this.DataGridViewDMZ.Size = new System.Drawing.Size(640, 150);
             this.DataGridViewDMZ.TabIndex = 30;
             this.DataGridViewDMZ.SelectionChanged += new System.EventHandler(this.DataGridViewDMZ_SelectionChanged);
@@ -211,6 +227,36 @@ namespace MeterReports
             this.ComboBoxCity.Name = "ComboBoxCity";
             this.ComboBoxCity.Size = new System.Drawing.Size(376, 28);
             this.ComboBoxCity.TabIndex = 37;
+            // 
+            // ColId
+            // 
+            this.ColId.DataPropertyName = "Id";
+            this.ColId.HeaderText = "Id";
+            this.ColId.Name = "ColId";
+            this.ColId.ReadOnly = true;
+            // 
+            // ColDescription
+            // 
+            this.ColDescription.DataPropertyName = "Description";
+            this.ColDescription.HeaderText = "Description";
+            this.ColDescription.Name = "ColDescription";
+            this.ColDescription.ReadOnly = true;
+            this.ColDescription.Width = 200;
+            // 
+            // ColCity
+            // 
+            this.ColCity.DataPropertyName = "City";
+            this.ColCity.HeaderText = "City";
+            this.ColCity.Name = "ColCity";
+            this.ColCity.ReadOnly = true;
+            // 
+            // ColTotMeter
+            // 
+            this.ColTotMeter.DataPropertyName = "TotalNumberOfMeters";
+            this.ColTotMeter.HeaderText = "Total Number of Meters";
+            this.ColTotMeter.Name = "ColTotMeter";
+            this.ColTotMeter.ReadOnly = true;
+            this.ColTotMeter.Width = 200;
             // 
             // DMZ
             // 
@@ -400,6 +446,7 @@ namespace MeterReports
             ButtonSave.Enabled = false;
             ButtonDelete.Enabled = false;
             _save = true;
+            BindDMZWithDataGrid();
         }
         protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
         {

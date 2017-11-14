@@ -174,9 +174,12 @@ namespace MeterReports
             // 
             // DataGridViewGateway
             // 
+            this.DataGridViewGateway.AllowUserToAddRows = false;
+            this.DataGridViewGateway.AllowUserToDeleteRows = false;
             this.DataGridViewGateway.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.DataGridViewGateway.Location = new System.Drawing.Point(16, 352);
             this.DataGridViewGateway.Name = "DataGridViewGateway";
+            this.DataGridViewGateway.ReadOnly = true;
             this.DataGridViewGateway.Size = new System.Drawing.Size(872, 150);
             this.DataGridViewGateway.TabIndex = 18;
             // 
@@ -582,6 +585,7 @@ namespace MeterReports
             ButtonSave.Enabled = false;
             ButtonDelete.Enabled = false;
             _save = true;
+            BindGatewayWithDataGrid();
         }
         protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
         {

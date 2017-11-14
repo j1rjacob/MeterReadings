@@ -178,6 +178,7 @@ namespace MeterReports
             ButtonSave.Enabled = false;
             ButtonDelete.Enabled = false;
             _save = true;
+            BindMeterProtocolWithDataGrid();
         }
         protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
         {

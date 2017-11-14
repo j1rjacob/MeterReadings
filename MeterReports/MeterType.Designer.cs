@@ -140,6 +140,7 @@
             this.DataGridViewMeterType.Location = new System.Drawing.Point(13, 204);
             this.DataGridViewMeterType.Name = "DataGridViewMeterType";
             this.DataGridViewMeterType.ReadOnly = true;
+            this.DataGridViewMeterType.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.DataGridViewMeterType.Size = new System.Drawing.Size(640, 150);
             this.DataGridViewMeterType.TabIndex = 30;
             this.DataGridViewMeterType.SelectionChanged += new System.EventHandler(this.DataGridViewMeterType_SelectionChanged);
@@ -172,12 +173,14 @@
             // 
             // ColId
             // 
+            this.ColId.DataPropertyName = "Id";
             this.ColId.HeaderText = "Id";
             this.ColId.Name = "ColId";
             this.ColId.ReadOnly = true;
             // 
             // ColDescription
             // 
+            this.ColDescription.DataPropertyName = "Description";
             this.ColDescription.HeaderText = "Description";
             this.ColDescription.Name = "ColDescription";
             this.ColDescription.ReadOnly = true;

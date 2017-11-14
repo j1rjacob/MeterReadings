@@ -18,19 +18,19 @@ namespace MeterReports
         private DataGridView DataGridViewMeterSize;
         private TextBox TextBoxDescription;
         private TextBox TextBoxSearch;
-        private TextBox TextBoxName;
         private Label label2;
-        private Label label1;
 
         private readonly TMF.Reports.BLL.MeterSize _meterSize;
         private bool _save;
-        private string _meterSizeId;
+        private DataGridViewTextBoxColumn ColId;
+        private DataGridViewTextBoxColumn ColDescription;
+        private int _meterSizeId;
         public MeterSize()
         {
             InitializeComponent();
             _meterSize = new TMF.Reports.BLL.MeterSize();
             _save = true;
-            _meterSizeId = "";
+            _meterSizeId = 0;
         }
         private void InitializeComponent()
         {
@@ -44,9 +44,9 @@ namespace MeterReports
             this.DataGridViewMeterSize = new System.Windows.Forms.DataGridView();
             this.TextBoxDescription = new System.Windows.Forms.TextBox();
             this.TextBoxSearch = new System.Windows.Forms.TextBox();
-            this.TextBoxName = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
+            this.ColId = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColDescription = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.DataGridViewMeterSize)).BeginInit();
             this.SuspendLayout();
             // 
@@ -54,7 +54,7 @@ namespace MeterReports
             // 
             this.LabelShow.AutoSize = true;
             this.LabelShow.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LabelShow.Location = new System.Drawing.Point(16, 208);
+            this.LabelShow.Location = new System.Drawing.Point(16, 176);
             this.LabelShow.Name = "LabelShow";
             this.LabelShow.Size = new System.Drawing.Size(262, 22);
             this.LabelShow.TabIndex = 48;
@@ -66,7 +66,7 @@ namespace MeterReports
             this.ButtonDelete.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("ButtonDelete.BackgroundImage")));
             this.ButtonDelete.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.ButtonDelete.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ButtonDelete.Location = new System.Drawing.Point(501, 140);
+            this.ButtonDelete.Location = new System.Drawing.Point(501, 108);
             this.ButtonDelete.Name = "ButtonDelete";
             this.ButtonDelete.Size = new System.Drawing.Size(151, 56);
             this.ButtonDelete.TabIndex = 43;
@@ -81,7 +81,7 @@ namespace MeterReports
             this.ButtonSave.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("ButtonSave.BackgroundImage")));
             this.ButtonSave.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.ButtonSave.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ButtonSave.Location = new System.Drawing.Point(341, 140);
+            this.ButtonSave.Location = new System.Drawing.Point(341, 108);
             this.ButtonSave.Name = "ButtonSave";
             this.ButtonSave.Size = new System.Drawing.Size(151, 56);
             this.ButtonSave.TabIndex = 44;
@@ -96,7 +96,7 @@ namespace MeterReports
             this.ButtonEdit.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("ButtonEdit.BackgroundImage")));
             this.ButtonEdit.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.ButtonEdit.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ButtonEdit.Location = new System.Drawing.Point(181, 140);
+            this.ButtonEdit.Location = new System.Drawing.Point(181, 108);
             this.ButtonEdit.Name = "ButtonEdit";
             this.ButtonEdit.Size = new System.Drawing.Size(151, 56);
             this.ButtonEdit.TabIndex = 45;
@@ -111,7 +111,7 @@ namespace MeterReports
             this.ButtonNew.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("ButtonNew.BackgroundImage")));
             this.ButtonNew.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.ButtonNew.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ButtonNew.Location = new System.Drawing.Point(13, 140);
+            this.ButtonNew.Location = new System.Drawing.Point(13, 108);
             this.ButtonNew.Name = "ButtonNew";
             this.ButtonNew.Size = new System.Drawing.Size(151, 56);
             this.ButtonNew.TabIndex = 46;
@@ -137,9 +137,15 @@ namespace MeterReports
             // 
             // DataGridViewMeterSize
             // 
+            this.DataGridViewMeterSize.AllowUserToAddRows = false;
+            this.DataGridViewMeterSize.AllowUserToDeleteRows = false;
             this.DataGridViewMeterSize.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.DataGridViewMeterSize.Location = new System.Drawing.Point(13, 236);
+            this.DataGridViewMeterSize.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.ColId,
+            this.ColDescription});
+            this.DataGridViewMeterSize.Location = new System.Drawing.Point(13, 204);
             this.DataGridViewMeterSize.Name = "DataGridViewMeterSize";
+            this.DataGridViewMeterSize.ReadOnly = true;
             this.DataGridViewMeterSize.Size = new System.Drawing.Size(640, 150);
             this.DataGridViewMeterSize.TabIndex = 42;
             this.DataGridViewMeterSize.SelectionChanged += new System.EventHandler(this.DataGridViewMeterSize_SelectionChanged);
@@ -147,7 +153,7 @@ namespace MeterReports
             // TextBoxDescription
             // 
             this.TextBoxDescription.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TextBoxDescription.Location = new System.Drawing.Point(152, 105);
+            this.TextBoxDescription.Location = new System.Drawing.Point(152, 73);
             this.TextBoxDescription.Name = "TextBoxDescription";
             this.TextBoxDescription.Size = new System.Drawing.Size(501, 27);
             this.TextBoxDescription.TabIndex = 39;
@@ -160,37 +166,34 @@ namespace MeterReports
             this.TextBoxSearch.Size = new System.Drawing.Size(280, 27);
             this.TextBoxSearch.TabIndex = 40;
             // 
-            // TextBoxName
-            // 
-            this.TextBoxName.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TextBoxName.Location = new System.Drawing.Point(152, 70);
-            this.TextBoxName.Name = "TextBoxName";
-            this.TextBoxName.Size = new System.Drawing.Size(501, 27);
-            this.TextBoxName.TabIndex = 41;
-            // 
             // label2
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(16, 108);
+            this.label2.Location = new System.Drawing.Point(16, 76);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(132, 22);
             this.label2.TabIndex = 37;
             this.label2.Text = "DESCRIPTION";
             // 
-            // label1
+            // ColId
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(87, 71);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(61, 22);
-            this.label1.TabIndex = 38;
-            this.label1.Text = "NAME";
+            this.ColId.DataPropertyName = "Id";
+            this.ColId.HeaderText = "Id";
+            this.ColId.Name = "ColId";
+            this.ColId.ReadOnly = true;
+            // 
+            // ColDescription
+            // 
+            this.ColDescription.DataPropertyName = "Description";
+            this.ColDescription.HeaderText = "Description";
+            this.ColDescription.Name = "ColDescription";
+            this.ColDescription.ReadOnly = true;
+            this.ColDescription.Width = 500;
             // 
             // MeterSize
             // 
-            this.ClientSize = new System.Drawing.Size(670, 398);
+            this.ClientSize = new System.Drawing.Size(670, 367);
             this.Controls.Add(this.LabelShow);
             this.Controls.Add(this.ButtonDelete);
             this.Controls.Add(this.ButtonSave);
@@ -200,9 +203,7 @@ namespace MeterReports
             this.Controls.Add(this.DataGridViewMeterSize);
             this.Controls.Add(this.TextBoxDescription);
             this.Controls.Add(this.TextBoxSearch);
-            this.Controls.Add(this.TextBoxName);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.label1);
             this.MaximizeBox = false;
             this.Name = "MeterSize";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -225,7 +226,7 @@ namespace MeterReports
             ButtonSave.Enabled = true;
             ButtonDelete.Enabled = false;
             TextBoxDescription.Text = "";
-            _meterSizeId = "";
+            _meterSizeId = 0;
         }
         private void ButtonEdit_Click(object sender, EventArgs e)
         {
@@ -263,7 +264,7 @@ namespace MeterReports
             }
             else
             {
-                MessageBox.Show("No city to delete.");
+                MessageBox.Show("No meter size to delete.");
             }
         }
         private void ButtonSearch_Click(object sender, EventArgs e)
@@ -274,18 +275,25 @@ namespace MeterReports
         {
             LabelShow.Text = $"Showing {DataGridViewMeterSize.CurrentRow.Index + 1} index of {DataGridViewMeterSize.RowCount} records";
 
-            var meterSizeId = DataGridViewMeterSize.CurrentRow.Cells[0].Value.ToString();
+            var meterSizeId = (int)DataGridViewMeterSize.CurrentRow.Cells[0].Value;
             ReturnInfo getMeterSize = _meterSize.GetMeterSizeById(new SmartDB(), meterSizeId);
 
             bool flag = getMeterSize.Code == ErrorEnum.NoError;
 
             TMF.Reports.Model.MeterSize meterSize = (TMF.Reports.Model.MeterSize)getMeterSize.BizObject;
-            if (!string.IsNullOrEmpty(meterSize.Id))
+            try
             {
-                TextBoxDescription.Text = meterSize.Description;
-                _meterSizeId = meterSize.Id;
-                ButtonEdit.Enabled = true;
-                ButtonDelete.Enabled = true;
+                if (meterSize.Id == 0 ? false : true)
+                {
+                    TextBoxDescription.Text = meterSize.Description;
+                    _meterSizeId = meterSize.Id;
+                    ButtonEdit.Enabled = true;
+                    ButtonDelete.Enabled = true;
+                }
+            }
+            catch (Exception exception)
+            {
+                return;
             }
         }
         #region PriveteMethod
@@ -295,7 +303,6 @@ namespace MeterReports
             {
                 TMF.Reports.Model.MeterSize meterType = new TMF.Reports.Model.MeterSize()
                 {   //TODO User id for CreatedBy
-                    Id = Guid.NewGuid().ToString("N"),
                     Description = TextBoxDescription.Text,
                     CreatedBy = "646f18f9-6425-4769-aa79-16ecdb7cf816",
                     DocDate = DateTime.Now,
@@ -365,6 +372,7 @@ namespace MeterReports
             ButtonSave.Enabled = false;
             ButtonDelete.Enabled = false;
             _save = true;
+            BindMeterSizeWithDataGrid();
         }
         protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
         {
@@ -375,7 +383,7 @@ namespace MeterReports
             }
             return base.ProcessCmdKey(ref msg, keyData);
         }
-        private int GetLockCount(string Id)
+        private int GetLockCount(int Id)
         {
             IInfo info = _meterSize.GetMeterSizeById(new SmartDB(), Id);
             var lockcount = (info.BizObject as TMF.Reports.Model.MeterSize).LockCount;

@@ -76,7 +76,7 @@ namespace TMF.Reports.BLL
 
         public ReturnInfo Delete(SmartDB dbInstance, int Id)
         {
-            bool flag = Id == 0 ? false : true;
+            bool flag = Id == 0;
             ReturnInfo result;
             if (flag)
             {
