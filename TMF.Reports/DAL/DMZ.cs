@@ -25,6 +25,7 @@ namespace TMF.Reports.DAL
                 info = new Model.DMZ();
                 info.Id = CastDBNull.To<int>(reader["Id"], 0);
                 info.Description = CastDBNull.To<string>(reader["Description"], "");
+                info.CityId = CastDBNull.To<string>(reader["CityId"], "");
                 info.TotalNumberOfMeters = CastDBNull.To<int>(reader["TotalNumberOfMeters"], 0);
                 info.CreatedBy = CastDBNull.To<string>(reader["Createdby"], "");
                 info.EditedBy = CastDBNull.To<string>(reader["Editedby"], "");

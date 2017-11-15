@@ -21,6 +21,7 @@ namespace MeterReports.Test
             {
                 Description = "DMZ1",
                 TotalNumberOfMeters = 25,
+                CityId = "cf9f60009a4c46e3b91b45e5dc737f72",
                 CreatedBy = "646f18f9-6425-4769-aa79-16ecdb7cf816",
                 DocDate = DateTime.Now,
                 Show = 1,

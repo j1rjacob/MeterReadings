@@ -163,6 +163,7 @@ namespace MeterReports
             this.DataGridViewDMZ.Location = new System.Drawing.Point(16, 268);
             this.DataGridViewDMZ.Name = "DataGridViewDMZ";
             this.DataGridViewDMZ.ReadOnly = true;
+            this.DataGridViewDMZ.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.DataGridViewDMZ.Size = new System.Drawing.Size(640, 150);
             this.DataGridViewDMZ.TabIndex = 30;
             this.DataGridViewDMZ.SelectionChanged += new System.EventHandler(this.DataGridViewDMZ_SelectionChanged);
@@ -362,11 +363,15 @@ namespace MeterReports
             bool flag = getDMZ.Code == ErrorEnum.NoError;
 
             TMF.Reports.Model.DMZ dmz = (TMF.Reports.Model.DMZ)getDMZ.BizObject;
+
+            ReturnInfo getCity = _city.GetCityById(new SmartDB(), dmz.CityId.Trim());
+            TMF.Reports.Model.City city = (TMF.Reports.Model.City)getCity.BizObject;
             try
             {
                 if (dmz.Id == 0 ? false : true)
                 {
                     TextBoxDescription.Text = dmz.Description;
+                    ComboBoxCity.Text = city.Description;
                     TextBoxTotalMeters.Text = dmz.TotalNumberOfMeters.ToString();
                     _dmzId = dmz.Id;
                     ButtonEdit.Enabled = true;
@@ -380,14 +385,9 @@ namespace MeterReports
         }
         private void ComboBoxCity_MouseClick(object sender, MouseEventArgs e)
         {
-            ComboBoxCity.Items.Clear();
-            ReturnInfo getCity = _city.GetCityList(new SmartDB());
-            List<TMF.Reports.Model.City> cities = (List<TMF.Reports.Model.City>)getCity.BizObject;
-            foreach (var city in cities)
-            {
-                ComboBoxCity.Items.Add(city.Description);
-            }
+            GetCities();
         }
+        
         #region PriveteMethod
         private void SaveDMZ()
         {
@@ -453,6 +453,16 @@ namespace MeterReports
             else
             {
                 MessageBox.Show("No DMZ to edit.");
+            }
+        }
+        private void GetCities()
+        {
+            ComboBoxCity.Items.Clear();
+            ReturnInfo getCity = _city.GetCityList(new SmartDB());
+            List<TMF.Reports.Model.City> cities = (List<TMF.Reports.Model.City>)getCity.BizObject;
+            foreach (var city in cities)
+            {
+                ComboBoxCity.Items.Add(city.Description);
             }
         }
         private void ResetControls()
