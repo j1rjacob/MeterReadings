@@ -19,9 +19,9 @@ namespace MeterReports.Test
             //Arrange
             TMF.Reports.Model.DMZ dmz = new TMF.Reports.Model.DMZ()
             {
-                Description = "DMZ1",
+                Description = "DMZ3",
                 TotalNumberOfMeters = 25,
-                CityId = "cf9f60009a4c46e3b91b45e5dc737f72",
+                CityId = "57b84d38ca424b109eaf7993e167babb",
                 CreatedBy = "646f18f9-6425-4769-aa79-16ecdb7cf816",
                 DocDate = DateTime.Now,
                 Show = 1,
@@ -64,8 +64,9 @@ namespace MeterReports.Test
             //Arrange
             TMF.Reports.Model.DMZ dmz = new TMF.Reports.Model.DMZ()
             {
-                Id = 1,
+                Id = 2,
                 Description = "DMZ0",
+                CityId = "Al Riyadh",
                 TotalNumberOfMeters = 50,
                 EditedBy = "646f18f9-6425-4769-aa79-16ecdb7cf816",
                 DocDate = DateTime.Now,

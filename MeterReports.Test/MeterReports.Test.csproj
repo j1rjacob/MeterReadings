@@ -57,17 +57,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="City.cs" />
-    <Compile Include="DMZ.cs" />
-    <Compile Include="Gateway.cs" />
-    <Compile Include="GatewayLog.cs" />
-    <Compile Include="Meter.cs" />
-    <Compile Include="MeterProtocol.cs" />
-    <Compile Include="MeterReading.cs" />
-    <Compile Include="MeterSize.cs" />
-    <Compile Include="MeterType.cs" />
+    <Compile Include="City.Test.cs" />
+    <Compile Include="DMZ.Test.cs" />
+    <Compile Include="Gateway.Test.cs" />
+    <Compile Include="GatewayLog.Test.cs" />
+    <Compile Include="Meter.Test.cs" />
+    <Compile Include="MeterProtocol.Test.cs" />
+    <Compile Include="MeterReading.Test.cs" />
+    <Compile Include="MeterSize.Test.cs" />
+    <Compile Include="MeterType.Test.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="User.cs" />
+    <Compile Include="User.Test.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\TMF.Core\TMF.Core.csproj">

@@ -161,6 +161,7 @@ namespace MeterReports
             this.ColCity,
             this.ColTotMeter});
             this.DataGridViewDMZ.Location = new System.Drawing.Point(16, 268);
+            this.DataGridViewDMZ.MultiSelect = false;
             this.DataGridViewDMZ.Name = "DataGridViewDMZ";
             this.DataGridViewDMZ.ReadOnly = true;
             this.DataGridViewDMZ.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
@@ -298,24 +299,27 @@ namespace MeterReports
         private void ButtonNew_Click(object sender, EventArgs e)
         {
             TextBoxDescription.Enabled = true;
+            ComboBoxCity.Enabled = true;
+            TextBoxTotalMeters.Enabled = true;
             ButtonEdit.Enabled = false;
             ButtonSave.Enabled = true;
             ButtonDelete.Enabled = false;
             TextBoxDescription.Text = "";
+            ComboBoxCity.Items.Clear();
             TextBoxTotalMeters.Text = "";
             _dmzId = 0;
         }
-
         private void ButtonEdit_Click(object sender, EventArgs e)
         {
             TextBoxDescription.Enabled = true;
+            ComboBoxCity.Enabled = true;
+            TextBoxTotalMeters.Enabled = true;
             ButtonNew.Enabled = false;
-            ButtonEdit.Enabled = false;
+            ButtonEdit.Enabled = true;
             ButtonSave.Enabled = true;
             ButtonDelete.Enabled = false;
             _save = false;
         }
-
         private void ButtonSave_Click(object sender, EventArgs e)
         {
             if (_save)
@@ -323,7 +327,6 @@ namespace MeterReports
             else
                 EditDMZ();
         }
-
         private void ButtonDelete_Click(object sender, EventArgs e)
         {
             if (!string.IsNullOrWhiteSpace(TextBoxDescription.Text))
@@ -335,7 +338,6 @@ namespace MeterReports
                 {
                     MessageBox.Show("DMZ Deleted");
                     ResetControls();
-                    BindDMZWithDataGrid();
                 }
                 else
                 {
@@ -347,12 +349,10 @@ namespace MeterReports
                 MessageBox.Show("No DMZ to delete.");
             }
         }
-
         private void ButtonSearch_Click(object sender, EventArgs e)
         {
             BindDMZWithDataGrid();
         }
-
         private void DataGridViewDMZ_SelectionChanged(object sender, EventArgs e)
         {
             LabelShow.Text = $"Showing {DataGridViewDMZ.CurrentRow.Index + 1} index of {DataGridViewDMZ.RowCount} records";
@@ -363,11 +363,12 @@ namespace MeterReports
             bool flag = getDMZ.Code == ErrorEnum.NoError;
 
             TMF.Reports.Model.DMZ dmz = (TMF.Reports.Model.DMZ)getDMZ.BizObject;
-
-            ReturnInfo getCity = _city.GetCityById(new SmartDB(), dmz.CityId.Trim());
-            TMF.Reports.Model.City city = (TMF.Reports.Model.City)getCity.BizObject;
+            
             try
             {
+                ReturnInfo getCity = _city.GetCityById(new SmartDB(), dmz.CityId.Trim());
+                TMF.Reports.Model.City city = (TMF.Reports.Model.City)getCity.BizObject;
+
                 if (dmz.Id == 0 ? false : true)
                 {
                     TextBoxDescription.Text = dmz.Description;
@@ -387,7 +388,6 @@ namespace MeterReports
         {
             GetCities();
         }
-        
         #region PriveteMethod
         private void SaveDMZ()
         {
@@ -396,7 +396,8 @@ namespace MeterReports
                 TMF.Reports.Model.DMZ dmz = new TMF.Reports.Model.DMZ()
                 {   //TODO User id for CreatedBy
                     Description = TextBoxDescription.Text,
-                    TotalNumberOfMeters = 0,
+                    CityId = ComboBoxCity.Text,
+                    TotalNumberOfMeters = Convert.ToInt32(TextBoxTotalMeters.Text),
                     CreatedBy = "646f18f9-6425-4769-aa79-16ecdb7cf816",
                     DocDate = DateTime.Now,
                     Show = 1,
@@ -430,6 +431,8 @@ namespace MeterReports
                 {
                     Id = _dmzId,
                     Description = TextBoxDescription.Text,
+                    CityId = ComboBoxCity.Text,
+                    TotalNumberOfMeters = Convert.ToInt32(TextBoxTotalMeters.Text),
                     EditedBy = "646f18f9-6425-4769-aa79-16ecdb7cf816",
                     DocDate = DateTime.Now,
                     Show = 1,
@@ -443,7 +446,6 @@ namespace MeterReports
                 {
                     MessageBox.Show("DMZ Updated");
                     ResetControls();
-                    BindDMZWithDataGrid();
                 }
                 else
                 {
@@ -468,7 +470,10 @@ namespace MeterReports
         private void ResetControls()
         {
             TextBoxDescription.Enabled = false;
+            ComboBoxCity.Enabled = false;
+            TextBoxTotalMeters.Enabled = false;
             TextBoxSearch.Text = "";
+            ComboBoxCity.Items.Clear();
             TextBoxDescription.Text = "";
             TextBoxTotalMeters.Text = "";
             ButtonNew.Enabled = true;
@@ -495,14 +500,21 @@ namespace MeterReports
         }
         private void BindDMZWithDataGrid()
         {   //TODO: Refactor this for reuse.
-            ReturnInfo getDMZList = _dmz.GetDMZByDescription(new SmartDB(), TextBoxSearch.Text);
-            //bool flag = getCityList.Code == ErrorEnum.NoError;
-            List<TMF.Reports.Model.DMZ> dmz = (List<TMF.Reports.Model.DMZ>)getDMZList.BizObject;
-            var bindingList = new BindingList<TMF.Reports.Model.DMZ>(dmz);
-            var source = new BindingSource(bindingList, null);
-            DataGridViewDMZ.AutoGenerateColumns = false;
-            DataGridViewDMZ.DataSource = source;
-            LabelShow.Text = $"Showing {DataGridViewDMZ.CurrentRow.Index + 1} index of {DataGridViewDMZ.RowCount} records";
+            try
+            {
+                ReturnInfo getDMZList = _dmz.GetDMZByDescription(new SmartDB(), TextBoxSearch.Text);
+                //bool flag = getCityList.Code == ErrorEnum.NoError;
+                List<TMF.Reports.Model.DMZ> dmz = (List<TMF.Reports.Model.DMZ>)getDMZList.BizObject;
+                var bindingList = new BindingList<TMF.Reports.Model.DMZ>(dmz);
+                var source = new BindingSource(bindingList, null);
+                DataGridViewDMZ.AutoGenerateColumns = false;
+                DataGridViewDMZ.DataSource = source;
+                LabelShow.Text = $"Showing {DataGridViewDMZ.CurrentRow.Index + 1} index of {DataGridViewDMZ.RowCount} records";
+            }
+            catch (Exception e)
+            {
+                return;
+            }
         }
         #endregion
     }
