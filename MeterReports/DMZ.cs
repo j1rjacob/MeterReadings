@@ -250,10 +250,11 @@ namespace MeterReports
             // 
             // ColCity
             // 
-            this.ColCity.DataPropertyName = "City";
+            this.ColCity.DataPropertyName = "CityId";
             this.ColCity.HeaderText = "City";
             this.ColCity.Name = "ColCity";
             this.ColCity.ReadOnly = true;
+            this.ColCity.Visible = false;
             // 
             // ColTotMeter
             // 

@@ -11,18 +11,17 @@ namespace MeterReports
     {
         private readonly TMF.Reports.BLL.MeterProtocol _meterProtocol;
         private bool _save;
-        private string _meterProtocolId;
+        private int _meterProtocolId;
         public MeterProtocol()
         {
             InitializeComponent();
             _meterProtocol = new TMF.Reports.BLL.MeterProtocol();
             _save = true;
-            _meterProtocolId = "";
+            _meterProtocolId = 0;
         }
 
         private void MeterProtocol_Load(object sender, EventArgs e)
         {
-            BindMeterProtocolWithDataGrid();
             ResetControls();
         }
 
@@ -33,7 +32,7 @@ namespace MeterReports
             ButtonSave.Enabled = true;
             ButtonDelete.Enabled = false;
             TextBoxDescription.Text = "";
-            _meterProtocolId = "";
+            _meterProtocolId = 0;
         }
 
         private void ButtonEdit_Click(object sender, EventArgs e)
@@ -87,18 +86,25 @@ namespace MeterReports
         {
             LabelShow.Text = $"Showing {DataGridViewMeterProtocol.CurrentRow.Index + 1} index of {DataGridViewMeterProtocol.RowCount} records";
 
-            var meterProtocolId = DataGridViewMeterProtocol.CurrentRow.Cells[0].Value.ToString();
+            var meterProtocolId = (int)DataGridViewMeterProtocol.CurrentRow.Cells[0].Value;
             ReturnInfo getMeterProtocol = _meterProtocol.GetMeterProtocolById(new SmartDB(), meterProtocolId);
 
             bool flag = getMeterProtocol.Code == ErrorEnum.NoError;
 
-            TMF.Reports.Model.MeterProtocol meterProtocol = (TMF.Reports.Model.MeterProtocol)getMeterProtocol.BizObject;
-            if (!string.IsNullOrEmpty(meterProtocol.Id))
+            try
             {
-                TextBoxDescription.Text = meterProtocol.Description;
-                _meterProtocolId = meterProtocol.Id;
-                ButtonEdit.Enabled = true;
-                ButtonDelete.Enabled = true;
+                TMF.Reports.Model.MeterProtocol meterProtocol = (TMF.Reports.Model.MeterProtocol)getMeterProtocol.BizObject;
+                if (meterProtocol.Id == 0 ? false : true)
+                {
+                    TextBoxDescription.Text = meterProtocol.Description;
+                    _meterProtocolId = meterProtocol.Id;
+                    ButtonEdit.Enabled = true;
+                    ButtonDelete.Enabled = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                return;
             }
         }
         #region PriveteMethod
@@ -108,7 +114,6 @@ namespace MeterReports
             {
                 TMF.Reports.Model.MeterProtocol meterProtocol = new TMF.Reports.Model.MeterProtocol()
                 {   //TODO User id for CreatedBy
-                    Id = Guid.NewGuid().ToString("N"),
                     Description = TextBoxDescription.Text,
                     CreatedBy = "646f18f9-6425-4769-aa79-16ecdb7cf816",
                     DocDate = DateTime.Now,
@@ -156,7 +161,6 @@ namespace MeterReports
                 {
                     MessageBox.Show("Meter Protocol Updated");
                     ResetControls();
-                    BindMeterProtocolWithDataGrid();
                 }
                 else
                 {
@@ -189,7 +193,7 @@ namespace MeterReports
             }
             return base.ProcessCmdKey(ref msg, keyData);
         }
-        private int GetLockCount(string Id)
+        private int GetLockCount(int Id)
         {
             IInfo info = _meterProtocol.GetMeterProtocolById(new SmartDB(), Id);
             var lockcount = (info.BizObject as TMF.Reports.Model.MeterProtocol).LockCount;

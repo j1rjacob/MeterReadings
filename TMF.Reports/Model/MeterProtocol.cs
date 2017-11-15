@@ -6,7 +6,7 @@ namespace TMF.Reports.Model
 {
     public class MeterProtocol : ModelInfo
     {
-        public string Id { get; set; }
+        public int Id { get; set; }
         public string Description { get; set; }
         public string CreatedBy { get; set; }
         public string EditedBy { get; set; }
@@ -15,12 +15,12 @@ namespace TMF.Reports.Model
         public int LockCount { get; set; }
         public MeterProtocol()
         {
-            Id = "";
+            Id = 0;
             base.IsNew = true;
             base.IsDirty = false;
             base.IsDeleted = false;
         }
-        public MeterProtocol(string Id, string Description, 
+        public MeterProtocol(int Id, string Description, 
                              string CreatedBy, string EditedBy, DateTime DocDate,
                              int Show, int LockCount)
         {
@@ -70,7 +70,7 @@ namespace TMF.Reports.Model
             switch (fieldname.ToLower())
             {
                 case "id":
-                    this.Id = CastDBNull.To<string>(value, "");
+                    this.Id = CastDBNull.To<int>(value, 0);
                     break;
                 case "description":
                     this.Description = CastDBNull.To<string>(value, "");
