@@ -499,7 +499,7 @@ namespace MeterReports
             // 
             // ColCity
             // 
-            this.ColCity.HeaderText = "ColCity";
+            this.ColCity.HeaderText = "City";
             this.ColCity.Name = "ColCity";
             this.ColCity.ReadOnly = true;
             // 

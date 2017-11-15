@@ -6,7 +6,7 @@ namespace TMF.Reports.Model
 {
     public class DMZ : ModelInfo
     {
-        public string Id { get; set; }
+        public int Id { get; set; }
         public string Description { get; set; }
         public int TotalNumberOfMeters { get; set; }
         public string CityId { get; set; }
@@ -18,12 +18,12 @@ namespace TMF.Reports.Model
         public int LockCount { get; set; }
         public DMZ()
         {
-            Id = "";
+            Id = 0;
             base.IsNew = true;
             base.IsDirty = false;
             base.IsDeleted = false;
         }
-        public DMZ(string Id, string Description, int TotalNumberOfMeters, string CityId,
+        public DMZ(int Id, string Description, int TotalNumberOfMeters, string CityId,
                    string Type, string CreatedBy, string EditedBy, DateTime DocDate,
                    int Show, int LockCount)
         {
@@ -82,7 +82,7 @@ namespace TMF.Reports.Model
             switch (fieldname.ToLower())
             {
                 case "id":
-                    this.Id = CastDBNull.To<string>(value, "");
+                    this.Id = CastDBNull.To<int>(value, 0);
                     break;
                 case "description":
                     this.Description = CastDBNull.To<string>(value, "");

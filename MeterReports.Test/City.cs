@@ -89,5 +89,16 @@ namespace MeterReports.Test
             //Assert
             Assert.IsTrue(flag);
         }
+        [Test]
+        public void City_LST_Equal()
+        {
+            //Arrange
+            //Act
+            ReturnInfo city = _city.GetCityList(new SmartDB());
+            bool flag = city.Code == ErrorEnum.NoError;
+
+            //Assert
+            Assert.IsTrue(flag);
+        }
     }
 }

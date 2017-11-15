@@ -32,7 +32,7 @@ namespace MeterReports
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(96, 22);
+            this.label1.Location = new System.Drawing.Point(91, 22);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(111, 22);
             this.label1.TabIndex = 0;
@@ -42,7 +42,7 @@ namespace MeterReports
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(92, 100);
+            this.label2.Location = new System.Drawing.Point(92, 92);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(115, 22);
             this.label2.TabIndex = 0;
@@ -59,7 +59,7 @@ namespace MeterReports
             // TextBoxPassword
             // 
             this.TextBoxPassword.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TextBoxPassword.Location = new System.Drawing.Point(96, 127);
+            this.TextBoxPassword.Location = new System.Drawing.Point(96, 119);
             this.TextBoxPassword.Name = "TextBoxPassword";
             this.TextBoxPassword.PasswordChar = '$';
             this.TextBoxPassword.Size = new System.Drawing.Size(288, 27);
@@ -71,7 +71,7 @@ namespace MeterReports
             this.ButtonLogin.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("ButtonLogin.BackgroundImage")));
             this.ButtonLogin.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.ButtonLogin.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ButtonLogin.Location = new System.Drawing.Point(96, 170);
+            this.ButtonLogin.Location = new System.Drawing.Point(96, 162);
             this.ButtonLogin.Name = "ButtonLogin";
             this.ButtonLogin.Size = new System.Drawing.Size(288, 56);
             this.ButtonLogin.TabIndex = 2;
@@ -85,7 +85,7 @@ namespace MeterReports
             this.ButtonCancel.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("ButtonCancel.BackgroundImage")));
             this.ButtonCancel.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.ButtonCancel.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ButtonCancel.Location = new System.Drawing.Point(96, 240);
+            this.ButtonCancel.Location = new System.Drawing.Point(96, 232);
             this.ButtonCancel.Name = "ButtonCancel";
             this.ButtonCancel.Size = new System.Drawing.Size(288, 56);
             this.ButtonCancel.TabIndex = 3;
@@ -95,7 +95,7 @@ namespace MeterReports
             // 
             // Login
             // 
-            this.ClientSize = new System.Drawing.Size(471, 336);
+            this.ClientSize = new System.Drawing.Size(471, 312);
             this.Controls.Add(this.ButtonCancel);
             this.Controls.Add(this.ButtonLogin);
             this.Controls.Add(this.TextBoxPassword);
@@ -113,7 +113,7 @@ namespace MeterReports
         }
 
         private void ButtonLogin_Click(object sender, EventArgs e)
-        {
+        {//junarjacob, Password123!
             if (TMF.Reports.BLL.User.CheckPassword(TextBoxUsername.Text.Trim(), TextBoxPassword.Text.Trim()))
             {
                 var f = new MainForm();

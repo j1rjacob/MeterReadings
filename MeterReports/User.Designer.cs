@@ -45,6 +45,10 @@
             this.ButtonDelete = new System.Windows.Forms.Button();
             this.LabelShow = new System.Windows.Forms.Label();
             this.ComboBoxRole = new System.Windows.Forms.ComboBox();
+            this.ColId = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColUsername = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColRole = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.DataGridViewUser)).BeginInit();
             this.SuspendLayout();
             // 
@@ -122,9 +126,17 @@
             // 
             // DataGridViewUser
             // 
+            this.DataGridViewUser.AllowUserToAddRows = false;
+            this.DataGridViewUser.AllowUserToDeleteRows = false;
             this.DataGridViewUser.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.DataGridViewUser.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.ColId,
+            this.ColName,
+            this.ColUsername,
+            this.ColRole});
             this.DataGridViewUser.Location = new System.Drawing.Point(19, 304);
             this.DataGridViewUser.Name = "DataGridViewUser";
+            this.DataGridViewUser.ReadOnly = true;
             this.DataGridViewUser.Size = new System.Drawing.Size(640, 150);
             this.DataGridViewUser.TabIndex = 6;
             // 
@@ -221,6 +233,30 @@
             this.ComboBoxRole.Size = new System.Drawing.Size(216, 28);
             this.ComboBoxRole.TabIndex = 9;
             // 
+            // ColId
+            // 
+            this.ColId.HeaderText = "Id";
+            this.ColId.Name = "ColId";
+            this.ColId.ReadOnly = true;
+            // 
+            // ColName
+            // 
+            this.ColName.HeaderText = "Name";
+            this.ColName.Name = "ColName";
+            this.ColName.ReadOnly = true;
+            // 
+            // ColUsername
+            // 
+            this.ColUsername.HeaderText = "Username";
+            this.ColUsername.Name = "ColUsername";
+            this.ColUsername.ReadOnly = true;
+            // 
+            // ColRole
+            // 
+            this.ColRole.HeaderText = "Role";
+            this.ColRole.Name = "ColRole";
+            this.ColRole.ReadOnly = true;
+            // 
             // User
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -273,5 +309,9 @@
         private System.Windows.Forms.Button ButtonDelete;
         private System.Windows.Forms.Label LabelShow;
         private System.Windows.Forms.ComboBox ComboBoxRole;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColId;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColUsername;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColRole;
     }
 }

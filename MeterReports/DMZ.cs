@@ -25,18 +25,20 @@ namespace MeterReports
         private Label label1;
 
         private readonly TMF.Reports.BLL.DMZ _dmz;
+        private readonly TMF.Reports.BLL.City _city;
         private bool _save;
         private DataGridViewTextBoxColumn ColId;
         private DataGridViewTextBoxColumn ColDescription;
         private DataGridViewTextBoxColumn ColCity;
         private DataGridViewTextBoxColumn ColTotMeter;
-        private string _dmzId;
+        private int _dmzId;
         public DMZ()
         {
             InitializeComponent();
             _dmz = new TMF.Reports.BLL.DMZ();
+            _city = new TMF.Reports.BLL.City();
             _save = true;
-            _dmzId = "";
+            _dmzId = 0;
         }
 
         private void InitializeComponent()
@@ -227,6 +229,7 @@ namespace MeterReports
             this.ComboBoxCity.Name = "ComboBoxCity";
             this.ComboBoxCity.Size = new System.Drawing.Size(376, 28);
             this.ComboBoxCity.TabIndex = 37;
+            this.ComboBoxCity.MouseClick += new System.Windows.Forms.MouseEventHandler(this.ComboBoxCity_MouseClick);
             // 
             // ColId
             // 
@@ -276,6 +279,7 @@ namespace MeterReports
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Name = "DMZ";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "DMZ";
             this.Load += new System.EventHandler(this.DMZ_Load);
             ((System.ComponentModel.ISupportInitialize)(this.DataGridViewDMZ)).EndInit();
@@ -298,7 +302,7 @@ namespace MeterReports
             ButtonDelete.Enabled = false;
             TextBoxDescription.Text = "";
             TextBoxTotalMeters.Text = "";
-            _dmzId = "";
+            _dmzId = 0;
         }
 
         private void ButtonEdit_Click(object sender, EventArgs e)
@@ -352,19 +356,36 @@ namespace MeterReports
         {
             LabelShow.Text = $"Showing {DataGridViewDMZ.CurrentRow.Index + 1} index of {DataGridViewDMZ.RowCount} records";
 
-            var dmzId = DataGridViewDMZ.CurrentRow.Cells[0].Value.ToString();
+            var dmzId = (int)DataGridViewDMZ.CurrentRow.Cells[0].Value;
             ReturnInfo getDMZ = _dmz.GetDMZById(new SmartDB(), dmzId);
 
             bool flag = getDMZ.Code == ErrorEnum.NoError;
 
             TMF.Reports.Model.DMZ dmz = (TMF.Reports.Model.DMZ)getDMZ.BizObject;
-            if (!string.IsNullOrEmpty(dmz.Id))
+            try
             {
-                TextBoxDescription.Text = dmz.Description;
-                TextBoxTotalMeters.Text = dmz.TotalNumberOfMeters.ToString();
-                _dmzId = dmz.Id;
-                ButtonEdit.Enabled = true;
-                ButtonDelete.Enabled = true;
+                if (dmz.Id == 0 ? false : true)
+                {
+                    TextBoxDescription.Text = dmz.Description;
+                    TextBoxTotalMeters.Text = dmz.TotalNumberOfMeters.ToString();
+                    _dmzId = dmz.Id;
+                    ButtonEdit.Enabled = true;
+                    ButtonDelete.Enabled = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                return;
+            }
+        }
+        private void ComboBoxCity_MouseClick(object sender, MouseEventArgs e)
+        {
+            ComboBoxCity.Items.Clear();
+            ReturnInfo getCity = _city.GetCityList(new SmartDB());
+            List<TMF.Reports.Model.City> cities = (List<TMF.Reports.Model.City>)getCity.BizObject;
+            foreach (var city in cities)
+            {
+                ComboBoxCity.Items.Add(city.Description);
             }
         }
         #region PriveteMethod
@@ -374,7 +395,6 @@ namespace MeterReports
             {
                 TMF.Reports.Model.DMZ dmz = new TMF.Reports.Model.DMZ()
                 {   //TODO User id for CreatedBy
-                    Id = Guid.NewGuid().ToString("N"),
                     Description = TextBoxDescription.Text,
                     TotalNumberOfMeters = 0,
                     CreatedBy = "646f18f9-6425-4769-aa79-16ecdb7cf816",
@@ -457,7 +477,7 @@ namespace MeterReports
             }
             return base.ProcessCmdKey(ref msg, keyData);
         }
-        private int GetLockCount(string Id)
+        private int GetLockCount(int Id)
         {
             IInfo info = _dmz.GetDMZById(new SmartDB(), Id);
             var lockcount = (info.BizObject as TMF.Reports.Model.DMZ).LockCount;

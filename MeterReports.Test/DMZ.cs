@@ -19,11 +19,9 @@ namespace MeterReports.Test
             //Arrange
             TMF.Reports.Model.DMZ dmz = new TMF.Reports.Model.DMZ()
             {
-                Id = Guid.NewGuid().ToString("N"),
-                Description = "DMZ2",
+                Description = "DMZ1",
                 TotalNumberOfMeters = 25,
                 CreatedBy = "646f18f9-6425-4769-aa79-16ecdb7cf816",
-                EditedBy = "646f18f9-6425-4769-aa79-16ecdb7cf816",
                 DocDate = DateTime.Now,
                 Show = 1,
                 LockCount = 0
@@ -41,7 +39,7 @@ namespace MeterReports.Test
         {
             //Arrange
             //Act
-            ReturnInfo getDMZ = _dmz.GetDMZById(new SmartDB(), "329ae1c48fe347b384133fbfff5d54b8");
+            ReturnInfo getDMZ = _dmz.GetDMZById(new SmartDB(), 2);
             bool flag = getDMZ.Code == ErrorEnum.NoError;
 
             //Assert
@@ -52,7 +50,7 @@ namespace MeterReports.Test
         {
             //Arrange
             //Act
-            ReturnInfo getDMZ = _dmz.GetDMZByDescription(new SmartDB(), "DMZ2");
+            ReturnInfo getDMZ = _dmz.GetDMZByDescription(new SmartDB(), "DMZ1");
             bool flag = getDMZ.Code == ErrorEnum.NoError;
 
             //Assert
@@ -65,10 +63,9 @@ namespace MeterReports.Test
             //Arrange
             TMF.Reports.Model.DMZ dmz = new TMF.Reports.Model.DMZ()
             {
-                Id = "0d5be89393f447b393445d1d21509442",
+                Id = 1,
                 Description = "DMZ0",
                 TotalNumberOfMeters = 50,
-                CreatedBy = "646f18f9-6425-4769-aa79-16ecdb7cf816",
                 EditedBy = "646f18f9-6425-4769-aa79-16ecdb7cf816",
                 DocDate = DateTime.Now,
                 Show = 1,
@@ -88,7 +85,7 @@ namespace MeterReports.Test
         {
             //Arrange
             //Act
-            var deleteDMZ = _dmz.Delete(new SmartDB(), "0d5be89393f447b393445d1d21509442");
+            var deleteDMZ = _dmz.Delete(new SmartDB(), 1);
             bool flag = deleteDMZ.Code == ErrorEnum.NoError;
 
             //Assert

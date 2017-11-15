@@ -23,7 +23,7 @@ namespace TMF.Reports.DAL
             try
             {
                 info = new Model.DMZ();
-                info.Id = CastDBNull.To<string>(reader["Id"], "");
+                info.Id = CastDBNull.To<int>(reader["Id"], 0);
                 info.Description = CastDBNull.To<string>(reader["Description"], "");
                 info.TotalNumberOfMeters = CastDBNull.To<int>(reader["TotalNumberOfMeters"], 0);
                 info.CreatedBy = CastDBNull.To<string>(reader["Createdby"], "");
