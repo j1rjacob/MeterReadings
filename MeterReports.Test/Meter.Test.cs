@@ -21,9 +21,19 @@ namespace MeterReports.Test
             TMF.Reports.Model.Meter meter = new TMF.Reports.Model.Meter()
             {
                 Id = Guid.NewGuid().ToString("N"),
-                SerialNumber = "08BC8EB4",
+                SerialNumber = "08BC8EC4",
+                X = 5.6545218m,
+                Y = 25.25455511m,
+                Status = "Active",
+                HCN = "HCN2",
+                InstallationDate = DateTime.Now,
+                MaintenanceDate = DateTime.Now,
+                MeterTypeId = 1,
+                MeterSizeId = 1,
+                MeterProtocolId = 1,
+                DMZId = 1,
+                CityId = 1,
                 CreatedBy = "646f18f9-6425-4769-aa79-16ecdb7cf816",
-                EditedBy = "646f18f9-6425-4769-aa79-16ecdb7cf816",
                 DocDate = DateTime.Now,
                 Show = 1,
                 LockCount = 0
@@ -41,7 +51,7 @@ namespace MeterReports.Test
         {
             //Arrange
             //Act
-            ReturnInfo getMeter = _meter.GetMeterById(new SmartDB(), "9086b56203164748a61c6c485b55fe78");
+            ReturnInfo getMeter = _meter.GetMeterById(new SmartDB(), "2fc271c287f14c0bae083aad1b4cc3c2");
             bool flag = getMeter.Code == ErrorEnum.NoError;
 
             //Assert
@@ -52,7 +62,7 @@ namespace MeterReports.Test
         {
             //Arrange
             //Act
-            ReturnInfo getMeter = _meter.GetMeterByDescription(new SmartDB(), "08BC8EB4");
+            ReturnInfo getMeter = _meter.GetMeterByDescription(new SmartDB(), "08BC8EF4");
             bool flag = getMeter.Code == ErrorEnum.NoError;
 
             //Assert
@@ -64,9 +74,19 @@ namespace MeterReports.Test
             //Arrange
             TMF.Reports.Model.Meter meter = new TMF.Reports.Model.Meter()
             {
-                Id = "6ca10b442a894258bd135cc9b0ddcb1e",
-                SerialNumber = "08BC8EB4",
-                CreatedBy = "646f18f9-6425-4769-aa79-16ecdb7cf816",
+                Id = "2fc271c287f14c0bae083aad1b4cc3c2",
+                SerialNumber = "08BC8EF4",
+                X = 6.6545218m,
+                Y = 21.25455511m,
+                Status = "Active",
+                HCN = "HCN",
+                InstallationDate = DateTime.Now,
+                MaintenanceDate = DateTime.Now,
+                MeterTypeId = 1,
+                MeterSizeId = 2,
+                MeterProtocolId = 1,
+                DMZId = 1,
+                CityId = 1,
                 EditedBy = "646f18f9-6425-4769-aa79-16ecdb7cf816",
                 DocDate = DateTime.Now,
                 Show = 1,
@@ -85,7 +105,7 @@ namespace MeterReports.Test
         {
             //Arrange
             //Act
-            var deleteMeter = _meter.Delete(new SmartDB(), "6ca10b442a894258bd135cc9b0ddcb1e");
+            var deleteMeter = _meter.Delete(new SmartDB(), "2fc271c287f14c0bae083aad1b4cc3c2");
             bool flag = deleteMeter.Code == ErrorEnum.NoError;
 
             //Assert

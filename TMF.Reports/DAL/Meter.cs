@@ -31,11 +31,11 @@ namespace TMF.Reports.DAL
                 info.HCN = CastDBNull.To<string>(reader["HCN"], "");
                 info.InstallationDate = CastDBNull.To<DateTime>(reader["InstallationDate"], DateTime.Now);
                 info.MaintenanceDate = CastDBNull.To<DateTime>(reader["MaintenanceDate"], DateTime.Now);
-                info.MeterTypeId = CastDBNull.To<string>(reader["MeterTypeId"], "");
-                info.MeterSizeId = CastDBNull.To<string>(reader["MeterSizeId"], "");
-                info.MeterProtocolId = CastDBNull.To<string>(reader["MeterProtocolId"], "");
-                info.DMZId = CastDBNull.To<string>(reader["DMZId"], "");
-                info.CityId = CastDBNull.To<string>(reader["CityId"], "");
+                info.MeterTypeId = CastDBNull.To<int>(reader["MeterTypeId"], 0);
+                info.MeterSizeId = CastDBNull.To<int>(reader["MeterSizeId"], 0);
+                info.MeterProtocolId = CastDBNull.To<int>(reader["MeterProtocolId"], 0);
+                info.DMZId = CastDBNull.To<int>(reader["DMZId"], 0);
+                info.CityId = CastDBNull.To<int>(reader["CityId"], 0);
                 info.CreatedBy = CastDBNull.To<string>(reader["Createdby"], "");
                 info.EditedBy = CastDBNull.To<string>(reader["Editedby"], "");
                 info.DocDate = CastDBNull.To<DateTime>(reader["DocDate"], DateTime.Now);
@@ -160,14 +160,14 @@ namespace TMF.Reports.DAL
             string sQL_GET_LIST = this.SQL_GET_LIST;
             return this.GetRecords(dbInstance, sQL_GET_LIST, null);
         }
-        public IInfo GetRecordsByDescription(SmartDB dbInstance, string description)
+        public IInfo GetRecordsByDescription(SmartDB dbInstance, string serialnumber)
         {
-            string cmdText = "[REPORT METER_LST_BYDESCRIPTION]";
+            string cmdText = "[REPORT METER_LST_BYSERIALNUMBER]";
             SqlParameter[] array = new SqlParameter[]
             {
-                new SqlParameter("@Description", SqlDbType.NVarChar)
+                new SqlParameter("@SerialNumber", SqlDbType.NVarChar)
             };
-            array[0].Value = description;
+            array[0].Value = serialnumber;
             return this.GetRecords(dbInstance, cmdText, array);
         }
     }

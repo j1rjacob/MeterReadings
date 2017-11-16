@@ -96,9 +96,9 @@ namespace TMF.Reports.BLL
                 RowsAffected = record.RowsAffected
             };
         }
-        public ReturnInfo GetMeterByDescription(SmartDB dbInstance, string Description)
+        public ReturnInfo GetMeterByDescription(SmartDB dbInstance, string SerialNumber)
         {
-            IInfo record = _dal.GetRecordsByDescription(dbInstance, Description);
+            IInfo record = _dal.GetRecordsByDescription(dbInstance, SerialNumber);
             return new ReturnInfo
             {
                 BizObject = ((record.Code == ErrorEnum.NoError) ? record.BizObject : null),

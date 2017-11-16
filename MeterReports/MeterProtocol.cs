@@ -39,7 +39,7 @@ namespace MeterReports
         {
             TextBoxDescription.Enabled = true;
             ButtonNew.Enabled = false;
-            ButtonEdit.Enabled = false;
+            ButtonEdit.Enabled = true;
             ButtonSave.Enabled = true;
             ButtonDelete.Enabled = false;
             _save = false;
@@ -201,14 +201,21 @@ namespace MeterReports
         }
         private void BindMeterProtocolWithDataGrid()
         {   //TODO: Refactor this for reuse.
-            ReturnInfo getMeterProtocolList = _meterProtocol.GetMeterProtocolByDescription(new SmartDB(), TextBoxSearch.Text);
-            //bool flag = getCityList.Code == ErrorEnum.NoError;
-            List<TMF.Reports.Model.MeterProtocol> meterProtocol = (List<TMF.Reports.Model.MeterProtocol>)getMeterProtocolList.BizObject;
-            var bindingList = new BindingList<TMF.Reports.Model.MeterProtocol>(meterProtocol);
-            var source = new BindingSource(bindingList, null);
-            DataGridViewMeterProtocol.AutoGenerateColumns = false;
-            DataGridViewMeterProtocol.DataSource = source;
-            LabelShow.Text = $"Showing {DataGridViewMeterProtocol.CurrentRow.Index + 1} index of {DataGridViewMeterProtocol.RowCount} records";
+            try
+            {
+                ReturnInfo getMeterProtocolList = _meterProtocol.GetMeterProtocolByDescription(new SmartDB(), TextBoxSearch.Text);
+                //bool flag = getCityList.Code == ErrorEnum.NoError;
+                List<TMF.Reports.Model.MeterProtocol> meterProtocol = (List<TMF.Reports.Model.MeterProtocol>)getMeterProtocolList.BizObject;
+                var bindingList = new BindingList<TMF.Reports.Model.MeterProtocol>(meterProtocol);
+                var source = new BindingSource(bindingList, null);
+                DataGridViewMeterProtocol.AutoGenerateColumns = false;
+                DataGridViewMeterProtocol.DataSource = source;
+                LabelShow.Text = $"Showing {DataGridViewMeterProtocol.CurrentRow.Index + 1} index of {DataGridViewMeterProtocol.RowCount} records";
+            }
+            catch (Exception e)
+            {
+                return;
+            }
         }
         #endregion
     }

@@ -20,10 +20,8 @@ namespace MeterReports.Test
             //Arrange
             TMF.Reports.Model.MeterProtocol meterProtocol = new TMF.Reports.Model.MeterProtocol()
             {
-                Id = Guid.NewGuid().ToString("N"),
                 Description = "Protocol B",
                 CreatedBy = "646f18f9-6425-4769-aa79-16ecdb7cf816",
-                EditedBy = "646f18f9-6425-4769-aa79-16ecdb7cf816",
                 DocDate = DateTime.Now,
                 Show = 1,
                 LockCount = 0
@@ -41,7 +39,7 @@ namespace MeterReports.Test
         {
             //Arrange
             //Act
-            ReturnInfo getMeterProtocol = _meterProtocol.GetMeterProtocolById(new SmartDB(), "d24a3da6a468444490c40038ce935399");
+            ReturnInfo getMeterProtocol = _meterProtocol.GetMeterProtocolById(new SmartDB(), 2);
             bool flag = getMeterProtocol.Code == ErrorEnum.NoError;
 
             //Assert
@@ -52,7 +50,7 @@ namespace MeterReports.Test
         {
             //Arrange
             //Act
-            ReturnInfo getMeterProtocol = _meterProtocol.GetMeterProtocolByDescription(new SmartDB(), "Protocol A");
+            ReturnInfo getMeterProtocol = _meterProtocol.GetMeterProtocolByDescription(new SmartDB(), "Protocol C");
             bool flag = getMeterProtocol.Code == ErrorEnum.NoError;
 
             //Assert
@@ -64,9 +62,8 @@ namespace MeterReports.Test
             //Arrange
             TMF.Reports.Model.MeterProtocol meterProtocol = new TMF.Reports.Model.MeterProtocol()
             {
-                Id = "70cab04e56314e048fef6a0e99b89385",
+                Id = 2,
                 Description = "Protocol C",
-                CreatedBy = "646f18f9-6425-4769-aa79-16ecdb7cf816",
                 EditedBy = "646f18f9-6425-4769-aa79-16ecdb7cf816",
                 DocDate = DateTime.Now,
                 Show = 1,
@@ -85,7 +82,7 @@ namespace MeterReports.Test
         {
             //Arrange
             //Act
-            var deleteMeterProtocol = _meterProtocol.Delete(new SmartDB(), "70cab04e56314e048fef6a0e99b89385");
+            var deleteMeterProtocol = _meterProtocol.Delete(new SmartDB(), 2);
             bool flag = deleteMeterProtocol.Code == ErrorEnum.NoError;
 
             //Assert

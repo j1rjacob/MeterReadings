@@ -36,11 +36,11 @@
             this.ButtonNew = new System.Windows.Forms.Button();
             this.ButtonSearch = new System.Windows.Forms.Button();
             this.DataGridViewMeterProtocol = new System.Windows.Forms.DataGridView();
+            this.ColId = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColDescription = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.TextBoxDescription = new System.Windows.Forms.TextBox();
             this.TextBoxSearch = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.ColId = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColDescription = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.DataGridViewMeterProtocol)).BeginInit();
             this.SuspendLayout();
             // 
@@ -140,9 +140,25 @@
             this.DataGridViewMeterProtocol.Location = new System.Drawing.Point(14, 198);
             this.DataGridViewMeterProtocol.Name = "DataGridViewMeterProtocol";
             this.DataGridViewMeterProtocol.ReadOnly = true;
+            this.DataGridViewMeterProtocol.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.DataGridViewMeterProtocol.Size = new System.Drawing.Size(640, 150);
             this.DataGridViewMeterProtocol.TabIndex = 42;
             this.DataGridViewMeterProtocol.SelectionChanged += new System.EventHandler(this.DataGridViewMeterProtocol_SelectionChanged);
+            // 
+            // ColId
+            // 
+            this.ColId.DataPropertyName = "Id";
+            this.ColId.HeaderText = "Id";
+            this.ColId.Name = "ColId";
+            this.ColId.ReadOnly = true;
+            // 
+            // ColDescription
+            // 
+            this.ColDescription.DataPropertyName = "Description";
+            this.ColDescription.HeaderText = "Description";
+            this.ColDescription.Name = "ColDescription";
+            this.ColDescription.ReadOnly = true;
+            this.ColDescription.Width = 500;
             // 
             // TextBoxDescription
             // 
@@ -169,21 +185,6 @@
             this.label2.Size = new System.Drawing.Size(132, 22);
             this.label2.TabIndex = 37;
             this.label2.Text = "DESCRIPTION";
-            // 
-            // ColId
-            // 
-            this.ColId.DataPropertyName = "Id";
-            this.ColId.HeaderText = "Id";
-            this.ColId.Name = "ColId";
-            this.ColId.ReadOnly = true;
-            // 
-            // ColDescription
-            // 
-            this.ColDescription.DataPropertyName = "Description";
-            this.ColDescription.HeaderText = "Description";
-            this.ColDescription.Name = "ColDescription";
-            this.ColDescription.ReadOnly = true;
-            this.ColDescription.Width = 500;
             // 
             // MeterProtocol
             // 

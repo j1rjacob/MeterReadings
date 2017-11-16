@@ -27,7 +27,7 @@ namespace TMF.Reports.BLL
         }
         public ReturnInfo IsValid(Model.MeterProtocol info)
         {
-            bool flag = string.IsNullOrEmpty(info.Id);
+            bool flag = info.Id == 0 ? false : true;
             ReturnInfo result;
             if (flag)
             {
