@@ -318,8 +318,19 @@ namespace MeterReports
         }
         private void ResetControls()
         {
-            TextBoxSerialNumber.Enabled = false;
             TextBoxSearch.Text = "";
+            TextBoxSerialNumber.Enabled = false;
+            TextBoxX.Enabled = false;
+            TextBoxY.Enabled = false;
+            ComboBoxStatus.Enabled = false;
+            TextBoxHCN.Enabled = false;
+            DateTimePickerInstallationDate.Enabled = false;
+            DateTimePickerMaintenanceDate.Enabled = false;
+            ComboBoxMeterType.Enabled = false;
+            ComboBoxMeterSize.Enabled = false;
+            ComboBoxMeterProtocol.Enabled = false;
+            ComboBoxDMZ.Enabled = false;
+            ComboBoxCity.Enabled = false;
             TextBoxSerialNumber.Text = "";
             TextBoxX.Text = "";
             TextBoxY.Text = "";

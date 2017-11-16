@@ -13,7 +13,7 @@ namespace MeterReports
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new MeterProtocol());
+            Application.Run(new MeterSize());
         }
     }
 }
