@@ -35,7 +35,7 @@ namespace TMF.Reports.DAL
                 info.MeterSizeId = CastDBNull.To<int>(reader["MeterSizeId"], 0);
                 info.MeterProtocolId = CastDBNull.To<int>(reader["MeterProtocolId"], 0);
                 info.DMZId = CastDBNull.To<int>(reader["DMZId"], 0);
-                info.CityId = CastDBNull.To<int>(reader["CityId"], 0);
+                info.CityId = CastDBNull.To<string>(reader["CityId"], "");
                 info.CreatedBy = CastDBNull.To<string>(reader["Createdby"], "");
                 info.EditedBy = CastDBNull.To<string>(reader["Editedby"], "");
                 info.DocDate = CastDBNull.To<DateTime>(reader["DocDate"], DateTime.Now);

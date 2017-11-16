@@ -42,8 +42,21 @@
             this.ButtonNew = new System.Windows.Forms.Button();
             this.ButtonSearch = new System.Windows.Forms.Button();
             this.DataGridViewMeter = new System.Windows.Forms.DataGridView();
+            this.ColId = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColSerialNumber = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColX = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColY = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColStatus = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColHCN = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColInstallationDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColMaintenanceDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColMeterType = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColMeterSize = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColMeterProtocol = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColDMZ = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColCity = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.TextBoxX = new System.Windows.Forms.TextBox();
-            this.TextBox4HCN = new System.Windows.Forms.TextBox();
+            this.TextBoxHCN = new System.Windows.Forms.TextBox();
             this.TextBoxY = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
             this.TextBoxSearch = new System.Windows.Forms.TextBox();
@@ -61,19 +74,6 @@
             this.label13 = new System.Windows.Forms.Label();
             this.ComboBoxCity = new System.Windows.Forms.ComboBox();
             this.ComboBoxMeterSize = new System.Windows.Forms.ComboBox();
-            this.ColId = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColSerialNumber = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColX = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColY = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColStatus = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColHCN = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColInstallationDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColMaintenanceDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColMeterType = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColMeterSize = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColMeterProtocol = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColDMZ = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColCity = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.DataGridViewMeter)).BeginInit();
             this.SuspendLayout();
             // 
@@ -106,6 +106,7 @@
             this.ComboBoxDMZ.Name = "ComboBoxDMZ";
             this.ComboBoxDMZ.Size = new System.Drawing.Size(216, 28);
             this.ComboBoxDMZ.TabIndex = 54;
+            this.ComboBoxDMZ.MouseClick += new System.Windows.Forms.MouseEventHandler(this.ComboBoxDMZ_MouseClick);
             // 
             // ComboBoxMeterProtocol
             // 
@@ -118,6 +119,7 @@
             this.ComboBoxMeterProtocol.Name = "ComboBoxMeterProtocol";
             this.ComboBoxMeterProtocol.Size = new System.Drawing.Size(216, 28);
             this.ComboBoxMeterProtocol.TabIndex = 53;
+            this.ComboBoxMeterProtocol.MouseClick += new System.Windows.Forms.MouseEventHandler(this.ComboBoxMeterProtocol_MouseClick);
             // 
             // ComboBoxMeterType
             // 
@@ -130,6 +132,7 @@
             this.ComboBoxMeterType.Name = "ComboBoxMeterType";
             this.ComboBoxMeterType.Size = new System.Drawing.Size(216, 28);
             this.ComboBoxMeterType.TabIndex = 52;
+            this.ComboBoxMeterType.MouseClick += new System.Windows.Forms.MouseEventHandler(this.ComboBoxMeterType_MouseClick);
             // 
             // ComboBoxStatus
             // 
@@ -247,9 +250,101 @@
             this.DataGridViewMeter.Location = new System.Drawing.Point(16, 372);
             this.DataGridViewMeter.Name = "DataGridViewMeter";
             this.DataGridViewMeter.ReadOnly = true;
+            this.DataGridViewMeter.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.DataGridViewMeter.Size = new System.Drawing.Size(872, 150);
             this.DataGridViewMeter.TabIndex = 44;
             this.DataGridViewMeter.SelectionChanged += new System.EventHandler(this.DataGridViewMeter_SelectionChanged);
+            // 
+            // ColId
+            // 
+            this.ColId.DataPropertyName = "Id";
+            this.ColId.HeaderText = "Id";
+            this.ColId.Name = "ColId";
+            this.ColId.ReadOnly = true;
+            // 
+            // ColSerialNumber
+            // 
+            this.ColSerialNumber.DataPropertyName = "SerialNumber";
+            this.ColSerialNumber.HeaderText = "SerialNumber";
+            this.ColSerialNumber.Name = "ColSerialNumber";
+            this.ColSerialNumber.ReadOnly = true;
+            // 
+            // ColX
+            // 
+            this.ColX.DataPropertyName = "X";
+            this.ColX.HeaderText = "X";
+            this.ColX.Name = "ColX";
+            this.ColX.ReadOnly = true;
+            // 
+            // ColY
+            // 
+            this.ColY.DataPropertyName = "Y";
+            this.ColY.HeaderText = "Y";
+            this.ColY.Name = "ColY";
+            this.ColY.ReadOnly = true;
+            // 
+            // ColStatus
+            // 
+            this.ColStatus.DataPropertyName = "Status";
+            this.ColStatus.HeaderText = "Status";
+            this.ColStatus.Name = "ColStatus";
+            this.ColStatus.ReadOnly = true;
+            // 
+            // ColHCN
+            // 
+            this.ColHCN.DataPropertyName = "HCN";
+            this.ColHCN.HeaderText = "HCN";
+            this.ColHCN.Name = "ColHCN";
+            this.ColHCN.ReadOnly = true;
+            // 
+            // ColInstallationDate
+            // 
+            this.ColInstallationDate.DataPropertyName = "InstallationDate";
+            this.ColInstallationDate.HeaderText = "InstallationDate";
+            this.ColInstallationDate.Name = "ColInstallationDate";
+            this.ColInstallationDate.ReadOnly = true;
+            // 
+            // ColMaintenanceDate
+            // 
+            this.ColMaintenanceDate.DataPropertyName = "MaintenanceDate";
+            this.ColMaintenanceDate.HeaderText = "MaintenanceDate";
+            this.ColMaintenanceDate.Name = "ColMaintenanceDate";
+            this.ColMaintenanceDate.ReadOnly = true;
+            // 
+            // ColMeterType
+            // 
+            this.ColMeterType.DataPropertyName = "MeterType";
+            this.ColMeterType.HeaderText = "MeterType";
+            this.ColMeterType.Name = "ColMeterType";
+            this.ColMeterType.ReadOnly = true;
+            // 
+            // ColMeterSize
+            // 
+            this.ColMeterSize.DataPropertyName = "MeterSize";
+            this.ColMeterSize.HeaderText = "MeterSize";
+            this.ColMeterSize.Name = "ColMeterSize";
+            this.ColMeterSize.ReadOnly = true;
+            // 
+            // ColMeterProtocol
+            // 
+            this.ColMeterProtocol.DataPropertyName = "MeterProtocol";
+            this.ColMeterProtocol.HeaderText = "MeterProtocol";
+            this.ColMeterProtocol.Name = "ColMeterProtocol";
+            this.ColMeterProtocol.ReadOnly = true;
+            // 
+            // ColDMZ
+            // 
+            this.ColDMZ.DataPropertyName = "DMZ";
+            this.ColDMZ.HeaderText = "DMZ";
+            this.ColDMZ.Name = "ColDMZ";
+            this.ColDMZ.ReadOnly = true;
+            // 
+            // ColCity
+            // 
+            this.ColCity.DataPropertyName = "City";
+            this.ColCity.HeaderText = "City";
+            this.ColCity.Name = "ColCity";
+            this.ColCity.ReadOnly = true;
             // 
             // TextBoxX
             // 
@@ -259,13 +354,13 @@
             this.TextBoxX.Size = new System.Drawing.Size(216, 27);
             this.TextBoxX.TabIndex = 38;
             // 
-            // TextBox4HCN
+            // TextBoxHCN
             // 
-            this.TextBox4HCN.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TextBox4HCN.Location = new System.Drawing.Point(216, 209);
-            this.TextBox4HCN.Name = "TextBox4HCN";
-            this.TextBox4HCN.Size = new System.Drawing.Size(216, 27);
-            this.TextBox4HCN.TabIndex = 40;
+            this.TextBoxHCN.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TextBoxHCN.Location = new System.Drawing.Point(216, 209);
+            this.TextBoxHCN.Name = "TextBoxHCN";
+            this.TextBoxHCN.Size = new System.Drawing.Size(216, 27);
+            this.TextBoxHCN.TabIndex = 40;
             // 
             // TextBoxY
             // 
@@ -422,6 +517,7 @@
             this.ComboBoxCity.Name = "ComboBoxCity";
             this.ComboBoxCity.Size = new System.Drawing.Size(216, 28);
             this.ComboBoxCity.TabIndex = 54;
+            this.ComboBoxCity.MouseClick += new System.Windows.Forms.MouseEventHandler(this.ComboBoxCity_MouseClick);
             // 
             // ComboBoxMeterSize
             // 
@@ -434,97 +530,7 @@
             this.ComboBoxMeterSize.Name = "ComboBoxMeterSize";
             this.ComboBoxMeterSize.Size = new System.Drawing.Size(216, 28);
             this.ComboBoxMeterSize.TabIndex = 52;
-            // 
-            // ColId
-            // 
-            this.ColId.DataPropertyName = "Id";
-            this.ColId.HeaderText = "Id";
-            this.ColId.Name = "ColId";
-            this.ColId.ReadOnly = true;
-            // 
-            // ColSerialNumber
-            // 
-            this.ColSerialNumber.DataPropertyName = "SerialNumber";
-            this.ColSerialNumber.HeaderText = "SerialNumber";
-            this.ColSerialNumber.Name = "ColSerialNumber";
-            this.ColSerialNumber.ReadOnly = true;
-            // 
-            // ColX
-            // 
-            this.ColX.DataPropertyName = "X";
-            this.ColX.HeaderText = "X";
-            this.ColX.Name = "ColX";
-            this.ColX.ReadOnly = true;
-            // 
-            // ColY
-            // 
-            this.ColY.DataPropertyName = "Y";
-            this.ColY.HeaderText = "Y";
-            this.ColY.Name = "ColY";
-            this.ColY.ReadOnly = true;
-            // 
-            // ColStatus
-            // 
-            this.ColStatus.DataPropertyName = "Status";
-            this.ColStatus.HeaderText = "Status";
-            this.ColStatus.Name = "ColStatus";
-            this.ColStatus.ReadOnly = true;
-            // 
-            // ColHCN
-            // 
-            this.ColHCN.DataPropertyName = "HCN";
-            this.ColHCN.HeaderText = "HCN";
-            this.ColHCN.Name = "ColHCN";
-            this.ColHCN.ReadOnly = true;
-            // 
-            // ColInstallationDate
-            // 
-            this.ColInstallationDate.DataPropertyName = "InstallationDate";
-            this.ColInstallationDate.HeaderText = "InstallationDate";
-            this.ColInstallationDate.Name = "ColInstallationDate";
-            this.ColInstallationDate.ReadOnly = true;
-            // 
-            // ColMaintenanceDate
-            // 
-            this.ColMaintenanceDate.DataPropertyName = "MaintenanceDate";
-            this.ColMaintenanceDate.HeaderText = "MaintenanceDate";
-            this.ColMaintenanceDate.Name = "ColMaintenanceDate";
-            this.ColMaintenanceDate.ReadOnly = true;
-            // 
-            // ColMeterType
-            // 
-            this.ColMeterType.DataPropertyName = "MeterType";
-            this.ColMeterType.HeaderText = "MeterType";
-            this.ColMeterType.Name = "ColMeterType";
-            this.ColMeterType.ReadOnly = true;
-            // 
-            // ColMeterSize
-            // 
-            this.ColMeterSize.DataPropertyName = "MeterSize";
-            this.ColMeterSize.HeaderText = "MeterSize";
-            this.ColMeterSize.Name = "ColMeterSize";
-            this.ColMeterSize.ReadOnly = true;
-            // 
-            // ColMeterProtocol
-            // 
-            this.ColMeterProtocol.DataPropertyName = "MeterProtocol";
-            this.ColMeterProtocol.HeaderText = "MeterProtocol";
-            this.ColMeterProtocol.Name = "ColMeterProtocol";
-            this.ColMeterProtocol.ReadOnly = true;
-            // 
-            // ColDMZ
-            // 
-            this.ColDMZ.DataPropertyName = "DMZ";
-            this.ColDMZ.HeaderText = "DMZ";
-            this.ColDMZ.Name = "ColDMZ";
-            this.ColDMZ.ReadOnly = true;
-            // 
-            // ColCity
-            // 
-            this.ColCity.DataPropertyName = "City";
-            this.ColCity.HeaderText = "City";
-            this.ColCity.Name = "ColCity";
-            this.ColCity.ReadOnly = true;
+            this.ComboBoxMeterSize.MouseClick += new System.Windows.Forms.MouseEventHandler(this.ComboBoxMeterSize_MouseClick);
             // 
             // Meter
             // 
@@ -547,7 +553,7 @@
             this.Controls.Add(this.ButtonSearch);
             this.Controls.Add(this.DataGridViewMeter);
             this.Controls.Add(this.TextBoxX);
-            this.Controls.Add(this.TextBox4HCN);
+            this.Controls.Add(this.TextBoxHCN);
             this.Controls.Add(this.TextBoxY);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.TextBoxSearch);
@@ -588,7 +594,7 @@
         private System.Windows.Forms.Button ButtonSearch;
         private System.Windows.Forms.DataGridView DataGridViewMeter;
         private System.Windows.Forms.TextBox TextBoxX;
-        private System.Windows.Forms.TextBox TextBox4HCN;
+        private System.Windows.Forms.TextBox TextBoxHCN;
         private System.Windows.Forms.TextBox TextBoxY;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.TextBox TextBoxSearch;

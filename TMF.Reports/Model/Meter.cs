@@ -18,7 +18,7 @@ namespace TMF.Reports.Model
         public int MeterSizeId { get; set; }
         public int MeterProtocolId { get; set; }
         public int DMZId { get; set; }
-        public int CityId { get; set; }
+        public string CityId { get; set; }
         public string CreatedBy { get; set; }
         public string EditedBy { get; set; }
         public DateTime DocDate { get; set; }
@@ -34,7 +34,7 @@ namespace TMF.Reports.Model
         public Meter(string Id, string SerialNumber, decimal X, decimal Y, string Status,
                      string HCN, DateTime InstallationDate, DateTime MaintenanceDate,
                      int MeterTypeId, int MeterSizeId, int MeterProtocolId,
-                     int DMZId, int CityId, string CreatedBy, string EditedBy,
+                     int DMZId, string CityId, string CreatedBy, string EditedBy,
                      DateTime DocDate, int Show, int LockCount)
         {
             this.Id = Id;
@@ -163,7 +163,7 @@ namespace TMF.Reports.Model
                     this.DMZId = CastDBNull.To<int>(value, 0);
                     break;
                 case "cityid":
-                    this.CityId = CastDBNull.To<int>(value, 0);
+                    this.CityId = CastDBNull.To<string>(value, "");
                     break;
                 case "createdby":
                     this.CreatedBy = CastDBNull.To<string>(value, "");

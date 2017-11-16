@@ -32,7 +32,7 @@ namespace MeterReports.Test
                 MeterSizeId = 1,
                 MeterProtocolId = 1,
                 DMZId = 1,
-                CityId = 1,
+                CityId = "57b84d38ca424b109eaf7993e167babb",
                 CreatedBy = "646f18f9-6425-4769-aa79-16ecdb7cf816",
                 DocDate = DateTime.Now,
                 Show = 1,
@@ -74,7 +74,7 @@ namespace MeterReports.Test
             //Arrange
             TMF.Reports.Model.Meter meter = new TMF.Reports.Model.Meter()
             {
-                Id = "2fc271c287f14c0bae083aad1b4cc3c2",
+                Id = "e730b81865494ca78389dd7765286e07",
                 SerialNumber = "08BC8EF4",
                 X = 6.6545218m,
                 Y = 21.25455511m,
@@ -86,7 +86,7 @@ namespace MeterReports.Test
                 MeterSizeId = 2,
                 MeterProtocolId = 1,
                 DMZId = 1,
-                CityId = 1,
+                CityId = "57b84d38ca424b109eaf7993e167babb",
                 EditedBy = "646f18f9-6425-4769-aa79-16ecdb7cf816",
                 DocDate = DateTime.Now,
                 Show = 1,
