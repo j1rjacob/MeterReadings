@@ -31,10 +31,10 @@ namespace TMF.Reports.DAL
                 info.HCN = CastDBNull.To<string>(reader["HCN"], "");
                 info.InstallationDate = CastDBNull.To<DateTime>(reader["InstallationDate"], DateTime.Now);
                 info.MaintenanceDate = CastDBNull.To<DateTime>(reader["MaintenanceDate"], DateTime.Now);
-                info.MeterTypeId = CastDBNull.To<int>(reader["MeterTypeId"], 0);
-                info.MeterSizeId = CastDBNull.To<int>(reader["MeterSizeId"], 0);
-                info.MeterProtocolId = CastDBNull.To<int>(reader["MeterProtocolId"], 0);
-                info.DMZId = CastDBNull.To<int>(reader["DMZId"], 0);
+                info.MeterTypeId = CastDBNull.To<string>(reader["MeterTypeId"], "");
+                info.MeterSizeId = CastDBNull.To<string>(reader["MeterSizeId"], "");
+                info.MeterProtocolId = CastDBNull.To<string>(reader["MeterProtocolId"], "");
+                info.DMZId = CastDBNull.To<string>(reader["DMZId"], "");
                 info.CityId = CastDBNull.To<string>(reader["CityId"], "");
                 info.CreatedBy = CastDBNull.To<string>(reader["Createdby"], "");
                 info.EditedBy = CastDBNull.To<string>(reader["Editedby"], "");

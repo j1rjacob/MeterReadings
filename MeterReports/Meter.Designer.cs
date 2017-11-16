@@ -138,6 +138,9 @@
             // 
             this.ComboBoxStatus.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ComboBoxStatus.FormattingEnabled = true;
+            this.ComboBoxStatus.Items.AddRange(new object[] {
+            "ACTIVE",
+            "NOT ACTIVE"});
             this.ComboBoxStatus.Location = new System.Drawing.Point(216, 176);
             this.ComboBoxStatus.Name = "ComboBoxStatus";
             this.ComboBoxStatus.Size = new System.Drawing.Size(216, 28);
@@ -504,6 +507,7 @@
             this.ColMeterType.HeaderText = "MeterType";
             this.ColMeterType.Name = "ColMeterType";
             this.ColMeterType.ReadOnly = true;
+            this.ColMeterType.Visible = false;
             // 
             // ColMeterSize
             // 
@@ -511,6 +515,7 @@
             this.ColMeterSize.HeaderText = "MeterSize";
             this.ColMeterSize.Name = "ColMeterSize";
             this.ColMeterSize.ReadOnly = true;
+            this.ColMeterSize.Visible = false;
             // 
             // ColMeterProtocol
             // 
@@ -518,6 +523,7 @@
             this.ColMeterProtocol.HeaderText = "MeterProtocol";
             this.ColMeterProtocol.Name = "ColMeterProtocol";
             this.ColMeterProtocol.ReadOnly = true;
+            this.ColMeterProtocol.Visible = false;
             // 
             // ColDMZ
             // 
@@ -525,6 +531,7 @@
             this.ColDMZ.HeaderText = "DMZ";
             this.ColDMZ.Name = "ColDMZ";
             this.ColDMZ.ReadOnly = true;
+            this.ColDMZ.Visible = false;
             // 
             // ColCity
             // 
@@ -532,6 +539,7 @@
             this.ColCity.HeaderText = "City";
             this.ColCity.Name = "ColCity";
             this.ColCity.ReadOnly = true;
+            this.ColCity.Visible = false;
             // 
             // Meter
             // 

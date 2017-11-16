@@ -68,6 +68,17 @@ namespace MeterReports
         private void ButtonEdit_Click(object sender, EventArgs e)
         {
             TextBoxSerialNumber.Enabled = true;
+            TextBoxX.Enabled = true;
+            TextBoxY.Enabled = true;
+            ComboBoxStatus.Enabled = true;
+            TextBoxHCN.Enabled = true;
+            DateTimePickerInstallationDate.Enabled = true;
+            DateTimePickerMaintenanceDate.Enabled = true;
+            ComboBoxMeterType.Enabled = true;
+            ComboBoxMeterSize.Enabled = true;
+            ComboBoxMeterProtocol.Enabled = true;
+            ComboBoxDMZ.Enabled = true;
+            ComboBoxCity.Enabled = true;
             ButtonNew.Enabled = false;
             ButtonEdit.Enabled = true;
             ButtonSave.Enabled = true;
@@ -120,13 +131,13 @@ namespace MeterReports
             {
                 TMF.Reports.Model.Meter meter = (TMF.Reports.Model.Meter)getMeter.BizObject;
 
-                ReturnInfo getMeterType = _meterType.GetMeterTypeById(new SmartDB(), meter.MeterTypeId);
+                ReturnInfo getMeterType = _meterType.GetMeterTypeById(new SmartDB(), Convert.ToInt32(meter.MeterTypeId));
                 TMF.Reports.Model.MeterType meterType = (TMF.Reports.Model.MeterType)getMeterType.BizObject;
-                ReturnInfo getMeterSize = _meterSize.GetMeterSizeById(new SmartDB(), meter.MeterTypeId);
+                ReturnInfo getMeterSize = _meterSize.GetMeterSizeById(new SmartDB(), Convert.ToInt32(meter.MeterSizeId));
                 TMF.Reports.Model.MeterSize meterSize = (TMF.Reports.Model.MeterSize)getMeterSize.BizObject;
-                ReturnInfo getMeterProtocol = _meterProtocol.GetMeterProtocolById(new SmartDB(), meter.MeterProtocolId);
+                ReturnInfo getMeterProtocol = _meterProtocol.GetMeterProtocolById(new SmartDB(), Convert.ToInt32(meter.MeterProtocolId));
                 TMF.Reports.Model.MeterProtocol meterProtocol = (TMF.Reports.Model.MeterProtocol)getMeterProtocol.BizObject;
-                ReturnInfo getDMZ = _dmz.GetDMZById(new SmartDB(), meter.DMZId);
+                ReturnInfo getDMZ = _dmz.GetDMZById(new SmartDB(), Convert.ToInt32(meter.DMZId));
                 TMF.Reports.Model.DMZ dmz = (TMF.Reports.Model.DMZ)getDMZ.BizObject;
                 ReturnInfo getCity = _city.GetCityById(new SmartDB(), meter.CityId);
                 TMF.Reports.Model.City city = (TMF.Reports.Model.City)getCity.BizObject;
@@ -146,10 +157,9 @@ namespace MeterReports
                     ComboBoxMeterProtocol.Text = meterProtocol.Description;
                     ComboBoxDMZ.Text = dmz.Description;
                     ComboBoxCity.Text = city.Description;
-
                     ButtonEdit.Enabled = true;
                     ButtonDelete.Enabled = true;
-    }
+                }
             }
             catch (Exception ex)
             {
@@ -192,10 +202,10 @@ namespace MeterReports
                     HCN = TextBoxHCN.Text,
                     InstallationDate = DateTime.Now,
                     MaintenanceDate = DateTime.Now,
-                    MeterTypeId = Convert.ToInt32(ComboBoxMeterType.Text),
-                    MeterSizeId = Convert.ToInt32(ComboBoxMeterSize.Text),
-                    MeterProtocolId = Convert.ToInt32(ComboBoxMeterProtocol.Text),
-                    DMZId = Convert.ToInt32(ComboBoxDMZ.Text),
+                    MeterTypeId = ComboBoxMeterType.Text,
+                    MeterSizeId = ComboBoxMeterSize.Text,
+                    MeterProtocolId = ComboBoxMeterProtocol.Text,
+                    DMZId = ComboBoxDMZ.Text,
                     CityId = ComboBoxCity.Text,
                     CreatedBy = "646f18f9-6425-4769-aa79-16ecdb7cf816",
                     DocDate = DateTime.Now,
@@ -236,10 +246,10 @@ namespace MeterReports
                     HCN = TextBoxHCN.Text,
                     InstallationDate = DateTime.Now,
                     MaintenanceDate = DateTime.Now,
-                    MeterTypeId = Convert.ToInt32(ComboBoxMeterType.Text),
-                    MeterSizeId = Convert.ToInt32(ComboBoxMeterSize.Text),
-                    MeterProtocolId = Convert.ToInt32(ComboBoxMeterProtocol.Text),
-                    DMZId = Convert.ToInt32(ComboBoxDMZ.Text),
+                    MeterTypeId = ComboBoxMeterType.Text,
+                    MeterSizeId = ComboBoxMeterSize.Text,
+                    MeterProtocolId = ComboBoxMeterProtocol.Text,
+                    DMZId = ComboBoxDMZ.Text,
                     CityId = ComboBoxCity.Text,
                     EditedBy = "646f18f9-6425-4769-aa79-16ecdb7cf816",
                     DocDate = DateTime.Now,
