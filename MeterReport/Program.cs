@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
 
-namespace MeterReports
+namespace MeterReport
 {
     static class Program
     {
@@ -13,7 +13,7 @@ namespace MeterReports
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Gateway());
+            Application.Run(new Login());
         }
     }
 }

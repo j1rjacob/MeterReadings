@@ -22,7 +22,7 @@ namespace MeterReports.Test
             {
                 Id = Guid.NewGuid().ToString("N"),
                 MacAddress = "12:AF:18:32:34:B5",
-                SimCard = "09448833481",
+                SimCard = "09448833492",
                 X = 5.56484m,
                 Y = 12.56484m,
                 Description = "SENSUS",
@@ -30,8 +30,8 @@ namespace MeterReports.Test
                 MaintenanceDate = DateTime.Parse("06/20/1986"),
                 Status = "Active",
                 IPAddress = "192.0.0.1",
-                DMZId = "329ae1c48fe347b384133fbfff5d54b8",
-                CityId = "9086b56203164748a61c6c485b55fe78",
+                DMZId = "DMZ0",
+                CityId = "AL DAMMAM",
                 CreatedBy = "646f18f9-6425-4769-aa79-16ecdb7cf816",
                 EditedBy = "646f18f9-6425-4769-aa79-16ecdb7cf816",
                 DocDate = DateTime.Now,
@@ -51,7 +51,7 @@ namespace MeterReports.Test
         {
             //Arrange
             //Act
-            ReturnInfo getGateway= _gateway.GetGatewayById(new SmartDB(), "fbd36e6c99324984b1e6aeb8d3ac47f4");
+            ReturnInfo getGateway= _gateway.GetGatewayById(new SmartDB(), "e5bd9db0c995482a9ca73c27949b2c64");
             bool flag = getGateway.Code == ErrorEnum.NoError;
 
             //Assert
@@ -62,7 +62,7 @@ namespace MeterReports.Test
         {
             //Arrange
             //Act
-            ReturnInfo getGateway = _gateway.GetGatewayByDescription(new SmartDB(), "SENSUS");
+            ReturnInfo getGateway = _gateway.GetGatewayBySimCard(new SmartDB(), "09448833481");
             bool flag = getGateway.Code == ErrorEnum.NoError;
 
             //Assert
@@ -74,7 +74,7 @@ namespace MeterReports.Test
             //Arrange
             TMF.Reports.Model.Gateway gateway = new TMF.Reports.Model.Gateway()
             {
-                Id = "fbd36e6c99324984b1e6aeb8d3ac47f4",
+                Id = "e5bd9db0c995482a9ca73c27949b2c64",
                 MacAddress = "12:AF:18:32:34:B5",
                 SimCard = "09448833481",
                 X = 5.56484m,
@@ -84,8 +84,8 @@ namespace MeterReports.Test
                 MaintenanceDate = DateTime.Parse("06/20/1986"),
                 Status = "Active",
                 IPAddress = "192.168.58.7",
-                DMZId = "329ae1c48fe347b384133fbfff5d54b8",
-                CityId = "9086b56203164748a61c6c485b55fe78",
+                DMZId = "DMZ1",
+                CityId = "Al Riyadh",
                 CreatedBy = "646f18f9-6425-4769-aa79-16ecdb7cf816",
                 EditedBy = "646f18f9-6425-4769-aa79-16ecdb7cf816",
                 DocDate = DateTime.Now,
@@ -105,7 +105,7 @@ namespace MeterReports.Test
         {
             //Arrange
             //Act
-            var deleteGateway = _gateway.Delete(new SmartDB(), "98b19abe0fa045e4bd020f91ba44196b");
+            var deleteGateway = _gateway.Delete(new SmartDB(), "e5bd9db0c995482a9ca73c27949b2c64");
             bool flag = deleteGateway.Code == ErrorEnum.NoError;
 
             //Assert

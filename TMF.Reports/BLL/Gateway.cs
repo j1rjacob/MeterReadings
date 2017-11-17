@@ -96,9 +96,9 @@ namespace TMF.Reports.BLL
                 RowsAffected = record.RowsAffected
             };
         }
-        public ReturnInfo GetGatewayByDescription(SmartDB dbInstance, string Description)
+        public ReturnInfo GetGatewayBySimCard(SmartDB dbInstance, string Description)
         {
-            IInfo record = _dal.GetRecordsByLogDateTime(dbInstance, Description);
+            IInfo record = _dal.GetRecordsBySimCard(dbInstance, Description);
             return new ReturnInfo
             {
                 BizObject = ((record.Code == ErrorEnum.NoError) ? record.BizObject : null),
