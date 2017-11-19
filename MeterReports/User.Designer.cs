@@ -138,6 +138,7 @@
             this.DataGridViewUser.Location = new System.Drawing.Point(19, 304);
             this.DataGridViewUser.Name = "DataGridViewUser";
             this.DataGridViewUser.ReadOnly = true;
+            this.DataGridViewUser.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.DataGridViewUser.Size = new System.Drawing.Size(640, 150);
             this.DataGridViewUser.TabIndex = 6;
             // 
@@ -245,6 +246,7 @@
             this.ColId.HeaderText = "Id";
             this.ColId.Name = "ColId";
             this.ColId.ReadOnly = true;
+            this.ColId.Visible = false;
             // 
             // ColName
             // 
