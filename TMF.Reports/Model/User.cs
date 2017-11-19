@@ -17,8 +17,10 @@ namespace TMF.Reports.Model
         public DateTime LockoutEndDateUtc { get; set; } 
         public bool LockoutEnabled { get; set; }
         public int AccessFailedCount { get; set; }
+public string RoleName { get; set; }
         public string UserName { get; set; }
-
+        
+       
         public User()
         {
             Id = "";
@@ -29,7 +31,7 @@ namespace TMF.Reports.Model
 
         public User(string Id, string Email, bool EmailConfirmed, string PasswordHash,
                     string SecurityStamp, string PhoneNumber, bool TwoFactorEnabled,
-                    DateTime LockoutEndDateUtc, bool LockoutEnabled, int AccessFailedCount, 
+                    DateTime LockoutEndDateUtc, bool LockoutEnabled, string RoleName, int AccessFailedCount, 
                     string UserName)
         {
             this.Id = Id;
@@ -42,8 +44,10 @@ namespace TMF.Reports.Model
             this.TwoFactorEnabled = TwoFactorEnabled;
             this.LockoutEndDateUtc = LockoutEndDateUtc;
             this.LockoutEnabled = LockoutEnabled;
+            this.RoleName = RoleName;
             this.AccessFailedCount = AccessFailedCount;
             this.UserName = UserName;
+            
             base.IsNew = false;
             base.IsDirty = true;
             base.IsDeleted = false;
@@ -84,6 +88,9 @@ namespace TMF.Reports.Model
                     break;
                 case "username":
                     return this.UserName;
+                    break;
+                case "rolename":
+                    return this.RoleName;
                     break;
                 default:
                     return null;
@@ -126,6 +133,9 @@ namespace TMF.Reports.Model
                     break;
                 case "username":
                     this.UserName = CastDBNull.To<string>(value, "");
+                    break;
+                case "rolename":
+                    this.RoleName = CastDBNull.To<string>(value, "");
                     break;
                 default:
                     //null;

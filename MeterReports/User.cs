@@ -19,7 +19,6 @@ namespace MeterReports
         private bool _save;
         private RoleStore<IdentityRole> _roleStore;
         private RoleManager<IdentityRole> _roleManager;
-
         public User()
         {
             InitializeComponent();
@@ -221,9 +220,10 @@ namespace MeterReports
         //    return lockcount;
         //}
         private void BindUserWithDataGrid()
-        {   //TODO: Refactor this for reuse.
-            try
-            {
+        {   //TODO: Refactor this for reuse. 
+            //Todo: getUserList returning null;
+            //try
+            //{
                 ReturnInfo getUserList = _user.GetUserByUserName(new SmartDB(), TextBoxSearch.Text);
                 
                 List<TMF.Reports.Model.User> user = (List<TMF.Reports.Model.User>)getUserList.BizObject;
@@ -232,12 +232,12 @@ namespace MeterReports
                 DataGridViewUser.AutoGenerateColumns = false;
                 DataGridViewUser.DataSource = source;
                 LabelShow.Text = $"Showing {DataGridViewUser.CurrentRow.Index + 1} index of {DataGridViewUser.RowCount} records";
-            }
-            catch (Exception e)
-            {
-                return;
-            }
-        }
+            //}
+            //catch (Exception e)
+            //{
+            //    return;
+            //}
+}
         #endregion
     }
 }

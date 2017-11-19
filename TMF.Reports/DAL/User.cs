@@ -13,7 +13,7 @@ namespace TMF.Reports.DAL
         {
             SQL_DELETE = "[REPORT USER_DEL]";
             SQL_GET = "[REPORT USER_GET]";
-            SQL_GET_LIST = "[REPORT USER_LST]";
+            SQL_GET_LIST = "[REPORT USER_LST_BYUSERNAME]";
             SQL_INSERT = "[REPORT USER_INS]";
             SQL_UPDATE = "[REPORT USER_UPD]";
             PARM_ID = "@Id";
@@ -34,6 +34,7 @@ namespace TMF.Reports.DAL
                 info.LockoutEnabled = CastDBNull.To<bool>(reader["LockoutEnabled"], false);
                 info.AccessFailedCount = CastDBNull.To<int>(reader["AccessFailedCount"], 0);
                 info.UserName = CastDBNull.To<string>(reader["UserName"], "");
+                info.RoleName = CastDBNull.To<string>(reader["RoleName"], "");
                 info.IsNew = false;
                 info.IsDirty = true;
             }

@@ -1,6 +1,9 @@
 ﻿using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using NUnit.Framework;
+using System.Collections.Generic;
+using TMF.Core;
+using TMF.Core.Model;
 
 namespace MeterReports.Test
 {
@@ -9,11 +12,13 @@ namespace MeterReports.Test
     {
         private UserStore<IdentityUser> _userStore;
         private UserManager<IdentityUser> _userManager;
+        private readonly TMF.Reports.BLL.User _user;
 
         public User()
         {
             _userStore = new UserStore<IdentityUser>();
             _userManager = new UserManager<IdentityUser>(_userStore);
+            _user = new TMF.Reports.BLL.User();
         }
         [Test]
         public void Login_CheckUserCredential_True()
@@ -58,6 +63,18 @@ namespace MeterReports.Test
 
             //Assert
             Assert.IsTrue(flag.Succeeded);
+        }
+        [Test]
+        public void User_GetUserByUserName_ListUserCount()
+        {
+            //Arrange 
+            ReturnInfo getUserList = _user.GetUserByUserName(new SmartDB(), "");
+            
+            //Act
+            List<TMF.Reports.Model.User> user = (List<TMF.Reports.Model.User>)getUserList.BizObject;
+
+            //Assert
+            Assert.AreEqual(user.Count,6);
         }
     }
 }

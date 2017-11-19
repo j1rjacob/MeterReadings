@@ -45,13 +45,13 @@ namespace TMF.Reports.BLL
             }
             return result;
         }
-        public ReturnInfo Create(SmartDB dbInstance, ref Model.User info)
-        {
-            IInfo info2 = _dal.Insert(dbInstance, info);
-            info.IsNew = false;
-            info.IsDirty = true;
-            return new ReturnInfo(info2.Code, info2.Message);
-        }
+        //public ReturnInfo Create(SmartDB dbInstance, ref Model.User info)
+        //{
+        //    IInfo info2 = _dal.Insert(dbInstance, info);
+        //    info.IsNew = false;
+        //    info.IsDirty = true;
+        //    return new ReturnInfo(info2.Code, info2.Message);
+        //}
         //public ReturnInfo Update(SmartDB dbInstance, Model.User info)
         //{
         //    IInfo info2 = _dal.GetRecord(dbInstance, info.Id);
@@ -71,21 +71,21 @@ namespace TMF.Reports.BLL
         //    result = new ReturnInfo(info2.Code, info2.Message, info2.RowsAffected);
         //    return result;
         //}
-        public ReturnInfo Delete(SmartDB dbInstance, string Id)
-        {
-            bool flag = Id == null;
-            ReturnInfo result;
-            if (flag)
-            {
-                result = new ReturnInfo(ErrorEnum.InvalidInput, "Invalid input. ID not found.");
-            }
-            else
-            {
-                IInfo info = _dal.Delete(dbInstance, Id);
-                result = new ReturnInfo(info.Code, info.Message, info.RowsAffected);
-            }
-            return result;
-        }
+        //public ReturnInfo Delete(SmartDB dbInstance, string Id)
+        //{
+        //    bool flag = Id == null;
+        //    ReturnInfo result;
+        //    if (flag)
+        //    {
+        //        result = new ReturnInfo(ErrorEnum.InvalidInput, "Invalid input. ID not found.");
+        //    }
+        //    else
+        //    {
+        //        IInfo info = _dal.Delete(dbInstance, Id);
+        //        result = new ReturnInfo(info.Code, info.Message, info.RowsAffected);
+        //    }
+        //    return result;
+        //}
         public ReturnInfo GetUserById(SmartDB dbInstance, string Id)
         {
             IInfo record = _dal.GetRecord(dbInstance, Id);

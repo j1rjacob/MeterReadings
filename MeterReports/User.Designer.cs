@@ -263,6 +263,7 @@
             // 
             // ColRole
             // 
+            this.ColRole.DataPropertyName = "RoleName";
             this.ColRole.HeaderText = "Role";
             this.ColRole.Name = "ColRole";
             this.ColRole.ReadOnly = true;
