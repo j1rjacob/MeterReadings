@@ -38,6 +38,10 @@
             this.TextBoxPassword = new System.Windows.Forms.TextBox();
             this.TextBoxSearch = new System.Windows.Forms.TextBox();
             this.DataGridViewUser = new System.Windows.Forms.DataGridView();
+            this.ColId = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColUsername = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColRole = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ButtonSearch = new System.Windows.Forms.Button();
             this.ButtonNew = new System.Windows.Forms.Button();
             this.ButtonEdit = new System.Windows.Forms.Button();
@@ -45,10 +49,6 @@
             this.ButtonDelete = new System.Windows.Forms.Button();
             this.LabelShow = new System.Windows.Forms.Label();
             this.ComboBoxRole = new System.Windows.Forms.ComboBox();
-            this.ColId = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColUsername = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColRole = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.DataGridViewUser)).BeginInit();
             this.SuspendLayout();
             // 
@@ -113,6 +113,7 @@
             this.TextBoxPassword.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TextBoxPassword.Location = new System.Drawing.Point(163, 136);
             this.TextBoxPassword.Name = "TextBoxPassword";
+            this.TextBoxPassword.PasswordChar = '$';
             this.TextBoxPassword.Size = new System.Drawing.Size(216, 27);
             this.TextBoxPassword.TabIndex = 5;
             // 
@@ -140,6 +141,30 @@
             this.DataGridViewUser.Size = new System.Drawing.Size(640, 150);
             this.DataGridViewUser.TabIndex = 6;
             // 
+            // ColId
+            // 
+            this.ColId.HeaderText = "Id";
+            this.ColId.Name = "ColId";
+            this.ColId.ReadOnly = true;
+            // 
+            // ColName
+            // 
+            this.ColName.HeaderText = "Name";
+            this.ColName.Name = "ColName";
+            this.ColName.ReadOnly = true;
+            // 
+            // ColUsername
+            // 
+            this.ColUsername.HeaderText = "Username";
+            this.ColUsername.Name = "ColUsername";
+            this.ColUsername.ReadOnly = true;
+            // 
+            // ColRole
+            // 
+            this.ColRole.HeaderText = "Role";
+            this.ColRole.Name = "ColRole";
+            this.ColRole.ReadOnly = true;
+            // 
             // ButtonSearch
             // 
             this.ButtonSearch.AutoSize = true;
@@ -153,6 +178,7 @@
             this.ButtonSearch.Text = "SEARCH";
             this.ButtonSearch.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.ButtonSearch.UseVisualStyleBackColor = true;
+            this.ButtonSearch.Click += new System.EventHandler(this.ButtonSearch_Click);
             // 
             // ButtonNew
             // 
@@ -167,6 +193,7 @@
             this.ButtonNew.Text = "NEW";
             this.ButtonNew.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.ButtonNew.UseVisualStyleBackColor = true;
+            this.ButtonNew.Click += new System.EventHandler(this.ButtonNew_Click);
             // 
             // ButtonEdit
             // 
@@ -181,6 +208,7 @@
             this.ButtonEdit.Text = "EDIT";
             this.ButtonEdit.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.ButtonEdit.UseVisualStyleBackColor = true;
+            this.ButtonEdit.Click += new System.EventHandler(this.ButtonEdit_Click);
             // 
             // ButtonSave
             // 
@@ -195,6 +223,7 @@
             this.ButtonSave.Text = "SAVE";
             this.ButtonSave.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.ButtonSave.UseVisualStyleBackColor = true;
+            this.ButtonSave.Click += new System.EventHandler(this.ButtonSave_Click);
             // 
             // ButtonDelete
             // 
@@ -232,30 +261,6 @@
             this.ComboBoxRole.Name = "ComboBoxRole";
             this.ComboBoxRole.Size = new System.Drawing.Size(216, 28);
             this.ComboBoxRole.TabIndex = 9;
-            // 
-            // ColId
-            // 
-            this.ColId.HeaderText = "Id";
-            this.ColId.Name = "ColId";
-            this.ColId.ReadOnly = true;
-            // 
-            // ColName
-            // 
-            this.ColName.HeaderText = "Name";
-            this.ColName.Name = "ColName";
-            this.ColName.ReadOnly = true;
-            // 
-            // ColUsername
-            // 
-            this.ColUsername.HeaderText = "Username";
-            this.ColUsername.Name = "ColUsername";
-            this.ColUsername.ReadOnly = true;
-            // 
-            // ColRole
-            // 
-            this.ColRole.HeaderText = "Role";
-            this.ColRole.Name = "ColRole";
-            this.ColRole.ReadOnly = true;
             // 
             // User
             // 

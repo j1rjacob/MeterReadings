@@ -135,5 +135,15 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\TMF.Core\TMF.Core.csproj">
+      <Project>{c4aa963a-a0f5-412a-a5b1-5387cd565e6b}</Project>
+      <Name>TMF.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TMF.Reports\TMF.Reports.csproj">
+      <Project>{ced8f3af-c81d-4006-b45d-0190874813bc}</Project>
+      <Name>TMF.Reports</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
