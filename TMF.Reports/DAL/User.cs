@@ -163,5 +163,15 @@ namespace TMF.Reports.DAL
             array[0].Value = description;
             return this.GetRecords(dbInstance, cmdText, array);
         }
+        public IInfo GetRecordsByUserName(SmartDB dbInstance, string username)
+        {
+            string cmdText = "[REPORT USER_LST_BYUSERNAME]";
+            SqlParameter[] array = new SqlParameter[]
+            {
+                new SqlParameter("@UserName", SqlDbType.NVarChar)
+            };
+            array[0].Value = username;
+            return this.GetRecords(dbInstance, cmdText, array);
+        }
     }
 }

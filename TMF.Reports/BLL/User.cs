@@ -108,6 +108,17 @@ namespace TMF.Reports.BLL
                 RowsAffected = record.RowsAffected
             };
         }
+        public ReturnInfo GetUserByUserName(SmartDB dbInstance, string UserName)
+        {
+            IInfo record = _dal.GetRecordsByUserName(dbInstance, UserName);
+            return new ReturnInfo
+            {
+                BizObject = ((record.Code == ErrorEnum.NoError) ? record.BizObject : null),
+                Code = record.Code,
+                Message = record.Message,
+                RowsAffected = record.RowsAffected
+            };
+        }
         public ReturnInfo GetUserList(SmartDB dbInstance)
         {
             IInfo records = _dal.GetRecords(dbInstance);

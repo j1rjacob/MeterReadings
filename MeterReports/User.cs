@@ -2,6 +2,7 @@
 using Microsoft.AspNet.Identity.EntityFramework;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Windows.Forms;
 using TMF.Core;
 using TMF.Core.Model;
@@ -13,6 +14,7 @@ namespace MeterReports
         private UserStore<IdentityUser> _userStore;
         private UserManager<IdentityUser> _userManager;
         private readonly TMF.Reports.BLL.User _user;
+        private readonly TMF.Reports.BLL.Roles _roles;
         private bool _save;
 
         public User()
@@ -21,13 +23,13 @@ namespace MeterReports
             _userStore = new UserStore<IdentityUser>();
             _userManager = new UserManager<IdentityUser>(_userStore);
             _user = new TMF.Reports.BLL.User();
+            _roles = new TMF.Reports.BLL.Roles();
             _save = true;
         }
         private void User_Load(object sender, EventArgs e)
         {
-            
+            ResetControls();
         }
-
         private void ButtonDelete_Click(object sender, EventArgs e)
         {
             if (!string.IsNullOrWhiteSpace(TextBoxName.Text))
@@ -51,7 +53,6 @@ namespace MeterReports
                 MessageBox.Show("No User to delete.");
             }
         }
-
         private void ButtonNew_Click(object sender, EventArgs e)
         {
             TextBoxName.Enabled = true;
@@ -66,7 +67,6 @@ namespace MeterReports
             TextBoxPassword.Text = "";
             ComboBoxRole.Enabled = true;
         }
-
         private void ButtonEdit_Click(object sender, EventArgs e)
         {
             TextBoxName.Enabled = true;
@@ -92,7 +92,10 @@ namespace MeterReports
         {
             BindUserWithDataGrid();
         }
-
+        private void ComboBoxRole_MouseClick(object sender, MouseEventArgs e)
+        {
+            GetRoles();
+        }
         #region PriveteMethod
         private void SaveUser()
         {
@@ -145,11 +148,11 @@ namespace MeterReports
         private void GetRoles()
         {
             ComboBoxRole.Items.Clear();
-            ReturnInfo getUser = _user.GetUserList(new SmartDB());
-            List<TMF.Reports.Model.User> users = (List<TMF.Reports.Model.User>)getUser.BizObject;
-            foreach (var user in users)
+            ReturnInfo getRoles = _roles.GetRolesList(new SmartDB());
+            List<TMF.Reports.Model.Roles> roles = (List<TMF.Reports.Model.Roles>)getRoles.BizObject;
+            foreach (var role in roles)
             {
-                ComboBoxRole.Items.Add(user.UserName);
+                ComboBoxRole.Items.Add(role.Name);
             }
         }
         private void ResetControls()
@@ -189,14 +192,14 @@ namespace MeterReports
         {   //TODO: Refactor this for reuse.
             try
             {
-                //ReturnInfo getDMZList = _dmz.GetDMZByDescription(new SmartDB(), TextBoxSearch.Text);
-                ////bool flag = getCityList.Code == ErrorEnum.NoError;
-                //List<TMF.Reports.Model.DMZ> dmz = (List<TMF.Reports.Model.DMZ>)getDMZList.BizObject;
-                //var bindingList = new BindingList<TMF.Reports.Model.DMZ>(dmz);
-                //var source = new BindingSource(bindingList, null);
-                //DataGridViewDMZ.AutoGenerateColumns = false;
-                //DataGridViewDMZ.DataSource = source;
-                //LabelShow.Text = $"Showing {DataGridViewDMZ.CurrentRow.Index + 1} index of {DataGridViewDMZ.RowCount} records";
+                ReturnInfo getUserList = _user.GetUserByUserName(new SmartDB(), TextBoxSearch.Text);
+                //bool flag = getCityList.Code == ErrorEnum.NoError;
+                List<TMF.Reports.Model.User> user = (List<TMF.Reports.Model.User>)getUserList.BizObject;
+                var bindingList = new BindingList<TMF.Reports.Model.User>(user);
+                var source = new BindingSource(bindingList, null);
+                DataGridViewUser.AutoGenerateColumns = false;
+                DataGridViewUser.DataSource = source;
+                LabelShow.Text = $"Showing {DataGridViewUser.CurrentRow.Index + 1} index of {DataGridViewUser.RowCount} records";
             }
             catch (Exception e)
             {

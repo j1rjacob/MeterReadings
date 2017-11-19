@@ -38,10 +38,6 @@
             this.TextBoxPassword = new System.Windows.Forms.TextBox();
             this.TextBoxSearch = new System.Windows.Forms.TextBox();
             this.DataGridViewUser = new System.Windows.Forms.DataGridView();
-            this.ColId = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColUsername = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColRole = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ButtonSearch = new System.Windows.Forms.Button();
             this.ButtonNew = new System.Windows.Forms.Button();
             this.ButtonEdit = new System.Windows.Forms.Button();
@@ -49,6 +45,10 @@
             this.ButtonDelete = new System.Windows.Forms.Button();
             this.LabelShow = new System.Windows.Forms.Label();
             this.ComboBoxRole = new System.Windows.Forms.ComboBox();
+            this.ColId = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColUsername = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColRole = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.DataGridViewUser)).BeginInit();
             this.SuspendLayout();
             // 
@@ -140,30 +140,6 @@
             this.DataGridViewUser.ReadOnly = true;
             this.DataGridViewUser.Size = new System.Drawing.Size(640, 150);
             this.DataGridViewUser.TabIndex = 6;
-            // 
-            // ColId
-            // 
-            this.ColId.HeaderText = "Id";
-            this.ColId.Name = "ColId";
-            this.ColId.ReadOnly = true;
-            // 
-            // ColName
-            // 
-            this.ColName.HeaderText = "Name";
-            this.ColName.Name = "ColName";
-            this.ColName.ReadOnly = true;
-            // 
-            // ColUsername
-            // 
-            this.ColUsername.HeaderText = "Username";
-            this.ColUsername.Name = "ColUsername";
-            this.ColUsername.ReadOnly = true;
-            // 
-            // ColRole
-            // 
-            this.ColRole.HeaderText = "Role";
-            this.ColRole.Name = "ColRole";
-            this.ColRole.ReadOnly = true;
             // 
             // ButtonSearch
             // 
@@ -261,6 +237,33 @@
             this.ComboBoxRole.Name = "ComboBoxRole";
             this.ComboBoxRole.Size = new System.Drawing.Size(216, 28);
             this.ComboBoxRole.TabIndex = 9;
+            this.ComboBoxRole.MouseClick += new System.Windows.Forms.MouseEventHandler(this.ComboBoxRole_MouseClick);
+            // 
+            // ColId
+            // 
+            this.ColId.DataPropertyName = "Id";
+            this.ColId.HeaderText = "Id";
+            this.ColId.Name = "ColId";
+            this.ColId.ReadOnly = true;
+            // 
+            // ColName
+            // 
+            this.ColName.HeaderText = "Name";
+            this.ColName.Name = "ColName";
+            this.ColName.ReadOnly = true;
+            // 
+            // ColUsername
+            // 
+            this.ColUsername.DataPropertyName = "UserName";
+            this.ColUsername.HeaderText = "Username";
+            this.ColUsername.Name = "ColUsername";
+            this.ColUsername.ReadOnly = true;
+            // 
+            // ColRole
+            // 
+            this.ColRole.HeaderText = "Role";
+            this.ColRole.Name = "ColRole";
+            this.ColRole.ReadOnly = true;
             // 
             // User
             // 

@@ -21,7 +21,6 @@ namespace MeterReports
         }
         private void Citi_Load(object sender, EventArgs e)
         {
-            BindCityWithDataGrid();
             ResetControls();
         }
         private void ButtonNew_Click(object sender, EventArgs e)
