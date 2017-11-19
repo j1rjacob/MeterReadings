@@ -1,7 +1,10 @@
 ﻿using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using System;
+using System.Collections.Generic;
 using System.Windows.Forms;
+using TMF.Core;
+using TMF.Core.Model;
 
 namespace MeterReports
 {
@@ -9,18 +12,20 @@ namespace MeterReports
     {
         private UserStore<IdentityUser> _userStore;
         private UserManager<IdentityUser> _userManager;
+        private readonly TMF.Reports.BLL.User _user;
         private bool _save;
 
         public User()
         {
             InitializeComponent();
-            _save = true;
-        }
-
-        private void User_Load(object sender, EventArgs e)
-        {
             _userStore = new UserStore<IdentityUser>();
             _userManager = new UserManager<IdentityUser>(_userStore);
+            _user = new TMF.Reports.BLL.User();
+            _save = true;
+        }
+        private void User_Load(object sender, EventArgs e)
+        {
+            
         }
 
         private void ButtonDelete_Click(object sender, EventArgs e)
@@ -93,23 +98,8 @@ namespace MeterReports
         {
             if (!string.IsNullOrWhiteSpace(TextBoxName.Text))
             {
-                //TMF.Reports.Model.DMZ dmz = new TMF.Reports.Model.DMZ()
-                //{   //TODO User id for CreatedBy
-                //    Description = TextBoxDescription.Text,
-                //    CityId = ComboBoxCity.Text,
-                //    TotalNumberOfMeters = Convert.ToInt32(TextBoxTotalMeters.Text),
-                //    CreatedBy = "646f18f9-6425-4769-aa79-16ecdb7cf816",
-                //    DocDate = DateTime.Now,
-                //    Show = 1,
-                //    LockCount = 0
-                //};
-
-                //var createDMZ = _dmz.Create(new SmartDB(), ref dmz);
-
                 var createUser = _userManager.Create(new IdentityUser(TextBoxUsername.Text), TextBoxPassword.Text);
-                //MessageBox.Show($"Created: {createUser.Succeeded}");
-
-                //bool flag = createDMZ.Code == ErrorEnum.NoError;
+                
                 if (createUser.Succeeded)
                 {
                     MessageBox.Show("User Created");
@@ -154,13 +144,13 @@ namespace MeterReports
         }
         private void GetRoles()
         {
-            //ComboBoxCity.Items.Clear();
-            //ReturnInfo getCity = _city.GetCityList(new SmartDB());
-            //List<TMF.Reports.Model.City> cities = (List<TMF.Reports.Model.City>)getCity.BizObject;
-            //foreach (var city in cities)
-            //{
-            //    ComboBoxCity.Items.Add(city.Description);
-            //}
+            ComboBoxRole.Items.Clear();
+            ReturnInfo getUser = _user.GetUserList(new SmartDB());
+            List<TMF.Reports.Model.User> users = (List<TMF.Reports.Model.User>)getUser.BizObject;
+            foreach (var user in users)
+            {
+                ComboBoxRole.Items.Add(user.UserName);
+            }
         }
         private void ResetControls()
         {

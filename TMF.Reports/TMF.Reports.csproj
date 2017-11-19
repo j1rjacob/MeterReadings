@@ -63,6 +63,7 @@
     <Compile Include="BLL\MeterReading.cs" />
     <Compile Include="BLL\MeterSize.cs" />
     <Compile Include="BLL\MeterType.cs" />
+    <Compile Include="BLL\Roles.cs" />
     <Compile Include="BLL\User.cs" />
     <Compile Include="DAL\DMZ.cs" />
     <Compile Include="DAL\Gateway.cs" />
@@ -72,6 +73,7 @@
     <Compile Include="DAL\MeterReading.cs" />
     <Compile Include="DAL\MeterSize.cs" />
     <Compile Include="DAL\MeterType.cs" />
+    <Compile Include="DAL\Roles.cs" />
     <Compile Include="DAL\User.cs" />
     <Compile Include="Model\City.cs" />
     <Compile Include="DAL\City.cs" />
@@ -83,6 +85,7 @@
     <Compile Include="Model\MeterReading.cs" />
     <Compile Include="Model\MeterSize.cs" />
     <Compile Include="Model\MeterType.cs" />
+    <Compile Include="Model\Roles.cs" />
     <Compile Include="Model\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
