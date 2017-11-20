@@ -1,33 +1,29 @@
 ﻿using Microsoft.AspNet.Identity;
-using Microsoft.AspNet.Identity.EntityFramework;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Linq;
 using System.Windows.Forms;
 using TMF.Core;
 using TMF.Core.Model;
+using TMF.Reports.BLL;
+using TMF.Reports.Model;
 
 namespace MeterReports
 {
     public partial class User : Form
     {
-        private UserStore<IdentityUser> _userStore;
-        private UserManager<IdentityUser> _userManager;
+        private CustomUserStore _userStore;
+        private UserManager<CustomUser, int> _userManager;
         private readonly TMF.Reports.BLL.User _user;
-        private readonly TMF.Reports.BLL.Roles _roles;
+        private int _userId;
         private bool _save;
-        private RoleStore<IdentityRole> _roleStore;
-        private RoleManager<IdentityRole> _roleManager;
         public User()
         {
             InitializeComponent();
-            _userStore = new UserStore<IdentityUser>();
-            _userManager = new UserManager<IdentityUser>(_userStore);
-            _roleStore = new RoleStore<IdentityRole>();
-            _roleManager = new RoleManager<IdentityRole>(_roleStore);
+            _userStore = new CustomUserStore(new CustomUserDbContext());
+            _userManager = new UserManager<CustomUser, int>(_userStore);
             _user = new TMF.Reports.BLL.User();
-            _roles = new TMF.Reports.BLL.Roles();
+            _userId = 0;
             _save = true;
         }
         private void User_Load(object sender, EventArgs e)
@@ -38,17 +34,11 @@ namespace MeterReports
         {
             if (!string.IsNullOrWhiteSpace(TextBoxName.Text))
             {   
-                var user = _userManager.FindByName(TextBoxUsername.Text.Trim());
-
-                var oldRoleId = user.Roles.SingleOrDefault().RoleId;
-                var oldRoleName = _roleManager.Roles.SingleOrDefault(r => r.Id == oldRoleId).Name;
-
-                var result1 = _userManager.RemoveFromRole(user.Id, oldRoleName);
-                var result2 = _userManager.AddToRole(user.Id, ComboBoxRole.Text);
+                var user = _userManager.FindById(_userId);
 
                 var flag = _userManager.Delete(user);
 
-                if (flag.Succeeded && result1.Succeeded && result2.Succeeded)
+                if (flag.Succeeded)
                 {
                     MessageBox.Show("User Deleted");
                     ResetControls();
@@ -76,6 +66,7 @@ namespace MeterReports
             TextBoxUsername.Text = "";
             TextBoxPassword.Text = "";
             ComboBoxRole.Enabled = true;
+            _userId = 0;
         }
         private void ButtonEdit_Click(object sender, EventArgs e)
         {
@@ -104,27 +95,59 @@ namespace MeterReports
         {
             GetRoles();
         }
+        private void DataGridViewUser_SelectionChanged(object sender, EventArgs e)
+        {
+            LabelShow.Text = $"Showing {DataGridViewUser.CurrentRow.Index + 1} index of {DataGridViewUser.RowCount} records";
+
+            int userId;
+            try
+            {
+                userId = (int)DataGridViewUser.CurrentRow.Cells[0].Value;
+            }
+            catch (Exception exception)
+            {
+                return;
+            }
+            ReturnInfo getUser = _user.GetUserById(new SmartDB(), userId);
+            bool flag = getUser.Code == ErrorEnum.NoError;
+            TMF.Reports.Model.User user = (TMF.Reports.Model.User)getUser.BizObject;
+
+            try
+            {
+                if (user.Id == 0 ? false : true)
+                {
+                    TextBoxName.Text = user.FullName;
+                    TextBoxUsername.Text = user.UserName;
+                    ComboBoxRole.Text = user.Role;
+                    _userId = user.Id;
+                    ButtonEdit.Enabled = true;
+                    ButtonDelete.Enabled = true;
+                }
+            }
+            catch (Exception jerry)
+            {
+                return;
+            }
+        }
         #region PriveteMethod
         private void SaveUser()
         {
             if (!string.IsNullOrWhiteSpace(TextBoxName.Text))
             {
-                var createUser = _userManager.Create(new IdentityUser(TextBoxUsername.Text), TextBoxPassword.Text);
+                CustomUser user = new CustomUser
+                {
+                    FullName = TextBoxName.Text,
+                    UserName = TextBoxUsername.Text,
+                    Role = ComboBoxRole.Text
+                };
+
+                var createUser = _userManager.Create(user, TextBoxPassword.Text);
                 
                 if (createUser.Succeeded)
                 {
-                    var user = _userManager.FindByName(TextBoxUsername.Text);
-                    var claimResult = _userManager.AddToRole(user.Id, ComboBoxRole.Text);
-                    if (claimResult.Succeeded)
-                    {
-                        MessageBox.Show("User Created");
-                        ResetControls();
-                        BindUserWithDataGrid();
-                    }
-                    else
-                    {
-                        MessageBox.Show("Role doesn't Add");
-                    }
+                    MessageBox.Show("User Created");
+                    ResetControls();
+                    BindUserWithDataGrid();
                 }
                 else
                 {
@@ -141,30 +164,17 @@ namespace MeterReports
 
                 var user = _userManager.FindByName(TextBoxUsername.Text.Trim());
 
-                user.UserName = TextBoxName.Text;
+                user.FullName = TextBoxName.Text;
+                user.UserName = TextBoxUsername.Text;
                 user.PasswordHash = _userManager.PasswordHasher.HashPassword(TextBoxPassword.Text);
+                user.Role = ComboBoxRole.Text;
 
                 var flag = _userManager.Update(user);
                 
                 if (flag.Succeeded)
                 {
-                    var oldRoleId = user.Roles.SingleOrDefault().RoleId;
-                    var oldRoleName = _roleManager.Roles.SingleOrDefault(r => r.Id == oldRoleId).Name;
-
-                    if (oldRoleName != ComboBoxRole.Text)
-                    {
-                       var result1 = _userManager.RemoveFromRole(user.Id, oldRoleName);
-                       var result2 = _userManager.AddToRole(user.Id, ComboBoxRole.Text);
-                        if (result1.Succeeded && result2.Succeeded)
-                        {
-                            MessageBox.Show("User Updated");
-                            ResetControls();
-                        }
-                        else
-                        {
-                            MessageBox.Show("User doesn't update");
-                        }
-                    }
+                    MessageBox.Show("User Updated");
+                    ResetControls();
                 }
                 else
                 {
@@ -179,19 +189,15 @@ namespace MeterReports
         private void GetRoles()
         {
             ComboBoxRole.Items.Clear();
-            ReturnInfo getRoles = _roles.GetRolesList(new SmartDB());
-            List<TMF.Reports.Model.Roles> roles = (List<TMF.Reports.Model.Roles>)getRoles.BizObject;
-            foreach (var role in roles)
-            {
-                ComboBoxRole.Items.Add(role.Name);
-            }
+            ComboBoxRole.Items.Add("Administrator");
+            ComboBoxRole.Items.Add("Encoder");
         }
         private void ResetControls()
         {
             TextBoxName.Enabled = false;
             TextBoxUsername.Enabled = false;
             TextBoxPassword.Enabled = false;
-            ComboBoxRole.Enabled = true;
+            ComboBoxRole.Enabled = false;
             TextBoxSearch.Text = "";
             TextBoxName.Text = "";
             TextBoxUsername.Text = "";
@@ -221,9 +227,8 @@ namespace MeterReports
         //}
         private void BindUserWithDataGrid()
         {   //TODO: Refactor this for reuse. 
-            //Todo: getUserList returning null;
-            //try
-            //{
+            try
+            {
                 ReturnInfo getUserList = _user.GetUserByUserName(new SmartDB(), TextBoxSearch.Text);
                 
                 List<TMF.Reports.Model.User> user = (List<TMF.Reports.Model.User>)getUserList.BizObject;
@@ -232,12 +237,12 @@ namespace MeterReports
                 DataGridViewUser.AutoGenerateColumns = false;
                 DataGridViewUser.DataSource = source;
                 LabelShow.Text = $"Showing {DataGridViewUser.CurrentRow.Index + 1} index of {DataGridViewUser.RowCount} records";
-            //}
-            //catch (Exception e)
-            //{
-            //    return;
-            //}
-}
+            }
+            catch (Exception e)
+            {
+                return;
+            }
+        }
         #endregion
     }
 }

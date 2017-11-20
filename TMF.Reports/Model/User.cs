@@ -1,53 +1,31 @@
-﻿using System;
-using TMF.Core;
+﻿using TMF.Core;
 using TMF.Core.Model;
 
 namespace TMF.Reports.Model
 {
     public class User : ModelInfo
     {
-        public string Id { get; set; }
-        public string Email { get; set; }
-        public bool EmailConfirmed { get; set; }
-        public string PasswordHash { get; set; }
-        public string SecurityStamp { get; set; }
-        public string PhoneNumber { get; set; }
-        public bool PhoneNumberConfirmed { get; set; }
-        public bool TwoFactorEnabled { get; set; }
-        public DateTime LockoutEndDateUtc { get; set; } 
-        public bool LockoutEnabled { get; set; }
-        public int AccessFailedCount { get; set; }
-public string RoleName { get; set; }
+        public int Id { get; set; }
         public string UserName { get; set; }
-        
+        public string PasswordHash { get; set; }
+        public string FullName { get; set; }
+        public string Role { get; set; }
        
         public User()
         {
-            Id = "";
+            Id = 0;
             base.IsNew = true;
             base.IsDirty = false;
             base.IsDeleted = false;
         }
 
-        public User(string Id, string Email, bool EmailConfirmed, string PasswordHash,
-                    string SecurityStamp, string PhoneNumber, bool TwoFactorEnabled,
-                    DateTime LockoutEndDateUtc, bool LockoutEnabled, string RoleName, int AccessFailedCount, 
-                    string UserName)
+        public User(int Id, string UserName, string PasswordHash, string FullName, string Role)
         {
             this.Id = Id;
-            this.Email = Email;
-            this.EmailConfirmed = EmailConfirmed;
-            this.PasswordHash = PasswordHash;
-            this.SecurityStamp = SecurityStamp;
-            this.PhoneNumber = PhoneNumber;
-            this.PhoneNumberConfirmed = PhoneNumberConfirmed;
-            this.TwoFactorEnabled = TwoFactorEnabled;
-            this.LockoutEndDateUtc = LockoutEndDateUtc;
-            this.LockoutEnabled = LockoutEnabled;
-            this.RoleName = RoleName;
-            this.AccessFailedCount = AccessFailedCount;
             this.UserName = UserName;
-            
+            this.PasswordHash = PasswordHash;
+            this.FullName = FullName;
+            this.Role = Role;
             base.IsNew = false;
             base.IsDirty = true;
             base.IsDeleted = false;
@@ -59,38 +37,17 @@ public string RoleName { get; set; }
                 case "id":
                     return this.Id;
                     break;
-                case "email":
-                    return this.Email;
-                    break;
-                case "emailconfirmed":
-                    return this.EmailConfirmed;
+                case "username":
+                    return this.UserName;
                     break;
                 case "passwordhash":
                     return this.PasswordHash;
                     break;
-                case "securitystamp":
-                    return this.SecurityStamp;
+                case "fullname":
+                    return this.FullName;
                     break;
-                case "phonenumber":
-                    return this.PhoneNumber;
-                    break;
-                case "twofactorenabled":
-                    return this.TwoFactorEnabled;
-                    break;
-                case "lockoutenddateutc":
-                    return this.LockoutEndDateUtc;
-                    break;
-                case "lockoutenabled":
-                    return this.LockoutEnabled;
-                    break;
-                case "accessfailedcount":
-                    return this.AccessFailedCount;
-                    break;
-                case "username":
-                    return this.UserName;
-                    break;
-                case "rolename":
-                    return this.RoleName;
+                case "role":
+                    return this.Role;
                     break;
                 default:
                     return null;
@@ -102,40 +59,19 @@ public string RoleName { get; set; }
             switch (fieldname.ToLower())
             {
                 case "id":
-                    this.Id = CastDBNull.To<string>(value, "");
-                    break;
-                case "email":
-                    this.Email = CastDBNull.To<string>(value, "");
-                    break;
-                case "emailconfirmed":
-                    this.EmailConfirmed = CastDBNull.To<bool>(value, true);
-                    break;
-                case "passwordhash":
-                    this.PasswordHash = CastDBNull.To<string>(value, "");
-                    break;
-                case "securitystamp":
-                    this.SecurityStamp = CastDBNull.To<string>(value, "");
-                    break;
-                case "phonenumber":
-                    this.PhoneNumber = CastDBNull.To<string>(value, "");
-                    break;
-                case "twofactorenabled":
-                    this.TwoFactorEnabled = CastDBNull.To<bool>(value, false);
-                    break;
-                case "lockoutenddateutc":
-                    this.LockoutEndDateUtc = CastDBNull.To<DateTime>(value, DateTime.Now);
-                    break;
-                case "lockoutenabled":
-                    this.LockoutEnabled = CastDBNull.To<bool>(value, false);
-                    break;
-                case "accessfailedcount":
-                    this.AccessFailedCount = CastDBNull.To<int>(value, 0);
+                    this.Id = CastDBNull.To<int>(value, 0);
                     break;
                 case "username":
                     this.UserName = CastDBNull.To<string>(value, "");
                     break;
-                case "rolename":
-                    this.RoleName = CastDBNull.To<string>(value, "");
+                case "passwordhash":
+                    this.PasswordHash = CastDBNull.To<string>(value, "");
+                    break;
+                case "fullname":
+                    this.FullName = CastDBNull.To<string>(value, "");
+                    break;
+                case "role":
+                    this.Role = CastDBNull.To<string>(value, "");
                     break;
                 default:
                     //null;

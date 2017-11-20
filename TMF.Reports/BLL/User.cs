@@ -28,7 +28,7 @@ namespace TMF.Reports.BLL
         }
         public ReturnInfo IsValid(Model.User info)
         {
-            bool flag = string.IsNullOrEmpty(info.Id);
+            bool flag = info.Id == 0 ? false : true;
             ReturnInfo result;
             if (flag)
             {
@@ -86,7 +86,7 @@ namespace TMF.Reports.BLL
         //    }
         //    return result;
         //}
-        public ReturnInfo GetUserById(SmartDB dbInstance, string Id)
+        public ReturnInfo GetUserById(SmartDB dbInstance, int Id)
         {
             IInfo record = _dal.GetRecord(dbInstance, Id);
             return new ReturnInfo

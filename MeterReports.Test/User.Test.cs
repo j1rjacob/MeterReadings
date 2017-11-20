@@ -1,39 +1,50 @@
 ﻿using Microsoft.AspNet.Identity;
-using Microsoft.AspNet.Identity.EntityFramework;
 using NUnit.Framework;
 using System.Collections.Generic;
 using TMF.Core;
 using TMF.Core.Model;
+using TMF.Reports.BLL;
+using TMF.Reports.Model;
 
 namespace MeterReports.Test
 {
     [TestFixture]
     public class User
     {
-        private UserStore<IdentityUser> _userStore;
-        private UserManager<IdentityUser> _userManager;
+        private CustomUserStore _userStore;
+        private UserManager<CustomUser, int> _userManager;
         private readonly TMF.Reports.BLL.User _user;
 
         public User()
         {
-            _userStore = new UserStore<IdentityUser>();
-            _userManager = new UserManager<IdentityUser>(_userStore);
+            _userStore = new CustomUserStore(new CustomUserDbContext());
+            _userManager = new UserManager<CustomUser, int>(_userStore);
             _user = new TMF.Reports.BLL.User();
         }
         [Test]
         public void Login_CheckUserCredential_True()
         {
-            //Arrange //Act
-            var user = TMF.Reports.BLL.User.CheckPassword("jacobj1r", "Pass123!word");
+            //Arrange 
+            var user = _userManager.FindByName("j1rjacob");
+            //Act
+            var checkuser = _userManager.CheckPassword(user, "Pass123!word");
 
             //Assert
-            Assert.IsTrue(user);
+            Assert.IsTrue(checkuser);
         }
         [Test]
         public void User_SaveUser_True()
         {
-            //Arrange //Act
-            var createUser = _userManager.Create(new IdentityUser("j1rjacob"), "Password123!");
+            //Arrange 
+            CustomUser user = new CustomUser
+            {
+                FullName = "Jacob Junar",
+                UserName = "j1rjacob1",
+                Role ="Administrator"
+            };
+            
+            //Act
+            var createUser = _userManager.Create(user, "Password123!");
             
             //Assert
             Assert.IsTrue(createUser.Succeeded);
@@ -42,10 +53,12 @@ namespace MeterReports.Test
         public void User_UpdateUser_True()
         {
             //Arrange //Act
-            var user = _userManager.FindByName("j1rjacob");
+            CustomUser user = _userManager.FindByName("j1rjacob1");
 
-            user.UserName = "jacobj1r";
+            user.UserName = "j1rjacob";
             user.PasswordHash = _userManager.PasswordHasher.HashPassword("Pass123!word");
+            user.FullName = "Junar Jacob";
+            user.Role = "Administrator";
 
             var flag = _userManager.Update(user);
 
@@ -56,7 +69,7 @@ namespace MeterReports.Test
         public void User_DeleteUser_True()
         {
             //Arrange 
-            var user = _userManager.FindByName("jacobj1r");
+            var user = _userManager.FindByName("j1rjacob1");
 
             //Act
             var flag = _userManager.Delete(user);

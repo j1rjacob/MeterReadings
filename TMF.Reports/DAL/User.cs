@@ -23,18 +23,11 @@ namespace TMF.Reports.DAL
             try
             {
                 info = new Model.User();
-                info.Id = CastDBNull.To<string>(reader["Id"], "");
-                info.Email = CastDBNull.To<string>(reader["Email"], "");
-                info.EmailConfirmed = CastDBNull.To<bool>(reader["EmailConfirmed"], true);
-                info.PasswordHash = CastDBNull.To<string>(reader["PasswordHash"], "");
-                info.SecurityStamp = CastDBNull.To<string>(reader["SecurityStamp"], "");
-                info.PhoneNumber = CastDBNull.To<string>(reader["PhoneNumber"], "");
-                info.TwoFactorEnabled = CastDBNull.To<bool>(reader["TwoFactorEnabled"], false);
-                info.LockoutEndDateUtc = CastDBNull.To<DateTime>(reader["LockoutEndDateUtc"], DateTime.Now);
-                info.LockoutEnabled = CastDBNull.To<bool>(reader["LockoutEnabled"], false);
-                info.AccessFailedCount = CastDBNull.To<int>(reader["AccessFailedCount"], 0);
+                info.Id = CastDBNull.To<int>(reader["Id"], 0);
                 info.UserName = CastDBNull.To<string>(reader["UserName"], "");
-                info.RoleName = CastDBNull.To<string>(reader["RoleName"], "");
+                info.PasswordHash = CastDBNull.To<string>(reader["PasswordHash"], "");
+                info.FullName = CastDBNull.To<string>(reader["FullName"], "");
+                info.Role = CastDBNull.To<string>(reader["Role"], "");
                 info.IsNew = false;
                 info.IsDirty = true;
             }

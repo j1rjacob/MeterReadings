@@ -55,6 +55,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BLL\City.cs" />
+    <Compile Include="BLL\CustomUserStore.cs" />
     <Compile Include="BLL\DMZ.cs" />
     <Compile Include="BLL\Gateway.cs" />
     <Compile Include="BLL\GatewayLog.cs" />
@@ -77,6 +78,8 @@
     <Compile Include="DAL\User.cs" />
     <Compile Include="Model\City.cs" />
     <Compile Include="DAL\City.cs" />
+    <Compile Include="Model\CustomUser.cs" />
+    <Compile Include="Model\CustomUserDbContext.cs" />
     <Compile Include="Model\DMZ.cs" />
     <Compile Include="Model\Gateway.cs" />
     <Compile Include="Model\GatewayLog.cs" />

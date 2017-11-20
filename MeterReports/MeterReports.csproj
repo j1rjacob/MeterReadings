@@ -116,7 +116,6 @@
     <Compile Include="MeterType.Designer.cs">
       <DependentUpon>MeterType.cs</DependentUpon>
     </Compile>
-    <Compile Include="Model\Readings.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -131,7 +130,6 @@
     <Compile Include="User.Designer.cs">
       <DependentUpon>User.cs</DependentUpon>
     </Compile>
-    <Compile Include="Util\Db.cs" />
     <EmbeddedResource Include="Citi.resx">
       <DependentUpon>Citi.cs</DependentUpon>
     </EmbeddedResource>
