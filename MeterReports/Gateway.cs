@@ -42,6 +42,11 @@ namespace MeterReports
 
         private readonly TMF.Reports.BLL.Gateway _gateway;
         private bool _save;
+
+
+        private string _gatewayId;
+        private readonly TMF.Reports.BLL.DMZ _dmz;
+        private DataGridViewTextBoxColumn ColId;
         private DataGridViewTextBoxColumn ColMacAddress;
         private DataGridViewTextBoxColumn ColSimCard;
         private DataGridViewTextBoxColumn ColX;
@@ -53,10 +58,6 @@ namespace MeterReports
         private DataGridViewTextBoxColumn ColIPAddress;
         private DataGridViewTextBoxColumn ColDMZ;
         private DataGridViewTextBoxColumn ColCity;
-
-
-        private string _gatewayId;
-        private readonly TMF.Reports.BLL.DMZ _dmz;
         private readonly TMF.Reports.BLL.City _city;
         public Gateway()
         {
@@ -78,17 +79,6 @@ namespace MeterReports
             this.ButtonNew = new System.Windows.Forms.Button();
             this.ButtonSearch = new System.Windows.Forms.Button();
             this.DataGridViewGateway = new System.Windows.Forms.DataGridView();
-            this.ColMacAddress = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColSimCard = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColX = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColY = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColDescription = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColInstallationDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColMaintenanceDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColStatus = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColIPAddress = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColDMZ = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColCity = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.TextBoxSimCard = new System.Windows.Forms.TextBox();
             this.TextBoxX = new System.Windows.Forms.TextBox();
             this.TextBoxSearch = new System.Windows.Forms.TextBox();
@@ -112,6 +102,18 @@ namespace MeterReports
             this.label12 = new System.Windows.Forms.Label();
             this.ComboBoxCity = new System.Windows.Forms.ComboBox();
             this.TextBoxY = new System.Windows.Forms.TextBox();
+            this.ColId = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColMacAddress = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColSimCard = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColX = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColY = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColDescription = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColInstallationDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColMaintenanceDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColStatus = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColIPAddress = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColDMZ = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColCity = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.DataGridViewGateway)).BeginInit();
             this.SuspendLayout();
             // 
@@ -206,6 +208,7 @@ namespace MeterReports
             this.DataGridViewGateway.AllowUserToDeleteRows = false;
             this.DataGridViewGateway.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.DataGridViewGateway.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.ColId,
             this.ColMacAddress,
             this.ColSimCard,
             this.ColX,
@@ -223,72 +226,7 @@ namespace MeterReports
             this.DataGridViewGateway.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.DataGridViewGateway.Size = new System.Drawing.Size(872, 150);
             this.DataGridViewGateway.TabIndex = 18;
-            // 
-            // ColMacAddress
-            // 
-            this.ColMacAddress.HeaderText = "MacAddress";
-            this.ColMacAddress.Name = "ColMacAddress";
-            this.ColMacAddress.ReadOnly = true;
-            // 
-            // ColSimCard
-            // 
-            this.ColSimCard.HeaderText = "Sim Card";
-            this.ColSimCard.Name = "ColSimCard";
-            this.ColSimCard.ReadOnly = true;
-            // 
-            // ColX
-            // 
-            this.ColX.HeaderText = "X";
-            this.ColX.Name = "ColX";
-            this.ColX.ReadOnly = true;
-            // 
-            // ColY
-            // 
-            this.ColY.HeaderText = "Y";
-            this.ColY.Name = "ColY";
-            this.ColY.ReadOnly = true;
-            // 
-            // ColDescription
-            // 
-            this.ColDescription.HeaderText = "Description";
-            this.ColDescription.Name = "ColDescription";
-            this.ColDescription.ReadOnly = true;
-            // 
-            // ColInstallationDate
-            // 
-            this.ColInstallationDate.HeaderText = "Installation Date";
-            this.ColInstallationDate.Name = "ColInstallationDate";
-            this.ColInstallationDate.ReadOnly = true;
-            // 
-            // ColMaintenanceDate
-            // 
-            this.ColMaintenanceDate.HeaderText = "ColMaintenanceDate";
-            this.ColMaintenanceDate.Name = "ColMaintenanceDate";
-            this.ColMaintenanceDate.ReadOnly = true;
-            // 
-            // ColStatus
-            // 
-            this.ColStatus.HeaderText = "Status";
-            this.ColStatus.Name = "ColStatus";
-            this.ColStatus.ReadOnly = true;
-            // 
-            // ColIPAddress
-            // 
-            this.ColIPAddress.HeaderText = "IPAddress";
-            this.ColIPAddress.Name = "ColIPAddress";
-            this.ColIPAddress.ReadOnly = true;
-            // 
-            // ColDMZ
-            // 
-            this.ColDMZ.HeaderText = "DMZ";
-            this.ColDMZ.Name = "ColDMZ";
-            this.ColDMZ.ReadOnly = true;
-            // 
-            // ColCity
-            // 
-            this.ColCity.HeaderText = "City";
-            this.ColCity.Name = "ColCity";
-            this.ColCity.ReadOnly = true;
+            this.DataGridViewGateway.SelectionChanged += new System.EventHandler(this.DataGridViewGateway_SelectionChanged);
             // 
             // TextBoxSimCard
             // 
@@ -512,6 +450,93 @@ namespace MeterReports
             this.TextBoxY.Size = new System.Drawing.Size(216, 27);
             this.TextBoxY.TabIndex = 15;
             // 
+            // ColId
+            // 
+            this.ColId.DataPropertyName = "Id";
+            this.ColId.HeaderText = "Id";
+            this.ColId.Name = "ColId";
+            this.ColId.ReadOnly = true;
+            this.ColId.Visible = false;
+            // 
+            // ColMacAddress
+            // 
+            this.ColMacAddress.DataPropertyName = "MacAddress";
+            this.ColMacAddress.HeaderText = "MacAddress";
+            this.ColMacAddress.Name = "ColMacAddress";
+            this.ColMacAddress.ReadOnly = true;
+            // 
+            // ColSimCard
+            // 
+            this.ColSimCard.DataPropertyName = "SimCard";
+            this.ColSimCard.HeaderText = "Sim Card";
+            this.ColSimCard.Name = "ColSimCard";
+            this.ColSimCard.ReadOnly = true;
+            // 
+            // ColX
+            // 
+            this.ColX.DataPropertyName = "X";
+            this.ColX.HeaderText = "X";
+            this.ColX.Name = "ColX";
+            this.ColX.ReadOnly = true;
+            // 
+            // ColY
+            // 
+            this.ColY.DataPropertyName = "Y";
+            this.ColY.HeaderText = "Y";
+            this.ColY.Name = "ColY";
+            this.ColY.ReadOnly = true;
+            // 
+            // ColDescription
+            // 
+            this.ColDescription.DataPropertyName = "Description";
+            this.ColDescription.HeaderText = "Description";
+            this.ColDescription.Name = "ColDescription";
+            this.ColDescription.ReadOnly = true;
+            // 
+            // ColInstallationDate
+            // 
+            this.ColInstallationDate.DataPropertyName = "InstallationDate";
+            this.ColInstallationDate.HeaderText = "Installation Date";
+            this.ColInstallationDate.Name = "ColInstallationDate";
+            this.ColInstallationDate.ReadOnly = true;
+            // 
+            // ColMaintenanceDate
+            // 
+            this.ColMaintenanceDate.DataPropertyName = "MaintenanceDate";
+            this.ColMaintenanceDate.HeaderText = "MaintenanceDate";
+            this.ColMaintenanceDate.Name = "ColMaintenanceDate";
+            this.ColMaintenanceDate.ReadOnly = true;
+            // 
+            // ColStatus
+            // 
+            this.ColStatus.DataPropertyName = "Status";
+            this.ColStatus.HeaderText = "Status";
+            this.ColStatus.Name = "ColStatus";
+            this.ColStatus.ReadOnly = true;
+            // 
+            // ColIPAddress
+            // 
+            this.ColIPAddress.DataPropertyName = "IPAddress";
+            this.ColIPAddress.HeaderText = "IPAddress";
+            this.ColIPAddress.Name = "ColIPAddress";
+            this.ColIPAddress.ReadOnly = true;
+            // 
+            // ColDMZ
+            // 
+            this.ColDMZ.DataPropertyName = "DMZId";
+            this.ColDMZ.HeaderText = "DMZ";
+            this.ColDMZ.Name = "ColDMZ";
+            this.ColDMZ.ReadOnly = true;
+            this.ColDMZ.Visible = false;
+            // 
+            // ColCity
+            // 
+            this.ColCity.DataPropertyName = "CityId";
+            this.ColCity.HeaderText = "City";
+            this.ColCity.Name = "ColCity";
+            this.ColCity.ReadOnly = true;
+            this.ColCity.Visible = false;
+            // 
             // Gateway
             // 
             this.ClientSize = new System.Drawing.Size(907, 512);
@@ -546,6 +571,7 @@ namespace MeterReports
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Name = "Gateway";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Gateway";
             this.Load += new System.EventHandler(this.Gateway_Load);
             ((System.ComponentModel.ISupportInitialize)(this.DataGridViewGateway)).EndInit();
@@ -637,6 +663,48 @@ namespace MeterReports
         private void ComboBoxCity_MouseClick(object sender, MouseEventArgs e)
         {
             GetCities();
+        }
+        private void DataGridViewGateway_SelectionChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                LabelShow.Text = $"Showing {DataGridViewGateway.CurrentRow.Index + 1} index of {DataGridViewGateway.RowCount} records";
+
+                var gatewayId = DataGridViewGateway.CurrentRow.Cells[0].Value.ToString();
+                ReturnInfo getGateway = _gateway.GetGatewayById(new SmartDB(), gatewayId);
+
+                bool flag = getGateway.Code == ErrorEnum.NoError;
+                TMF.Reports.Model.Gateway gateway = (TMF.Reports.Model.Gateway)getGateway.BizObject;
+
+                ReturnInfo getDMZ = _dmz.GetDMZById(new SmartDB(), Convert.ToInt32(gateway.DMZId));
+                TMF.Reports.Model.DMZ dmz = (TMF.Reports.Model.DMZ)getDMZ.BizObject;
+
+                ReturnInfo getCity = _city.GetCityById(new SmartDB(), gateway.CityId.Trim());
+                TMF.Reports.Model.City city = (TMF.Reports.Model.City)getCity.BizObject;
+
+                if (!string.IsNullOrEmpty(gateway.Id))
+                {
+                    TextBoxMac.Text = gateway.MacAddress;
+                    TextBoxSimCard.Text = gateway.SimCard;
+                    TextBoxX.Text = gateway.X.ToString();
+                    TextBoxY.Text = gateway.Y.ToString();
+                    TextBoxDescription.Text = gateway.Description;
+                    DateTimePickerInstallationDate.Text = Convert.ToDateTime(gateway.InstallationDate).ToString();
+                    DateTimePickerMaintenanceDate.Text = Convert.ToDateTime(gateway.MaintenanceDate).ToString();
+                    ComboBoxStatus.Text = gateway.Status;
+                    TextBoxIPAddress.Text = gateway.IPAddress;
+                    ComboBoxDMZ.Text = dmz.Description;
+                    ComboBoxCity.Text = city.Description;
+                    _gatewayId = gateway.Id;
+                    ButtonEdit.Enabled = true;
+                    ButtonDelete.Enabled = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                return;
+            }
+            
         }
         #region PriveteMethod
         private void SaveGateway()

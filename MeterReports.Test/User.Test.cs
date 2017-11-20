@@ -27,8 +27,7 @@ namespace MeterReports.Test
             //Arrange 
             var user = _userManager.FindByName("j1rjacob");
             //Act
-            var checkuser = _userManager.CheckPassword(user, "Pass123!word");
-
+            var checkuser = _userManager.CheckPassword(user, "Omar123!");
             //Assert
             Assert.IsTrue(checkuser);
         }
