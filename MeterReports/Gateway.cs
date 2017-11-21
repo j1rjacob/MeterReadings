@@ -616,6 +616,17 @@ namespace MeterReports
         private void ButtonEdit_Click(object sender, EventArgs e)
         {
             TextBoxDescription.Enabled = true;
+            TextBoxDescription.Enabled = true;
+            TextBoxMac.Enabled = true;
+            TextBoxSimCard.Enabled = true;
+            TextBoxX.Enabled = true;
+            TextBoxY.Enabled = true;
+            DateTimePickerInstallationDate.Enabled = true;
+            DateTimePickerMaintenanceDate.Enabled = true;
+            ComboBoxStatus.Enabled = true;
+            TextBoxIPAddress.Enabled = true;
+            ComboBoxDMZ.Enabled = true;
+            ComboBoxCity.Enabled = true;
             ButtonNew.Enabled = false;
             ButtonEdit.Enabled = false;
             ButtonSave.Enabled = true;

@@ -40,19 +40,13 @@
                     Grid.Column="1"
                     HorizontalAlignment="Center"
                     VerticalAlignment="Top">
+            <Button Content="GATEWAY LOGS" 
+                    Margin="2 0 2 2" 
+                    Width="280"
+                    Height="60"
+                    FontSize="25"
+                    Style="{StaticResource AccentedSquareButtonStyle}" Controls:ControlsHelper.ContentCharacterCasing="Upper"/>
             <Button Content="METER" 
-                    Margin="2 0 2 2" 
-                    Width="280"
-                    Height="60"
-                    FontSize="25"
-                    Style="{StaticResource AccentedSquareButtonStyle}" Controls:ControlsHelper.ContentCharacterCasing="Upper"/>
-            <Button Content="GATEWAY" 
-                    Margin="2 0 2 2" 
-                    Width="280"
-                    Height="60"
-                    FontSize="25"
-                    Style="{StaticResource AccentedSquareButtonStyle}" Controls:ControlsHelper.ContentCharacterCasing="Upper"/>
-            <Button Content="READING" 
                     Margin="2 0 2 2" 
                     Width="280"
                     Height="60"
