@@ -1,0 +1,352 @@
+﻿<Controls:MetroWindow x:Class="WpfMeterReport.Meters"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+        xmlns:local="clr-namespace:WpfMeterReport"
+        mc:Ignorable="d"
+        Name="Meter"              
+        Title="Meters" Height="800" Width="1000" WindowStartupLocation="CenterScreen" WindowState="Maximized">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="2*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="22*"/>
+            <ColumnDefinition Width="25*"/>
+            <ColumnDefinition Width="25*"/>
+            <ColumnDefinition Width="28*"/>
+        </Grid.ColumnDefinitions>
+
+        <StackPanel Orientation="Vertical"
+                    Grid.Row="0"
+                    Grid.ColumnSpan="4"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Top">
+
+            <TextBox Margin="5" 
+                     Width="800"
+                     Height="40"
+                     FontSize="25"
+                     Controls:ControlsHelper.ContentCharacterCasing="Upper" />
+            
+            <Button Margin="5" 
+                    Width="800"
+                    Height="60"
+                    FontSize="25"
+                    Controls:ControlsHelper.ContentCharacterCasing="Upper">
+                <StackPanel Orientation="Horizontal">
+                    <Image Source="images/search.png"
+                           Height="48"
+                           Width="48"/>
+                    <TextBlock>SEARCH</TextBlock>
+                </StackPanel>
+            </Button>
+        </StackPanel>
+        
+        <Label Content="SIM CARD"
+               Margin="5" 
+               Grid.Row="1"
+               Grid.Column="0"
+               Height="40"
+               FontSize="25"
+               Foreground="Blue"
+               HorizontalAlignment="Right"
+               Controls:ControlsHelper.ContentCharacterCasing="Upper" />
+        <TextBox Margin="5" 
+                 Grid.Row="1"
+                 Grid.Column="1"
+                 Width="240"
+                 Height="40"
+                 FontSize="25"
+                 HorizontalAlignment="Left"
+                 Controls:ControlsHelper.ContentCharacterCasing="Upper" />
+
+        <Label Content="X"
+               Margin="5" 
+               Grid.Row="2"
+               Grid.Column="0"
+               Height="40"
+               FontSize="25"
+               Foreground="Blue"
+               HorizontalAlignment="Right"
+               Controls:ControlsHelper.ContentCharacterCasing="Upper" />
+        <TextBox Margin="5" 
+                 Grid.Row="2"
+                 Grid.Column="1"
+                 Width="240"
+                 Height="40"
+                 FontSize="25"
+                 HorizontalAlignment="Left"
+                 Controls:ControlsHelper.ContentCharacterCasing="Upper" />
+
+        <Label Content="Y"
+               Margin="5" 
+               Grid.Row="3"
+               Grid.Column="0"
+               Height="40"
+               FontSize="25"
+               Foreground="Blue"
+               HorizontalAlignment="Right"
+               Controls:ControlsHelper.ContentCharacterCasing="Upper" />
+        <TextBox Margin="5" 
+                 Grid.Row="3"
+                 Grid.Column="1"
+                 Width="240"
+                 Height="40"
+                 FontSize="25"
+                 HorizontalAlignment="Left"
+                 Controls:ControlsHelper.ContentCharacterCasing="Upper" />
+
+        <Label Content="STATUS"
+               Margin="5" 
+               Grid.Row="4"
+               Grid.Column="0"
+               Height="40"
+               FontSize="25"
+               Foreground="Blue"
+               HorizontalAlignment="Right"
+               Controls:ControlsHelper.ContentCharacterCasing="Upper" />
+        <ComboBox Margin="5" 
+                  Grid.Row="4"
+                  Grid.Column="1"
+                  Width="240"
+                  Height="40"
+                  FontSize="25"
+                  HorizontalAlignment="Left"
+                  
+                  Controls:ControlsHelper.ContentCharacterCasing="Upper">
+            <ComboBoxItem IsSelected="True">ACTIVE</ComboBoxItem>
+            <ComboBoxItem>NOT ACTIVE</ComboBoxItem>
+        </ComboBox>
+
+        <Label Content="HCN"
+               Margin="5" 
+               Grid.Row="5"
+               Grid.Column="0"
+               Height="40"
+               FontSize="25"
+               Foreground="Blue"
+               HorizontalAlignment="Right"
+               Controls:ControlsHelper.ContentCharacterCasing="Upper" />
+        <TextBox Margin="5" 
+                 Grid.Row="5"
+                 Grid.Column="1"
+                 Width="240"
+                 Height="40"
+                 FontSize="25"
+                 HorizontalAlignment="Left"
+                 Controls:ControlsHelper.ContentCharacterCasing="Upper" />
+
+        <Label Content="INSTALLATION DATE"
+               Margin="5" 
+               Grid.Row="6"
+               Grid.Column="0"
+               Height="40"
+               FontSize="25"
+               Foreground="Blue"
+               HorizontalAlignment="Right"
+               Controls:ControlsHelper.ContentCharacterCasing="Upper" />
+        <DatePicker Margin="5" 
+                    Grid.Row="6"
+                    Grid.Column="1"
+                    Width="240"
+                    Height="40"
+                    FontSize="25"
+                    HorizontalAlignment="Left"
+                    Controls:ControlsHelper.ContentCharacterCasing="Upper" />
+
+        <Label Content="MAINTENANCE DATE"
+               Margin="5" 
+               Grid.Row="1"
+               Grid.Column="2"
+               Height="40"
+               FontSize="24"
+               Foreground="Blue"
+               HorizontalAlignment="Right"
+               Controls:ControlsHelper.ContentCharacterCasing="Upper" />
+        <DatePicker Margin="5" 
+                    Grid.Row="1"
+                    Grid.Column="3"
+                    Width="240"
+                    Height="40"
+                    FontSize="25"
+                    HorizontalAlignment="Left"
+                    Controls:ControlsHelper.ContentCharacterCasing="Upper" />
+
+        <Label Content="METER TYPE"
+               Margin="5" 
+               Grid.Row="2"
+               Grid.Column="2"
+               Height="40"
+               FontSize="25"
+               Foreground="Blue"
+               HorizontalAlignment="Right"
+               Controls:ControlsHelper.ContentCharacterCasing="Upper" />
+        <StackPanel Orientation="Horizontal"
+                    Grid.Row="2"
+                    Grid.Column="3">
+            <ComboBox Margin="5" 
+                  Width="240"
+                  Height="40"
+                  FontSize="25"
+                  HorizontalAlignment="Left"
+                  Controls:ControlsHelper.ContentCharacterCasing="Upper">
+            </ComboBox>
+
+            <Button Margin="0 2 0 2"
+                    Controls:ControlsHelper.ContentCharacterCasing="Upper">
+                <StackPanel Orientation="Horizontal">
+                    <Image Source="images/add_edit.png"
+                           Height="48"
+                           Width="48"/>
+                </StackPanel>
+            </Button>
+        </StackPanel>
+        
+        <Label Content="METER SIZE"
+               Margin="5" 
+               Grid.Row="3"
+               Grid.Column="2"
+               Height="40"
+               FontSize="25"
+               Foreground="Blue"
+               HorizontalAlignment="Right"
+               Controls:ControlsHelper.ContentCharacterCasing="Upper" />
+        <StackPanel Orientation="Horizontal"
+                    Grid.Row="3"
+                    Grid.Column="3">
+            <ComboBox Margin="5" 
+                      Width="240"
+                      Height="40"
+                      FontSize="25"
+                      HorizontalAlignment="Left"
+                      Controls:ControlsHelper.ContentCharacterCasing="Upper">
+            </ComboBox>
+
+            <Button Margin="0 2 0 2"
+                Controls:ControlsHelper.ContentCharacterCasing="Upper">
+                <StackPanel Orientation="Horizontal">
+                    <Image Source="images/add_edit.png"
+                           Height="48"
+                           Width="48"/>
+                </StackPanel>
+            </Button>
+        </StackPanel>
+
+        <Label Content="METER PROTOCOL"
+               Margin="5" 
+               Grid.Row="4"
+               Grid.Column="2"
+               Height="40"
+               FontSize="25"
+               Foreground="Blue"
+               HorizontalAlignment="Right"
+               Controls:ControlsHelper.ContentCharacterCasing="Upper" />
+        <StackPanel Orientation="Horizontal"
+                    Grid.Row="4"
+                    Grid.Column="3">
+            <ComboBox Margin="5" 
+                      Width="240"
+                      Height="40"
+                      FontSize="25"
+                      HorizontalAlignment="Left"
+                      Controls:ControlsHelper.ContentCharacterCasing="Upper">
+            </ComboBox>
+
+            <Button Margin="0 2 0 2"
+                    Controls:ControlsHelper.ContentCharacterCasing="Upper">
+                <StackPanel Orientation="Horizontal">
+                    <Image Source="images/add_edit.png"
+                           Height="48"
+                           Width="48"/>
+                </StackPanel>
+            </Button>
+        </StackPanel>
+
+        <Label Content="DMZ"
+               Margin="5" 
+               Grid.Row="5"
+               Grid.Column="2"
+               Height="40"
+               FontSize="25"
+               Foreground="Blue"
+               HorizontalAlignment="Right"
+               Controls:ControlsHelper.ContentCharacterCasing="Upper" />
+        <StackPanel Orientation="Horizontal"
+                    Grid.Row="5"
+                    Grid.Column="3">
+            <ComboBox Margin="5" 
+                      Width="240"
+                      Height="40"
+                      FontSize="25"
+                      HorizontalAlignment="Left"
+                      Controls:ControlsHelper.ContentCharacterCasing="Upper">
+            </ComboBox>
+
+            <Button Margin="0 2 0 2"
+                    Controls:ControlsHelper.ContentCharacterCasing="Upper">
+                <StackPanel Orientation="Horizontal">
+                    <Image Source="images/add_edit.png"
+                           Height="48"
+                           Width="48"/>
+                </StackPanel>
+            </Button>
+        </StackPanel>
+
+        <Label Content="CITY"
+               Margin="5" 
+               Grid.Row="6"
+               Grid.Column="2"
+               Height="40"
+               FontSize="25"
+               Foreground="Blue"
+               HorizontalAlignment="Right"
+               Controls:ControlsHelper.ContentCharacterCasing="Upper" />
+
+        <StackPanel Orientation="Horizontal"
+                    Grid.Row="6"
+                    Grid.Column="3">
+            <ComboBox Margin="5" 
+                      Width="240"
+                      Height="40"
+                      FontSize="25"
+                      HorizontalAlignment="Left"
+                      Controls:ControlsHelper.ContentCharacterCasing="Upper">
+            </ComboBox>
+
+            <Button Margin="0 2 0 2"
+                    Controls:ControlsHelper.ContentCharacterCasing="Upper">
+                <StackPanel Orientation="Horizontal">
+                    <Image Source="images/add_edit.png"
+                           Height="48"
+                           Width="48"/>
+                </StackPanel>
+            </Button>
+        </StackPanel>
+
+        <Button Margin="2 0 2 2" 
+                Width="160"
+                Height="60"
+                FontSize="25"
+                Grid.Row="9"
+                Grid.ColumnSpan="4"
+                Controls:ControlsHelper.ContentCharacterCasing="Upper">
+            <StackPanel Orientation="Horizontal">
+                <Image Source="images/save.png"
+                       Height="48"
+                       Width="48"/>
+                <TextBlock>SAVE</TextBlock>
+            </StackPanel>
+        </Button>
+    </Grid>
+</Controls:MetroWindow>
