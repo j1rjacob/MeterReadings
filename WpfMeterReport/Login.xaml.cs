@@ -26,7 +26,7 @@ namespace WpfMeterReport
             {
                 var f = new MainWindow();
                 f.Show();
-                this.Hide();
+                this.Close();
             }
             else
             {

@@ -26,5 +26,12 @@ namespace WpfMeterReport
             f.Show();
             this.Hide();
         }
+
+        private void ButtonLogOut_OnClick(object sender, RoutedEventArgs e)
+        {
+            var f = new Login();
+            f.Show();
+            this.Close();
+        }
     }
 }

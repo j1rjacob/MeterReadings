@@ -9,8 +9,22 @@
         Title="Meter Report"
         HorizontalAlignment="Center"
         VerticalAlignment="Center"
+        ShowTitleBar="True"
         Height="600"
-        Width="800" WindowState="Maximized" WindowStartupLocation="CenterScreen">
+        Width="800" 
+        WindowState="Maximized" 
+        WindowStartupLocation="CenterScreen" 
+        Icon="images/login.png">
+    
+    <Controls:MetroWindow.RightWindowCommands>
+        <Controls:WindowCommands>
+            <Button>
+                <Image Source="images/user_group.png"
+                       Height="24"
+                       Width="24"/>
+            </Button>
+        </Controls:WindowCommands>
+    </Controls:MetroWindow.RightWindowCommands>
     <Grid Background="White">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
@@ -61,9 +75,12 @@
                     Width="280"
                     Height="60"
                     FontSize="25"
+                    Name="ButtonLogOut"
+                    Click="ButtonLogOut_OnClick"
                     Controls:ControlsHelper.ContentCharacterCasing="Upper"/>
             <Label Content="Technical Meter Company ®"
-                   Margin="2 300 2 0"
+                   Margin="2 450 2 0"
+                   VerticalAlignment="Bottom"
                    Foreground="Blue"/>
         </StackPanel>
     </Grid>
