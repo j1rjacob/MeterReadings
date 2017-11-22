@@ -56,6 +56,8 @@
                     Width="160"
                     Height="60"
                     FontSize="25"
+                    Click="ButtonBack_OnClick"
+                    Name="ButtonBack"
                     Controls:ControlsHelper.ContentCharacterCasing="Upper">
                 <StackPanel Orientation="Horizontal">
                     <Image Source="images/back.png"

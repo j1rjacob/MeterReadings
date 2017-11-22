@@ -14,9 +14,9 @@
             <RowDefinition Height="50"/>
             <RowDefinition Height="50"/>
             <RowDefinition Height="10"/>
-            <RowDefinition Height="50"/>
+            <RowDefinition Height="60"/>
             <RowDefinition Height="10"/>
-            <RowDefinition Height="50"/>
+            <RowDefinition Height="60"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="200"></ColumnDefinition>
@@ -35,7 +35,7 @@
                    HorizontalAlignment="Left"
                    VerticalAlignment="Bottom"
                    FontSize="25"
-                   Foreground="Blue"
+                   Name="TextBoxUsername"
                    Width="500"/>
         <Label Content="PASSWORD"
                Grid.Row="2"
@@ -48,17 +48,34 @@
                    Grid.Column="1"
                    HorizontalAlignment="Left"
                    VerticalAlignment="Bottom"
-                   Foreground="Blue"
                    FontSize="25"
+                   Name="PasswordBoxUser"
                    Width="500"/>
-        <Button Content="LOGIN"
-                Grid.Row="5"
+        <Button Grid.Row="5"
                 Grid.Column="1"
                 FontSize="25"
-                Style="{StaticResource AccentedSquareButtonStyle}" Controls:ControlsHelper.ContentCharacterCasing="Upper"/>
-        <Button Content="CANCEL"
-                Grid.Row="7"
+                Height="60"
+                Name="ButtonLogin"
+                Click="ButtonLogin_OnClick"
+                Style="{StaticResource AccentedSquareButtonStyle}" Controls:ControlsHelper.ContentCharacterCasing="Upper">
+            <StackPanel Orientation="Horizontal">
+                <Image Source="images/login.png"
+                       Height="48"
+                       Width="48"/>
+                <TextBlock>  LOGIN</TextBlock>
+            </StackPanel>
+        </Button>
+        <Button Grid.Row="7"
                 FontSize="25"
-                Grid.Column="1"/>
+                Name="ButtonCancel"
+                Click="ButtonCancel_OnClick"
+                Grid.Column="1">
+            <StackPanel Orientation="Horizontal">
+                <Image Source="images/cancel.png"
+                       Height="48"
+                       Width="48"/>
+                <TextBlock>CANCEL</TextBlock>
+            </StackPanel>
+        </Button>
     </Grid>
 </Controls:MetroWindow >

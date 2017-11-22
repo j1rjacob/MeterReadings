@@ -61,5 +61,12 @@ namespace WpfMeterReport
             MeterCollection meters = new MeterCollection();
             DataGridMeter.ItemsSource = meters.LoadMeters();
         }
+
+        private void ButtonBack_OnClick(object sender, RoutedEventArgs e)
+        {
+            var f = new MainWindow();
+            f.Show();
+            this.Hide();
+        }
     }
 }

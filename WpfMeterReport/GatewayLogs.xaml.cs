@@ -62,5 +62,12 @@ namespace WpfMeterReport
             GatewayCollection authors = new GatewayCollection();
             DataGridGatewayLogs.ItemsSource = authors.LoadGateways();
         }
+
+        private void ButtonBack_OnClick(object sender, RoutedEventArgs e)
+        {
+            var f = new MainWindow();
+            f.Show();
+            this.Hide();
+        }
     }
 }

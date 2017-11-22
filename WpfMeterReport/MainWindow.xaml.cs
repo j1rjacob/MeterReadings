@@ -1,4 +1,5 @@
 ﻿using MahApps.Metro.Controls;
+using System.Windows;
 
 namespace WpfMeterReport
 {
@@ -10,6 +11,20 @@ namespace WpfMeterReport
         public MainWindow()
         {
             InitializeComponent();
+        }
+
+        private void ButtonGateway_OnClick(object sender, RoutedEventArgs e)
+        {
+            var f = new GatewayLogs();
+            f.Show();
+            this.Hide();
+        }
+
+        private void ButtonMeter_OnClick(object sender, RoutedEventArgs e)
+        {
+            var f = new MeterReadings();
+            f.Show();
+            this.Hide();
         }
     }
 }
