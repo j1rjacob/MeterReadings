@@ -204,6 +204,8 @@
             </ComboBox>
 
             <Button Margin="0 2 0 2"
+                    Name="ButtonMeterType"
+                    Click="ButtonMeterType_OnClick"
                     Controls:ControlsHelper.ContentCharacterCasing="Upper">
                 <StackPanel Orientation="Horizontal">
                     <Image Source="images/add_edit.png"

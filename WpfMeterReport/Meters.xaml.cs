@@ -31,5 +31,11 @@ namespace WpfMeterReport
             f.Show();
             this.Close();
         }
+
+        private void ButtonMeterType_OnClick(object sender, RoutedEventArgs e)
+        {
+            var f = new MeterType();
+            f.ShowDialog();
+        }
     }
 }
