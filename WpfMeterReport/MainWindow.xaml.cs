@@ -17,19 +17,26 @@ namespace WpfMeterReport
         {
             var f = new GatewayLogs();
             f.Show();
-            this.Hide();
+            this.Close();
         }
 
         private void ButtonMeter_OnClick(object sender, RoutedEventArgs e)
         {
             var f = new MeterReadings();
             f.Show();
-            this.Hide();
+            this.Close();
         }
 
         private void ButtonLogOut_OnClick(object sender, RoutedEventArgs e)
         {
             var f = new Login();
+            f.Show();
+            this.Close();
+        }
+
+        private void ButtonUser_OnClick(object sender, RoutedEventArgs e)
+        {
+            var f = new User();
             f.Show();
             this.Close();
         }

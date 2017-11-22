@@ -18,7 +18,8 @@
     
     <Controls:MetroWindow.RightWindowCommands>
         <Controls:WindowCommands>
-            <Button>
+            <Button Name="ButtonUser"
+                    Click="ButtonUser_OnClick">
                 <Image Source="images/user_group.png"
                        Height="24"
                        Width="24"/>

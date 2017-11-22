@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNet.Identity;
+using System;
 using System.Windows;
 using TMF.Reports.BLL;
 using TMF.Reports.Model;
@@ -26,7 +27,7 @@ namespace WpfMeterReport
             {
                 var f = new MainWindow();
                 f.Show();
-                this.Close();
+                this.Hide();
             }
             else
             {
@@ -37,6 +38,12 @@ namespace WpfMeterReport
         private void ButtonCancel_OnClick(object sender, RoutedEventArgs e)
         {
             throw new System.NotImplementedException();
+        }
+
+        protected override void OnClosed(EventArgs e)
+        {
+            base.OnClosed(e);
+            Application.Current.Shutdown();
         }
     }
 }
