@@ -9,45 +9,103 @@
         Title="User" Height="800" Width="1000">
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="700*"/>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="30*"/>
             <RowDefinition Height="100"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width=".2*"/>
-            <ColumnDefinition Width="8*"/>
+            <ColumnDefinition Width="2*"/>
+            <ColumnDefinition Width="2*"/>
+            <ColumnDefinition Width="4*"/>
             <ColumnDefinition Width=".2*"/>
         </Grid.ColumnDefinitions>
-        <DataGrid Grid.Row="0"
-                  Grid.Column="1"
-                  HorizontalAlignment="Center"
-                  VerticalAlignment="Top"
-                  Style="{StaticResource AzureDataGrid}"
-                  AutoGenerateColumns="False"
-                  Margin="5"
-                  FontSize="25"
-                  SelectionMode="Extended"
-                  SelectionUnit="FullRow"
-                  Name="DataGridGatewayLogs">
-            <DataGrid.Columns>
-                <DataGridTextColumn Header="MAC Address" 
-                                    Binding="{Binding MACAddress}"
-                                    Width="25*"/>
-                <DataGridTextColumn Header="Latest Log Date" 
-                                    Binding="{Binding LatestDate}"
-                                    Width="25*"/>
-                <DataGridTextColumn Header="Meter Count" 
-                                    Binding="{Binding MeterCount}"
-                                    Width="25*"/>
-                <DataGridTextColumn Header="City"
-                                    Binding="{Binding City}"
-                                    Width="25*"/>
-            </DataGrid.Columns>
 
-        </DataGrid>
+        <Label Content="USERNAME"
+               Margin="5" 
+               Grid.Row="0"
+               Grid.Column="2"
+               Height="40"
+               FontSize="25"
+               Foreground="Blue"
+               HorizontalAlignment="Left"
+               Controls:ControlsHelper.ContentCharacterCasing="Upper" />
+        <TextBox Margin="5" 
+                 Grid.Row="1"
+                 Grid.Column="2"
+                 Width="240"
+                 Height="40"
+                 FontSize="25"
+                 HorizontalAlignment="Left"
+                 Controls:ControlsHelper.ContentCharacterCasing="Upper" />
+
+        <Label Content="PASSWORD"
+               Margin="5" 
+               Grid.Row="2"
+               Grid.Column="2"
+               Height="40"
+               FontSize="25"
+               Foreground="Blue"
+               HorizontalAlignment="Left"
+               Controls:ControlsHelper.ContentCharacterCasing="Upper" />
+        <TextBox Margin="5" 
+                 Grid.Row="3"
+                 Grid.Column="2"
+                 Width="240"
+                 Height="40"
+                 FontSize="25"
+                 HorizontalAlignment="Left"
+                 Controls:ControlsHelper.ContentCharacterCasing="Upper" />
+
+        <Label Content="FULL NAME"
+               Margin="5" 
+               Grid.Row="4"
+               Grid.Column="2"
+               Height="40"
+               FontSize="25"
+               Foreground="Blue"
+               HorizontalAlignment="Left"
+               Controls:ControlsHelper.ContentCharacterCasing="Upper" />
+        <TextBox Margin="5" 
+                 Grid.Row="5"
+                 Grid.Column="2"
+                 Width="240"
+                 Height="40"
+                 FontSize="25"
+                 HorizontalAlignment="Left"
+                 Controls:ControlsHelper.ContentCharacterCasing="Upper" />
+        
+        <Label Content="ROLE"
+               Margin="5" 
+               Grid.Row="6"
+               Grid.Column="2"
+               Height="40"
+               FontSize="25"
+               Foreground="Blue"
+               HorizontalAlignment="Left"
+               Controls:ControlsHelper.ContentCharacterCasing="Upper" />
+        <ComboBox Margin="5" 
+                  Grid.Row="7"
+                  Grid.Column="2"
+                  Width="240"
+                  Height="40"
+                  FontSize="25"
+                  HorizontalAlignment="Left"
+                  VerticalAlignment="Top"
+                  Controls:ControlsHelper.ContentCharacterCasing="Upper">
+            <ComboBoxItem IsSelected="True">ADMINISTRATOR</ComboBoxItem>
+            <ComboBoxItem>ENCODER</ComboBoxItem>
+        </ComboBox>
 
         <StackPanel Orientation="Horizontal"
-                    Grid.Row="1"
-                    Grid.Column="1"
+                    Grid.Row="8"
+                    Grid.ColumnSpan="4"
                     HorizontalAlignment="Center"
                     VerticalAlignment="Top">
             <Button Margin="2 0 2 2" 
@@ -111,15 +169,15 @@
                 </StackPanel>
             </Button>
             <Button Margin="2 0 2 2" 
-                    Width="160"
+                    Width="165"
                     Height="60"
                     FontSize="25"
                     Controls:ControlsHelper.ContentCharacterCasing="Upper">
                 <StackPanel Orientation="Horizontal">
-                    <Image Source="images/reload.png"
+                    <Image Source="images/user_refresh.png"
                            Height="48"
                            Width="48"/>
-                    <TextBlock>RELOAD</TextBlock>
+                    <TextBlock>REFRESH</TextBlock>
                 </StackPanel>
             </Button>
         </StackPanel>
