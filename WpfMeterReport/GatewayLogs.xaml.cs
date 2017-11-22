@@ -5,7 +5,7 @@ using System.Windows;
 
 namespace WpfMeterReport
 {
-    public class Gateway
+    public class GatewayList
     {
         public string MACAddress { get; set; }
         public DateTime LatestDate { get; set; }
@@ -19,24 +19,24 @@ namespace WpfMeterReport
         /// List of Authors  
         /// </summary>  
         /// <returns></returns>  
-        public List<Gateway> LoadGateways()
+        public List<GatewayList> LoadGateways()
         {
-            List<Gateway> gateways = new List<Gateway>();
-            gateways.Add(new Gateway()
+            List<GatewayList> gateways = new List<GatewayList>();
+            gateways.Add(new GatewayList()
             {
                 MACAddress = "2B:EE:A2:B3:C2:88:B3:C2",
                 LatestDate = DateTime.Now,
                 MeterCount = 5,
                 City = "Al Riyadh"
             });
-            gateways.Add(new Gateway()
+            gateways.Add(new GatewayList()
             {
                 MACAddress = "2B:EE:A2:B3:C2:88:B3:C4",
                 LatestDate = DateTime.Now,
                 MeterCount = 5,
                 City = "Al Jeddah"
             });
-            gateways.Add(new Gateway()
+            gateways.Add(new GatewayList()
             {
                 MACAddress = "2C:EE:A2:B3:C2:88:B3:C2",
                 LatestDate = DateTime.Now,
@@ -67,7 +67,21 @@ namespace WpfMeterReport
         {
             var f = new MainWindow();
             f.Show();
-            this.Hide();
+            this.Close();
+        }
+
+        private void ButtonNew_OnClick(object sender, RoutedEventArgs e)
+        {
+            var f = new Gateway(true);
+            f.Show();
+            this.Close();
+        }
+
+        private void ButtonEdit_OnClick(object sender, RoutedEventArgs e)
+        {
+            var f = new Gateway(false);
+            f.Show();
+            this.Close();
         }
     }
 }

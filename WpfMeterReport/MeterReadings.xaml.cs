@@ -66,7 +66,21 @@ namespace WpfMeterReport
         {
             var f = new MainWindow();
             f.Show();
-            this.Hide();
+            this.Close();
+        }
+
+        private void ButtonNew_OnClick(object sender, RoutedEventArgs e)
+        {
+            var f = new Meters(true);
+            f.Show();
+            this.Close();
+        }
+
+        private void ButtonEdit_OnClick(object sender, RoutedEventArgs e)
+        {
+            var f = new Meters(false);
+            f.Show();
+            this.Close();
         }
     }
 }
