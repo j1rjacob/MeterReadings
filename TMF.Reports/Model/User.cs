@@ -10,6 +10,7 @@ namespace TMF.Reports.Model
         public string PasswordHash { get; set; }
         public string FullName { get; set; }
         public string Role { get; set; }
+        public string Locked { get; set; }
        
         public User()
         {
@@ -19,13 +20,15 @@ namespace TMF.Reports.Model
             base.IsDeleted = false;
         }
 
-        public User(int Id, string UserName, string PasswordHash, string FullName, string Role)
+        public User(int Id, string UserName, string PasswordHash, 
+                    string FullName, string Role, string Locked)
         {
             this.Id = Id;
             this.UserName = UserName;
             this.PasswordHash = PasswordHash;
             this.FullName = FullName;
             this.Role = Role;
+            this.Locked = Locked;
             base.IsNew = false;
             base.IsDirty = true;
             base.IsDeleted = false;
@@ -48,6 +51,9 @@ namespace TMF.Reports.Model
                     break;
                 case "role":
                     return this.Role;
+                    break;
+                case "locked":
+                    return this.Locked;
                     break;
                 default:
                     return null;
@@ -72,6 +78,9 @@ namespace TMF.Reports.Model
                     break;
                 case "role":
                     this.Role = CastDBNull.To<string>(value, "");
+                    break;
+                case "locked":
+                    this.Locked = CastDBNull.To<string>(value, "");
                     break;
                 default:
                     //null;

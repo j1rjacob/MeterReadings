@@ -28,6 +28,7 @@ namespace TMF.Reports.DAL
                 info.PasswordHash = CastDBNull.To<string>(reader["PasswordHash"], "");
                 info.FullName = CastDBNull.To<string>(reader["FullName"], "");
                 info.Role = CastDBNull.To<string>(reader["Role"], "");
+                info.Locked = CastDBNull.To<string>(reader["Locked"], "");
                 info.IsNew = false;
                 info.IsDirty = true;
             }

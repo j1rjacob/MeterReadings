@@ -12,13 +12,15 @@ namespace MeterReports
 
         private void MainForm_Load(object sender, EventArgs e)
         {
-            panel1.Width = Convert.ToInt32(Convert.ToDecimal(Screen.PrimaryScreen.Bounds.Width) * 0.80m);
-            panel2.Width = Convert.ToInt32(Convert.ToDecimal(Screen.PrimaryScreen.Bounds.Width) * 0.20m);
-         
-        
-            //MessageBox.Show(Screen.PrimaryScreen.Bounds.Width.ToString());
-            //MessageBox.Show(panel1.Width.ToString());
+            panel1.Width = Convert.ToInt32(Convert.ToDecimal(Screen.PrimaryScreen.Bounds.Width) * 0.90m);
+            treeView1.Width = Convert.ToInt32(Convert.ToDecimal(Screen.PrimaryScreen.Bounds.Width) * 0.10m);
         }
-        
+
+        private void treeView1_DoubleClick(object sender, EventArgs e)
+        {
+            TreeNode node = treeView1.SelectedNode;
+            
+            MessageBox.Show(string.Format("You selected: {0}", node.Text));
+        }
     }
 }
