@@ -86,6 +86,7 @@
             this.DataGridViewMeterReading = new System.Windows.Forms.DataGridView();
             this.ColId = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColSerialNumber = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColReadingDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColCSVType = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColReadingValue = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColDescription = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -101,6 +102,11 @@
             this.ColAppBusyAlr = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColAnyAppErrAlr = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColAbnCondAlr = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColPermErrAlr = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColTempErrAlr = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColSpecErr1Alr = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColSpecErr2Alr = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColSpecErr3Alr = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.TabControlMeterReading.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -690,6 +696,7 @@
             this.DataGridViewMeterReading.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.ColId,
             this.ColSerialNumber,
+            this.ColReadingDate,
             this.ColCSVType,
             this.ColReadingValue,
             this.ColDescription,
@@ -704,115 +711,181 @@
             this.ColFlowRateValue,
             this.ColAppBusyAlr,
             this.ColAnyAppErrAlr,
-            this.ColAbnCondAlr});
+            this.ColAbnCondAlr,
+            this.ColPermErrAlr,
+            this.ColTempErrAlr,
+            this.ColSpecErr1Alr,
+            this.ColSpecErr2Alr,
+            this.ColSpecErr3Alr});
             this.DataGridViewMeterReading.Location = new System.Drawing.Point(8, 31);
             this.DataGridViewMeterReading.Name = "DataGridViewMeterReading";
             this.DataGridViewMeterReading.ReadOnly = true;
+            this.DataGridViewMeterReading.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.DataGridViewMeterReading.Size = new System.Drawing.Size(872, 457);
             this.DataGridViewMeterReading.TabIndex = 81;
             this.DataGridViewMeterReading.SelectionChanged += new System.EventHandler(this.DataGridViewMeterReading_SelectionChanged);
             // 
             // ColId
             // 
+            this.ColId.DataPropertyName = "Id";
             this.ColId.HeaderText = "Id";
             this.ColId.Name = "ColId";
             this.ColId.ReadOnly = true;
+            this.ColId.Visible = false;
             // 
             // ColSerialNumber
             // 
+            this.ColSerialNumber.DataPropertyName = "SerialNumber";
             this.ColSerialNumber.HeaderText = "SerialNumber";
             this.ColSerialNumber.Name = "ColSerialNumber";
             this.ColSerialNumber.ReadOnly = true;
             // 
+            // ColReadingDate
+            // 
+            this.ColReadingDate.DataPropertyName = "ReadingDate";
+            this.ColReadingDate.HeaderText = "ReadingDate";
+            this.ColReadingDate.Name = "ColReadingDate";
+            this.ColReadingDate.ReadOnly = true;
+            // 
             // ColCSVType
             // 
+            this.ColCSVType.DataPropertyName = "CSVType";
             this.ColCSVType.HeaderText = "CSVType";
             this.ColCSVType.Name = "ColCSVType";
             this.ColCSVType.ReadOnly = true;
             // 
             // ColReadingValue
             // 
+            this.ColReadingValue.DataPropertyName = "ReadingValue";
             this.ColReadingValue.HeaderText = "ReadingValue";
             this.ColReadingValue.Name = "ColReadingValue";
             this.ColReadingValue.ReadOnly = true;
             // 
             // ColDescription
             // 
+            this.ColDescription.DataPropertyName = "Description";
             this.ColDescription.HeaderText = "Description";
             this.ColDescription.Name = "ColDescription";
             this.ColDescription.ReadOnly = true;
             // 
             // ColLowBattAlr
             // 
+            this.ColLowBattAlr.DataPropertyName = "LowBatteryAlr";
             this.ColLowBattAlr.HeaderText = "LowBattAlr";
             this.ColLowBattAlr.Name = "ColLowBattAlr";
             this.ColLowBattAlr.ReadOnly = true;
             // 
             // ColLeakAlr
             // 
+            this.ColLeakAlr.DataPropertyName = "LeakAlr";
             this.ColLeakAlr.HeaderText = "LeakAlr";
             this.ColLeakAlr.Name = "ColLeakAlr";
             this.ColLeakAlr.ReadOnly = true;
             // 
             // ColMagneticTmprAlr
             // 
+            this.ColMagneticTmprAlr.DataPropertyName = "MagneticTamperAlr";
             this.ColMagneticTmprAlr.HeaderText = "MagneticTmprAlr";
             this.ColMagneticTmprAlr.Name = "ColMagneticTmprAlr";
             this.ColMagneticTmprAlr.ReadOnly = true;
             // 
             // ColErrorAlr
             // 
+            this.ColErrorAlr.DataPropertyName = "MeterErrorAlr";
             this.ColErrorAlr.HeaderText = "ErrorAlr";
             this.ColErrorAlr.Name = "ColErrorAlr";
             this.ColErrorAlr.ReadOnly = true;
             // 
             // ColBackFlowAlr
             // 
+            this.ColBackFlowAlr.DataPropertyName = "BackFlowAlr";
             this.ColBackFlowAlr.HeaderText = "BackFlowAlr";
             this.ColBackFlowAlr.Name = "ColBackFlowAlr";
             this.ColBackFlowAlr.ReadOnly = true;
             // 
             // ColBrokenPipeAlr
             // 
+            this.ColBrokenPipeAlr.DataPropertyName = "BrokenPipeAlr";
             this.ColBrokenPipeAlr.HeaderText = "BrokenPipeAlr";
             this.ColBrokenPipeAlr.Name = "ColBrokenPipeAlr";
             this.ColBrokenPipeAlr.ReadOnly = true;
             // 
             // ColEmptyPipeAlr
             // 
+            this.ColEmptyPipeAlr.DataPropertyName = "EmptyPipeAlr";
             this.ColEmptyPipeAlr.HeaderText = "EmptyPipeAlr";
             this.ColEmptyPipeAlr.Name = "ColEmptyPipeAlr";
             this.ColEmptyPipeAlr.ReadOnly = true;
             // 
             // ColSpecificErr
             // 
+            this.ColSpecificErr.DataPropertyName = "SpecificErr";
             this.ColSpecificErr.HeaderText = "SpecificErr";
             this.ColSpecificErr.Name = "ColSpecificErr";
             this.ColSpecificErr.ReadOnly = true;
             // 
             // ColFlowRateValue
             // 
+            this.ColFlowRateValue.DataPropertyName = "FlowRateValue";
             this.ColFlowRateValue.HeaderText = "FlowRateValue";
             this.ColFlowRateValue.Name = "ColFlowRateValue";
             this.ColFlowRateValue.ReadOnly = true;
             // 
             // ColAppBusyAlr
             // 
+            this.ColAppBusyAlr.DataPropertyName = "AppBusyAlr";
             this.ColAppBusyAlr.HeaderText = "AppBusyAlr";
             this.ColAppBusyAlr.Name = "ColAppBusyAlr";
             this.ColAppBusyAlr.ReadOnly = true;
             // 
             // ColAnyAppErrAlr
             // 
+            this.ColAnyAppErrAlr.DataPropertyName = "AnyAppErrorAlr";
             this.ColAnyAppErrAlr.HeaderText = "AnyAppErrAlr";
             this.ColAnyAppErrAlr.Name = "ColAnyAppErrAlr";
             this.ColAnyAppErrAlr.ReadOnly = true;
             // 
             // ColAbnCondAlr
             // 
+            this.ColAbnCondAlr.DataPropertyName = "AbnormalConditionAlr";
             this.ColAbnCondAlr.HeaderText = "AbnCondAlr";
             this.ColAbnCondAlr.Name = "ColAbnCondAlr";
             this.ColAbnCondAlr.ReadOnly = true;
+            // 
+            // ColPermErrAlr
+            // 
+            this.ColPermErrAlr.DataPropertyName = "PermanentErrorAlr";
+            this.ColPermErrAlr.HeaderText = "PermErrAlr";
+            this.ColPermErrAlr.Name = "ColPermErrAlr";
+            this.ColPermErrAlr.ReadOnly = true;
+            // 
+            // ColTempErrAlr
+            // 
+            this.ColTempErrAlr.DataPropertyName = "TemporaryErrorAlr";
+            this.ColTempErrAlr.HeaderText = "TempErrAlr";
+            this.ColTempErrAlr.Name = "ColTempErrAlr";
+            this.ColTempErrAlr.ReadOnly = true;
+            // 
+            // ColSpecErr1Alr
+            // 
+            this.ColSpecErr1Alr.DataPropertyName = "SpecificError1Alr";
+            this.ColSpecErr1Alr.HeaderText = "SpecErr1Alr";
+            this.ColSpecErr1Alr.Name = "ColSpecErr1Alr";
+            this.ColSpecErr1Alr.ReadOnly = true;
+            // 
+            // ColSpecErr2Alr
+            // 
+            this.ColSpecErr2Alr.DataPropertyName = "SpecificError2Alr";
+            this.ColSpecErr2Alr.HeaderText = "SpecErr2Alr";
+            this.ColSpecErr2Alr.Name = "ColSpecErr2Alr";
+            this.ColSpecErr2Alr.ReadOnly = true;
+            // 
+            // ColSpecErr3Alr
+            // 
+            this.ColSpecErr3Alr.DataPropertyName = "SpecificError3Alr";
+            this.ColSpecErr3Alr.HeaderText = "SpecErr3Alr";
+            this.ColSpecErr3Alr.Name = "ColSpecErr3Alr";
+            this.ColSpecErr3Alr.ReadOnly = true;
             // 
             // MeterReading
             // 
@@ -895,6 +968,7 @@
         private System.Windows.Forms.TextBox TextBoxEmptyPipeAlr;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColId;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColSerialNumber;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColReadingDate;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColCSVType;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColReadingValue;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColDescription;
@@ -910,5 +984,10 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn ColAppBusyAlr;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColAnyAppErrAlr;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColAbnCondAlr;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColPermErrAlr;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColTempErrAlr;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColSpecErr1Alr;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColSpecErr2Alr;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColSpecErr3Alr;
     }
 }

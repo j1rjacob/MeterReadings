@@ -33,6 +33,7 @@ namespace MeterReports
             TextBoxDescription.Enabled = true;
             TextBoxLowBattAlr.Enabled = true;
             TextBoxLeakAlr.Enabled = true;
+            TextBoxMagneticTmprAlr.Enabled = true;
             TextBoxErrorAlr.Enabled = true;
             TextBoxBackflowAlr.Enabled = true;
             TextBoxBrokenPipeAlr.Enabled = true;
@@ -57,6 +58,7 @@ namespace MeterReports
             TextBoxDescription.Text = "";
             TextBoxLowBattAlr.Text = "";
             TextBoxLeakAlr.Text = "";
+            TextBoxMagneticTmprAlr.Text = "";
             TextBoxErrorAlr.Text = "";
             TextBoxBackflowAlr.Text = "";
             TextBoxBrokenPipeAlr.Text = "";
@@ -82,6 +84,7 @@ namespace MeterReports
             TextBoxDescription.Enabled = true;
             TextBoxLowBattAlr.Enabled = true;
             TextBoxLeakAlr.Enabled = true;
+            TextBoxMagneticTmprAlr.Enabled = true;
             TextBoxErrorAlr.Enabled = true;
             TextBoxBackflowAlr.Enabled = true;
             TextBoxBrokenPipeAlr.Enabled = true;
@@ -157,6 +160,7 @@ namespace MeterReports
                 TextBoxDescription.Text = meterReading.Description;
                 TextBoxLowBattAlr.Text = meterReading.LowBatteryAlr.ToString();
                 TextBoxLeakAlr.Text = meterReading.LeakAlr.ToString();
+                TextBoxMagneticTmprAlr.Text = meterReading.MagneticTamperAlr.ToString();
                 TextBoxErrorAlr.Text = meterReading.MeterErrorAlr.ToString();
                 TextBoxBackflowAlr.Text = meterReading.BackFlowAlr.ToString();
                 TextBoxBrokenPipeAlr.Text = meterReading.BrokenPipeAlr.ToString();
@@ -188,9 +192,10 @@ namespace MeterReports
                     ReadingDate = Convert.ToDateTime(TextBoxReadingDate.Text),
                     CSVType = TextBoxCsvType.Text,
                     ReadingValue = TextBoxReadingValue.Text,
+                    Description = TextBoxDescription.Text,
                     LowBatteryAlr = Convert.ToInt32(TextBoxLowBattAlr.Text),
                     LeakAlr = Convert.ToInt32(TextBoxLeakAlr.Text),
-                    MagneticTamperAlr = Convert.ToInt32(TextBoxLeakAlr.Text),
+                    MagneticTamperAlr = Convert.ToInt32(TextBoxMagneticTmprAlr.Text),
                     MeterErrorAlr = Convert.ToInt32(TextBoxErrorAlr.Text),
                     BackFlowAlr = Convert.ToInt32(TextBoxBackflowAlr.Text),
                     BrokenPipeAlr = Convert.ToInt32(TextBoxBrokenPipeAlr.Text),
@@ -241,6 +246,7 @@ namespace MeterReports
                     ReadingDate = Convert.ToDateTime(TextBoxReadingDate.Text),
                     CSVType = TextBoxCsvType.Text,
                     ReadingValue = TextBoxReadingValue.Text,
+                    Description = TextBoxDescription.Text,
                     LowBatteryAlr = Convert.ToInt32(TextBoxLowBattAlr.Text),
                     LeakAlr = Convert.ToInt32(TextBoxLeakAlr.Text),
                     MagneticTamperAlr = Convert.ToInt32(TextBoxLeakAlr.Text),
@@ -292,6 +298,7 @@ namespace MeterReports
             TextBoxDescription.Enabled = false;
             TextBoxLowBattAlr.Enabled = false;
             TextBoxLeakAlr.Enabled = false;
+            TextBoxMagneticTmprAlr.Enabled = false;
             TextBoxErrorAlr.Enabled = false;
             TextBoxBackflowAlr.Enabled = false;
             TextBoxBrokenPipeAlr.Enabled = false;
@@ -314,6 +321,7 @@ namespace MeterReports
             TextBoxDescription.Text = "";
             TextBoxLowBattAlr.Text = "";
             TextBoxLeakAlr.Text = "";
+            TextBoxMagneticTmprAlr.Text = "";
             TextBoxErrorAlr.Text = "";
             TextBoxBackflowAlr.Text = "";
             TextBoxBrokenPipeAlr.Text = "";
@@ -329,7 +337,7 @@ namespace MeterReports
             TextBoxSpecErr2.Text = "";
             TextBoxSpecErr3.Text = "";
             ButtonNew.Enabled = true;
-            //ButtonEdit.Enabled = false;
+            ButtonEdit.Enabled = false;
             ButtonSave.Enabled = false;
             ButtonDelete.Enabled = false;
             _save = true;
