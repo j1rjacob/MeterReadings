@@ -11,6 +11,7 @@ namespace TMF.Reports.Model
         public DateTime ReadingDate { get; set; }
         public string CSVType { get; set; }
         public string ReadingValue { get; set; }
+        public string Description { get; set; }
         public int LowBatteryAlr { get; set; }
         public int LeakAlr { get; set; }
         public int MagneticTamperAlr { get; set; }
@@ -41,7 +42,7 @@ namespace TMF.Reports.Model
             base.IsDeleted = false;
         }
         public MeterReading(string Id, string SerialNumber, DateTime ReadingDate,
-                            string CSVType, string ReadingValue, int LowBatteryAlr,
+                            string CSVType, string ReadingValue, string Description, int LowBatteryAlr,
                             int LeakAlr, int MagneticTamperAlr, int MeterErrorAlr,
                             int BackFlowAlr, int BrokenPipeAlr, int EmptyPipeAlr,
                             int SpecificErr, int FlowRateValue, int AppBusyAlr,
@@ -96,6 +97,9 @@ namespace TMF.Reports.Model
                     break;
                 case "readingvalue":
                     return this.ReadingValue;
+                    break;
+                case "description":
+                    return this.Description;
                     break;
                 case "lowbatteryalr":
                     return this.LowBatteryAlr;
@@ -186,6 +190,9 @@ namespace TMF.Reports.Model
                     break;
                 case "readingvalue":
                     this.ReadingValue = CastDBNull.To<string>(value, "");
+                    break;
+                case "description":
+                    this.Description = CastDBNull.To<string>(value, "");
                     break;
                 case "lowbatteryalr":
                     this.LowBatteryAlr = CastDBNull.To<int>(value, 0);

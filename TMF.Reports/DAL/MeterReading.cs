@@ -28,6 +28,7 @@ namespace TMF.Reports.DAL
                 info.ReadingDate = CastDBNull.To<DateTime>(reader["ReadingDate"], DateTime.Now);
                 info.CSVType = CastDBNull.To<string>(reader["CSVType"], "");
                 info.ReadingValue = CastDBNull.To<string>(reader["ReadingValue"], "");
+                info.Description = CastDBNull.To<string>(reader["Description"], "");
                 info.LowBatteryAlr = CastDBNull.To<int>(reader["LowBatteryAlr"], 0);
                 info.LeakAlr = CastDBNull.To<int>(reader["LeakAlr"], 0);
                 info.MagneticTamperAlr = CastDBNull.To<int>(reader["MagneticTamperAlr"], 0);
