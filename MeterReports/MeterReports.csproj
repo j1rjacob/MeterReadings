@@ -124,6 +124,18 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ucCity.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ucCity.Designer.cs">
+      <DependentUpon>ucCity.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ucDMZ.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ucDMZ.Designer.cs">
+      <DependentUpon>ucDMZ.cs</DependentUpon>
+    </Compile>
     <Compile Include="User.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -179,6 +191,12 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="ucCity.resx">
+      <DependentUpon>ucCity.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ucDMZ.resx">
+      <DependentUpon>ucDMZ.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="User.resx">
       <DependentUpon>User.cs</DependentUpon>
     </EmbeddedResource>

@@ -28,25 +28,25 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.TreeNode treeNode4 = new System.Windows.Forms.TreeNode("DMZ");
-            System.Windows.Forms.TreeNode treeNode5 = new System.Windows.Forms.TreeNode("City");
-            System.Windows.Forms.TreeNode treeNode6 = new System.Windows.Forms.TreeNode("Gateway", new System.Windows.Forms.TreeNode[] {
-            treeNode4,
-            treeNode5});
+            System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode("DMZ");
+            System.Windows.Forms.TreeNode treeNode2 = new System.Windows.Forms.TreeNode("City");
+            System.Windows.Forms.TreeNode treeNode3 = new System.Windows.Forms.TreeNode("Gateway", new System.Windows.Forms.TreeNode[] {
+            treeNode1,
+            treeNode2});
             this.menuStripMain = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.newToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.treeView1 = new System.Windows.Forms.TreeView();
             this.editToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.goToToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.gotoFilesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.gotoAllToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.viewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.projectToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.buildToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.goToToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.gotoFilesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.gotoAllToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.panel1 = new System.Windows.Forms.Panel();
+            this.treeViewMain = new System.Windows.Forms.TreeView();
+            this.MainPanel = new System.Windows.Forms.Panel();
             this.menuStripMain.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -77,31 +77,14 @@
             // newToolStripMenuItem
             // 
             this.newToolStripMenuItem.Name = "newToolStripMenuItem";
-            this.newToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.newToolStripMenuItem.Size = new System.Drawing.Size(103, 22);
             this.newToolStripMenuItem.Text = "New";
             // 
             // openToolStripMenuItem
             // 
             this.openToolStripMenuItem.Name = "openToolStripMenuItem";
-            this.openToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.openToolStripMenuItem.Size = new System.Drawing.Size(103, 22);
             this.openToolStripMenuItem.Text = "Open";
-            // 
-            // treeView1
-            // 
-            this.treeView1.Dock = System.Windows.Forms.DockStyle.Left;
-            this.treeView1.Location = new System.Drawing.Point(0, 24);
-            this.treeView1.Name = "treeView1";
-            treeNode4.Name = "Node5";
-            treeNode4.Text = "DMZ";
-            treeNode5.Name = "Node2";
-            treeNode5.Text = "City";
-            treeNode6.Name = "Node0";
-            treeNode6.Text = "Gateway";
-            this.treeView1.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode6});
-            this.treeView1.Size = new System.Drawing.Size(128, 537);
-            this.treeView1.TabIndex = 1;
-            this.treeView1.DoubleClick += new System.EventHandler(this.treeView1_DoubleClick);
             // 
             // editToolStripMenuItem
             // 
@@ -110,6 +93,27 @@
             this.editToolStripMenuItem.Name = "editToolStripMenuItem";
             this.editToolStripMenuItem.Size = new System.Drawing.Size(39, 20);
             this.editToolStripMenuItem.Text = "Edit";
+            // 
+            // goToToolStripMenuItem
+            // 
+            this.goToToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.gotoFilesToolStripMenuItem,
+            this.gotoAllToolStripMenuItem});
+            this.goToToolStripMenuItem.Name = "goToToolStripMenuItem";
+            this.goToToolStripMenuItem.Size = new System.Drawing.Size(102, 22);
+            this.goToToolStripMenuItem.Text = "GoTo";
+            // 
+            // gotoFilesToolStripMenuItem
+            // 
+            this.gotoFilesToolStripMenuItem.Name = "gotoFilesToolStripMenuItem";
+            this.gotoFilesToolStripMenuItem.Size = new System.Drawing.Size(126, 22);
+            this.gotoFilesToolStripMenuItem.Text = "Goto Files";
+            // 
+            // gotoAllToolStripMenuItem
+            // 
+            this.gotoAllToolStripMenuItem.Name = "gotoAllToolStripMenuItem";
+            this.gotoAllToolStripMenuItem.Size = new System.Drawing.Size(126, 22);
+            this.gotoAllToolStripMenuItem.Text = "Goto All";
             // 
             // viewToolStripMenuItem
             // 
@@ -135,35 +139,31 @@
             this.helpToolStripMenuItem.Size = new System.Drawing.Size(44, 20);
             this.helpToolStripMenuItem.Text = "Help";
             // 
-            // goToToolStripMenuItem
+            // treeViewMain
             // 
-            this.goToToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.gotoFilesToolStripMenuItem,
-            this.gotoAllToolStripMenuItem});
-            this.goToToolStripMenuItem.Name = "goToToolStripMenuItem";
-            this.goToToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.goToToolStripMenuItem.Text = "GoTo";
+            this.treeViewMain.Dock = System.Windows.Forms.DockStyle.Left;
+            this.treeViewMain.Location = new System.Drawing.Point(0, 24);
+            this.treeViewMain.Name = "treeViewMain";
+            treeNode1.Name = "Node5";
+            treeNode1.Text = "DMZ";
+            treeNode2.Name = "Node2";
+            treeNode2.Text = "City";
+            treeNode3.Name = "Node0";
+            treeNode3.Text = "Gateway";
+            this.treeViewMain.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
+            treeNode3});
+            this.treeViewMain.Size = new System.Drawing.Size(128, 537);
+            this.treeViewMain.TabIndex = 1;
+            this.treeViewMain.DoubleClick += new System.EventHandler(this.treeViewMain_DoubleClick);
             // 
-            // gotoFilesToolStripMenuItem
+            // MainPanel
             // 
-            this.gotoFilesToolStripMenuItem.Name = "gotoFilesToolStripMenuItem";
-            this.gotoFilesToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.gotoFilesToolStripMenuItem.Text = "Goto Files";
-            // 
-            // gotoAllToolStripMenuItem
-            // 
-            this.gotoAllToolStripMenuItem.Name = "gotoAllToolStripMenuItem";
-            this.gotoAllToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.gotoAllToolStripMenuItem.Text = "Goto All";
-            // 
-            // panel1
-            // 
-            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel1.Location = new System.Drawing.Point(128, 24);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(795, 537);
-            this.panel1.TabIndex = 2;
+            this.MainPanel.BackColor = System.Drawing.SystemColors.Control;
+            this.MainPanel.Dock = System.Windows.Forms.DockStyle.Right;
+            this.MainPanel.Location = new System.Drawing.Point(128, 24);
+            this.MainPanel.Name = "MainPanel";
+            this.MainPanel.Size = new System.Drawing.Size(795, 537);
+            this.MainPanel.TabIndex = 2;
             // 
             // MainForm
             // 
@@ -171,8 +171,8 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
             this.ClientSize = new System.Drawing.Size(923, 561);
-            this.Controls.Add(this.panel1);
-            this.Controls.Add(this.treeView1);
+            this.Controls.Add(this.MainPanel);
+            this.Controls.Add(this.treeViewMain);
             this.Controls.Add(this.menuStripMain);
             this.MainMenuStrip = this.menuStripMain;
             this.Name = "MainForm";
@@ -198,10 +198,10 @@
         private System.Windows.Forms.ToolStripMenuItem projectToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem buildToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem helpToolStripMenuItem;
-        private System.Windows.Forms.TreeView treeView1;
+        private System.Windows.Forms.TreeView treeViewMain;
         private System.Windows.Forms.ToolStripMenuItem goToToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem gotoFilesToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem gotoAllToolStripMenuItem;
-        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Panel MainPanel;
     }
 }

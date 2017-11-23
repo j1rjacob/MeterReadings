@@ -5,22 +5,51 @@ namespace MeterReports
 {
     public partial class MainForm : Form
     {
+        private static MainForm _instance;
         public MainForm()
         {
             InitializeComponent();
         }
 
-        private void MainForm_Load(object sender, EventArgs e)
+        public static MainForm Instance
         {
-            panel1.Width = Convert.ToInt32(Convert.ToDecimal(Screen.PrimaryScreen.Bounds.Width) * 0.90m);
-            treeView1.Width = Convert.ToInt32(Convert.ToDecimal(Screen.PrimaryScreen.Bounds.Width) * 0.10m);
+            get
+            {
+                if (_instance == null)
+                    _instance = new MainForm();
+                return _instance;
+            }
         }
 
-        private void treeView1_DoubleClick(object sender, EventArgs e)
+        public System.Windows.Forms.Panel MainContainer
         {
-            TreeNode node = treeView1.SelectedNode;
-            
-            MessageBox.Show(string.Format("You selected: {0}", node.Text));
+            get { return MainPanel; }
+            set { MainPanel = value; }
+        }
+
+        private void MainForm_Load(object sender, EventArgs e)
+        {
+            MainPanel.Width = Convert.ToInt32(Convert.ToDecimal(Screen.PrimaryScreen.Bounds.Width) * 0.90m);
+            treeViewMain.Width = Convert.ToInt32(Convert.ToDecimal(Screen.PrimaryScreen.Bounds.Width) * 0.10m);
+        }
+
+        private void treeViewMain_DoubleClick(object sender, EventArgs e)
+        {
+            TreeNode node = treeViewMain.SelectedNode;
+
+            MainPanel.Controls.Clear();
+            if (node.Text == "City")
+            {
+                ucCity uc = new ucCity();
+                uc.Dock = DockStyle.Fill;
+                MainPanel.Controls.Add(uc);
+            }
+            if (node.Text == "DMZ")
+            {
+                ucDMZ uc = new ucDMZ();
+                uc.Dock = DockStyle.Fill;
+                MainPanel.Controls.Add(uc);
+            }
         }
     }
 }
