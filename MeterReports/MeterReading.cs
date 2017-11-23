@@ -329,7 +329,7 @@ namespace MeterReports
             TextBoxSpecErr2.Text = "";
             TextBoxSpecErr3.Text = "";
             ButtonNew.Enabled = true;
-            ButtonEdit.Enabled = false;
+            //ButtonEdit.Enabled = false;
             ButtonSave.Enabled = false;
             ButtonDelete.Enabled = false;
             _save = true;
@@ -352,14 +352,21 @@ namespace MeterReports
         }
         private void BindMeterReadingWithDataGrid()
         {   //TODO: Refactor this for reuse.
-            ReturnInfo getMeterReadingList = _meterReading.GetMeterReadingByDescription(new SmartDB(), TextBoxSearch.Text);
-            //bool flag = getCityList.Code == ErrorEnum.NoError;
-            List<TMF.Reports.Model.MeterReading> meterReading = (List<TMF.Reports.Model.MeterReading>)getMeterReadingList.BizObject;
-            var bindingList = new BindingList<TMF.Reports.Model.MeterReading>(meterReading);
-            var source = new BindingSource(bindingList, null);
-            DataGridViewMeterReading.AutoGenerateColumns = false;
-            DataGridViewMeterReading.DataSource = source;
-            LabelShow.Text = $"Showing {DataGridViewMeterReading.CurrentRow.Index + 1} index of {DataGridViewMeterReading.RowCount} records";
+            try
+            {
+                ReturnInfo getMeterReadingList = _meterReading.GetMeterReadingByDescription(new SmartDB(), TextBoxSearch.Text);
+                //bool flag = getCityList.Code == ErrorEnum.NoError;
+                List<TMF.Reports.Model.MeterReading> meterReading = (List<TMF.Reports.Model.MeterReading>)getMeterReadingList.BizObject;
+                var bindingList = new BindingList<TMF.Reports.Model.MeterReading>(meterReading);
+                var source = new BindingSource(bindingList, null);
+                DataGridViewMeterReading.AutoGenerateColumns = false;
+                DataGridViewMeterReading.DataSource = source;
+                LabelShow.Text = $"Showing {DataGridViewMeterReading.CurrentRow.Index + 1} index of {DataGridViewMeterReading.RowCount} records";
+            }
+            catch (Exception e)
+            {
+                return;
+            }
         }
         #endregion
     }

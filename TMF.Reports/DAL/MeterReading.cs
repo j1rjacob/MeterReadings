@@ -172,10 +172,10 @@ namespace TMF.Reports.DAL
         }
         public IInfo GetRecordsByDescription(SmartDB dbInstance, string description)
         {
-            string cmdText = "[REPORT METERREADING_LST_BYDESCRIPTION]";
+            string cmdText = "[REPORT METERREADING_LST_BYSERIALNUMBER]";
             SqlParameter[] array = new SqlParameter[]
             {
-                new SqlParameter("@Description", SqlDbType.NVarChar)
+                new SqlParameter("@SerialNumber", SqlDbType.NVarChar)
             };
             array[0].Value = description;
             return this.GetRecords(dbInstance, cmdText, array);

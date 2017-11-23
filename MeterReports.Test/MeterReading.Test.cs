@@ -22,8 +22,28 @@ namespace MeterReports.Test
             {
                 Id = Guid.NewGuid().ToString("N"),
                 SerialNumber = "0B85EE6C",
+                ReadingDate = DateTime.Now,
+                CSVType = "RDS",
+                ReadingValue = "2A5C36571122368CCEA",
+                Description = "Description Testing",
+                LowBatteryAlr = 1,
+                LeakAlr = 0,
+                MagneticTamperAlr = 1,
+                MeterErrorAlr = 1,
+                BackFlowAlr = 0,
+                BrokenPipeAlr = 0,
+                EmptyPipeAlr = 0,
+                SpecificErr = 0,
+                FlowRateValue = 0,
+                AppBusyAlr = 1,
+                AnyAppErrorAlr = 0,
+                AbnormalConditionAlr = 0,
+                PermanentErrorAlr = 0,
+                TemporaryErrorAlr = 0,
+                SpecificError1Alr = 0,
+                SpecificError2Alr = 0,
+                SpecificError3Alr = 0,
                 CreatedBy = "646f18f9-6425-4769-aa79-16ecdb7cf816",
-                EditedBy = "646f18f9-6425-4769-aa79-16ecdb7cf816",
                 DocDate = DateTime.Now,
                 Show = 1,
                 LockCount = 0
@@ -41,7 +61,7 @@ namespace MeterReports.Test
         {
             //Arrange
             //Act
-            ReturnInfo getMeterReading = _meterReading.GetMeterReadingById(new SmartDB(), "9086b56203164748a61c6c485b55fe78");
+            ReturnInfo getMeterReading = _meterReading.GetMeterReadingById(new SmartDB(), "0e65b6d270c14b5c9c2f88915b22421f");
             bool flag = getMeterReading.Code == ErrorEnum.NoError;
 
             //Assert
@@ -52,7 +72,7 @@ namespace MeterReports.Test
         {
             //Arrange
             //Act
-            ReturnInfo getMeterReading = _meterReading.GetMeterReadingByDescription(new SmartDB(), "0B85EE6B");
+            ReturnInfo getMeterReading = _meterReading.GetMeterReadingByDescription(new SmartDB(), "0B85EEEE");
             bool flag = getMeterReading.Code == ErrorEnum.NoError;
 
             //Assert
@@ -64,9 +84,29 @@ namespace MeterReports.Test
             //Arrange
             TMF.Reports.Model.MeterReading meterReading = new TMF.Reports.Model.MeterReading()
             {
-                Id = "6ca10b442a894258bd135cc9b0ddcb1e",
-                SerialNumber = "0B85EE6B",
-                CreatedBy = "646f18f9-6425-4769-aa79-16ecdb7cf816",
+                Id = "99ec376bd55f422085789bb89ee93664",
+                SerialNumber = "0B85EEEE",
+                ReadingDate = DateTime.Now,
+                CSVType = "RDS",
+                ReadingValue = "2A5C36571122368CCEA",
+                Description = "Description Testing",
+                LowBatteryAlr = 0,
+                LeakAlr = 0,
+                MagneticTamperAlr = 0,
+                MeterErrorAlr = 0,
+                BackFlowAlr = 0,
+                BrokenPipeAlr = 0,
+                EmptyPipeAlr = 0,
+                SpecificErr = 0,
+                FlowRateValue = 0,
+                AppBusyAlr = 0,
+                AnyAppErrorAlr = 0,
+                AbnormalConditionAlr = 0,
+                PermanentErrorAlr = 0,
+                TemporaryErrorAlr = 0,
+                SpecificError1Alr = 0,
+                SpecificError2Alr = 0,
+                SpecificError3Alr = 0,
                 EditedBy = "646f18f9-6425-4769-aa79-16ecdb7cf816",
                 DocDate = DateTime.Now,
                 Show = 1,
@@ -85,7 +125,7 @@ namespace MeterReports.Test
         {
             //Arrange
             //Act
-            var deleteMeterReading = _meterReading.Delete(new SmartDB(), "6ca10b442a894258bd135cc9b0ddcb1e");
+            var deleteMeterReading = _meterReading.Delete(new SmartDB(), "99ec376bd55f422085789bb89ee93664");
             bool flag = deleteMeterReading.Code == ErrorEnum.NoError;
 
             //Assert

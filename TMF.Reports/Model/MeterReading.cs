@@ -56,6 +56,7 @@ namespace TMF.Reports.Model
             this.ReadingDate = ReadingDate;
             this.CSVType =CSVType;
             this.ReadingValue=ReadingValue;
+            this.Description=Description;
             this.LowBatteryAlr=LowBatteryAlr;
             this.LeakAlr=LeakAlr;
             this.MagneticTamperAlr=MagneticTamperAlr;
