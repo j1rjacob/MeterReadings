@@ -205,6 +205,7 @@ namespace MeterReports
             this.Controls.Add(this.TextBoxDescription);
             this.Controls.Add(this.TextBoxSearch);
             this.Controls.Add(this.label2);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
             this.Name = "MeterSize";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;

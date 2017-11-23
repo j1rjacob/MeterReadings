@@ -201,7 +201,9 @@
             this.Controls.Add(this.TextBoxDescription);
             this.Controls.Add(this.TextBoxSearch);
             this.Controls.Add(this.label2);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "MeterProtocol";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Meter Protocol";
             this.Load += new System.EventHandler(this.MeterProtocol_Load);
             ((System.ComponentModel.ISupportInitialize)(this.DataGridViewMeterProtocol)).EndInit();

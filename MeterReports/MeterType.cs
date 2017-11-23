@@ -84,7 +84,7 @@ namespace MeterReports
             {
                 meterId = (int)DataGridViewMeterType.CurrentRow.Cells[0].Value;
             }
-            catch (Exception exception)
+            catch (Exception ex)
             {
                 return;
             }

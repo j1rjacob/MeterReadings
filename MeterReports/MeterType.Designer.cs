@@ -36,11 +36,11 @@
             this.ButtonNew = new System.Windows.Forms.Button();
             this.ButtonSearch = new System.Windows.Forms.Button();
             this.DataGridViewMeterType = new System.Windows.Forms.DataGridView();
+            this.ColId = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColDescription = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.TextBoxDescription = new System.Windows.Forms.TextBox();
             this.TextBoxSearch = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.ColId = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColDescription = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.DataGridViewMeterType)).BeginInit();
             this.SuspendLayout();
             // 
@@ -145,6 +145,21 @@
             this.DataGridViewMeterType.TabIndex = 30;
             this.DataGridViewMeterType.SelectionChanged += new System.EventHandler(this.DataGridViewMeterType_SelectionChanged);
             // 
+            // ColId
+            // 
+            this.ColId.DataPropertyName = "Id";
+            this.ColId.HeaderText = "Id";
+            this.ColId.Name = "ColId";
+            this.ColId.ReadOnly = true;
+            // 
+            // ColDescription
+            // 
+            this.ColDescription.DataPropertyName = "Description";
+            this.ColDescription.HeaderText = "Description";
+            this.ColDescription.Name = "ColDescription";
+            this.ColDescription.ReadOnly = true;
+            this.ColDescription.Width = 500;
+            // 
             // TextBoxDescription
             // 
             this.TextBoxDescription.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -171,21 +186,6 @@
             this.label2.TabIndex = 25;
             this.label2.Text = "DESCRIPTION";
             // 
-            // ColId
-            // 
-            this.ColId.DataPropertyName = "Id";
-            this.ColId.HeaderText = "Id";
-            this.ColId.Name = "ColId";
-            this.ColId.ReadOnly = true;
-            // 
-            // ColDescription
-            // 
-            this.ColDescription.DataPropertyName = "Description";
-            this.ColDescription.HeaderText = "Description";
-            this.ColDescription.Name = "ColDescription";
-            this.ColDescription.ReadOnly = true;
-            this.ColDescription.Width = 500;
-            // 
             // MeterType
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -201,7 +201,10 @@
             this.Controls.Add(this.TextBoxDescription);
             this.Controls.Add(this.TextBoxSearch);
             this.Controls.Add(this.label2);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
             this.Name = "MeterType";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Meter Type";
             this.Load += new System.EventHandler(this.MeterType_Load);
             ((System.ComponentModel.ISupportInitialize)(this.DataGridViewMeterType)).EndInit();

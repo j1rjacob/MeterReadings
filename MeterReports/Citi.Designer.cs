@@ -36,14 +36,14 @@
             this.ButtonNew = new System.Windows.Forms.Button();
             this.ButtonSearch = new System.Windows.Forms.Button();
             this.DataGridViewCity = new System.Windows.Forms.DataGridView();
+            this.ColId = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColDescription = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColTotalMeters = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.TextBoxTotalMeters = new System.Windows.Forms.TextBox();
             this.TextBoxSearch = new System.Windows.Forms.TextBox();
             this.TextBoxDescription = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.ColId = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColDescription = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColTotalMeters = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.DataGridViewCity)).BeginInit();
             this.SuspendLayout();
             // 
@@ -149,6 +149,30 @@
             this.DataGridViewCity.TabIndex = 18;
             this.DataGridViewCity.SelectionChanged += new System.EventHandler(this.DataGridViewCity_SelectionChanged);
             // 
+            // ColId
+            // 
+            this.ColId.DataPropertyName = "Id";
+            this.ColId.HeaderText = "Id";
+            this.ColId.Name = "ColId";
+            this.ColId.ReadOnly = true;
+            this.ColId.Visible = false;
+            // 
+            // ColDescription
+            // 
+            this.ColDescription.DataPropertyName = "Description";
+            this.ColDescription.HeaderText = "Description";
+            this.ColDescription.Name = "ColDescription";
+            this.ColDescription.ReadOnly = true;
+            this.ColDescription.Width = 300;
+            // 
+            // ColTotalMeters
+            // 
+            this.ColTotalMeters.DataPropertyName = "TotalNumberOfMeters";
+            this.ColTotalMeters.HeaderText = "Total Number of Meters";
+            this.ColTotalMeters.Name = "ColTotalMeters";
+            this.ColTotalMeters.ReadOnly = true;
+            this.ColTotalMeters.Width = 280;
+            // 
             // TextBoxTotalMeters
             // 
             this.TextBoxTotalMeters.Enabled = false;
@@ -195,30 +219,6 @@
             this.label1.TabIndex = 13;
             this.label1.Text = "DESCRIPTION";
             // 
-            // ColId
-            // 
-            this.ColId.DataPropertyName = "Id";
-            this.ColId.HeaderText = "Id";
-            this.ColId.Name = "ColId";
-            this.ColId.ReadOnly = true;
-            this.ColId.Visible = false;
-            // 
-            // ColDescription
-            // 
-            this.ColDescription.DataPropertyName = "Description";
-            this.ColDescription.HeaderText = "Description";
-            this.ColDescription.Name = "ColDescription";
-            this.ColDescription.ReadOnly = true;
-            this.ColDescription.Width = 300;
-            // 
-            // ColTotalMeters
-            // 
-            this.ColTotalMeters.DataPropertyName = "TotalNumberOfMeters";
-            this.ColTotalMeters.HeaderText = "Total Number of Meters";
-            this.ColTotalMeters.Name = "ColTotalMeters";
-            this.ColTotalMeters.ReadOnly = true;
-            this.ColTotalMeters.Width = 280;
-            // 
             // Citi
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -236,7 +236,9 @@
             this.Controls.Add(this.TextBoxDescription);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.KeyPreview = true;
+            this.MaximizeBox = false;
             this.Name = "Citi";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "City";
