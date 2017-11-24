@@ -9,6 +9,6 @@ namespace TMF.Reports.Model
         public string PasswordHash { get; set; }
         public string FullName { get; set; }
         public string Role { get; set; }
-        public string Locked { get; set; }
+        public int Locked { get; set; }
     }
 }

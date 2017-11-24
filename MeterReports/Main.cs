@@ -10,68 +10,68 @@ namespace MeterReports
             InitializeComponent();
         }
 
-        private void treeView1_DoubleClick(object sender, EventArgs e)
+        private bool OpenForms<T>()
         {
-            TreeNode node = treeView1.SelectedNode;
-
+            bool result=false;
             foreach (Form form in Application.OpenForms)
             {
-                if (form.GetType() == typeof(User))
+                if (form.GetType() == typeof(T))
                 {
-                    form.WindowState = FormWindowState.Normal;
-                    return;
-                }
-                if (form.GetType() == typeof(Gateway))
-                {
-                    form.WindowState = FormWindowState.Normal;
-                    return;
-                }
-                if (form.GetType() == typeof(Meter))
-                {
-                    form.WindowState = FormWindowState.Normal;
-                    return;
-                }
-                if (form.GetType() == typeof(Gateway))
-                {
-                    form.WindowState = FormWindowState.Normal;
-                    return;
-                }
-                if (form.GetType() == typeof(Gateway))
-                {
-                    form.WindowState = FormWindowState.Normal;
-                    return;
+                    form.WindowState = FormWindowState.Normal;                    
+                    result =true;
+                    break;
                 }
             }
-
-            if (node.Text == "User")
+            return result;
+        }
+        private void treeViewMain_DoubleClick(object sender, EventArgs e)
+        {
+            TreeNode node = treeViewMain.SelectedNode;
+            
+            switch (node.Text)
             {
-                User user = new User();
-                user.MdiParent = this;
-                user.Show();
-            }
-            if (node.Text == "Gateway")
-            {
-                Gateway gw = new Gateway();
-                gw.MdiParent = this;
-                gw.Show();
-            }
-            if (node.Text == "Meter")
-            {
-                Meter m = new Meter();
-                m.MdiParent = this;
-                m.Show();
-            }
-            if (node.Text == "MeterType")
-            {
-                MeterType m = new MeterType();
-                m.MdiParent = this;
-                m.Show();
-            }
-            if (node.Text == "DMZ")
-            {
-                DMZ dmz = new DMZ();
-                dmz.MdiParent = this;
-                dmz.Show();
+                case "User":
+                    var user = new User();
+                    if (!OpenForms<User>())
+                    {
+                        user.MdiParent = this;
+                        user.Show();
+                    }
+                    break;
+                case "Gateway":
+                    var gw = new Gateway();
+                    if (!OpenForms<Gateway>())
+                    {
+                        gw.MdiParent = this;
+                        gw.Show();
+                    }
+                    break;
+                case "Meter":
+                    var m = new Meter();
+                    if (!OpenForms<Meter>())
+                    {
+                        m.MdiParent = this;
+                        m.Show();
+                    }
+                    break;
+                case "MeterType":
+                    var mt = new MeterType();
+                    if (!OpenForms<MeterType>())
+                    {
+                        mt.MdiParent = this;
+                        mt.Show();
+                    }
+                    break;
+                case "DMZ":
+                    var d = new DMZ();
+                    if (!OpenForms<DMZ>())
+                    {
+                        d.MdiParent = this;
+                        d.Show();
+                    }
+                    break;
+                default:
+                    break;
             }
         }
     }

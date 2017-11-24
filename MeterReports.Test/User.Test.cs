@@ -39,7 +39,8 @@ namespace MeterReports.Test
             {
                 FullName = "Jacob Junar",
                 UserName = "j1rjacob1",
-                Role ="Administrator"
+                Role ="Administrator",
+                Locked = 0
             };
             
             //Act

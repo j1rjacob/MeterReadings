@@ -39,7 +39,7 @@
             treeNode3,
             treeNode4,
             treeNode5});
-            this.treeView1 = new System.Windows.Forms.TreeView();
+            this.treeViewMain = new System.Windows.Forms.TreeView();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.newToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -57,11 +57,11 @@
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
-            // treeView1
+            // treeViewMain
             // 
-            this.treeView1.Dock = System.Windows.Forms.DockStyle.Left;
-            this.treeView1.Location = new System.Drawing.Point(0, 24);
-            this.treeView1.Name = "treeView1";
+            this.treeViewMain.Dock = System.Windows.Forms.DockStyle.Left;
+            this.treeViewMain.Location = new System.Drawing.Point(0, 24);
+            this.treeViewMain.Name = "treeViewMain";
             treeNode1.Name = "Node1";
             treeNode1.Text = "User";
             treeNode2.Name = "Node2";
@@ -74,11 +74,11 @@
             treeNode5.Text = "DMZ";
             treeNode6.Name = "Node0";
             treeNode6.Text = "File Management";
-            this.treeView1.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
+            this.treeViewMain.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
             treeNode6});
-            this.treeView1.Size = new System.Drawing.Size(121, 442);
-            this.treeView1.TabIndex = 1;
-            this.treeView1.DoubleClick += new System.EventHandler(this.treeView1_DoubleClick);
+            this.treeViewMain.Size = new System.Drawing.Size(121, 442);
+            this.treeViewMain.TabIndex = 1;
+            this.treeViewMain.DoubleClick += new System.EventHandler(this.treeViewMain_DoubleClick);
             // 
             // menuStrip1
             // 
@@ -104,13 +104,13 @@
             // newToolStripMenuItem
             // 
             this.newToolStripMenuItem.Name = "newToolStripMenuItem";
-            this.newToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.newToolStripMenuItem.Size = new System.Drawing.Size(103, 22);
             this.newToolStripMenuItem.Text = "New";
             // 
             // openToolStripMenuItem
             // 
             this.openToolStripMenuItem.Name = "openToolStripMenuItem";
-            this.openToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.openToolStripMenuItem.Size = new System.Drawing.Size(103, 22);
             this.openToolStripMenuItem.Text = "Open";
             // 
             // editToolStripMenuItem
@@ -127,7 +127,7 @@
             this.gotoFilesToolStripMenuItem,
             this.gotoAllToolStripMenuItem});
             this.gotoToolStripMenuItem.Name = "gotoToolStripMenuItem";
-            this.gotoToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.gotoToolStripMenuItem.Size = new System.Drawing.Size(100, 22);
             this.gotoToolStripMenuItem.Text = "Goto";
             // 
             // gotoFilesToolStripMenuItem
@@ -157,31 +157,31 @@
             // userToolStripMenuItem
             // 
             this.userToolStripMenuItem.Name = "userToolStripMenuItem";
-            this.userToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.userToolStripMenuItem.Size = new System.Drawing.Size(133, 22);
             this.userToolStripMenuItem.Text = "User";
             // 
             // gatewayToolStripMenuItem
             // 
             this.gatewayToolStripMenuItem.Name = "gatewayToolStripMenuItem";
-            this.gatewayToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.gatewayToolStripMenuItem.Size = new System.Drawing.Size(133, 22);
             this.gatewayToolStripMenuItem.Text = "Gateway";
             // 
             // meterToolStripMenuItem
             // 
             this.meterToolStripMenuItem.Name = "meterToolStripMenuItem";
-            this.meterToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.meterToolStripMenuItem.Size = new System.Drawing.Size(133, 22);
             this.meterToolStripMenuItem.Text = "Meter";
             // 
             // meterTypeToolStripMenuItem
             // 
             this.meterTypeToolStripMenuItem.Name = "meterTypeToolStripMenuItem";
-            this.meterTypeToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.meterTypeToolStripMenuItem.Size = new System.Drawing.Size(133, 22);
             this.meterTypeToolStripMenuItem.Text = "Meter Type";
             // 
             // dMZToolStripMenuItem
             // 
             this.dMZToolStripMenuItem.Name = "dMZToolStripMenuItem";
-            this.dMZToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.dMZToolStripMenuItem.Size = new System.Drawing.Size(133, 22);
             this.dMZToolStripMenuItem.Text = "DMZ";
             // 
             // Main
@@ -189,7 +189,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(685, 466);
-            this.Controls.Add(this.treeView1);
+            this.Controls.Add(this.treeViewMain);
             this.Controls.Add(this.menuStrip1);
             this.IsMdiContainer = true;
             this.MainMenuStrip = this.menuStrip1;
@@ -206,7 +206,7 @@
 
         #endregion
 
-        private System.Windows.Forms.TreeView treeView1;
+        private System.Windows.Forms.TreeView treeViewMain;
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem newToolStripMenuItem;
