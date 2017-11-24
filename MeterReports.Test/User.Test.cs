@@ -25,9 +25,9 @@ namespace MeterReports.Test
         public void Login_CheckUserCredential_True()
         {
             //Arrange 
-            var user = _userManager.FindByName("j1rjacob");
+            var user = _userManager.FindByName("j1rjacob1");
             //Act
-            var checkuser = _userManager.CheckPassword(user, "Omar123!");
+            var checkuser = _userManager.CheckPassword(user, "Password123!");
             //Assert
             Assert.IsTrue(checkuser);
         }

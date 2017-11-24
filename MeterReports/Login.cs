@@ -1,5 +1,8 @@
 ﻿using System;
 using System.Windows.Forms;
+using Microsoft.AspNet.Identity;
+using TMF.Reports.BLL;
+using TMF.Reports.Model;
 
 namespace MeterReports
 {
@@ -12,9 +15,13 @@ namespace MeterReports
         private Button ButtonCancel;
         private Label label2;
 
+        private CustomUserStore _userStore;
+        private UserManager<CustomUser, int> _userManager;
         public Login()
         {
             InitializeComponent();
+            _userStore = new CustomUserStore(new CustomUserDbContext());
+            _userManager = new UserManager<CustomUser, int>(_userStore);
         }
 
         private void InitializeComponent()
@@ -114,9 +121,10 @@ namespace MeterReports
 
         private void ButtonLogin_Click(object sender, EventArgs e)
         {//junarjacob, Password123!
-            if (TMF.Reports.BLL.User.CheckPassword(TextBoxUsername.Text.Trim(), TextBoxPassword.Text.Trim()))
+            var user = _userManager.FindByName(TextBoxUsername.Text.Trim());
+            if (_userManager.CheckPassword(user, TextBoxPassword.Text.Trim()))
             {
-                var f = new MainForm();
+                var f = new Main();
                 f.Show();
                 this.Hide();
             }
