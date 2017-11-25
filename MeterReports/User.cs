@@ -10,6 +10,12 @@ using TMF.Reports.Model;
 
 namespace MeterReports
 {
+    public enum UserStatus
+    {
+        Unlocked = 0,
+        Locked = 1
+        
+    }
     public partial class User : Form
     {
         private CustomUserStore _userStore;
@@ -29,6 +35,7 @@ namespace MeterReports
         private void User_Load(object sender, EventArgs e)
         {
             ResetControls();
+            GetStatus();
         }
         private void ButtonDelete_Click(object sender, EventArgs e)
         {
@@ -138,8 +145,9 @@ namespace MeterReports
                 {
                     FullName = TextBoxName.Text,
                     UserName = TextBoxUsername.Text,
-                    Role = ComboBoxRole.Text
-                };
+                    Role = ComboBoxRole.Text,
+                    Locked = (int)(UserStatus)Enum.Parse(typeof(UserStatus), ComboBoxStatus.Text)
+            };
 
                 var createUser = _userManager.Create(user, TextBoxPassword.Text);
                 
@@ -162,12 +170,13 @@ namespace MeterReports
             if (!string.IsNullOrWhiteSpace(TextBoxName.Text))
             {   //Todo EditedBy
 
-                var user = _userManager.FindByName(TextBoxUsername.Text.Trim());
+                var user = _userManager.FindById(_userId);
 
                 user.FullName = TextBoxName.Text;
                 user.UserName = TextBoxUsername.Text;
                 user.PasswordHash = _userManager.PasswordHasher.HashPassword(TextBoxPassword.Text);
                 user.Role = ComboBoxRole.Text;
+                user.Locked = (int)(UserStatus)Enum.Parse(typeof(UserStatus), ComboBoxStatus.Text);
 
                 var flag = _userManager.Update(user);
                 
@@ -191,6 +200,12 @@ namespace MeterReports
             ComboBoxRole.Items.Clear();
             ComboBoxRole.Items.Add("Administrator");
             ComboBoxRole.Items.Add("Encoder");
+        }
+
+        private void GetStatus()
+        {
+            ComboBoxStatus.Items.Clear();
+            ComboBoxStatus.DataSource = Enum.GetValues(typeof(UserStatus));
         }
         private void ResetControls()
         {

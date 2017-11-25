@@ -143,5 +143,11 @@ namespace MeterReports
             TextBoxUsername.Text = "";
             TextBoxPassword.Text = "";
         }
+
+        protected override void OnClosed(EventArgs e)
+        {
+            base.OnClosed(e);
+            Application.Exit();
+        }
     }
 }

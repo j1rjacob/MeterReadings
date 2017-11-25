@@ -28,22 +28,23 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.TreeNode treeNode13 = new System.Windows.Forms.TreeNode("User");
-            System.Windows.Forms.TreeNode treeNode14 = new System.Windows.Forms.TreeNode("Gateway");
-            System.Windows.Forms.TreeNode treeNode15 = new System.Windows.Forms.TreeNode("Meter");
-            System.Windows.Forms.TreeNode treeNode16 = new System.Windows.Forms.TreeNode("MeterType");
-            System.Windows.Forms.TreeNode treeNode17 = new System.Windows.Forms.TreeNode("DMZ");
-            System.Windows.Forms.TreeNode treeNode18 = new System.Windows.Forms.TreeNode("File Management", new System.Windows.Forms.TreeNode[] {
-            treeNode13,
-            treeNode14,
-            treeNode15,
-            treeNode16,
-            treeNode17});
+            System.Windows.Forms.TreeNode treeNode25 = new System.Windows.Forms.TreeNode("User");
+            System.Windows.Forms.TreeNode treeNode26 = new System.Windows.Forms.TreeNode("Gateway");
+            System.Windows.Forms.TreeNode treeNode27 = new System.Windows.Forms.TreeNode("Meter");
+            System.Windows.Forms.TreeNode treeNode28 = new System.Windows.Forms.TreeNode("MeterType");
+            System.Windows.Forms.TreeNode treeNode29 = new System.Windows.Forms.TreeNode("DMZ");
+            System.Windows.Forms.TreeNode treeNode30 = new System.Windows.Forms.TreeNode("File Management", new System.Windows.Forms.TreeNode[] {
+            treeNode25,
+            treeNode26,
+            treeNode27,
+            treeNode28,
+            treeNode29});
             this.treeViewMain = new System.Windows.Forms.TreeView();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.newToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.logoutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.editToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.gotoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.gotoFilesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -54,7 +55,6 @@
             this.meterToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.meterTypeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.dMZToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.logoutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -63,20 +63,20 @@
             this.treeViewMain.Dock = System.Windows.Forms.DockStyle.Left;
             this.treeViewMain.Location = new System.Drawing.Point(0, 24);
             this.treeViewMain.Name = "treeViewMain";
-            treeNode13.Name = "Node1";
-            treeNode13.Text = "User";
-            treeNode14.Name = "Node2";
-            treeNode14.Text = "Gateway";
-            treeNode15.Name = "Node0";
-            treeNode15.Text = "Meter";
-            treeNode16.Name = "Node1";
-            treeNode16.Text = "MeterType";
-            treeNode17.Name = "Node2";
-            treeNode17.Text = "DMZ";
-            treeNode18.Name = "Node0";
-            treeNode18.Text = "File Management";
+            treeNode25.Name = "Node1";
+            treeNode25.Text = "User";
+            treeNode26.Name = "Node2";
+            treeNode26.Text = "Gateway";
+            treeNode27.Name = "Node0";
+            treeNode27.Text = "Meter";
+            treeNode28.Name = "Node1";
+            treeNode28.Text = "MeterType";
+            treeNode29.Name = "Node2";
+            treeNode29.Text = "DMZ";
+            treeNode30.Name = "Node0";
+            treeNode30.Text = "File Management";
             this.treeViewMain.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode18});
+            treeNode30});
             this.treeViewMain.Size = new System.Drawing.Size(121, 442);
             this.treeViewMain.TabIndex = 1;
             this.treeViewMain.DoubleClick += new System.EventHandler(this.treeViewMain_DoubleClick);
@@ -106,14 +106,21 @@
             // newToolStripMenuItem
             // 
             this.newToolStripMenuItem.Name = "newToolStripMenuItem";
-            this.newToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.newToolStripMenuItem.Size = new System.Drawing.Size(112, 22);
             this.newToolStripMenuItem.Text = "New";
             // 
             // openToolStripMenuItem
             // 
             this.openToolStripMenuItem.Name = "openToolStripMenuItem";
-            this.openToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.openToolStripMenuItem.Size = new System.Drawing.Size(112, 22);
             this.openToolStripMenuItem.Text = "Open";
+            // 
+            // logoutToolStripMenuItem
+            // 
+            this.logoutToolStripMenuItem.Name = "logoutToolStripMenuItem";
+            this.logoutToolStripMenuItem.Size = new System.Drawing.Size(112, 22);
+            this.logoutToolStripMenuItem.Text = "Logout";
+            this.logoutToolStripMenuItem.Click += new System.EventHandler(this.logoutToolStripMenuItem_Click);
             // 
             // editToolStripMenuItem
             // 
@@ -159,39 +166,37 @@
             // userToolStripMenuItem
             // 
             this.userToolStripMenuItem.Name = "userToolStripMenuItem";
-            this.userToolStripMenuItem.Size = new System.Drawing.Size(133, 22);
+            this.userToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.userToolStripMenuItem.Text = "User";
+            this.userToolStripMenuItem.Click += new System.EventHandler(this.userToolStripMenuItem_Click);
             // 
             // gatewayToolStripMenuItem
             // 
             this.gatewayToolStripMenuItem.Name = "gatewayToolStripMenuItem";
-            this.gatewayToolStripMenuItem.Size = new System.Drawing.Size(133, 22);
+            this.gatewayToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.gatewayToolStripMenuItem.Text = "Gateway";
+            this.gatewayToolStripMenuItem.Click += new System.EventHandler(this.gatewayToolStripMenuItem_Click);
             // 
             // meterToolStripMenuItem
             // 
             this.meterToolStripMenuItem.Name = "meterToolStripMenuItem";
-            this.meterToolStripMenuItem.Size = new System.Drawing.Size(133, 22);
+            this.meterToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.meterToolStripMenuItem.Text = "Meter";
+            this.meterToolStripMenuItem.Click += new System.EventHandler(this.meterToolStripMenuItem_Click);
             // 
             // meterTypeToolStripMenuItem
             // 
             this.meterTypeToolStripMenuItem.Name = "meterTypeToolStripMenuItem";
-            this.meterTypeToolStripMenuItem.Size = new System.Drawing.Size(133, 22);
+            this.meterTypeToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.meterTypeToolStripMenuItem.Text = "Meter Type";
+            this.meterTypeToolStripMenuItem.Click += new System.EventHandler(this.meterTypeToolStripMenuItem_Click);
             // 
             // dMZToolStripMenuItem
             // 
             this.dMZToolStripMenuItem.Name = "dMZToolStripMenuItem";
-            this.dMZToolStripMenuItem.Size = new System.Drawing.Size(133, 22);
+            this.dMZToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.dMZToolStripMenuItem.Text = "DMZ";
-            // 
-            // logoutToolStripMenuItem
-            // 
-            this.logoutToolStripMenuItem.Name = "logoutToolStripMenuItem";
-            this.logoutToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.logoutToolStripMenuItem.Text = "Logout";
-            this.logoutToolStripMenuItem.Click += new System.EventHandler(this.logoutToolStripMenuItem_Click);
+            this.dMZToolStripMenuItem.Click += new System.EventHandler(this.dMZToolStripMenuItem_Click);
             // 
             // Main
             // 

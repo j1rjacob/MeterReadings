@@ -215,7 +215,7 @@ namespace MeterReports
                 DataGridViewMeterProtocol.DataSource = source;
                 LabelShow.Text = $"Showing {DataGridViewMeterProtocol.CurrentRow.Index + 1} index of {DataGridViewMeterProtocol.RowCount} records";
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 return;
             }

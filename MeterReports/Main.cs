@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNet.Identity;
 using System;
 using System.Windows.Forms;
+using TMF.Reports.BLL;
 using TMF.Reports.Model;
 
 namespace MeterReports
@@ -8,11 +9,14 @@ namespace MeterReports
     public partial class Main : Form
     {
         private readonly CustomUser _currentUser;
+        private CustomUserStore _userStore;
         private UserManager<CustomUser, int> _userManager;
         public Main(CustomUser currentUser)
         {
             InitializeComponent();
             _currentUser = currentUser;
+            _userStore = new CustomUserStore(new CustomUserDbContext());
+            _userManager = new UserManager<CustomUser, int>(_userStore);
         }
 
         private bool OpenForms<T>()
@@ -36,44 +40,19 @@ namespace MeterReports
             switch (node.Text)
             {
                 case "User":
-                    var user = new User();
-                    if (!OpenForms<User>())
-                    {
-                        user.MdiParent = this;
-                        user.Show();
-                    }
+                    userToolStripMenuItem.PerformClick();
                     break;
                 case "Gateway":
-                    var gw = new Gateway(_currentUser);
-                    if (!OpenForms<Gateway>())
-                    {
-                        gw.MdiParent = this;
-                        gw.Show();
-                    }
+                    gatewayToolStripMenuItem.PerformClick();
                     break;
                 case "Meter":
-                    var m = new Meter(_currentUser);
-                    if (!OpenForms<Meter>())
-                    {
-                        m.MdiParent = this;
-                        m.Show();
-                    }
+                    meterToolStripMenuItem.PerformClick();
                     break;
                 case "MeterType":
-                    var mt = new MeterType(_currentUser);
-                    if (!OpenForms<MeterType>())
-                    {
-                        mt.MdiParent = this;
-                        mt.Show();
-                    }
+                    meterTypeToolStripMenuItem.PerformClick();
                     break;
                 case "DMZ":
-                    var d = new DMZ(_currentUser);
-                    if (!OpenForms<DMZ>())
-                    {
-                        d.MdiParent = this;
-                        d.Show();
-                    }
+                    dMZToolStripMenuItem.PerformClick();
                     break;
                 default:
                     break;
@@ -82,7 +61,7 @@ namespace MeterReports
 
         private void Main_Load(object sender, EventArgs e)
         {
-            MessageBox.Show(_currentUser.Id.ToString());
+            //MessageBox.Show(_currentUser.Id.ToString());
         }
 
         private void logoutToolStripMenuItem_Click(object sender, EventArgs e)
@@ -91,7 +70,65 @@ namespace MeterReports
             user.Locked = 0;
             _userManager.Update(user);
 
-            this.Close();
+            var l = new Login();
+            l.Show();
+            this.Hide();
+        }
+
+        protected override void OnClosed(EventArgs e)
+        {
+            base.OnClosed(e);
+            logoutToolStripMenuItem.PerformClick();
+        }
+
+        private void userToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var user = new User();
+            if (!OpenForms<User>())
+            {
+                user.MdiParent = this;
+                user.Show();
+            }
+        }
+
+        private void gatewayToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var gw = new Gateway(_currentUser);
+            if (!OpenForms<Gateway>())
+            {
+                gw.MdiParent = this;
+                gw.Show();
+            }
+        }
+
+        private void meterToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var m = new Meter(_currentUser);
+            if (!OpenForms<Meter>())
+            {
+                m.MdiParent = this;
+                m.Show();
+            }
+        }
+
+        private void meterTypeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var mt = new MeterType(_currentUser);
+            if (!OpenForms<MeterType>())
+            {
+                mt.MdiParent = this;
+                mt.Show();
+            }
+        }
+
+        private void dMZToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var d = new DMZ(_currentUser);
+            if (!OpenForms<DMZ>())
+            {
+                d.MdiParent = this;
+                d.Show();
+            }
         }
     }
 }

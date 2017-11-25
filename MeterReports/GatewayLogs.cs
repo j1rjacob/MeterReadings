@@ -1,12 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+﻿using System.Windows.Forms;
+using TMF.Reports.Model;
 
 namespace MeterReports
 {
@@ -23,10 +16,12 @@ namespace MeterReports
         private DataGridViewTextBoxColumn ColMeterRAWCount;
         private DataGridViewTextBoxColumn ColMeterOMSCount;
         private Label label2;
+        private readonly CustomUser _currentUser;
 
-        public GatewayLogs()
+        public GatewayLogs(CustomUser currentUser)
         {
             InitializeComponent();
+            _currentUser = currentUser;
         }
 
         private void InitializeComponent()
