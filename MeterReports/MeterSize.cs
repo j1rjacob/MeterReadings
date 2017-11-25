@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Windows.Forms;
 using TMF.Core;
 using TMF.Core.Model;
+using TMF.Reports.Model;
 
 namespace MeterReports
 {
@@ -21,14 +22,16 @@ namespace MeterReports
         private Label label2;
 
         private readonly TMF.Reports.BLL.MeterSize _meterSize;
+        private readonly CustomUser _currentUser;
         private bool _save;
         private DataGridViewTextBoxColumn ColId;
         private DataGridViewTextBoxColumn ColDescription;
         private int _meterSizeId;
-        public MeterSize()
+        public MeterSize(CustomUser currentUser)
         {
             InitializeComponent();
             _meterSize = new TMF.Reports.BLL.MeterSize();
+            _currentUser = currentUser;
             _save = true;
             _meterSizeId = 0;
         }
@@ -306,7 +309,7 @@ namespace MeterReports
                 TMF.Reports.Model.MeterSize meterType = new TMF.Reports.Model.MeterSize()
                 {   //TODO User id for CreatedBy
                     Description = TextBoxDescription.Text,
-                    CreatedBy = "646f18f9-6425-4769-aa79-16ecdb7cf816",
+                    CreatedBy = _currentUser.Id.ToString(),
                     DocDate = DateTime.Now,
                     Show = 1,
                     LockCount = 0
@@ -339,7 +342,7 @@ namespace MeterReports
                 {
                     Id = _meterSizeId,
                     Description = TextBoxDescription.Text,
-                    EditedBy = "646f18f9-6425-4769-aa79-16ecdb7cf816",
+                    EditedBy = _currentUser.Id.ToString(),
                     DocDate = DateTime.Now,
                     Show = 1,
                     LockCount = lockcount

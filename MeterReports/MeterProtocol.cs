@@ -4,18 +4,21 @@ using System.ComponentModel;
 using System.Windows.Forms;
 using TMF.Core;
 using TMF.Core.Model;
+using TMF.Reports.Model;
 
 namespace MeterReports
 {
     public partial class MeterProtocol : Form
     {
         private readonly TMF.Reports.BLL.MeterProtocol _meterProtocol;
+        private readonly CustomUser _currentUser;
         private bool _save;
         private int _meterProtocolId;
-        public MeterProtocol()
+        public MeterProtocol(CustomUser currentUser)
         {
             InitializeComponent();
             _meterProtocol = new TMF.Reports.BLL.MeterProtocol();
+            _currentUser = currentUser;
             _save = true;
             _meterProtocolId = 0;
         }
@@ -115,7 +118,7 @@ namespace MeterReports
                 TMF.Reports.Model.MeterProtocol meterProtocol = new TMF.Reports.Model.MeterProtocol()
                 {   //TODO User id for CreatedBy
                     Description = TextBoxDescription.Text,
-                    CreatedBy = "646f18f9-6425-4769-aa79-16ecdb7cf816",
+                    CreatedBy = _currentUser.Id.ToString(),
                     DocDate = DateTime.Now,
                     Show = 1,
                     LockCount = 0
@@ -148,7 +151,7 @@ namespace MeterReports
                 {
                     Id = _meterProtocolId,
                     Description = TextBoxDescription.Text,
-                    EditedBy = "646f18f9-6425-4769-aa79-16ecdb7cf816",
+                    EditedBy = _currentUser.Id.ToString(),
                     DocDate = DateTime.Now,
                     Show = 1,
                     LockCount = lockcount

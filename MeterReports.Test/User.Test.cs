@@ -38,7 +38,7 @@ namespace MeterReports.Test
             CustomUser user = new CustomUser
             {
                 FullName = "Jacob Junar",
-                UserName = "j1rjacob1",
+                UserName = "j1rjacob",
                 Role ="Administrator",
                 Locked = 0
             };

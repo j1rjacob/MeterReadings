@@ -1,6 +1,6 @@
-﻿using System;
+﻿using Microsoft.AspNet.Identity;
+using System;
 using System.Windows.Forms;
-using Microsoft.AspNet.Identity;
 using TMF.Reports.BLL;
 using TMF.Reports.Model;
 
@@ -122,10 +122,14 @@ namespace MeterReports
         private void ButtonLogin_Click(object sender, EventArgs e)
         {//junarjacob, Password123!
             var user = _userManager.FindByName(TextBoxUsername.Text.Trim());
-            if (_userManager.CheckPassword(user, TextBoxPassword.Text.Trim()))
+            if (_userManager.CheckPassword(user, TextBoxPassword.Text.Trim()) 
+                && user.Locked != 1)
             {
-                var f = new Main();
+
+                var f = new Main(user);
                 f.Show();
+                user.Locked = 1;
+                _userManager.Update(user);
                 this.Hide();
             }
             else

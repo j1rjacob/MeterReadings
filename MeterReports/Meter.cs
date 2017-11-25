@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Windows.Forms;
 using TMF.Core;
 using TMF.Core.Model;
+using TMF.Reports.Model;
 
 namespace MeterReports
 {
@@ -15,11 +16,13 @@ namespace MeterReports
         private readonly TMF.Reports.BLL.MeterProtocol _meterProtocol;
         private readonly TMF.Reports.BLL.DMZ _dmz;
         private readonly TMF.Reports.BLL.City _city;
+        private readonly CustomUser _currentUser;
         private bool _save;
         private string _meterId;
-        public Meter()
+        public Meter(CustomUser currentUser)
         {
             InitializeComponent();
+            _currentUser = currentUser;
             _meter = new TMF.Reports.BLL.Meter();
             _meterType = new TMF.Reports.BLL.MeterType();
             _meterSize = new TMF.Reports.BLL.MeterSize();
@@ -207,7 +210,7 @@ namespace MeterReports
                     MeterProtocolId = ComboBoxMeterProtocol.Text,
                     DMZId = ComboBoxDMZ.Text,
                     CityId = ComboBoxCity.Text,
-                    CreatedBy = "646f18f9-6425-4769-aa79-16ecdb7cf816",
+                    CreatedBy = _currentUser.Id.ToString(),
                     DocDate = DateTime.Now,
                     Show = 1,
                     LockCount = 0
@@ -251,7 +254,7 @@ namespace MeterReports
                     MeterProtocolId = ComboBoxMeterProtocol.Text,
                     DMZId = ComboBoxDMZ.Text,
                     CityId = ComboBoxCity.Text,
-                    EditedBy = "646f18f9-6425-4769-aa79-16ecdb7cf816",
+                    EditedBy = _currentUser.Id.ToString(),
                     DocDate = DateTime.Now,
                     Show = 1,
                     LockCount = lockcount

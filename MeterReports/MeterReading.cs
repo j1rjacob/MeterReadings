@@ -4,18 +4,21 @@ using System.ComponentModel;
 using System.Windows.Forms;
 using TMF.Core;
 using TMF.Core.Model;
+using TMF.Reports.Model;
 
 namespace MeterReports
 {
     public partial class MeterReading : Form
     {
         private readonly TMF.Reports.BLL.MeterReading _meterReading;
+        private readonly CustomUser _currentUser;
         private bool _save;
         private string _meterReadingId;
-        public MeterReading()
+        public MeterReading(CustomUser currentUser)
         {
             InitializeComponent();
             _meterReading = new TMF.Reports.BLL.MeterReading();
+            _currentUser = currentUser;
             _save = true;
             _meterReadingId = "";
         }
@@ -210,7 +213,7 @@ namespace MeterReports
                     SpecificError1Alr = Convert.ToInt32(TextBoxSpecErr1.Text),
                     SpecificError2Alr = Convert.ToInt32(TextBoxSpecErr2.Text),
                     SpecificError3Alr = Convert.ToInt32(TextBoxSpecErr3.Text),
-                    CreatedBy = "646f18f9-6425-4769-aa79-16ecdb7cf816",
+                    CreatedBy = _currentUser.Id.ToString(),
                     DocDate = DateTime.Now,
                     Show = 1,
                     LockCount = 0
@@ -264,7 +267,7 @@ namespace MeterReports
                     SpecificError1Alr = Convert.ToInt32(TextBoxSpecErr1.Text),
                     SpecificError2Alr = Convert.ToInt32(TextBoxSpecErr2.Text),
                     SpecificError3Alr = Convert.ToInt32(TextBoxSpecErr3.Text),
-                    EditedBy = "646f18f9-6425-4769-aa79-16ecdb7cf816",
+                    EditedBy = _currentUser.Id.ToString(),
                     DocDate = DateTime.Now,
                     Show = 1,
                     LockCount = lockcount

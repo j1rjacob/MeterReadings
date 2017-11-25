@@ -4,18 +4,21 @@ using System.ComponentModel;
 using System.Windows.Forms;
 using TMF.Core;
 using TMF.Core.Model;
+using TMF.Reports.Model;
 
 namespace MeterReports
 {
     public partial class MeterType : Form
     {
         private readonly TMF.Reports.BLL.MeterType _meterType;
+        private readonly CustomUser _currentUser;
         private bool _save;
         private int _meterTypeId;
-        public MeterType()
+        public MeterType(CustomUser currentUser)
         {
             InitializeComponent();
             _meterType = new TMF.Reports.BLL.MeterType();
+            _currentUser = currentUser;
             _save = true;
             _meterTypeId = 0;
         }
@@ -115,9 +118,9 @@ namespace MeterReports
             if (!string.IsNullOrWhiteSpace(TextBoxDescription.Text))
             {
                 TMF.Reports.Model.MeterType meterType = new TMF.Reports.Model.MeterType()
-                {   //TODO User id for CreatedBy
+                {   
                     Description = TextBoxDescription.Text,
-                    CreatedBy = "646f18f9-6425-4769-aa79-16ecdb7cf816",
+                    CreatedBy = _currentUser.Id.ToString(),
                     DocDate = DateTime.Now,
                     Show = 1,
                     LockCount = 0
@@ -143,14 +146,14 @@ namespace MeterReports
         private void EditMeterType()
         {
             if (!string.IsNullOrWhiteSpace(TextBoxDescription.Text))
-            {   //Todo EditedBy
+            {   
                 var lockcount = GetLockCount(_meterTypeId);
 
                 TMF.Reports.Model.MeterType meterType = new TMF.Reports.Model.MeterType()
                 {
                     Id = _meterTypeId,
                     Description = TextBoxDescription.Text,
-                    EditedBy = "646f18f9-6425-4769-aa79-16ecdb7cf816",
+                    EditedBy = _currentUser.Id.ToString(),
                     DocDate = DateTime.Now,
                     Show = 1,
                     LockCount = lockcount

@@ -4,18 +4,21 @@ using System.ComponentModel;
 using System.Windows.Forms;
 using TMF.Core;
 using TMF.Core.Model;
+using TMF.Reports.Model;
 
 namespace MeterReports
 {
     public partial class Citi : Form
     {
         private readonly TMF.Reports.BLL.City _city;
+        private readonly CustomUser _currentUser;
         private bool _save;
         private string _cityId;
-        public Citi()
+        public Citi(CustomUser currentUser)
         {
             InitializeComponent();
             _city = new TMF.Reports.BLL.City();
+            _currentUser = currentUser;
             _save = true;
             _cityId = "";
         }
@@ -105,7 +108,7 @@ namespace MeterReports
                     Id = Guid.NewGuid().ToString("N"),
                     Description = TextBoxDescription.Text,
                     TotalNumberOfMeters = 0,
-                    CreatedBy = "646f18f9-6425-4769-aa79-16ecdb7cf816",
+                    CreatedBy = _currentUser.Id.ToString(),
                     DocDate = DateTime.Now,
                     Show = 1,
                     LockCount = 0
@@ -138,7 +141,7 @@ namespace MeterReports
                 {
                     Id = _cityId,
                     Description = TextBoxDescription.Text,
-                    EditedBy = "646f18f9-6425-4769-aa79-16ecdb7cf816",
+                    EditedBy = _currentUser.Id.ToString(),
                     DocDate = DateTime.Now,
                     Show = 1,
                     LockCount = lockcount
@@ -193,14 +196,21 @@ namespace MeterReports
         }
         private void BindCityWithDataGrid()
         {   //TODO: Refactor this for reuse.
-            ReturnInfo getCityList = _city.GetCityByDescription(new SmartDB(), TextBoxSearch.Text);
-            //bool flag = getCityList.Code == ErrorEnum.NoError;
-            List<TMF.Reports.Model.City> city = (List<TMF.Reports.Model.City>)getCityList.BizObject;
-            var bindingList = new BindingList<TMF.Reports.Model.City>(city);
-            var source = new BindingSource(bindingList, null);
-            DataGridViewCity.AutoGenerateColumns = false;
-            DataGridViewCity.DataSource = source;
-            LabelShow.Text = $"Showing {DataGridViewCity.CurrentRow.Index + 1} index of {DataGridViewCity.RowCount} records";
+            try
+            {
+                ReturnInfo getCityList = _city.GetCityByDescription(new SmartDB(), TextBoxSearch.Text);
+                //bool flag = getCityList.Code == ErrorEnum.NoError;
+                List<TMF.Reports.Model.City> city = (List<TMF.Reports.Model.City>)getCityList.BizObject;
+                var bindingList = new BindingList<TMF.Reports.Model.City>(city);
+                var source = new BindingSource(bindingList, null);
+                DataGridViewCity.AutoGenerateColumns = false;
+                DataGridViewCity.DataSource = source;
+                LabelShow.Text = $"Showing {DataGridViewCity.CurrentRow.Index + 1} index of {DataGridViewCity.RowCount} records";
+            }
+            catch (Exception)
+            {
+                return;
+            }
         }
         #endregion
     }

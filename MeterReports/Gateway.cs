@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Windows.Forms;
 using TMF.Core;
 using TMF.Core.Model;
+using TMF.Reports.Model;
 
 namespace MeterReports
 {
@@ -59,10 +60,12 @@ namespace MeterReports
         private DataGridViewTextBoxColumn ColDMZ;
         private DataGridViewTextBoxColumn ColCity;
         private readonly TMF.Reports.BLL.City _city;
-        public Gateway()
+        private readonly CustomUser _currentUser;
+        public Gateway(CustomUser currentUser)
         {
             InitializeComponent();
             _gateway = new TMF.Reports.BLL.Gateway();
+            _currentUser = currentUser;
             _dmz = new TMF.Reports.BLL.DMZ();
             _city = new TMF.Reports.BLL.City();
             _save = true;
@@ -738,7 +741,7 @@ namespace MeterReports
                     IPAddress = TextBoxIPAddress.Text,
                     DMZId = ComboBoxDMZ.Text,
                     CityId = ComboBoxCity.Text,
-                    CreatedBy = "646f18f9-6425-4769-aa79-16ecdb7cf816",
+                    CreatedBy = _currentUser.Id.ToString(),
                     DocDate = DateTime.Now,
                     Show = 1,
                     LockCount = 0
@@ -781,7 +784,7 @@ namespace MeterReports
                     IPAddress = TextBoxIPAddress.Text,
                     DMZId = ComboBoxDMZ.Text,
                     CityId = ComboBoxCity.Text,
-                    EditedBy = "646f18f9-6425-4769-aa79-16ecdb7cf816",
+                    EditedBy = _currentUser.Id.ToString(),
                     DocDate = DateTime.Now,
                     Show = 1,
                     LockCount = lockcount
