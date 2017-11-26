@@ -74,8 +74,10 @@
             this.label13 = new System.Windows.Forms.Label();
             this.ComboBoxCity = new System.Windows.Forms.ComboBox();
             this.ComboBoxMeterSize = new System.Windows.Forms.ComboBox();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
+            this.ButtonImport = new System.Windows.Forms.Button();
+            this.ButtonExport = new System.Windows.Forms.Button();
+            this.saveFileDialogMeter = new System.Windows.Forms.SaveFileDialog();
+            this.openFileDialogMeter = new System.Windows.Forms.OpenFileDialog();
             ((System.ComponentModel.ISupportInitialize)(this.DataGridViewMeter)).BeginInit();
             this.SuspendLayout();
             // 
@@ -543,41 +545,55 @@
             this.ComboBoxMeterSize.TabIndex = 52;
             this.ComboBoxMeterSize.MouseClick += new System.Windows.Forms.MouseEventHandler(this.ComboBoxMeterSize_MouseClick);
             // 
-            // button2
+            // ButtonImport
             // 
-            this.button2.AutoSize = true;
-            this.button2.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("button2.BackgroundImage")));
-            this.button2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button2.Location = new System.Drawing.Point(749, 278);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(136, 56);
-            this.button2.TabIndex = 57;
-            this.button2.Text = "IMPORT";
-            this.button2.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.button2.UseVisualStyleBackColor = true;
+            this.ButtonImport.AutoSize = true;
+            this.ButtonImport.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("ButtonImport.BackgroundImage")));
+            this.ButtonImport.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.ButtonImport.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ButtonImport.Location = new System.Drawing.Point(749, 278);
+            this.ButtonImport.Name = "ButtonImport";
+            this.ButtonImport.Size = new System.Drawing.Size(136, 56);
+            this.ButtonImport.TabIndex = 57;
+            this.ButtonImport.Text = "IMPORT";
+            this.ButtonImport.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.ButtonImport.UseVisualStyleBackColor = true;
+            this.ButtonImport.Click += new System.EventHandler(this.ButtonImport_Click);
             // 
-            // button1
+            // ButtonExport
             // 
-            this.button1.AutoSize = true;
-            this.button1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("button1.BackgroundImage")));
-            this.button1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.Location = new System.Drawing.Point(605, 278);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(136, 56);
-            this.button1.TabIndex = 58;
-            this.button1.Text = "EXPORT";
-            this.button1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.button1.UseVisualStyleBackColor = true;
+            this.ButtonExport.AutoSize = true;
+            this.ButtonExport.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("ButtonExport.BackgroundImage")));
+            this.ButtonExport.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.ButtonExport.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ButtonExport.Location = new System.Drawing.Point(605, 278);
+            this.ButtonExport.Name = "ButtonExport";
+            this.ButtonExport.Size = new System.Drawing.Size(136, 56);
+            this.ButtonExport.TabIndex = 58;
+            this.ButtonExport.Text = "EXPORT";
+            this.ButtonExport.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.ButtonExport.UseVisualStyleBackColor = true;
+            this.ButtonExport.Click += new System.EventHandler(this.ButtonExport_Click);
+            // 
+            // saveFileDialogMeter
+            // 
+            this.saveFileDialogMeter.DefaultExt = "csv";
+            this.saveFileDialogMeter.FileName = "Meters";
+            this.saveFileDialogMeter.Filter = "CSV |*.csv";
+            // 
+            // openFileDialogMeter
+            // 
+            this.openFileDialogMeter.DefaultExt = "csv";
+            this.openFileDialogMeter.FileName = "Meters";
+            this.openFileDialogMeter.Filter = "CSV |*.csv";
             // 
             // Meter
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(906, 532);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.ButtonImport);
+            this.Controls.Add(this.ButtonExport);
             this.Controls.Add(this.DateTimePickerMaintenanceDate);
             this.Controls.Add(this.DateTimePickerInstallationDate);
             this.Controls.Add(this.ComboBoxCity);
@@ -669,7 +685,9 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn ColMeterProtocol;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColDMZ;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColCity;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button ButtonImport;
+        private System.Windows.Forms.Button ButtonExport;
+        private System.Windows.Forms.SaveFileDialog saveFileDialogMeter;
+        private System.Windows.Forms.OpenFileDialog openFileDialogMeter;
     }
 }

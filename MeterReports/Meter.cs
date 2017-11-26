@@ -1,6 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.IO;
+using System.Linq;
+using System.Text;
 using System.Windows.Forms;
 using TMF.Core;
 using TMF.Core.Model;
@@ -121,6 +124,15 @@ namespace MeterReports
         private void ButtonSearch_Click(object sender, EventArgs e)
         {
             BindMeterWithDataGrid();
+        }
+        private void ButtonExport_Click(object sender, EventArgs e)
+        {
+            ExportMeters();
+        }
+
+        private void ButtonImport_Click(object sender, EventArgs e)
+        {
+            ImportMeters();
         }
         private void DataGridViewMeter_SelectionChanged(object sender, EventArgs e)
         {
@@ -397,5 +409,114 @@ namespace MeterReports
             }
         }
         #endregion
+        private void ExportMeters()
+        {
+            StreamWriter sr;
+            string line = "";
+            StringBuilder fileContents = new StringBuilder();
+
+            fileContents.Append("ID, SERIAL_NUMBER, X, Y, STATUS, HCN, INSTALLATION_DATE" +
+                                "MAINTENANCE_DATE, METER_TYPE_ID, METER_SIZE_ID," +
+                                "METER_PROTOCOL_ID, DMZ_ID, CITY_ID, " +
+                                "CREATED_BY, EDITED_BY, DOC_DATE, SHOW, LOCK_COUNT\r\n");
+            if (saveFileDialogMeter.ShowDialog() == DialogResult.OK)
+            {
+                sr = new StreamWriter(saveFileDialogMeter.FileName, false);
+                try
+                {
+                    ReturnInfo getMeterList = _meter.GetMeterByDescription(new SmartDB(), TextBoxSearch.Text);
+                    List<TMF.Reports.Model.Meter> meter = (List<TMF.Reports.Model.Meter>)getMeterList.BizObject;
+
+                    foreach (var m in meter)
+                    {
+                        line = m.Id + ",";
+                        line += m.SerialNumber + ",";
+                        line += m.X + ",";
+                        line += m.Y + ",";
+                        line += m.Status + ",";
+                        line += m.HCN + ",";
+                        line += m.InstallationDate + ",";
+                        line += m.MaintenanceDate + ",";
+                        line += m.MeterTypeId + ",";
+                        line += m.MeterSizeId + ",";
+                        line += m.MeterProtocolId + ",";
+                        line += m.DMZId + ",";
+                        line += m.CityId + ",";
+                        line += m.CreatedBy + ",";
+                        line += m.EditedBy + ",";
+                        line += m.DocDate + ",";
+                        line += m.Show + ",";
+                        line += m.LockCount + "\r\n";
+                        fileContents.Append(line);
+                    }
+
+                    sr.Write(fileContents.ToString());
+                    sr.Flush();
+                    sr.Close();
+                }
+                catch (Exception)
+                {
+                    MessageBox.Show("Error while exporting file!");
+                }
+
+            }
+        }
+        private void ImportMeters()
+        {
+            try
+            {
+                if (openFileDialogMeter.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+                {
+                    string[] allLines = File.ReadAllLines(openFileDialogMeter.FileName);
+
+                    var query = from line in allLines
+                        let data = line.Split(',')
+                        select new
+                        {
+                            Id = data[0],
+                            SerialNumber = data[1],
+                            X = data[2],
+                            Y = data[3],
+                            Status = data[4],
+                            HCN = data[5],
+                            InstallationDate = data[6],
+                            MaintenanceDate = data[7],
+                            MeterTypeId = data[8],
+                            MeterSizeId = data[9],
+                            MeterProtocolId = data[10],
+                            CityId = data[11],
+                            CreatedBy = data[12],
+                            EditedBy = data[13],
+                            DocDate = data[14],
+                            Show = data[15],
+                            Locked = data[16],
+                        };
+                    foreach (var q in query.ToList().Skip(1))
+                    {
+                        MessageBox.Show(q.Id + " " +
+                                        q.SerialNumber + " " +
+                                        q.X + " " +
+                                        q.Y + " " +
+                                        q.Status + " " +
+                                        q.HCN + " " +
+                                        q.InstallationDate + " " +
+                                        q.MaintenanceDate + " " +
+                                        q.MeterTypeId + " " +
+                                        q.MeterSizeId + " " +
+                                        q.MeterProtocolId + " " +
+                                        q.CityId + " " +
+                                        q.CreatedBy + " " +
+                                        q.EditedBy + " " +
+                                        q.DocDate + " " +
+                                        q.Show + " " +
+                                        q.Locked);
+                    }
+                }
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Error while importing file!");
+            }
+        }
     }
 }

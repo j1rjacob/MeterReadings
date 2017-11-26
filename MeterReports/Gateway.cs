@@ -1,6 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.IO;
+using System.Linq;
+using System.Text;
 using System.Windows.Forms;
 using TMF.Core;
 using TMF.Core.Model;
@@ -60,8 +63,10 @@ namespace MeterReports
         private DataGridViewTextBoxColumn ColDMZ;
         private DataGridViewTextBoxColumn ColCity;
         private readonly TMF.Reports.BLL.City _city;
-        private Button button1;
-        private Button button2;
+        private Button ButtonExport;
+        private Button ButtonImport;
+        private OpenFileDialog openFileDialogGateway;
+        private SaveFileDialog saveFileDialogGateway;
         private readonly CustomUser _currentUser;
         public Gateway(CustomUser currentUser)
         {
@@ -119,8 +124,10 @@ namespace MeterReports
             this.label12 = new System.Windows.Forms.Label();
             this.ComboBoxCity = new System.Windows.Forms.ComboBox();
             this.TextBoxY = new System.Windows.Forms.TextBox();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
+            this.ButtonExport = new System.Windows.Forms.Button();
+            this.ButtonImport = new System.Windows.Forms.Button();
+            this.openFileDialogGateway = new System.Windows.Forms.OpenFileDialog();
+            this.saveFileDialogGateway = new System.Windows.Forms.SaveFileDialog();
             ((System.ComponentModel.ISupportInitialize)(this.DataGridViewGateway)).BeginInit();
             this.SuspendLayout();
             // 
@@ -544,35 +551,47 @@ namespace MeterReports
             this.TextBoxY.Size = new System.Drawing.Size(216, 27);
             this.TextBoxY.TabIndex = 15;
             // 
-            // button1
+            // ButtonExport
             // 
-            this.button1.AutoSize = true;
-            this.button1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("button1.BackgroundImage")));
-            this.button1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.Location = new System.Drawing.Point(603, 264);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(136, 56);
-            this.button1.TabIndex = 19;
-            this.button1.Text = "EXPORT";
-            this.button1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.ButtonDelete_Click);
+            this.ButtonExport.AutoSize = true;
+            this.ButtonExport.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("ButtonExport.BackgroundImage")));
+            this.ButtonExport.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.ButtonExport.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ButtonExport.Location = new System.Drawing.Point(603, 264);
+            this.ButtonExport.Name = "ButtonExport";
+            this.ButtonExport.Size = new System.Drawing.Size(136, 56);
+            this.ButtonExport.TabIndex = 19;
+            this.ButtonExport.Text = "EXPORT";
+            this.ButtonExport.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.ButtonExport.UseVisualStyleBackColor = true;
+            this.ButtonExport.Click += new System.EventHandler(this.ButtonExport_Click);
             // 
-            // button2
+            // ButtonImport
             // 
-            this.button2.AutoSize = true;
-            this.button2.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("button2.BackgroundImage")));
-            this.button2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button2.Location = new System.Drawing.Point(747, 264);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(136, 56);
-            this.button2.TabIndex = 19;
-            this.button2.Text = "IMPORT";
-            this.button2.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.ButtonDelete_Click);
+            this.ButtonImport.AutoSize = true;
+            this.ButtonImport.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("ButtonImport.BackgroundImage")));
+            this.ButtonImport.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.ButtonImport.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ButtonImport.Location = new System.Drawing.Point(747, 264);
+            this.ButtonImport.Name = "ButtonImport";
+            this.ButtonImport.Size = new System.Drawing.Size(136, 56);
+            this.ButtonImport.TabIndex = 19;
+            this.ButtonImport.Text = "IMPORT";
+            this.ButtonImport.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.ButtonImport.UseVisualStyleBackColor = true;
+            this.ButtonImport.Click += new System.EventHandler(this.ButtonImport_Click);
+            // 
+            // openFileDialogGateway
+            // 
+            this.openFileDialogGateway.DefaultExt = "csv";
+            this.openFileDialogGateway.FileName = "Gateway";
+            this.openFileDialogGateway.Filter = "CSV |*.csv";
+            // 
+            // saveFileDialogGateway
+            // 
+            this.saveFileDialogGateway.DefaultExt = "csv";
+            this.saveFileDialogGateway.FileName = "Gateway";
+            this.saveFileDialogGateway.Filter = "CSV |*.csv";
             // 
             // Gateway
             // 
@@ -583,8 +602,8 @@ namespace MeterReports
             this.Controls.Add(this.ComboBoxDMZ);
             this.Controls.Add(this.ComboBoxStatus);
             this.Controls.Add(this.LabelShow);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.ButtonImport);
+            this.Controls.Add(this.ButtonExport);
             this.Controls.Add(this.ButtonDelete);
             this.Controls.Add(this.ButtonSave);
             this.Controls.Add(this.ButtonEdit);
@@ -707,6 +726,14 @@ namespace MeterReports
         private void ButtonSearch_Click(object sender, EventArgs e)
         {
             BindGatewayWithDataGrid();
+        }
+        private void ButtonExport_Click(object sender, EventArgs e)
+        {
+            ExportGateways();
+        }
+        private void ButtonImport_Click(object sender, EventArgs e)
+        {
+            ImportGateways();
         }
         private void ComboBoxDMZ_MouseClick(object sender, MouseEventArgs e)
         {
@@ -932,5 +959,113 @@ namespace MeterReports
             
         }
         #endregion
+
+        private void ExportGateways()
+        {
+            StreamWriter sr;
+            string line = "";
+            StringBuilder fileContents = new StringBuilder();
+            
+            fileContents.Append("ID, MAC_ADDRESS, SIM_CARD, X, Y, DESCRIPTION, INSTALLATION_DATE, " +
+                                "MAINTENANCE_DATE, STATUS, IP_ADDRESS, DMZ_ID, CITY_ID, " +
+                                "CREATED_BY, EDITED_BY, DOC_DATE, SHOW, LOCK_COUNT\r\n");
+            if (saveFileDialogGateway.ShowDialog() == DialogResult.OK)
+            {
+                sr = new StreamWriter(saveFileDialogGateway.FileName, false);
+                try
+                {
+                    ReturnInfo getGatewayList = _gateway.GetGatewayBySimCard(new SmartDB(), TextBoxSearch.Text);
+                    List<TMF.Reports.Model.Gateway> gateway = (List<TMF.Reports.Model.Gateway>)getGatewayList.BizObject;
+                    
+                    foreach (var gw in gateway)
+                    {
+                        line = gw.Id + ",";
+                        line += gw.MacAddress + ",";
+                        line += gw.SimCard + ",";
+                        line += gw.X + ",";
+                        line += gw.Y + ",";
+                        line += gw.Description + ",";
+                        line += gw.InstallationDate + ",";
+                        line += gw.MaintenanceDate + ",";
+                        line += gw.Status + ",";
+                        line += gw.IPAddress + ",";
+                        line += gw.DMZId + ",";
+                        line += gw.CityId + ",";
+                        line += gw.CreatedBy + ",";
+                        line += gw.EditedBy + ",";
+                        line += gw.DocDate + ",";
+                        line += gw.Show + ",";
+                        line += gw.LockCount + "\r\n";
+                        fileContents.Append(line);
+                    }
+                    
+                    sr.Write(fileContents.ToString());
+                    sr.Flush();
+                    sr.Close();
+                }
+                catch (Exception)
+                {
+                    MessageBox.Show("Error while exporting file!");
+                }
+
+            }
+        }
+        private void ImportGateways()
+        {
+            try
+            {
+                if (openFileDialogGateway.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+                {
+                    string[] allLines = File.ReadAllLines(openFileDialogGateway.FileName);
+
+                    var query = from line in allLines
+                        let data = line.Split(',')
+                        select new
+                        {
+                            Id = data[0],
+                            MacAddress = data[1],
+                            SimCard = data[2],
+                            X = data[3],
+                            Y = data[4],
+                            Description = data[5],
+                            InstallationDate = data[6],
+                            MaintenanceDate = data[7],
+                            Status = data[8],
+                            IPAddress = data[9],
+                            DMZId = data[10],
+                            CityId = data[11],
+                            CreatedBy = data[12],
+                            EditedBy = data[13],
+                            DocDate = data[14],
+                            Show = data[15],
+                            Locked = data[16],
+                        };
+                    foreach (var q in query.ToList().Skip(1))
+                    {
+                        MessageBox.Show(q.Id + " " +
+                                        q.MacAddress + " " +
+                                        q.SimCard + " " +
+                                        q.X + " " +
+                                        q.Y + " " +
+                                        q.Description + " " +
+                                        q.InstallationDate + " " +
+                                        q.MaintenanceDate + " " +
+                                        q.Status + " " +
+                                        q.IPAddress + " " +
+                                        q.DMZId + " " +
+                                        q.CityId + " " +
+                                        q.CreatedBy + " " +
+                                        q.EditedBy + " " +
+                                        q.DocDate + " " +
+                                        q.Show + " " +
+                                        q.Locked);
+                    }
+                }
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Error while importing file!");
+            }
+        }
     }
 }
