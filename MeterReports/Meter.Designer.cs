@@ -74,6 +74,8 @@
             this.label13 = new System.Windows.Forms.Label();
             this.ComboBoxCity = new System.Windows.Forms.ComboBox();
             this.ComboBoxMeterSize = new System.Windows.Forms.ComboBox();
+            this.button2 = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.DataGridViewMeter)).BeginInit();
             this.SuspendLayout();
             // 
@@ -162,9 +164,9 @@
             this.ButtonDelete.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("ButtonDelete.BackgroundImage")));
             this.ButtonDelete.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.ButtonDelete.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ButtonDelete.Location = new System.Drawing.Point(632, 277);
+            this.ButtonDelete.Location = new System.Drawing.Point(461, 277);
             this.ButtonDelete.Name = "ButtonDelete";
-            this.ButtonDelete.Size = new System.Drawing.Size(151, 56);
+            this.ButtonDelete.Size = new System.Drawing.Size(136, 56);
             this.ButtonDelete.TabIndex = 45;
             this.ButtonDelete.Text = "DELETE";
             this.ButtonDelete.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -177,9 +179,9 @@
             this.ButtonSave.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("ButtonSave.BackgroundImage")));
             this.ButtonSave.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.ButtonSave.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ButtonSave.Location = new System.Drawing.Point(472, 277);
+            this.ButtonSave.Location = new System.Drawing.Point(317, 277);
             this.ButtonSave.Name = "ButtonSave";
-            this.ButtonSave.Size = new System.Drawing.Size(151, 56);
+            this.ButtonSave.Size = new System.Drawing.Size(136, 56);
             this.ButtonSave.TabIndex = 46;
             this.ButtonSave.Text = "SAVE";
             this.ButtonSave.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -192,9 +194,9 @@
             this.ButtonEdit.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("ButtonEdit.BackgroundImage")));
             this.ButtonEdit.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.ButtonEdit.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ButtonEdit.Location = new System.Drawing.Point(312, 277);
+            this.ButtonEdit.Location = new System.Drawing.Point(173, 277);
             this.ButtonEdit.Name = "ButtonEdit";
-            this.ButtonEdit.Size = new System.Drawing.Size(151, 56);
+            this.ButtonEdit.Size = new System.Drawing.Size(136, 56);
             this.ButtonEdit.TabIndex = 47;
             this.ButtonEdit.Text = "EDIT";
             this.ButtonEdit.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -207,9 +209,9 @@
             this.ButtonNew.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("ButtonNew.BackgroundImage")));
             this.ButtonNew.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.ButtonNew.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ButtonNew.Location = new System.Drawing.Point(144, 277);
+            this.ButtonNew.Location = new System.Drawing.Point(29, 277);
             this.ButtonNew.Name = "ButtonNew";
-            this.ButtonNew.Size = new System.Drawing.Size(151, 56);
+            this.ButtonNew.Size = new System.Drawing.Size(136, 56);
             this.ButtonNew.TabIndex = 48;
             this.ButtonNew.Text = "NEW";
             this.ButtonNew.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -541,11 +543,41 @@
             this.ComboBoxMeterSize.TabIndex = 52;
             this.ComboBoxMeterSize.MouseClick += new System.Windows.Forms.MouseEventHandler(this.ComboBoxMeterSize_MouseClick);
             // 
+            // button2
+            // 
+            this.button2.AutoSize = true;
+            this.button2.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("button2.BackgroundImage")));
+            this.button2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button2.Location = new System.Drawing.Point(749, 278);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(136, 56);
+            this.button2.TabIndex = 57;
+            this.button2.Text = "IMPORT";
+            this.button2.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.button2.UseVisualStyleBackColor = true;
+            // 
+            // button1
+            // 
+            this.button1.AutoSize = true;
+            this.button1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("button1.BackgroundImage")));
+            this.button1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button1.Location = new System.Drawing.Point(605, 278);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(136, 56);
+            this.button1.TabIndex = 58;
+            this.button1.Text = "EXPORT";
+            this.button1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.button1.UseVisualStyleBackColor = true;
+            // 
             // Meter
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(906, 532);
+            this.Controls.Add(this.button2);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.DateTimePickerMaintenanceDate);
             this.Controls.Add(this.DateTimePickerInstallationDate);
             this.Controls.Add(this.ComboBoxCity);
@@ -637,5 +669,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn ColMeterProtocol;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColDMZ;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColCity;
+        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button button1;
     }
 }

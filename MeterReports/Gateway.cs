@@ -60,6 +60,8 @@ namespace MeterReports
         private DataGridViewTextBoxColumn ColDMZ;
         private DataGridViewTextBoxColumn ColCity;
         private readonly TMF.Reports.BLL.City _city;
+        private Button button1;
+        private Button button2;
         private readonly CustomUser _currentUser;
         public Gateway(CustomUser currentUser)
         {
@@ -117,6 +119,8 @@ namespace MeterReports
             this.label12 = new System.Windows.Forms.Label();
             this.ComboBoxCity = new System.Windows.Forms.ComboBox();
             this.TextBoxY = new System.Windows.Forms.TextBox();
+            this.button1 = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.DataGridViewGateway)).BeginInit();
             this.SuspendLayout();
             // 
@@ -136,9 +140,9 @@ namespace MeterReports
             this.ButtonDelete.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("ButtonDelete.BackgroundImage")));
             this.ButtonDelete.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.ButtonDelete.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ButtonDelete.Location = new System.Drawing.Point(632, 265);
+            this.ButtonDelete.Location = new System.Drawing.Point(459, 265);
             this.ButtonDelete.Name = "ButtonDelete";
-            this.ButtonDelete.Size = new System.Drawing.Size(151, 56);
+            this.ButtonDelete.Size = new System.Drawing.Size(136, 56);
             this.ButtonDelete.TabIndex = 19;
             this.ButtonDelete.Text = "DELETE";
             this.ButtonDelete.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -151,9 +155,9 @@ namespace MeterReports
             this.ButtonSave.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("ButtonSave.BackgroundImage")));
             this.ButtonSave.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.ButtonSave.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ButtonSave.Location = new System.Drawing.Point(472, 265);
+            this.ButtonSave.Location = new System.Drawing.Point(315, 265);
             this.ButtonSave.Name = "ButtonSave";
-            this.ButtonSave.Size = new System.Drawing.Size(151, 56);
+            this.ButtonSave.Size = new System.Drawing.Size(136, 56);
             this.ButtonSave.TabIndex = 20;
             this.ButtonSave.Text = "SAVE";
             this.ButtonSave.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -166,9 +170,9 @@ namespace MeterReports
             this.ButtonEdit.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("ButtonEdit.BackgroundImage")));
             this.ButtonEdit.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.ButtonEdit.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ButtonEdit.Location = new System.Drawing.Point(312, 265);
+            this.ButtonEdit.Location = new System.Drawing.Point(171, 265);
             this.ButtonEdit.Name = "ButtonEdit";
-            this.ButtonEdit.Size = new System.Drawing.Size(151, 56);
+            this.ButtonEdit.Size = new System.Drawing.Size(136, 56);
             this.ButtonEdit.TabIndex = 21;
             this.ButtonEdit.Text = "EDIT";
             this.ButtonEdit.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -181,9 +185,9 @@ namespace MeterReports
             this.ButtonNew.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("ButtonNew.BackgroundImage")));
             this.ButtonNew.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.ButtonNew.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ButtonNew.Location = new System.Drawing.Point(144, 265);
+            this.ButtonNew.Location = new System.Drawing.Point(27, 265);
             this.ButtonNew.Name = "ButtonNew";
-            this.ButtonNew.Size = new System.Drawing.Size(151, 56);
+            this.ButtonNew.Size = new System.Drawing.Size(136, 56);
             this.ButtonNew.TabIndex = 22;
             this.ButtonNew.Text = "NEW";
             this.ButtonNew.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -540,6 +544,36 @@ namespace MeterReports
             this.TextBoxY.Size = new System.Drawing.Size(216, 27);
             this.TextBoxY.TabIndex = 15;
             // 
+            // button1
+            // 
+            this.button1.AutoSize = true;
+            this.button1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("button1.BackgroundImage")));
+            this.button1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button1.Location = new System.Drawing.Point(603, 264);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(136, 56);
+            this.button1.TabIndex = 19;
+            this.button1.Text = "EXPORT";
+            this.button1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.ButtonDelete_Click);
+            // 
+            // button2
+            // 
+            this.button2.AutoSize = true;
+            this.button2.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("button2.BackgroundImage")));
+            this.button2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button2.Location = new System.Drawing.Point(747, 264);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(136, 56);
+            this.button2.TabIndex = 19;
+            this.button2.Text = "IMPORT";
+            this.button2.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.ButtonDelete_Click);
+            // 
             // Gateway
             // 
             this.ClientSize = new System.Drawing.Size(907, 512);
@@ -549,6 +583,8 @@ namespace MeterReports
             this.Controls.Add(this.ComboBoxDMZ);
             this.Controls.Add(this.ComboBoxStatus);
             this.Controls.Add(this.LabelShow);
+            this.Controls.Add(this.button2);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.ButtonDelete);
             this.Controls.Add(this.ButtonSave);
             this.Controls.Add(this.ButtonEdit);

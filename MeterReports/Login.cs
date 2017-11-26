@@ -68,7 +68,7 @@ namespace MeterReports
             this.TextBoxPassword.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TextBoxPassword.Location = new System.Drawing.Point(96, 119);
             this.TextBoxPassword.Name = "TextBoxPassword";
-            this.TextBoxPassword.PasswordChar = '$';
+            this.TextBoxPassword.PasswordChar = '*';
             this.TextBoxPassword.Size = new System.Drawing.Size(288, 27);
             this.TextBoxPassword.TabIndex = 1;
             // 

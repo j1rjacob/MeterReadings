@@ -28,11 +28,11 @@ namespace MeterReports
         private readonly TMF.Reports.BLL.DMZ _dmz;
         private readonly TMF.Reports.BLL.City _city;
         private bool _save;
+        private int _dmzId;
         private DataGridViewTextBoxColumn ColId;
         private DataGridViewTextBoxColumn ColDescription;
         private DataGridViewTextBoxColumn ColCity;
         private DataGridViewTextBoxColumn ColTotMeter;
-        private int _dmzId;
         private readonly CustomUser _currentUser;
         public DMZ(CustomUser currentUser)
         {
@@ -54,10 +54,6 @@ namespace MeterReports
             this.ButtonNew = new System.Windows.Forms.Button();
             this.ButtonSearch = new System.Windows.Forms.Button();
             this.DataGridViewDMZ = new System.Windows.Forms.DataGridView();
-            this.ColId = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColDescription = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColCity = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColTotMeter = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.TextBoxTotalMeters = new System.Windows.Forms.TextBox();
             this.TextBoxSearch = new System.Windows.Forms.TextBox();
             this.TextBoxDescription = new System.Windows.Forms.TextBox();
@@ -65,6 +61,10 @@ namespace MeterReports
             this.label1 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.ComboBoxCity = new System.Windows.Forms.ComboBox();
+            this.ColId = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColDescription = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColCity = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColTotMeter = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.DataGridViewDMZ)).BeginInit();
             this.SuspendLayout();
             // 
@@ -172,37 +172,6 @@ namespace MeterReports
             this.DataGridViewDMZ.TabIndex = 30;
             this.DataGridViewDMZ.SelectionChanged += new System.EventHandler(this.DataGridViewDMZ_SelectionChanged);
             // 
-            // ColId
-            // 
-            this.ColId.DataPropertyName = "Id";
-            this.ColId.HeaderText = "Id";
-            this.ColId.Name = "ColId";
-            this.ColId.ReadOnly = true;
-            // 
-            // ColDescription
-            // 
-            this.ColDescription.DataPropertyName = "Description";
-            this.ColDescription.HeaderText = "Description";
-            this.ColDescription.Name = "ColDescription";
-            this.ColDescription.ReadOnly = true;
-            this.ColDescription.Width = 200;
-            // 
-            // ColCity
-            // 
-            this.ColCity.DataPropertyName = "CityId";
-            this.ColCity.HeaderText = "City";
-            this.ColCity.Name = "ColCity";
-            this.ColCity.ReadOnly = true;
-            this.ColCity.Visible = false;
-            // 
-            // ColTotMeter
-            // 
-            this.ColTotMeter.DataPropertyName = "TotalNumberOfMeters";
-            this.ColTotMeter.HeaderText = "Total Number of Meters";
-            this.ColTotMeter.Name = "ColTotMeter";
-            this.ColTotMeter.ReadOnly = true;
-            this.ColTotMeter.Width = 200;
-            // 
             // TextBoxTotalMeters
             // 
             this.TextBoxTotalMeters.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -266,6 +235,38 @@ namespace MeterReports
             this.ComboBoxCity.Size = new System.Drawing.Size(376, 28);
             this.ComboBoxCity.TabIndex = 37;
             this.ComboBoxCity.MouseClick += new System.Windows.Forms.MouseEventHandler(this.ComboBoxCity_MouseClick);
+            // 
+            // ColId
+            // 
+            this.ColId.DataPropertyName = "Id";
+            this.ColId.HeaderText = "Id";
+            this.ColId.Name = "ColId";
+            this.ColId.ReadOnly = true;
+            this.ColId.Visible = false;
+            // 
+            // ColDescription
+            // 
+            this.ColDescription.DataPropertyName = "Description";
+            this.ColDescription.HeaderText = "Description";
+            this.ColDescription.Name = "ColDescription";
+            this.ColDescription.ReadOnly = true;
+            this.ColDescription.Width = 200;
+            // 
+            // ColCity
+            // 
+            this.ColCity.DataPropertyName = "CityId";
+            this.ColCity.HeaderText = "City";
+            this.ColCity.Name = "ColCity";
+            this.ColCity.ReadOnly = true;
+            this.ColCity.Visible = false;
+            // 
+            // ColTotMeter
+            // 
+            this.ColTotMeter.DataPropertyName = "TotalNumberOfMeters";
+            this.ColTotMeter.HeaderText = "Total Number of Meters";
+            this.ColTotMeter.Name = "ColTotMeter";
+            this.ColTotMeter.ReadOnly = true;
+            this.ColTotMeter.Width = 200;
             // 
             // DMZ
             // 
