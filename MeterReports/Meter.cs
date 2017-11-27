@@ -208,8 +208,7 @@ namespace MeterReports
             if (!string.IsNullOrWhiteSpace(TextBoxSerialNumber.Text))
             {
                 TMF.Reports.Model.Meter meter = new TMF.Reports.Model.Meter()
-                {   //TODO User id for CreatedBy
-                    Id = Guid.NewGuid().ToString("N"),
+                {   
                     SerialNumber = TextBoxSerialNumber.Text,
                     X = Convert.ToDecimal(TextBoxX.Text),
                     Y = Convert.ToDecimal(TextBoxY.Text),
@@ -248,12 +247,11 @@ namespace MeterReports
         private void EditMeter()
         {
             if (!string.IsNullOrWhiteSpace(TextBoxSerialNumber.Text))
-            {   //Todo EditedBy
+            {   
                 var lockcount = GetLockCount(_meterId);
 
                 TMF.Reports.Model.Meter meter = new TMF.Reports.Model.Meter()
                 {
-                    Id = _meterId,
                     SerialNumber = TextBoxSerialNumber.Text,
                     X = Convert.ToDecimal(TextBoxX.Text),
                     Y = Convert.ToDecimal(TextBoxY.Text),
