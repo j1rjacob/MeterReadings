@@ -1,7 +1,9 @@
 ﻿using System;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Security;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 using TMF.Core;
 
@@ -25,8 +27,7 @@ namespace MeterReports
 
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources =
-                new System.ComponentModel.ComponentResourceManager(typeof(Import));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Import));
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
@@ -38,10 +39,8 @@ namespace MeterReports
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular,
-                System.Drawing.GraphicsUnit.Point, ((byte) (0)));
-            this.label1.ForeColor = System.Drawing.Color.FromArgb(((int) (((byte) (0)))), ((int) (((byte) (192)))),
-                ((int) (((byte) (0)))));
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
             this.label1.Location = new System.Drawing.Point(14, 8);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(227, 18);
@@ -51,10 +50,8 @@ namespace MeterReports
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular,
-                System.Drawing.GraphicsUnit.Point, ((byte) (0)));
-            this.label2.ForeColor = System.Drawing.Color.FromArgb(((int) (((byte) (192)))), ((int) (((byte) (0)))),
-                ((int) (((byte) (0)))));
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.label2.Location = new System.Drawing.Point(14, 40);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(217, 18);
@@ -71,11 +68,9 @@ namespace MeterReports
             // ButtonReplace
             // 
             this.ButtonReplace.AutoSize = true;
-            this.ButtonReplace.BackgroundImage =
-                ((System.Drawing.Image) (resources.GetObject("ButtonReplace.BackgroundImage")));
+            this.ButtonReplace.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("ButtonReplace.BackgroundImage")));
             this.ButtonReplace.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.ButtonReplace.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F,
-                System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (0)));
+            this.ButtonReplace.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ButtonReplace.Location = new System.Drawing.Point(8, 104);
             this.ButtonReplace.Name = "ButtonReplace";
             this.ButtonReplace.Size = new System.Drawing.Size(176, 56);
@@ -88,11 +83,9 @@ namespace MeterReports
             // ButtonSkip
             // 
             this.ButtonSkip.AutoSize = true;
-            this.ButtonSkip.BackgroundImage =
-                ((System.Drawing.Image) (resources.GetObject("ButtonSkip.BackgroundImage")));
+            this.ButtonSkip.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("ButtonSkip.BackgroundImage")));
             this.ButtonSkip.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.ButtonSkip.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F,
-                System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (0)));
+            this.ButtonSkip.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ButtonSkip.Location = new System.Drawing.Point(200, 104);
             this.ButtonSkip.Name = "ButtonSkip";
             this.ButtonSkip.Size = new System.Drawing.Size(176, 56);
@@ -122,7 +115,7 @@ namespace MeterReports
             this.MinimizeBox = false;
             this.Name = "Import";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Import Meter";
+            this.Text = "Import Meter Reading";
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -142,17 +135,27 @@ namespace MeterReports
         {
             if (openFileDialogImport.ShowDialog() == DialogResult.OK)
             {
-                foreach (String file in openFileDialogImport.FileNames)
+                Task<bool> T_Result = Task.Factory.StartNew(() => ImportBulkCsv(openFileDialogImport.FileNames));
+                MessageBox.Show(T_Result.ToString());
+            }
+        }
+
+        private bool ImportBulkCsv(string[] Filenames)
+        {
+            bool success = false;
+            
+            
+                foreach (String file in Filenames)
                 {
                     try
                     {
                         string[] allLines = File.ReadAllLines(file);
 
                         var columnCount = allLines[0].Split(',').Length;
-                        
+
                         if (columnCount == 11)
                         {   //RDS
-                                var query = from line in allLines
+                            var query = from line in allLines
                                 let data = line.Split(',')
                                 select new
                                 {
@@ -170,12 +173,11 @@ namespace MeterReports
                                 };
                             foreach (var q in query.ToList().Skip(1))
                             {
-                                //MessageBox.Show(q.Meter_Address);
                                 TMF.Reports.Model.MeterReading meterReading = new TMF.Reports.Model.MeterReading()
                                 {   //TODO User id for CreatedBy
                                     Id = Guid.NewGuid().ToString("N"),
-                                    SerialNumber = q.Meter_Address,
-                                    ReadingDate = Convert.ToDateTime(q.Reading_Date),
+                                    SerialNumber = q.Meter_Address.Replace("-", ""),
+                                    ReadingDate = DateTime.ParseExact(q.Reading_Date, "HH:mm:ss dd/MM/yyyy", new CultureInfo("en-US")),
                                     CSVType = "RDS",
                                     ReadingValue = q.Reading_Value_L,
                                     LowBatteryAlr = Convert.ToInt32(q.Low_Battery_Alr),
@@ -193,10 +195,11 @@ namespace MeterReports
                                 };
                                 var createMeterReading = _meterReading.Create(new SmartDB(), ref meterReading);
                             }
+                            success = true;
                         }
                         if (columnCount == 13)
                         {   //OMS
-                                var query = from line in allLines
+                            var query = from line in allLines
                                 let data = line.Split(',')
                                 select new
                                 {
@@ -216,11 +219,12 @@ namespace MeterReports
                                 };
                             foreach (var q in query.ToList().Skip(1))
                             {
+
                                 TMF.Reports.Model.MeterReading meterReading = new TMF.Reports.Model.MeterReading()
                                 {   //TODO User id for CreatedBy
                                     Id = Guid.NewGuid().ToString("N"),
-                                    SerialNumber = q.Meter_Address,
-                                    ReadingDate = Convert.ToDateTime(q.Reading_Date),
+                                    SerialNumber = q.Meter_Address.Replace("-", ""),
+                                    ReadingDate = DateTime.ParseExact(q.Reading_Date, "HH:mm:ss dd/MM/yyyy", new CultureInfo("en-US")),
                                     CSVType = "OMS",
                                     ReadingValue = q.Reading_Value,
                                     FlowRateValue = Convert.ToInt32(q.Flow_Rate_Value),
@@ -238,8 +242,9 @@ namespace MeterReports
                                     Show = 1,
                                     LockCount = 0
                                 };
-                                var createMeterReading = _meterReading.Create(new SmartDB(), ref meterReading);
+                                _meterReading.Create(new SmartDB(), ref meterReading);
                             }
+                            success = true;
                         }
                     }
                     catch (SecurityException ex)
@@ -249,16 +254,19 @@ namespace MeterReports
                                         "Error message: " + ex.Message + "\n\n" +
                                         "Details (send to Support):\n\n" + ex.StackTrace
                         );
+                        success = false;
                     }
                     catch (Exception ex)
                     {
                         //Could not load the image - probably related to Windows file system permissions.
-                        MessageBox.Show("Cannot display the image: " + file.Substring(file.LastIndexOf('\\'))
+                        MessageBox.Show("Cannot display the: " + file.Substring(file.LastIndexOf('\\'))
                                         + ". You may not have permission to read the file, or " +
                                         "it may be corrupt.\n\nReported error: " + ex.Message);
+                        success = false;
                     }
                 }
-            }
+           
+            return success;
         }
     }
 }
