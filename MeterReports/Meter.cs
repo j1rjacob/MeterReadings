@@ -21,7 +21,7 @@ namespace MeterReports
         private readonly TMF.Reports.BLL.City _city;
         private readonly CustomUser _currentUser;
         private bool _save;
-        private string _meterId;
+        private string _meterSerialNumber;
         public Meter(CustomUser currentUser)
         {
             InitializeComponent();
@@ -34,7 +34,7 @@ namespace MeterReports
             _city = new TMF.Reports.BLL.City();
 
             _save = true;
-            _meterId = "";
+            _meterSerialNumber = "";
         }
         private void Meter_Load(object sender, EventArgs e)
         {
@@ -69,7 +69,7 @@ namespace MeterReports
             ComboBoxMeterProtocol.Items.Clear();
             ComboBoxDMZ.Items.Clear();
             ComboBoxCity.Items.Clear();
-            _meterId = "";
+            _meterSerialNumber = "";
         }
         private void ButtonEdit_Click(object sender, EventArgs e)
         {
@@ -102,7 +102,7 @@ namespace MeterReports
         {
             if (!string.IsNullOrWhiteSpace(TextBoxSerialNumber.Text))
             {
-                var deleteMeter = _meter.Delete(new SmartDB(), _meterId);
+                var deleteMeter = _meter.Delete(new SmartDB(), _meterSerialNumber);
 
                 bool flag = deleteMeter.Code == ErrorEnum.NoError;
                 if (flag)
@@ -129,7 +129,6 @@ namespace MeterReports
         {
             ExportMeters();
         }
-
         private void ButtonImport_Click(object sender, EventArgs e)
         {
             ImportMeters();
@@ -137,13 +136,14 @@ namespace MeterReports
         private void DataGridViewMeter_SelectionChanged(object sender, EventArgs e)
         {
             LabelShow.Text = $"Showing {DataGridViewMeter.CurrentRow.Index + 1} index of {DataGridViewMeter.RowCount} records";
-
-            var meterId = DataGridViewMeter.CurrentRow.Cells[0].Value.ToString();
-            ReturnInfo getMeter = _meter.GetMeterById(new SmartDB(), meterId);
-
-            bool flag = getMeter.Code == ErrorEnum.NoError;
+            
             try
             {
+                var serialNumber = DataGridViewMeter.CurrentRow.Cells[0].Value.ToString();
+                ReturnInfo getMeter = _meter.GetMeterBySerialNumber(new SmartDB(), serialNumber);
+
+                bool flag = getMeter.Code == ErrorEnum.NoError;
+
                 TMF.Reports.Model.Meter meter = (TMF.Reports.Model.Meter)getMeter.BizObject;
 
                 ReturnInfo getMeterType = _meterType.GetMeterTypeById(new SmartDB(), Convert.ToInt32(meter.MeterTypeId));
@@ -156,10 +156,10 @@ namespace MeterReports
                 TMF.Reports.Model.DMZ dmz = (TMF.Reports.Model.DMZ)getDMZ.BizObject;
                 ReturnInfo getCity = _city.GetCityById(new SmartDB(), meter.CityId);
                 TMF.Reports.Model.City city = (TMF.Reports.Model.City)getCity.BizObject;
-                  
-                if (!string.IsNullOrEmpty(meter.Id))
+
+                if (!string.IsNullOrEmpty(meter.SerialNumber))
                 {
-                    _meterId = meter.Id;
+                    _meterSerialNumber = meter.SerialNumber;
                     TextBoxSerialNumber.Text = meter.SerialNumber;
                     TextBoxX.Text = meter.X.ToString();
                     TextBoxY.Text = meter.Y.ToString();
@@ -180,7 +180,7 @@ namespace MeterReports
             {
                 return;
             }
-            
+
         }
         private void ComboBoxMeterType_MouseClick(object sender, MouseEventArgs e)
         {
@@ -208,7 +208,7 @@ namespace MeterReports
             if (!string.IsNullOrWhiteSpace(TextBoxSerialNumber.Text))
             {
                 TMF.Reports.Model.Meter meter = new TMF.Reports.Model.Meter()
-                {   
+                {
                     SerialNumber = TextBoxSerialNumber.Text,
                     X = Convert.ToDecimal(TextBoxX.Text),
                     Y = Convert.ToDecimal(TextBoxY.Text),
@@ -247,8 +247,8 @@ namespace MeterReports
         private void EditMeter()
         {
             if (!string.IsNullOrWhiteSpace(TextBoxSerialNumber.Text))
-            {   
-                var lockcount = GetLockCount(_meterId);
+            {
+                var lockcount = GetLockCount(_meterSerialNumber);
 
                 TMF.Reports.Model.Meter meter = new TMF.Reports.Model.Meter()
                 {
@@ -392,7 +392,7 @@ namespace MeterReports
         {   //TODO: Refactor this for reuse.
             try
             {
-                ReturnInfo getMeterList = _meter.GetMeterByDescription(new SmartDB(), TextBoxSearch.Text);
+                ReturnInfo getMeterList = _meter.GetMeterBySerialNumber(new SmartDB(), TextBoxSearch.Text);
                 //bool flag = getCityList.Code == ErrorEnum.NoError;
                 List<TMF.Reports.Model.Meter> meter = (List<TMF.Reports.Model.Meter>)getMeterList.BizObject;
                 var bindingList = new BindingList<TMF.Reports.Model.Meter>(meter);
@@ -413,7 +413,7 @@ namespace MeterReports
             string line = "";
             StringBuilder fileContents = new StringBuilder();
 
-            fileContents.Append("ID, SERIAL_NUMBER, X, Y, STATUS, HCN, INSTALLATION_DATE" +
+            fileContents.Append("SERIAL_NUMBER, X, Y, STATUS, HCN, INSTALLATION_DATE" +
                                 "MAINTENANCE_DATE, METER_TYPE_ID, METER_SIZE_ID," +
                                 "METER_PROTOCOL_ID, DMZ_ID, CITY_ID, " +
                                 "CREATED_BY, EDITED_BY, DOC_DATE, SHOW, LOCK_COUNT\r\n");
@@ -422,12 +422,11 @@ namespace MeterReports
                 sr = new StreamWriter(saveFileDialogMeter.FileName, false);
                 try
                 {
-                    ReturnInfo getMeterList = _meter.GetMeterByDescription(new SmartDB(), TextBoxSearch.Text);
+                    ReturnInfo getMeterList = _meter.GetMeterBySerialNumber(new SmartDB(), TextBoxSearch.Text);
                     List<TMF.Reports.Model.Meter> meter = (List<TMF.Reports.Model.Meter>)getMeterList.BizObject;
 
                     foreach (var m in meter)
                     {
-                        line = m.Id + ",";
                         line += m.SerialNumber + ",";
                         line += m.X + ",";
                         line += m.Y + ",";
@@ -468,27 +467,27 @@ namespace MeterReports
                     string[] allLines = File.ReadAllLines(openFileDialogMeter.FileName);
 
                     var query = from line in allLines
-                        let data = line.Split(',')
-                        select new
-                        {
-                            Id = data[0],
-                            SerialNumber = data[1],
-                            X = data[2],
-                            Y = data[3],
-                            Status = data[4],
-                            HCN = data[5],
-                            InstallationDate = data[6],
-                            MaintenanceDate = data[7],
-                            MeterTypeId = data[8],
-                            MeterSizeId = data[9],
-                            MeterProtocolId = data[10],
-                            CityId = data[11],
-                            CreatedBy = data[12],
-                            EditedBy = data[13],
-                            DocDate = data[14],
-                            Show = data[15],
-                            Locked = data[16],
-                        };
+                                let data = line.Split(',')
+                                select new
+                                {
+                                    Id = data[0],
+                                    SerialNumber = data[1],
+                                    X = data[2],
+                                    Y = data[3],
+                                    Status = data[4],
+                                    HCN = data[5],
+                                    InstallationDate = data[6],
+                                    MaintenanceDate = data[7],
+                                    MeterTypeId = data[8],
+                                    MeterSizeId = data[9],
+                                    MeterProtocolId = data[10],
+                                    CityId = data[11],
+                                    CreatedBy = data[12],
+                                    EditedBy = data[13],
+                                    DocDate = data[14],
+                                    Show = data[15],
+                                    Locked = data[16],
+                                };
                     foreach (var q in query.ToList().Skip(1))
                     {
                         MessageBox.Show(q.Id + " " +

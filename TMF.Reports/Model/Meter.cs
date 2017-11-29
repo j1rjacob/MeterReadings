@@ -6,7 +6,6 @@ namespace TMF.Reports.Model
 {
     public class Meter : ModelInfo
     {
-        public string Id { get; set; }
         public string SerialNumber { get; set; }
         public decimal X { get; set; }
         public decimal Y { get; set; }
@@ -26,18 +25,17 @@ namespace TMF.Reports.Model
         public int LockCount { get; set; }
         public Meter()
         {
-            Id = "";
+            SerialNumber = "";
             base.IsNew = true;
             base.IsDirty = false;
             base.IsDeleted = false;
         }
-        public Meter(string Id, string SerialNumber, decimal X, decimal Y, string Status,
+        public Meter(string SerialNumber, decimal X, decimal Y, string Status,
                      string HCN, DateTime InstallationDate, DateTime MaintenanceDate,
                      string MeterTypeId, string MeterSizeId, string MeterProtocolId,
                      string DMZId, string CityId, string CreatedBy, string EditedBy,
                      DateTime DocDate, int Show, int LockCount)
         {
-            this.Id = Id;
             this.SerialNumber = SerialNumber;
             this.X = X;
             this.Y = Y;
@@ -63,9 +61,6 @@ namespace TMF.Reports.Model
         {
             switch (fieldname.ToLower())
             {
-                case "id":
-                    return this.Id;
-                    break;
                 case "serialnumber":
                     return this.SerialNumber;
                     break;
@@ -126,9 +121,6 @@ namespace TMF.Reports.Model
         {
             switch (fieldname.ToLower())
             {
-                case "id":
-                    this.Id = CastDBNull.To<string>(value, "");
-                    break;
                 case "serialnumber":
                     this.SerialNumber = CastDBNull.To<string>(value, "");
                     break;

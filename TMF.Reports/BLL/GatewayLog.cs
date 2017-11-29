@@ -107,6 +107,17 @@ namespace TMF.Reports.BLL
                 RowsAffected = record.RowsAffected
             };
         }
+        public ReturnInfo GetRecordsByMacCsv(SmartDB dbInstance, string gatewayMacAddress, string csvFilename)
+        {
+            IInfo record = _dal.GetRecordsByMacCsv(dbInstance, gatewayMacAddress, csvFilename);
+            return new ReturnInfo
+            {
+                BizObject = ((record.Code == ErrorEnum.NoError) ? record.BizObject : null),
+                Code = record.Code,
+                Message = record.Message,
+                RowsAffected = record.RowsAffected
+            };
+        }
         public ReturnInfo GetGatewayLogList(SmartDB dbInstance)
         {
             IInfo records = _dal.GetRecords(dbInstance);

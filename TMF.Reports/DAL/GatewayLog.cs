@@ -24,9 +24,10 @@ namespace TMF.Reports.DAL
             {
                 info = new Model.GatewayLog();
                 info.Id = CastDBNull.To<string>(reader["Id"], "");
-                info.LogDateTime = CastDBNull.To<DateTime>(reader["LogDateTime"], DateTime.Now);
-                info.MeterRAWCount = CastDBNull.To<int>(reader["MeterRAWCount"], 0);
-                info.MeterOMSCount = CastDBNull.To<int>(reader["MeterOMSCount"], 0);
+                info.RDS = CastDBNull.To<int>(reader["RDS"], 0);
+                info.OMS = CastDBNull.To<int>(reader["OMS"], 0);
+                info.GatewayMacAddress = CastDBNull.To<string>(reader["GatewayMacAddress"], "");
+                info.CSVFilename = CastDBNull.To<string>(reader["CSVFilename"], "");
                 info.CreatedBy = CastDBNull.To<string>(reader["Createdby"], "");
                 info.EditedBy = CastDBNull.To<string>(reader["Editedby"], "");
                 info.DocDate = CastDBNull.To<DateTime>(reader["DocDate"], DateTime.Now);
@@ -158,6 +159,18 @@ namespace TMF.Reports.DAL
                 new SqlParameter("@LogDateTime", SqlDbType.NVarChar)
             };
             array[0].Value = description;
+            return this.GetRecords(dbInstance, cmdText, array);
+        }
+        public IInfo GetRecordsByMacCsv(SmartDB dbInstance, string gatewayMacAddress, string csvFilename)
+        {
+            string cmdText = "[REPORT GATEWAYLOG_LST_BYMACCSV]";
+            SqlParameter[] array = new SqlParameter[]
+            {
+                new SqlParameter("@GatewayMacAddress", SqlDbType.NVarChar),
+                new SqlParameter("@CSVFilename", SqlDbType.NVarChar)
+            };
+            array[0].Value = gatewayMacAddress;
+            array[1].Value = csvFilename;
             return this.GetRecords(dbInstance, cmdText, array);
         }
     }

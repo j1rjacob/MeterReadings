@@ -23,7 +23,6 @@ namespace TMF.Reports.DAL
             try
             {
                 info = new Model.Meter();
-                info.Id = CastDBNull.To<string>(reader["Id"], "");
                 info.SerialNumber = CastDBNull.To<string>(reader["SerialNumber"], "");
                 info.X = CastDBNull.To<decimal>(reader["X"], 0.0m);
                 info.Y = CastDBNull.To<decimal>(reader["Y"], 0.0m);
@@ -160,7 +159,7 @@ namespace TMF.Reports.DAL
             string sQL_GET_LIST = this.SQL_GET_LIST;
             return this.GetRecords(dbInstance, sQL_GET_LIST, null);
         }
-        public IInfo GetRecordsByDescription(SmartDB dbInstance, string serialnumber)
+        public IInfo GetRecordsBySerialNumber(SmartDB dbInstance, string serialnumber)
         {
             string cmdText = "[REPORT METER_LST_BYSERIALNUMBER]";
             SqlParameter[] array = new SqlParameter[]

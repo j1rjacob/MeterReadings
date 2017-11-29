@@ -20,10 +20,10 @@ namespace MeterReports.Test
             //Arrange
             TMF.Reports.Model.GatewayLog gatewayLog = new TMF.Reports.Model.GatewayLog()
             {
-                Id = Guid.NewGuid().ToString("N"),
-                LogDateTime = DateTime.Now,
-                MeterRAWCount = 6,
-                MeterOMSCount = 9,
+                RDS = 1,
+                OMS = 0,
+                GatewayMacAddress = "1CBA8C98F4CB",
+                CSVFilename = "GTW_RDS_20170725_003000.csv",
                 CreatedBy = "646f18f9-6425-4769-aa79-16ecdb7cf816",
                 EditedBy = "646f18f9-6425-4769-aa79-16ecdb7cf816",
                 DocDate = DateTime.Now,
@@ -43,7 +43,18 @@ namespace MeterReports.Test
         {
             //Arrange
             //Act
-            ReturnInfo getGatewayLog = _gatewayLog.GetGatewayLogById(new SmartDB(), "510f6d72822b4b2dbca23a4e9f64d504");
+            ReturnInfo getGatewayLog = _gatewayLog.GetGatewayLogById(new SmartDB(), "2DC56AF9-D0D4-E711-9C17-645A043F454D");
+            bool flag = getGatewayLog.Code == ErrorEnum.NoError;
+
+            //Assert
+            Assert.IsTrue(flag);
+        }
+        [Test]
+        public void GatewayLog_SearchByMacCsv_True()
+        {
+            //Arrange
+            //Act
+            ReturnInfo getGatewayLog = _gatewayLog.GetRecordsByMacCsv(new SmartDB(), "1CBA8C98F4CB", "GTW_RDS_20170725_003000.csv");
             bool flag = getGatewayLog.Code == ErrorEnum.NoError;
 
             //Assert
@@ -66,10 +77,11 @@ namespace MeterReports.Test
             //Arrange
             TMF.Reports.Model.GatewayLog gatewayLog = new TMF.Reports.Model.GatewayLog()
             {
-                Id = "329ae1c48fe347b384133fbfff5d54b8",
-                LogDateTime = DateTime.Now,
-                MeterRAWCount = 5,
-                MeterOMSCount = 10,
+                Id = "2DC56AF9-D0D4-E711-9C17-645A043F454D",
+                RDS = 0,
+                OMS = 0,
+                GatewayMacAddress = "1CBA8C98F4CB",
+                CSVFilename = "GTW_RDS_20170725_003000.csv",
                 CreatedBy = "646f18f9-6425-4769-aa79-16ecdb7cf816",
                 EditedBy = "646f18f9-6425-4769-aa79-16ecdb7cf816",
                 DocDate = DateTime.Now,
@@ -89,7 +101,7 @@ namespace MeterReports.Test
         {
             //Arrange
             //Act
-            var deleteGatewayLog = _gatewayLog.Delete(new SmartDB(), "510f6d72822b4b2dbca23a4e9f64d504");
+            var deleteGatewayLog = _gatewayLog.Delete(new SmartDB(), "2DC56AF9-D0D4-E711-9C17-645A043F454D");
             bool flag = deleteGatewayLog.Code == ErrorEnum.NoError;
 
             //Assert

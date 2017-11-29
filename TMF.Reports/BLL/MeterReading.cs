@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using TMF.Core;
 using TMF.Core.Model;
 
@@ -107,6 +108,19 @@ namespace TMF.Reports.BLL
                 RowsAffected = record.RowsAffected
             };
         }
+        public ReturnInfo CheckRecordDuplicate(SmartDB dbInstance, string SerialNumber, DateTime ReadingDate,
+                                                                   string CSVType, string ReadingValue)
+        {
+            IInfo record = _dal.CheckRecord(dbInstance, SerialNumber, ReadingDate, CSVType, ReadingValue);
+            return new ReturnInfo
+            {
+                BizObject = ((record.Code == ErrorEnum.NoError) ? record.BizObject : null),
+                Code = record.Code,
+                Message = record.Message,
+                RowsAffected = record.RowsAffected
+            };
+        }
+
         public ReturnInfo GetMeterReadingList(SmartDB dbInstance)
         {
             IInfo records = _dal.GetRecords(dbInstance);

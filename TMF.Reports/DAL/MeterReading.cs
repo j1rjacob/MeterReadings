@@ -180,5 +180,22 @@ namespace TMF.Reports.DAL
             array[0].Value = description;
             return this.GetRecords(dbInstance, cmdText, array);
         }
+        public IInfo CheckRecord(SmartDB dbInstance, string SerialNumber, DateTime ReadingDate,
+                                                     string CSVType, string ReadingValue)
+        {
+            string cmdText = "[REPORT METERREADING_CHECKRECORD_DUPLICATE]";
+            SqlParameter[] array = new SqlParameter[]
+            {
+                new SqlParameter("@SerialNumber", SqlDbType.NVarChar),
+                new SqlParameter("@ReadingDate", SqlDbType.DateTime),
+                new SqlParameter("@CSVType", SqlDbType.NVarChar),
+                new SqlParameter("@ReadingValue", SqlDbType.NVarChar)
+            };
+            array[0].Value = SerialNumber;
+            array[1].Value = ReadingDate;
+            array[2].Value = CSVType;
+            array[3].Value = ReadingValue;
+            return this.GetRecords(dbInstance, cmdText, array);
+        }
     }
 }

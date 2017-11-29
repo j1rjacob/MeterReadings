@@ -42,19 +42,6 @@
             this.ButtonNew = new System.Windows.Forms.Button();
             this.ButtonSearch = new System.Windows.Forms.Button();
             this.DataGridViewMeter = new System.Windows.Forms.DataGridView();
-            this.ColId = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColSerialNumber = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColX = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColY = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColStatus = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColHCN = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColInstallationDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColMaintenanceDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColMeterType = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColMeterSize = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColMeterProtocol = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColDMZ = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColCity = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.TextBoxX = new System.Windows.Forms.TextBox();
             this.TextBoxHCN = new System.Windows.Forms.TextBox();
             this.TextBoxY = new System.Windows.Forms.TextBox();
@@ -78,6 +65,18 @@
             this.ButtonExport = new System.Windows.Forms.Button();
             this.saveFileDialogMeter = new System.Windows.Forms.SaveFileDialog();
             this.openFileDialogMeter = new System.Windows.Forms.OpenFileDialog();
+            this.ColSerialNumber = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColX = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColY = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColStatus = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColHCN = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColInstallationDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColMaintenanceDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColMeterType = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColMeterSize = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColMeterProtocol = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColDMZ = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColCity = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.DataGridViewMeter)).BeginInit();
             this.SuspendLayout();
             // 
@@ -241,7 +240,6 @@
             this.DataGridViewMeter.AllowUserToDeleteRows = false;
             this.DataGridViewMeter.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.DataGridViewMeter.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.ColId,
             this.ColSerialNumber,
             this.ColX,
             this.ColY,
@@ -261,103 +259,6 @@
             this.DataGridViewMeter.Size = new System.Drawing.Size(872, 150);
             this.DataGridViewMeter.TabIndex = 44;
             this.DataGridViewMeter.SelectionChanged += new System.EventHandler(this.DataGridViewMeter_SelectionChanged);
-            // 
-            // ColId
-            // 
-            this.ColId.DataPropertyName = "Id";
-            this.ColId.HeaderText = "Id";
-            this.ColId.Name = "ColId";
-            this.ColId.ReadOnly = true;
-            this.ColId.Visible = false;
-            // 
-            // ColSerialNumber
-            // 
-            this.ColSerialNumber.DataPropertyName = "SerialNumber";
-            this.ColSerialNumber.HeaderText = "SerialNumber";
-            this.ColSerialNumber.Name = "ColSerialNumber";
-            this.ColSerialNumber.ReadOnly = true;
-            // 
-            // ColX
-            // 
-            this.ColX.DataPropertyName = "X";
-            this.ColX.HeaderText = "X";
-            this.ColX.Name = "ColX";
-            this.ColX.ReadOnly = true;
-            // 
-            // ColY
-            // 
-            this.ColY.DataPropertyName = "Y";
-            this.ColY.HeaderText = "Y";
-            this.ColY.Name = "ColY";
-            this.ColY.ReadOnly = true;
-            // 
-            // ColStatus
-            // 
-            this.ColStatus.DataPropertyName = "Status";
-            this.ColStatus.HeaderText = "Status";
-            this.ColStatus.Name = "ColStatus";
-            this.ColStatus.ReadOnly = true;
-            // 
-            // ColHCN
-            // 
-            this.ColHCN.DataPropertyName = "HCN";
-            this.ColHCN.HeaderText = "HCN";
-            this.ColHCN.Name = "ColHCN";
-            this.ColHCN.ReadOnly = true;
-            // 
-            // ColInstallationDate
-            // 
-            this.ColInstallationDate.DataPropertyName = "InstallationDate";
-            this.ColInstallationDate.HeaderText = "InstallationDate";
-            this.ColInstallationDate.Name = "ColInstallationDate";
-            this.ColInstallationDate.ReadOnly = true;
-            // 
-            // ColMaintenanceDate
-            // 
-            this.ColMaintenanceDate.DataPropertyName = "MaintenanceDate";
-            this.ColMaintenanceDate.HeaderText = "MaintenanceDate";
-            this.ColMaintenanceDate.Name = "ColMaintenanceDate";
-            this.ColMaintenanceDate.ReadOnly = true;
-            // 
-            // ColMeterType
-            // 
-            this.ColMeterType.DataPropertyName = "MeterType";
-            this.ColMeterType.HeaderText = "MeterType";
-            this.ColMeterType.Name = "ColMeterType";
-            this.ColMeterType.ReadOnly = true;
-            this.ColMeterType.Visible = false;
-            // 
-            // ColMeterSize
-            // 
-            this.ColMeterSize.DataPropertyName = "MeterSize";
-            this.ColMeterSize.HeaderText = "MeterSize";
-            this.ColMeterSize.Name = "ColMeterSize";
-            this.ColMeterSize.ReadOnly = true;
-            this.ColMeterSize.Visible = false;
-            // 
-            // ColMeterProtocol
-            // 
-            this.ColMeterProtocol.DataPropertyName = "MeterProtocol";
-            this.ColMeterProtocol.HeaderText = "MeterProtocol";
-            this.ColMeterProtocol.Name = "ColMeterProtocol";
-            this.ColMeterProtocol.ReadOnly = true;
-            this.ColMeterProtocol.Visible = false;
-            // 
-            // ColDMZ
-            // 
-            this.ColDMZ.DataPropertyName = "DMZ";
-            this.ColDMZ.HeaderText = "DMZ";
-            this.ColDMZ.Name = "ColDMZ";
-            this.ColDMZ.ReadOnly = true;
-            this.ColDMZ.Visible = false;
-            // 
-            // ColCity
-            // 
-            this.ColCity.DataPropertyName = "City";
-            this.ColCity.HeaderText = "City";
-            this.ColCity.Name = "ColCity";
-            this.ColCity.ReadOnly = true;
-            this.ColCity.Visible = false;
             // 
             // TextBoxX
             // 
@@ -587,6 +488,95 @@
             this.openFileDialogMeter.FileName = "Meters";
             this.openFileDialogMeter.Filter = "CSV |*.csv";
             // 
+            // ColSerialNumber
+            // 
+            this.ColSerialNumber.DataPropertyName = "SerialNumber";
+            this.ColSerialNumber.HeaderText = "SerialNumber";
+            this.ColSerialNumber.Name = "ColSerialNumber";
+            this.ColSerialNumber.ReadOnly = true;
+            // 
+            // ColX
+            // 
+            this.ColX.DataPropertyName = "X";
+            this.ColX.HeaderText = "X";
+            this.ColX.Name = "ColX";
+            this.ColX.ReadOnly = true;
+            // 
+            // ColY
+            // 
+            this.ColY.DataPropertyName = "Y";
+            this.ColY.HeaderText = "Y";
+            this.ColY.Name = "ColY";
+            this.ColY.ReadOnly = true;
+            // 
+            // ColStatus
+            // 
+            this.ColStatus.DataPropertyName = "Status";
+            this.ColStatus.HeaderText = "Status";
+            this.ColStatus.Name = "ColStatus";
+            this.ColStatus.ReadOnly = true;
+            // 
+            // ColHCN
+            // 
+            this.ColHCN.DataPropertyName = "HCN";
+            this.ColHCN.HeaderText = "HCN";
+            this.ColHCN.Name = "ColHCN";
+            this.ColHCN.ReadOnly = true;
+            // 
+            // ColInstallationDate
+            // 
+            this.ColInstallationDate.DataPropertyName = "InstallationDate";
+            this.ColInstallationDate.HeaderText = "InstallationDate";
+            this.ColInstallationDate.Name = "ColInstallationDate";
+            this.ColInstallationDate.ReadOnly = true;
+            // 
+            // ColMaintenanceDate
+            // 
+            this.ColMaintenanceDate.DataPropertyName = "MaintenanceDate";
+            this.ColMaintenanceDate.HeaderText = "MaintenanceDate";
+            this.ColMaintenanceDate.Name = "ColMaintenanceDate";
+            this.ColMaintenanceDate.ReadOnly = true;
+            // 
+            // ColMeterType
+            // 
+            this.ColMeterType.DataPropertyName = "MeterType";
+            this.ColMeterType.HeaderText = "MeterType";
+            this.ColMeterType.Name = "ColMeterType";
+            this.ColMeterType.ReadOnly = true;
+            this.ColMeterType.Visible = false;
+            // 
+            // ColMeterSize
+            // 
+            this.ColMeterSize.DataPropertyName = "MeterSize";
+            this.ColMeterSize.HeaderText = "MeterSize";
+            this.ColMeterSize.Name = "ColMeterSize";
+            this.ColMeterSize.ReadOnly = true;
+            this.ColMeterSize.Visible = false;
+            // 
+            // ColMeterProtocol
+            // 
+            this.ColMeterProtocol.DataPropertyName = "MeterProtocol";
+            this.ColMeterProtocol.HeaderText = "MeterProtocol";
+            this.ColMeterProtocol.Name = "ColMeterProtocol";
+            this.ColMeterProtocol.ReadOnly = true;
+            this.ColMeterProtocol.Visible = false;
+            // 
+            // ColDMZ
+            // 
+            this.ColDMZ.DataPropertyName = "DMZ";
+            this.ColDMZ.HeaderText = "DMZ";
+            this.ColDMZ.Name = "ColDMZ";
+            this.ColDMZ.ReadOnly = true;
+            this.ColDMZ.Visible = false;
+            // 
+            // ColCity
+            // 
+            this.ColCity.DataPropertyName = "City";
+            this.ColCity.HeaderText = "City";
+            this.ColCity.Name = "ColCity";
+            this.ColCity.ReadOnly = true;
+            this.ColCity.Visible = false;
+            // 
             // Meter
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -672,7 +662,10 @@
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.ComboBox ComboBoxCity;
         private System.Windows.Forms.ComboBox ComboBoxMeterSize;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ColId;
+        private System.Windows.Forms.Button ButtonImport;
+        private System.Windows.Forms.Button ButtonExport;
+        private System.Windows.Forms.SaveFileDialog saveFileDialogMeter;
+        private System.Windows.Forms.OpenFileDialog openFileDialogMeter;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColSerialNumber;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColX;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColY;
@@ -685,9 +678,5 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn ColMeterProtocol;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColDMZ;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColCity;
-        private System.Windows.Forms.Button ButtonImport;
-        private System.Windows.Forms.Button ButtonExport;
-        private System.Windows.Forms.SaveFileDialog saveFileDialogMeter;
-        private System.Windows.Forms.OpenFileDialog openFileDialogMeter;
     }
 }

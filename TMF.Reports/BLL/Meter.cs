@@ -27,7 +27,7 @@ namespace TMF.Reports.BLL
         }
         public ReturnInfo IsValid(Model.Meter info)
         {
-            bool flag = string.IsNullOrEmpty(info.Id);
+            bool flag = string.IsNullOrEmpty(info.SerialNumber);
             ReturnInfo result;
             if (flag)
             {
@@ -53,7 +53,7 @@ namespace TMF.Reports.BLL
         }
         public ReturnInfo Update(SmartDB dbInstance, Model.Meter info)
         {
-            IInfo info2 = _dal.GetRecord(dbInstance, info.Id);
+            IInfo info2 = _dal.GetRecord(dbInstance, info.SerialNumber);
             bool flag = info2.Code == ErrorEnum.NoError;
             ReturnInfo result;
             if (flag)
@@ -96,9 +96,9 @@ namespace TMF.Reports.BLL
                 RowsAffected = record.RowsAffected
             };
         }
-        public ReturnInfo GetMeterByDescription(SmartDB dbInstance, string SerialNumber)
+        public ReturnInfo GetMeterBySerialNumber(SmartDB dbInstance, string SerialNumber)
         {
-            IInfo record = _dal.GetRecordsByDescription(dbInstance, SerialNumber);
+            IInfo record = _dal.GetRecordsBySerialNumber(dbInstance, SerialNumber);
             return new ReturnInfo
             {
                 BizObject = ((record.Code == ErrorEnum.NoError) ? record.BizObject : null),

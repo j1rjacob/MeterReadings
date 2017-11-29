@@ -20,20 +20,19 @@ namespace MeterReports.Test
             //Arrange
             TMF.Reports.Model.Meter meter = new TMF.Reports.Model.Meter()
             {
-                Id = Guid.NewGuid().ToString("N"),
-                SerialNumber = "08BC8AA4",
-                X = 5.6545218m,
-                Y = 25.25455511m,
+                SerialNumber = "10110148216",
+                X = 0,
+                Y = 0,
                 Status = "Active",
-                HCN = "HCN2",
+                HCN = null,
                 InstallationDate = DateTime.Now,
                 MaintenanceDate = DateTime.Now,
-                MeterTypeId = "O+",
-                MeterSizeId = "10m",
-                MeterProtocolId = "PROTOCOL C",
-                DMZId = "DMZ0",
-                CityId = "AL DAMMAM",
-                CreatedBy = "646f18f9-6425-4769-aa79-16ecdb7cf816",
+                MeterTypeId = null,
+                MeterSizeId = null,
+                MeterProtocolId = null,
+                DMZId = null,
+                CityId = null,
+                CreatedBy = "1",
                 DocDate = DateTime.Now,
                 Show = 1,
                 LockCount = 0
@@ -51,18 +50,18 @@ namespace MeterReports.Test
         {
             //Arrange
             //Act
-            ReturnInfo getMeter = _meter.GetMeterById(new SmartDB(), "e730b81865494ca78389dd7765286e07");
+            ReturnInfo getMeter = _meter.GetMeterById(new SmartDB(), "10110148216");
             bool flag = getMeter.Code == ErrorEnum.NoError;
 
             //Assert
             Assert.IsTrue(flag);
         }
         [Test]
-        public void Meter_SearchByDescription_True()
+        public void Meter_SearchBySerialNumber_True()
         {
             //Arrange
             //Act
-            ReturnInfo getMeter = _meter.GetMeterByDescription(new SmartDB(), "08BC8EF4");
+            ReturnInfo getMeter = _meter.GetMeterBySerialNumber(new SmartDB(), "10110148216");
             bool flag = getMeter.Code == ErrorEnum.NoError;
 
             //Assert
@@ -74,8 +73,7 @@ namespace MeterReports.Test
             //Arrange
             TMF.Reports.Model.Meter meter = new TMF.Reports.Model.Meter()
             {
-                Id = "e730b81865494ca78389dd7765286e08",
-                SerialNumber = "08BC8BB4",
+                SerialNumber = "10110148216",
                 X = 6.6545218m,
                 Y = 21.25455511m,
                 Status = "Active",

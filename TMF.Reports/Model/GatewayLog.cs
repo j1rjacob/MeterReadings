@@ -7,9 +7,10 @@ namespace TMF.Reports.Model
     public class GatewayLog : ModelInfo 
     {
         public string Id { get; set; }
-        public DateTime LogDateTime { get; set; }
-        public int MeterRAWCount { get; set; }
-        public int MeterOMSCount { get; set; }
+        public int RDS { get; set; }
+        public int OMS { get; set; }
+        public string GatewayMacAddress { get; set; }
+        public string CSVFilename { get; set; }
         public string CreatedBy { get; set; }
         public string EditedBy { get; set; }
         public DateTime DocDate { get; set; }
@@ -22,15 +23,15 @@ namespace TMF.Reports.Model
             base.IsDirty = false;
             base.IsDeleted = false;
         }
-
-        public GatewayLog(string Id, DateTime LogDateTime, int MeterRAWCount,
-                          int MeterOMSCount, string CreatedBy, string EditedBy,
+        public GatewayLog(string Id, int RDS, int OMS, string GatewayMacAddress,
+                          string CSVFilename, string CreatedBy, string EditedBy,
                           DateTime DocDate, int Show, int LockCount)
         {
             this.Id = Id;
-            this.LogDateTime = LogDateTime;
-            this.MeterRAWCount = MeterRAWCount;
-            this.MeterOMSCount = MeterOMSCount;
+            this.RDS = RDS;
+            this.OMS = OMS;
+            this.GatewayMacAddress = GatewayMacAddress;
+            this.CSVFilename = CSVFilename;
             this.CreatedBy = CreatedBy;
             this.EditedBy = EditedBy;
             this.DocDate = DocDate;
@@ -44,14 +45,17 @@ namespace TMF.Reports.Model
                 case "id":
                     return this.Id;
                     break;
-                case "logdatetime":
-                    return this.LogDateTime;
+                case "rds":
+                    return this.RDS;
                     break;
-                case "meterrawcount":
-                    return this.MeterRAWCount;
+                case "oms":
+                    return this.OMS;
                     break;
-                case "meteromscount":
-                    return this.MeterOMSCount;
+                case "gatewaymacaddress":
+                    return this.GatewayMacAddress;
+                    break;
+                case "csvfilename":
+                    return this.CSVFilename;
                     break;
                 case "createdby":
                     return this.CreatedBy;
@@ -80,14 +84,17 @@ namespace TMF.Reports.Model
                 case "id":
                     this.Id = CastDBNull.To<string>(value, "");
                     break;
-                case "logdatetime":
-                    this.LogDateTime = CastDBNull.To<DateTime>(value, DateTime.Now);
+                case "rds":
+                    this.RDS = CastDBNull.To<int>(value, 0);
                     break;
-                case "meterrawcount":
-                    this.MeterRAWCount = CastDBNull.To<int>(value, 0);
+                case "oms":
+                    this.OMS = CastDBNull.To<int>(value, 0);
                     break;
-                case "meteromscount":
-                    this.MeterOMSCount = CastDBNull.To<int>(value, 0);
+                case "gatewaymacaddress":
+                    this.GatewayMacAddress = CastDBNull.To<string>(value, "");
+                    break;
+                case "csvfilename":
+                    this.CSVFilename = CastDBNull.To<string>(value, "");
                     break;
                 case "createdby":
                     this.CreatedBy = CastDBNull.To<string>(value, "");
