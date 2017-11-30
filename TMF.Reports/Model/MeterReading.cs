@@ -9,9 +9,7 @@ namespace TMF.Reports.Model
         public string Id { get; set; }
         public string SerialNumber { get; set; }
         public DateTime ReadingDate { get; set; }
-        public string CSVType { get; set; }
         public string ReadingValue { get; set; }
-        public string Description { get; set; }
         public int LowBatteryAlr { get; set; }
         public int LeakAlr { get; set; }
         public int MagneticTamperAlr { get; set; }
@@ -20,15 +18,6 @@ namespace TMF.Reports.Model
         public int BrokenPipeAlr { get; set; }
         public int EmptyPipeAlr { get; set; }
         public int SpecificErr { get; set; }
-        public int FlowRateValue { get; set; }
-        public int AppBusyAlr { get; set; }
-        public int AnyAppErrorAlr { get; set; }
-        public int AbnormalConditionAlr { get; set; }
-        public int PermanentErrorAlr { get; set; }
-        public int TemporaryErrorAlr { get; set; }
-        public int SpecificError1Alr { get; set; }
-        public int SpecificError2Alr { get; set; }
-        public int SpecificError3Alr { get; set; }
         public string CreatedBy { get; set; }
         public string EditedBy { get; set; }
         public DateTime DocDate { get; set; }
@@ -54,9 +43,7 @@ namespace TMF.Reports.Model
             this.Id = Id;
             this.SerialNumber = SerialNumber;
             this.ReadingDate = ReadingDate;
-            this.CSVType =CSVType;
             this.ReadingValue=ReadingValue;
-            this.Description=Description;
             this.LowBatteryAlr=LowBatteryAlr;
             this.LeakAlr=LeakAlr;
             this.MagneticTamperAlr=MagneticTamperAlr;
@@ -65,15 +52,6 @@ namespace TMF.Reports.Model
             this.BrokenPipeAlr=BrokenPipeAlr;
             this.EmptyPipeAlr=EmptyPipeAlr;
             this.SpecificErr=SpecificErr;
-            this.FlowRateValue=FlowRateValue;
-            this.AppBusyAlr=AppBusyAlr;
-            this.AnyAppErrorAlr=AnyAppErrorAlr;
-            this.AbnormalConditionAlr=AbnormalConditionAlr;
-            this.PermanentErrorAlr=PermanentErrorAlr;
-            this.TemporaryErrorAlr= TemporaryErrorAlr;
-            this.SpecificError1Alr= SpecificError1Alr;
-            this.SpecificError2Alr= SpecificError2Alr;
-            this.SpecificError3Alr = SpecificError3Alr;
             this.CreatedBy = CreatedBy;
             this.EditedBy = EditedBy;
             this.DocDate = DocDate;
@@ -93,14 +71,8 @@ namespace TMF.Reports.Model
                 case "readingdate":
                     return this.ReadingDate;
                     break;
-                case "csvtype":
-                    return this.CSVType;
-                    break;
                 case "readingvalue":
                     return this.ReadingValue;
-                    break;
-                case "description":
-                    return this.Description;
                     break;
                 case "lowbatteryalr":
                     return this.LowBatteryAlr;
@@ -125,33 +97,6 @@ namespace TMF.Reports.Model
                     break;
                 case "specificerr":
                     return this.SpecificErr;
-                    break;
-                case "flowratevalue":
-                    return this.FlowRateValue;
-                    break;
-                case "appbusyalr":
-                    return this.AppBusyAlr;
-                    break;
-                case "anyapperroralr":
-                    return this.AnyAppErrorAlr;
-                    break;
-                case "abnormalconditionalr":
-                    return this.AbnormalConditionAlr;
-                    break;
-                case "permanenterroralr":
-                    return this.PermanentErrorAlr;
-                    break;
-                case "temporaryerroralr":
-                    return this.TemporaryErrorAlr;
-                    break;
-                case "specificerror1alr":
-                    return this.SpecificError1Alr;
-                    break;
-                case "specificerror2alr":
-                    return this.SpecificError2Alr;
-                    break;
-                case "specificerror3alr":
-                    return this.SpecificError3Alr;
                     break;
                 case "createdby":
                     return this.CreatedBy;
@@ -186,14 +131,8 @@ namespace TMF.Reports.Model
                 case "readingdate":
                     this.ReadingDate = CastDBNull.To<DateTime>(value, DateTime.Now);
                     break;
-                case "csvtype":
-                    this.CSVType = CastDBNull.To<string>(value, "");
-                    break;
                 case "readingvalue":
                     this.ReadingValue = CastDBNull.To<string>(value, "");
-                    break;
-                case "description":
-                    this.Description = CastDBNull.To<string>(value, "");
                     break;
                 case "lowbatteryalr":
                     this.LowBatteryAlr = CastDBNull.To<int>(value, 0);
@@ -218,33 +157,6 @@ namespace TMF.Reports.Model
                     break;
                 case "specificerr":
                     this.SpecificErr = CastDBNull.To<int>(value, 0);
-                    break;
-                case "flowratevalue":
-                    this.FlowRateValue = CastDBNull.To<int>(value, 0);
-                    break;
-                case "appbusyalr":
-                    this.AppBusyAlr = CastDBNull.To<int>(value, 0);
-                    break;
-                case "anyapperroralr":
-                    this.AnyAppErrorAlr = CastDBNull.To<int>(value, 0);
-                    break;
-                case "abnormalconditionalr":
-                    this.AbnormalConditionAlr = CastDBNull.To<int>(value, 0);
-                    break;
-                case "permanenterroralr":
-                    this.PermanentErrorAlr = CastDBNull.To<int>(value, 0);
-                    break;
-                case "temporaryerroralr":
-                    this.TemporaryErrorAlr = CastDBNull.To<int>(value, 0);
-                    break;
-                case "specificerror1alr":
-                    this.SpecificError1Alr = CastDBNull.To<int>(value, 0);
-                    break;
-                case "specificerror2alr":
-                    this.SpecificError2Alr = CastDBNull.To<int>(value, 0);
-                    break;
-                case "specificerror3alr":
-                    this.SpecificError3Alr = CastDBNull.To<int>(value, 0);
                     break;
                 case "createdby":
                     this.CreatedBy = CastDBNull.To<string>(value, "");

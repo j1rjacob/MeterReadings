@@ -26,9 +26,7 @@ namespace TMF.Reports.DAL
                 info.Id = CastDBNull.To<string>(reader["Id"], "");
                 info.SerialNumber = CastDBNull.To<string>(reader["SerialNumber"], "");
                 info.ReadingDate = CastDBNull.To<DateTime>(reader["ReadingDate"], DateTime.Now);
-                info.CSVType = CastDBNull.To<string>(reader["CSVType"], "");
                 info.ReadingValue = CastDBNull.To<string>(reader["ReadingValue"], "");
-                info.Description = CastDBNull.To<string>(reader["Description"], "");
                 info.LowBatteryAlr = CastDBNull.To<int>(reader["LowBatteryAlr"], 0);
                 info.LeakAlr = CastDBNull.To<int>(reader["LeakAlr"], 0);
                 info.MagneticTamperAlr = CastDBNull.To<int>(reader["MagneticTamperAlr"], 0);
@@ -37,15 +35,6 @@ namespace TMF.Reports.DAL
                 info.BrokenPipeAlr = CastDBNull.To<int>(reader["BrokenPipeAlr"], 0);
                 info.EmptyPipeAlr = CastDBNull.To<int>(reader["EmptyPipeAlr"], 0);
                 info.SpecificErr = CastDBNull.To<int>(reader["SpecificErr"], 0);
-                info.FlowRateValue = CastDBNull.To<int>(reader["FlowRateValue"], 0);
-                info.AppBusyAlr = CastDBNull.To<int>(reader["AppBusyAlr"], 0);
-                info.AnyAppErrorAlr = CastDBNull.To<int>(reader["AnyAppErrorAlr"], 0);
-                info.AbnormalConditionAlr = CastDBNull.To<int>(reader["AbnormalConditionAlr"], 0);
-                info.PermanentErrorAlr = CastDBNull.To<int>(reader["PermanentErrorAlr"], 0);
-                info.TemporaryErrorAlr = CastDBNull.To<int>(reader["TemporaryErrorAlr"], 0);
-                info.SpecificError1Alr = CastDBNull.To<int>(reader["SpecificError1Alr"], 0);
-                info.SpecificError2Alr = CastDBNull.To<int>(reader["SpecificError2Alr"], 0);
-                info.SpecificError3Alr = CastDBNull.To<int>(reader["SpecificError3Alr"], 0);
                 info.CreatedBy = CastDBNull.To<string>(reader["Createdby"], "");
                 info.EditedBy = CastDBNull.To<string>(reader["Editedby"], "");
                 info.DocDate = CastDBNull.To<DateTime>(reader["DocDate"], DateTime.Now);

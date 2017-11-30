@@ -31,9 +31,7 @@ namespace MeterReports
         {
             TextBoxSerialNumber.Enabled = true;
             TextBoxReadingDate.Enabled = true;
-            TextBoxCsvType.Enabled = true;
             TextBoxReadingValue.Enabled = true;
-            TextBoxDescription.Enabled = true;
             TextBoxLowBattAlr.Enabled = true;
             TextBoxLeakAlr.Enabled = true;
             TextBoxMagneticTmprAlr.Enabled = true;
@@ -42,23 +40,12 @@ namespace MeterReports
             TextBoxBrokenPipeAlr.Enabled = true;
             TextBoxEmptyPipeAlr.Enabled = true;
             TextBoxSpecificErr.Enabled = true;
-            TextBoxFlowRateValue.Enabled = true;
-            TextBoxAppBusyAlr.Enabled = true;
-            TextBoxAnyAppErrAlr.Enabled = true;
-            TextBoxAbnCondAlr.Enabled = true;
-            TextBoxPermErrAlr.Enabled = true;
-            TextBoxTempErrAlr.Enabled = true;
-            TextBoxSpecErr1.Enabled = true;
-            TextBoxSpecErr2.Enabled = true;
-            TextBoxSpecErr3.Enabled = true;
             ButtonEdit.Enabled = false;
             ButtonSave.Enabled = true;
             ButtonDelete.Enabled = false;
             TextBoxSerialNumber.Text = "";
             TextBoxReadingDate.Text = "";
-            TextBoxCsvType.Text = "";
             TextBoxReadingValue.Text = "";
-            TextBoxDescription.Text = "";
             TextBoxLowBattAlr.Text = "";
             TextBoxLeakAlr.Text = "";
             TextBoxMagneticTmprAlr.Text = "";
@@ -67,24 +54,13 @@ namespace MeterReports
             TextBoxBrokenPipeAlr.Text = "";
             TextBoxEmptyPipeAlr.Text = "";
             TextBoxSpecificErr.Text = "";
-            TextBoxFlowRateValue.Text = "";
-            TextBoxAppBusyAlr.Text = "";
-            TextBoxAnyAppErrAlr.Text = "";
-            TextBoxAbnCondAlr.Text = "";
-            TextBoxPermErrAlr.Text = "";
-            TextBoxTempErrAlr.Text = "";
-            TextBoxSpecErr1.Text = "";
-            TextBoxSpecErr2.Text = "";
-            TextBoxSpecErr3.Text = "";
             _meterReadingId = "";
         }
         private void ButtonEdit_Click(object sender, EventArgs e)
         {
             TextBoxSerialNumber.Enabled = true;
             TextBoxReadingDate.Enabled = true;
-            TextBoxCsvType.Enabled = true;
             TextBoxReadingValue.Enabled = true;
-            TextBoxDescription.Enabled = true;
             TextBoxLowBattAlr.Enabled = true;
             TextBoxLeakAlr.Enabled = true;
             TextBoxMagneticTmprAlr.Enabled = true;
@@ -93,15 +69,6 @@ namespace MeterReports
             TextBoxBrokenPipeAlr.Enabled = true;
             TextBoxEmptyPipeAlr.Enabled = true;
             TextBoxSpecificErr.Enabled = true;
-            TextBoxFlowRateValue.Enabled = true;
-            TextBoxAppBusyAlr.Enabled = true;
-            TextBoxAnyAppErrAlr.Enabled = true;
-            TextBoxAbnCondAlr.Enabled = true;
-            TextBoxPermErrAlr.Enabled = true;
-            TextBoxTempErrAlr.Enabled = true;
-            TextBoxSpecErr1.Enabled = true;
-            TextBoxSpecErr2.Enabled = true;
-            TextBoxSpecErr3.Enabled = true;
             ButtonNew.Enabled = false;
             ButtonEdit.Enabled = false;
             ButtonSave.Enabled = true;
@@ -118,7 +85,7 @@ namespace MeterReports
 
         private void ButtonDelete_Click(object sender, EventArgs e)
         {
-            if (!string.IsNullOrWhiteSpace(TextBoxDescription.Text))
+            if (!string.IsNullOrWhiteSpace(TextBoxSerialNumber.Text))
             {
                 var deleteMeterReading = _meterReading.Delete(new SmartDB(), _meterReadingId);
 
@@ -166,9 +133,8 @@ namespace MeterReports
             {
                 TextBoxSerialNumber.Text = meterReading.SerialNumber;
                 TextBoxReadingDate.Text = meterReading.ReadingDate.ToString();
-                TextBoxCsvType.Text = meterReading.CSVType;
                 TextBoxReadingValue.Text = meterReading.ReadingValue;
-                TextBoxDescription.Text = meterReading.Description;
+               
                 TextBoxLowBattAlr.Text = meterReading.LowBatteryAlr.ToString();
                 TextBoxLeakAlr.Text = meterReading.LeakAlr.ToString();
                 TextBoxMagneticTmprAlr.Text = meterReading.MagneticTamperAlr.ToString();
@@ -177,15 +143,6 @@ namespace MeterReports
                 TextBoxBrokenPipeAlr.Text = meterReading.BrokenPipeAlr.ToString();
                 TextBoxEmptyPipeAlr.Text = meterReading.EmptyPipeAlr.ToString();
                 TextBoxSpecificErr.Text = meterReading.SpecificErr.ToString();
-                TextBoxFlowRateValue.Text = meterReading.FlowRateValue.ToString();
-                TextBoxAppBusyAlr.Text = meterReading.AppBusyAlr.ToString();
-                TextBoxAnyAppErrAlr.Text = meterReading.AnyAppErrorAlr.ToString();
-                TextBoxAbnCondAlr.Text = meterReading.AbnormalConditionAlr.ToString();
-                TextBoxPermErrAlr.Text = meterReading.PermanentErrorAlr.ToString();
-                TextBoxTempErrAlr.Text = meterReading.TemporaryErrorAlr.ToString();
-                TextBoxSpecErr1.Text = meterReading.SpecificError1Alr.ToString();
-                TextBoxSpecErr2.Text = meterReading.SpecificError2Alr.ToString();
-                TextBoxSpecErr3.Text = meterReading.SpecificError3Alr.ToString();
                 _meterReadingId = meterReading.Id;
                 ButtonEdit.Enabled = true;
                 ButtonDelete.Enabled = true;
@@ -201,9 +158,7 @@ namespace MeterReports
                     Id = Guid.NewGuid().ToString("N"),
                     SerialNumber = TextBoxSerialNumber.Text,
                     ReadingDate = Convert.ToDateTime(TextBoxReadingDate.Text),
-                    CSVType = TextBoxCsvType.Text,
                     ReadingValue = TextBoxReadingValue.Text,
-                    Description = TextBoxDescription.Text,
                     LowBatteryAlr = Convert.ToInt32(TextBoxLowBattAlr.Text),
                     LeakAlr = Convert.ToInt32(TextBoxLeakAlr.Text),
                     MagneticTamperAlr = Convert.ToInt32(TextBoxMagneticTmprAlr.Text),
@@ -212,15 +167,6 @@ namespace MeterReports
                     BrokenPipeAlr = Convert.ToInt32(TextBoxBrokenPipeAlr.Text),
                     EmptyPipeAlr = Convert.ToInt32(TextBoxEmptyPipeAlr.Text),
                     SpecificErr = Convert.ToInt32(TextBoxSpecificErr.Text),
-                    FlowRateValue = Convert.ToInt32(TextBoxFlowRateValue.Text),
-                    AppBusyAlr = Convert.ToInt32(TextBoxAppBusyAlr.Text),
-                    AnyAppErrorAlr = Convert.ToInt32(TextBoxAnyAppErrAlr.Text),
-                    AbnormalConditionAlr = Convert.ToInt32(TextBoxAbnCondAlr.Text),
-                    PermanentErrorAlr = Convert.ToInt32(TextBoxPermErrAlr.Text),
-                    TemporaryErrorAlr = Convert.ToInt32(TextBoxTempErrAlr.Text),
-                    SpecificError1Alr = Convert.ToInt32(TextBoxSpecErr1.Text),
-                    SpecificError2Alr = Convert.ToInt32(TextBoxSpecErr2.Text),
-                    SpecificError3Alr = Convert.ToInt32(TextBoxSpecErr3.Text),
                     CreatedBy = _currentUser.Id.ToString(),
                     DocDate = DateTime.Now,
                     Show = 1,
@@ -255,9 +201,7 @@ namespace MeterReports
                     Id = _meterReadingId,
                     SerialNumber = TextBoxSerialNumber.Text,
                     ReadingDate = Convert.ToDateTime(TextBoxReadingDate.Text),
-                    CSVType = TextBoxCsvType.Text,
                     ReadingValue = TextBoxReadingValue.Text,
-                    Description = TextBoxDescription.Text,
                     LowBatteryAlr = Convert.ToInt32(TextBoxLowBattAlr.Text),
                     LeakAlr = Convert.ToInt32(TextBoxLeakAlr.Text),
                     MagneticTamperAlr = Convert.ToInt32(TextBoxLeakAlr.Text),
@@ -266,15 +210,6 @@ namespace MeterReports
                     BrokenPipeAlr = Convert.ToInt32(TextBoxBrokenPipeAlr.Text),
                     EmptyPipeAlr = Convert.ToInt32(TextBoxEmptyPipeAlr.Text),
                     SpecificErr = Convert.ToInt32(TextBoxSpecificErr.Text),
-                    FlowRateValue = Convert.ToInt32(TextBoxFlowRateValue.Text),
-                    AppBusyAlr = Convert.ToInt32(TextBoxAppBusyAlr.Text),
-                    AnyAppErrorAlr = Convert.ToInt32(TextBoxAnyAppErrAlr.Text),
-                    AbnormalConditionAlr = Convert.ToInt32(TextBoxAbnCondAlr.Text),
-                    PermanentErrorAlr = Convert.ToInt32(TextBoxPermErrAlr.Text),
-                    TemporaryErrorAlr = Convert.ToInt32(TextBoxTempErrAlr.Text),
-                    SpecificError1Alr = Convert.ToInt32(TextBoxSpecErr1.Text),
-                    SpecificError2Alr = Convert.ToInt32(TextBoxSpecErr2.Text),
-                    SpecificError3Alr = Convert.ToInt32(TextBoxSpecErr3.Text),
                     EditedBy = _currentUser.Id.ToString(),
                     DocDate = DateTime.Now,
                     Show = 1,
@@ -304,9 +239,7 @@ namespace MeterReports
         {
             TextBoxSerialNumber.Enabled = false;
             TextBoxReadingDate.Enabled = false;
-            TextBoxCsvType.Enabled = false;
             TextBoxReadingValue.Enabled = false;
-            TextBoxDescription.Enabled = false;
             TextBoxLowBattAlr.Enabled = false;
             TextBoxLeakAlr.Enabled = false;
             TextBoxMagneticTmprAlr.Enabled = false;
@@ -315,21 +248,10 @@ namespace MeterReports
             TextBoxBrokenPipeAlr.Enabled = false;
             TextBoxEmptyPipeAlr.Enabled = false;
             TextBoxSpecificErr.Enabled = false;
-            TextBoxFlowRateValue.Enabled = false;
-            TextBoxAppBusyAlr.Enabled = false;
-            TextBoxAnyAppErrAlr.Enabled = false;
-            TextBoxAbnCondAlr.Enabled = false;
-            TextBoxPermErrAlr.Enabled = false;
-            TextBoxTempErrAlr.Enabled = false;
-            TextBoxSpecErr1.Enabled = false;
-            TextBoxSpecErr2.Enabled = false;
-            TextBoxSpecErr3.Enabled = false;
             TextBoxSearch.Text = "";
             TextBoxSerialNumber.Text = "";
             TextBoxReadingDate.Text = "";
-            TextBoxCsvType.Text = "";
             TextBoxReadingValue.Text = "";
-            TextBoxDescription.Text = "";
             TextBoxLowBattAlr.Text = "";
             TextBoxLeakAlr.Text = "";
             TextBoxMagneticTmprAlr.Text = "";
@@ -338,15 +260,6 @@ namespace MeterReports
             TextBoxBrokenPipeAlr.Text = "";
             TextBoxEmptyPipeAlr.Text = "";
             TextBoxSpecificErr.Text = "";
-            TextBoxFlowRateValue.Text = "";
-            TextBoxAppBusyAlr.Text = "";
-            TextBoxAnyAppErrAlr.Text = "";
-            TextBoxAbnCondAlr.Text = "";
-            TextBoxPermErrAlr.Text = "";
-            TextBoxTempErrAlr.Text = "";
-            TextBoxSpecErr1.Text = "";
-            TextBoxSpecErr2.Text = "";
-            TextBoxSpecErr3.Text = "";
             ButtonNew.Enabled = true;
             ButtonEdit.Enabled = false;
             ButtonSave.Enabled = false;
@@ -373,7 +286,7 @@ namespace MeterReports
         {   //TODO: Refactor this for reuse.
             try
             {
-                ReturnInfo getMeterReadingList = _meterReading.GetMeterReadingByDescription(new SmartDB(), TextBoxSearch.Text);
+                ReturnInfo getMeterReadingList = _meterReading.GetMeterReadingBySerialNumber(new SmartDB(), TextBoxSearch.Text);
                 //bool flag = getCityList.Code == ErrorEnum.NoError;
                 List<TMF.Reports.Model.MeterReading> meterReading = (List<TMF.Reports.Model.MeterReading>)getMeterReadingList.BizObject;
                 var bindingList = new BindingList<TMF.Reports.Model.MeterReading>(meterReading);

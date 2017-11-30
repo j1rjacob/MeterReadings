@@ -72,7 +72,7 @@ namespace MeterReports.Test
         {
             //Arrange
             //Act
-            ReturnInfo getMeterReading = _meterReading.GetMeterReadingByDescription(new SmartDB(), "0B85EEEE");
+            ReturnInfo getMeterReading = _meterReading.GetMeterReadingBySerialNumber(new SmartDB(), "0B85EEEE");
             bool flag = getMeterReading.Code == ErrorEnum.NoError;
 
             //Assert

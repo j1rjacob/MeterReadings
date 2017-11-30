@@ -97,7 +97,7 @@ namespace TMF.Reports.BLL
                 RowsAffected = record.RowsAffected
             };
         }
-        public ReturnInfo GetMeterReadingByDescription(SmartDB dbInstance, string Description)
+        public ReturnInfo GetMeterReadingBySerialNumber(SmartDB dbInstance, string Description)
         {
             IInfo record = _dal.GetRecordsByDescription(dbInstance, Description);
             return new ReturnInfo
@@ -120,7 +120,6 @@ namespace TMF.Reports.BLL
                 RowsAffected = record.RowsAffected
             };
         }
-
         public ReturnInfo GetMeterReadingList(SmartDB dbInstance)
         {
             IInfo records = _dal.GetRecords(dbInstance);
