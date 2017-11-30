@@ -14,11 +14,13 @@ namespace MeterReports
         private readonly CustomUser _currentUser;
         private bool _save;
         private string _meterReadingId;
-        public MeterReading(CustomUser currentUser)
+        //public MeterReading(CustomUser currentUser)
+        public MeterReading()
         {
             InitializeComponent();
             _meterReading = new TMF.Reports.BLL.MeterReading();
-            _currentUser = currentUser;
+            //_currentUser = currentUser;
+            _currentUser = new CustomUser();
             _save = true;
             _meterReadingId = "";
         }
@@ -117,6 +119,9 @@ namespace MeterReports
         private void ButtonImport_Click(object sender, EventArgs e)
         {
 
+
+            var f = new Import();
+            f.ShowDialog();
         }
 
         private void DataGridViewMeterReading_SelectionChanged(object sender, EventArgs e)
