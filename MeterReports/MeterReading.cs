@@ -143,6 +143,14 @@ namespace MeterReports
         {
             BindMeterReadingWithDataGrid();
         }
+        private void ButtonExport_Click(object sender, EventArgs e)
+        {
+
+        }
+        private void ButtonImport_Click(object sender, EventArgs e)
+        {
+
+        }
 
         private void DataGridViewMeterReading_SelectionChanged(object sender, EventArgs e)
         {

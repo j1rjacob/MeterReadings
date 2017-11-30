@@ -155,9 +155,7 @@ namespace MeterReports
         }
         private void ButtonSkip_Click(object sender, EventArgs e)
         {
-            //var x = Regex.Replace("1CBA8C98F4CB", @"^(..)(..)(..)(..)(..)(..)$", "$1:$2:$3:$4:$5:$6");
-            //MessageBox.Show(x);
-            //this.Close();
+            this.Close();
         }
         private void GetMacDuplicates()
         {
@@ -235,7 +233,7 @@ namespace MeterReports
                             s.ColumnMappings.Add("BrokenPipeAlr", "BrokenPipeAlr");
                             s.ColumnMappings.Add("EmptyPipeAlr", "EmptyPipeAlr");
                             s.ColumnMappings.Add("SpecificErr", "SpecificErr");
-
+                            //TODO Add OMS Table
                             try
                             {
                                 // Write from the source to the destination.
@@ -325,53 +323,53 @@ namespace MeterReports
 
             // Add three column objects to the table. 
             DataColumn meterReadingId = new DataColumn();
-            meterReadingId.DataType = System.Type.GetType("System.Int32");
+            meterReadingId.DataType = Type.GetType("System.Int32");
             meterReadingId.ColumnName = "Id";
             meterReadingId.AutoIncrement = true;
             newMeterReading.Columns.Add(meterReadingId);
 
             DataColumn serialNumber = new DataColumn();
-            serialNumber.DataType = System.Type.GetType("System.String");
+            serialNumber.DataType = Type.GetType("System.String");
             serialNumber.ColumnName = "SerialNumber";
             newMeterReading.Columns.Add(serialNumber);
 
             DataColumn readingDate = new DataColumn();
-            readingDate.DataType = System.Type.GetType("System.DateTime");
+            readingDate.DataType = Type.GetType("System.DateTime");
             readingDate.ColumnName = "ReadingDate";
             newMeterReading.Columns.Add(readingDate);
 
             DataColumn csvType = new DataColumn();
-            csvType.DataType = System.Type.GetType("System.String");
+            csvType.DataType = Type.GetType("System.String");
             csvType.ColumnName = "CSVType";
             newMeterReading.Columns.Add(csvType);
 
             DataColumn readingValue = new DataColumn();
-            readingValue.DataType = System.Type.GetType("System.String");
+            readingValue.DataType = Type.GetType("System.String");
             readingValue.ColumnName = "ReadingValue";
             newMeterReading.Columns.Add(readingValue);
 
             DataColumn lowBatteryAlr = new DataColumn();
-            lowBatteryAlr.DataType = System.Type.GetType("System.Int32");
+            lowBatteryAlr.DataType = Type.GetType("System.Int32");
             lowBatteryAlr.ColumnName = "LowBatteryAlr";
             newMeterReading.Columns.Add(lowBatteryAlr);
 
             DataColumn leakAlr = new DataColumn();
-            leakAlr.DataType = System.Type.GetType("System.Int32");
+            leakAlr.DataType = Type.GetType("System.Int32");
             leakAlr.ColumnName = "LeakAlr";
             newMeterReading.Columns.Add(leakAlr);
 
             DataColumn magneticTamperAlr = new DataColumn();
-            magneticTamperAlr.DataType = System.Type.GetType("System.Int32");
+            magneticTamperAlr.DataType = Type.GetType("System.Int32");
             magneticTamperAlr.ColumnName = "MagneticTamperAlr";
             newMeterReading.Columns.Add(magneticTamperAlr);
 
             DataColumn meterErrorAlr = new DataColumn();
-            meterErrorAlr.DataType = System.Type.GetType("System.Int32");
+            meterErrorAlr.DataType = Type.GetType("System.Int32");
             meterErrorAlr.ColumnName = "MeterErrorAlr";
             newMeterReading.Columns.Add(meterErrorAlr);
 
             DataColumn backFlowAlr = new DataColumn();
-            backFlowAlr.DataType = System.Type.GetType("System.Int32");
+            backFlowAlr.DataType = Type.GetType("System.Int32");
             backFlowAlr.ColumnName = "BackFlowAlr";
             newMeterReading.Columns.Add(backFlowAlr);
 
@@ -381,14 +379,59 @@ namespace MeterReports
             newMeterReading.Columns.Add(brokenPipeAlr);
 
             DataColumn emptyPipeAlr = new DataColumn();
-            emptyPipeAlr.DataType = System.Type.GetType("System.Int32");
+            emptyPipeAlr.DataType = Type.GetType("System.Int32");
             emptyPipeAlr.ColumnName = "EmptyPipeAlr";
             newMeterReading.Columns.Add(emptyPipeAlr);
 
             DataColumn specificErr = new DataColumn();
-            specificErr.DataType = System.Type.GetType("System.Int32");
+            specificErr.DataType = Type.GetType("System.Int32");
             specificErr.ColumnName = "SpecificErr";
             newMeterReading.Columns.Add(specificErr);
+
+            //DataColumn flowratevalue = new DataColumn();
+            //flowratevalue.DataType = Type.GetType("System.Int32");
+            //flowratevalue.ColumnName = "FlowRateValue";
+            //newMeterReading.Columns.Add(flowratevalue);
+
+            //DataColumn appbusyalr = new DataColumn();
+            //appbusyalr.DataType = Type.GetType("System.Int32");
+            //appbusyalr.ColumnName = "AppBusyAlr";
+            //newMeterReading.Columns.Add(appbusyalr);
+
+            //DataColumn anyapperroralr = new DataColumn();
+            //anyapperroralr.DataType = Type.GetType("System.Int32");
+            //anyapperroralr.ColumnName = "AnyAppErrorAlr";
+            //newMeterReading.Columns.Add(anyapperroralr);
+
+            //DataColumn abnormalconditionalr = new DataColumn();
+            //abnormalconditionalr.DataType = Type.GetType("System.Int32");
+            //abnormalconditionalr.ColumnName = "AbnormalConditionAlr";
+            //newMeterReading.Columns.Add(abnormalconditionalr);
+
+            //DataColumn permanenterroralr = new DataColumn();
+            //permanenterroralr.DataType = Type.GetType("System.Int32");
+            //permanenterroralr.ColumnName = "PermanentErrorAlr";
+            //newMeterReading.Columns.Add(permanenterroralr);
+
+            //DataColumn temporaryerroralr = new DataColumn();
+            //temporaryerroralr.DataType = Type.GetType("System.Int32");
+            //temporaryerroralr.ColumnName = "TemporaryErrorAlr";
+            //newMeterReading.Columns.Add(temporaryerroralr);
+
+            //DataColumn specificerror1alr = new DataColumn();
+            //specificerror1alr.DataType = Type.GetType("System.Int32");
+            //specificerror1alr.ColumnName = "SpecificError1Alr";
+            //newMeterReading.Columns.Add(specificerror1alr);
+
+            //DataColumn specificerror2alr = new DataColumn();
+            //specificerror2alr.DataType = Type.GetType("System.Int32");
+            //specificerror2alr.ColumnName = "SpecificError2Alr";
+            //newMeterReading.Columns.Add(specificerror2alr);
+
+            //DataColumn specificerror3alr = new DataColumn();
+            //specificerror3alr.DataType = Type.GetType("System.Int32");
+            //specificerror3alr.ColumnName = "SpecificError3Alr";
+            //newMeterReading.Columns.Add(specificerror3alr);
 
             // Create an array for DataColumn objects.
             DataColumn[] keys = new DataColumn[1];
@@ -438,6 +481,47 @@ namespace MeterReports
                         newMeterReading.Rows.Add(row);
                     }
                 }
+                //if (columnCount == 13)
+                //{ //OMS
+                //    var query = from line in allLines
+                //        let data = line.Split(',')
+                //        select new
+                //        {
+                //            Meter_Address = data[0],
+                //            Reading_Date = data[1],
+                //            Reading_Value = data[2],
+                //            Flow_Rate_Value = data[3],
+                //            App_Busy_Alr = data[4],
+                //            Any_App_Error_Alr = data[5],
+                //            Abnormal_Condition_Alr = data[6],
+                //            Low_Power_Battery_Alr = data[7],
+                //            Permanent_Error_Alr = data[8],
+                //            Temporary_Error_Alr = data[9],
+                //            Specific_Error1_Alr = data[10],
+                //            Specific_Error2_Alr = data[11],
+                //            Specific_Error3_Alr = data[12]
+                //        };
+                //    DataRow row;
+                //    foreach (var q in query.ToList().Skip(1))
+                //    {
+                //        row = newMeterReading.NewRow();
+                //        row["SerialNumber"] = q.Meter_Address.Replace("-", "");
+                //        row["ReadingDate"] = DateTime.ParseExact(q.Reading_Date, "HH:mm:ss dd/MM/yyyy", new CultureInfo("en-US"));
+                //        row["CSVType"] = "OMS";
+                //        row["ReadingValue"] = q.Reading_Value;
+                //        row["FlowRateValue"] = Convert.ToInt32(q.Flow_Rate_Value);
+                //        row["AppBusyAlr"] = Convert.ToInt32(q.App_Busy_Alr);
+                //        row["AnyAppErrorAlr"] = Convert.ToInt32(q.Any_App_Error_Alr);
+                //        row["AbnormalConditionAlr"] = Convert.ToInt32(q.Abnormal_Condition_Alr);
+                //        row["LowBatteryAlr"] = Convert.ToInt32(q.Low_Power_Battery_Alr);
+                //        row["PermanentErrorAlr"] = Convert.ToInt32(q.Permanent_Error_Alr);
+                //        row["TemporaryErrorAlr"] = Convert.ToInt32(q.Temporary_Error_Alr);
+                //        row["SpecificError1Err"] = Convert.ToInt32(q.Specific_Error1_Alr);
+                //        row["SpecificError2Err"] = Convert.ToInt32(q.Specific_Error2_Alr);
+                //        row["SpecificError3Err"] = Convert.ToInt32(q.Specific_Error3_Alr);
+                //        newMeterReading.Rows.Add(row);
+                //    }
+                //}
             }
             catch (Exception ex)
             {

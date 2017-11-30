@@ -107,6 +107,8 @@
             this.ColSpecErr1Alr = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColSpecErr2Alr = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColSpecErr3Alr = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ButtonImport = new System.Windows.Forms.Button();
+            this.ButtonExport = new System.Windows.Forms.Button();
             this.TabControlMeterReading.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -129,6 +131,8 @@
             // 
             // tabPage1
             // 
+            this.tabPage1.Controls.Add(this.ButtonImport);
+            this.tabPage1.Controls.Add(this.ButtonExport);
             this.tabPage1.Controls.Add(this.ButtonDelete);
             this.tabPage1.Controls.Add(this.ButtonSave);
             this.tabPage1.Controls.Add(this.ButtonEdit);
@@ -193,9 +197,9 @@
             this.ButtonDelete.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("ButtonDelete.BackgroundImage")));
             this.ButtonDelete.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.ButtonDelete.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ButtonDelete.Location = new System.Drawing.Point(632, 432);
+            this.ButtonDelete.Location = new System.Drawing.Point(448, 432);
             this.ButtonDelete.Name = "ButtonDelete";
-            this.ButtonDelete.Size = new System.Drawing.Size(151, 56);
+            this.ButtonDelete.Size = new System.Drawing.Size(136, 56);
             this.ButtonDelete.TabIndex = 75;
             this.ButtonDelete.Text = "DELETE";
             this.ButtonDelete.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -208,9 +212,9 @@
             this.ButtonSave.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("ButtonSave.BackgroundImage")));
             this.ButtonSave.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.ButtonSave.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ButtonSave.Location = new System.Drawing.Point(472, 432);
+            this.ButtonSave.Location = new System.Drawing.Point(304, 432);
             this.ButtonSave.Name = "ButtonSave";
-            this.ButtonSave.Size = new System.Drawing.Size(151, 56);
+            this.ButtonSave.Size = new System.Drawing.Size(136, 56);
             this.ButtonSave.TabIndex = 76;
             this.ButtonSave.Text = "SAVE";
             this.ButtonSave.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -223,9 +227,9 @@
             this.ButtonEdit.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("ButtonEdit.BackgroundImage")));
             this.ButtonEdit.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.ButtonEdit.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ButtonEdit.Location = new System.Drawing.Point(312, 432);
+            this.ButtonEdit.Location = new System.Drawing.Point(152, 432);
             this.ButtonEdit.Name = "ButtonEdit";
-            this.ButtonEdit.Size = new System.Drawing.Size(151, 56);
+            this.ButtonEdit.Size = new System.Drawing.Size(136, 56);
             this.ButtonEdit.TabIndex = 77;
             this.ButtonEdit.Text = "EDIT";
             this.ButtonEdit.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -238,9 +242,9 @@
             this.ButtonNew.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("ButtonNew.BackgroundImage")));
             this.ButtonNew.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.ButtonNew.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ButtonNew.Location = new System.Drawing.Point(144, 432);
+            this.ButtonNew.Location = new System.Drawing.Point(8, 432);
             this.ButtonNew.Name = "ButtonNew";
-            this.ButtonNew.Size = new System.Drawing.Size(151, 56);
+            this.ButtonNew.Size = new System.Drawing.Size(136, 56);
             this.ButtonNew.TabIndex = 78;
             this.ButtonNew.Text = "NEW";
             this.ButtonNew.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -887,6 +891,36 @@
             this.ColSpecErr3Alr.Name = "ColSpecErr3Alr";
             this.ColSpecErr3Alr.ReadOnly = true;
             // 
+            // ButtonImport
+            // 
+            this.ButtonImport.AutoSize = true;
+            this.ButtonImport.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("ButtonImport.BackgroundImage")));
+            this.ButtonImport.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.ButtonImport.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ButtonImport.Location = new System.Drawing.Point(736, 432);
+            this.ButtonImport.Name = "ButtonImport";
+            this.ButtonImport.Size = new System.Drawing.Size(136, 56);
+            this.ButtonImport.TabIndex = 80;
+            this.ButtonImport.Text = "IMPORT";
+            this.ButtonImport.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.ButtonImport.UseVisualStyleBackColor = true;
+            this.ButtonImport.Click += new System.EventHandler(this.ButtonImport_Click);
+            // 
+            // ButtonExport
+            // 
+            this.ButtonExport.AutoSize = true;
+            this.ButtonExport.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("ButtonExport.BackgroundImage")));
+            this.ButtonExport.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.ButtonExport.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ButtonExport.Location = new System.Drawing.Point(592, 432);
+            this.ButtonExport.Name = "ButtonExport";
+            this.ButtonExport.Size = new System.Drawing.Size(136, 56);
+            this.ButtonExport.TabIndex = 81;
+            this.ButtonExport.Text = "EXPORT";
+            this.ButtonExport.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.ButtonExport.UseVisualStyleBackColor = true;
+            this.ButtonExport.Click += new System.EventHandler(this.ButtonExport_Click);
+            // 
             // MeterReading
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -989,5 +1023,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn ColSpecErr1Alr;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColSpecErr2Alr;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColSpecErr3Alr;
+        private System.Windows.Forms.Button ButtonImport;
+        private System.Windows.Forms.Button ButtonExport;
     }
 }
