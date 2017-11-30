@@ -146,7 +146,6 @@ namespace MeterReports
         {
             if (openFileDialogImport.ShowDialog() == DialogResult.OK)
             {
-                //TODO Check if duplicate
                 GetMacDuplicates();
                 GetCSVDuplicates();
                 ProgressBarImportStatus.Maximum = _max = (openFileDialogImport.FileNames.Length - _duplicateCount);
@@ -164,29 +163,24 @@ namespace MeterReports
                 _gateway = Path.GetFileName((Path.GetDirectoryName(filename)));
                 _csvFilename = (Path.GetFileName(filename));
 
-                //add to list duplicate
+                //add to list gateway duplicate
                 ReturnInfo getGateway = _gatewayL.GetGatewayById(new SmartDB(), _gateway);
                 bool flag = getGateway.Code == ErrorEnum.NoError;
                 if (flag)
                 {
                     _duplicateMac.Add(_csvFilename);
-                    //_duplicateCount++;
                 }
             }
         }
         private void GetCSVDuplicates()
         {
             _duplicateCSVFile.Clear();
-            //using (SqlConnection connection =
-            //    new SqlConnection(new SmartDB().Connection.ConnectionString))
-            //{
-            //    connection.Open();
                 foreach (var filename in openFileDialogImport.FileNames)
                 {
                     _gateway = Path.GetFileName((Path.GetDirectoryName(filename)));
                     _csvFilename = (Path.GetFileName(filename));
 
-                    //add to list duplicate
+                    //add to list gatewaylog duplicate
                     ReturnInfo getGatewayLog = _gatewayLog.GetRecordsByMacCsv(new SmartDB(), _gateway, _csvFilename);
                     bool flag = getGatewayLog.Code == ErrorEnum.NoError;
                     if (flag)
@@ -195,7 +189,6 @@ namespace MeterReports
                         _duplicateCount++;
                     }
                 }
-            //}
         }
         private void ImportBulkRDSCSV()
         {
@@ -254,7 +247,7 @@ namespace MeterReports
                                 };
                                 var createGatewayLog = _gatewayLog.Create(new SmartDB(), ref gatewayLog);
 
-                                //ADD Mac Address in Gateway Table
+                                //ADD Mac Address in Gateway
                                 if (!_duplicateMac.Contains(_gateway))
                                 {
                                     TMF.Reports.Model.Gateway gatewayC = new TMF.Reports.Model.Gateway()
@@ -279,7 +272,7 @@ namespace MeterReports
                                     var createGateway = _gatewayL.Create(new SmartDB(), ref gatewayC);
                                 }
 
-                                //TODO ADD Meter Serial to Meter Table via stored proc
+                                //TODO ADD Meter Serial to Meter Table via stored proc REPORT METER_SYNCSERIALNUMBER_METERREADING
 
                                 bool flag = createGatewayLog.Code == ErrorEnum.NoError;
                                 if (flag)
@@ -387,59 +380,12 @@ namespace MeterReports
             specificErr.DataType = Type.GetType("System.Int32");
             specificErr.ColumnName = "SpecificErr";
             newMeterReading.Columns.Add(specificErr);
-
-            //DataColumn flowratevalue = new DataColumn();
-            //flowratevalue.DataType = Type.GetType("System.Int32");
-            //flowratevalue.ColumnName = "FlowRateValue";
-            //newMeterReading.Columns.Add(flowratevalue);
-
-            //DataColumn appbusyalr = new DataColumn();
-            //appbusyalr.DataType = Type.GetType("System.Int32");
-            //appbusyalr.ColumnName = "AppBusyAlr";
-            //newMeterReading.Columns.Add(appbusyalr);
-
-            //DataColumn anyapperroralr = new DataColumn();
-            //anyapperroralr.DataType = Type.GetType("System.Int32");
-            //anyapperroralr.ColumnName = "AnyAppErrorAlr";
-            //newMeterReading.Columns.Add(anyapperroralr);
-
-            //DataColumn abnormalconditionalr = new DataColumn();
-            //abnormalconditionalr.DataType = Type.GetType("System.Int32");
-            //abnormalconditionalr.ColumnName = "AbnormalConditionAlr";
-            //newMeterReading.Columns.Add(abnormalconditionalr);
-
-            //DataColumn permanenterroralr = new DataColumn();
-            //permanenterroralr.DataType = Type.GetType("System.Int32");
-            //permanenterroralr.ColumnName = "PermanentErrorAlr";
-            //newMeterReading.Columns.Add(permanenterroralr);
-
-            //DataColumn temporaryerroralr = new DataColumn();
-            //temporaryerroralr.DataType = Type.GetType("System.Int32");
-            //temporaryerroralr.ColumnName = "TemporaryErrorAlr";
-            //newMeterReading.Columns.Add(temporaryerroralr);
-
-            //DataColumn specificerror1alr = new DataColumn();
-            //specificerror1alr.DataType = Type.GetType("System.Int32");
-            //specificerror1alr.ColumnName = "SpecificError1Alr";
-            //newMeterReading.Columns.Add(specificerror1alr);
-
-            //DataColumn specificerror2alr = new DataColumn();
-            //specificerror2alr.DataType = Type.GetType("System.Int32");
-            //specificerror2alr.ColumnName = "SpecificError2Alr";
-            //newMeterReading.Columns.Add(specificerror2alr);
-
-            //DataColumn specificerror3alr = new DataColumn();
-            //specificerror3alr.DataType = Type.GetType("System.Int32");
-            //specificerror3alr.ColumnName = "SpecificError3Alr";
-            //newMeterReading.Columns.Add(specificerror3alr);
-
+            
             // Create an array for DataColumn objects.
             DataColumn[] keys = new DataColumn[1];
             keys[0] = meterReadingId;
             newMeterReading.PrimaryKey = keys;
-
-            //foreach (String file in Filenames)
-            //{
+            
             try
             {
                 string[] allLines = File.ReadAllLines(Filename);
@@ -481,53 +427,12 @@ namespace MeterReports
                         newMeterReading.Rows.Add(row);
                     }
                 }
-                //if (columnCount == 13)
-                //{ //OMS
-                //    var query = from line in allLines
-                //        let data = line.Split(',')
-                //        select new
-                //        {
-                //            Meter_Address = data[0],
-                //            Reading_Date = data[1],
-                //            Reading_Value = data[2],
-                //            Flow_Rate_Value = data[3],
-                //            App_Busy_Alr = data[4],
-                //            Any_App_Error_Alr = data[5],
-                //            Abnormal_Condition_Alr = data[6],
-                //            Low_Power_Battery_Alr = data[7],
-                //            Permanent_Error_Alr = data[8],
-                //            Temporary_Error_Alr = data[9],
-                //            Specific_Error1_Alr = data[10],
-                //            Specific_Error2_Alr = data[11],
-                //            Specific_Error3_Alr = data[12]
-                //        };
-                //    DataRow row;
-                //    foreach (var q in query.ToList().Skip(1))
-                //    {
-                //        row = newMeterReading.NewRow();
-                //        row["SerialNumber"] = q.Meter_Address.Replace("-", "");
-                //        row["ReadingDate"] = DateTime.ParseExact(q.Reading_Date, "HH:mm:ss dd/MM/yyyy", new CultureInfo("en-US"));
-                //        row["CSVType"] = "OMS";
-                //        row["ReadingValue"] = q.Reading_Value;
-                //        row["FlowRateValue"] = Convert.ToInt32(q.Flow_Rate_Value);
-                //        row["AppBusyAlr"] = Convert.ToInt32(q.App_Busy_Alr);
-                //        row["AnyAppErrorAlr"] = Convert.ToInt32(q.Any_App_Error_Alr);
-                //        row["AbnormalConditionAlr"] = Convert.ToInt32(q.Abnormal_Condition_Alr);
-                //        row["LowBatteryAlr"] = Convert.ToInt32(q.Low_Power_Battery_Alr);
-                //        row["PermanentErrorAlr"] = Convert.ToInt32(q.Permanent_Error_Alr);
-                //        row["TemporaryErrorAlr"] = Convert.ToInt32(q.Temporary_Error_Alr);
-                //        row["SpecificError1Err"] = Convert.ToInt32(q.Specific_Error1_Alr);
-                //        row["SpecificError2Err"] = Convert.ToInt32(q.Specific_Error2_Alr);
-                //        row["SpecificError3Err"] = Convert.ToInt32(q.Specific_Error3_Alr);
-                //        newMeterReading.Rows.Add(row);
-                //    }
-                //}
             }
             catch (Exception ex)
             {
                 MessageBox.Show($"Contact Admin: {ex.Message}", "Import");
             }
-            //}
+            
             newMeterReading.AcceptChanges();
             // Return the new DataTable. 
             return newMeterReading;
