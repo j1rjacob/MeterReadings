@@ -160,5 +160,10 @@ namespace TMF.Reports.DAL
             array[0].Value = description;
             return this.GetRecords(dbInstance, cmdText, array);
         }
+        public IInfo GetRecordTop(SmartDB dbInstance)
+        {
+            string cmdText = "[REPORT CITY_TOP]";
+            return this.GetRecords(dbInstance, cmdText, null);
+        }
     }
 }

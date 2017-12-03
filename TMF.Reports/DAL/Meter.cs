@@ -16,7 +16,7 @@ namespace TMF.Reports.DAL
             SQL_GET_LIST = "[REPORT METER_LST]";
             SQL_INSERT = "[REPORT METER_INS]";
             SQL_UPDATE = "[REPORT METER_UPD]";
-            PARM_ID = "@Id";
+            PARM_ID = "@SerialNumber";
         }
         protected void SetInfo(out Model.Meter info, SqlDataReader reader)
         {

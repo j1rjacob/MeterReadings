@@ -85,9 +85,9 @@ namespace TMF.Reports.BLL
             }
             return result;
         }
-        public ReturnInfo GetMeterById(SmartDB dbInstance, string Id)
+        public ReturnInfo GetMeterById(SmartDB dbInstance, string SerialNumber)
         {
-            IInfo record = _dal.GetRecord(dbInstance, Id);
+            IInfo record = _dal.GetRecord(dbInstance, SerialNumber);
             return new ReturnInfo
             {
                 BizObject = ((record.Code == ErrorEnum.NoError) ? record.BizObject : null),

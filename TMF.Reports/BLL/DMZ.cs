@@ -105,6 +105,17 @@ namespace TMF.Reports.BLL
                 RowsAffected = record.RowsAffected
             };
         }
+        public ReturnInfo GetTopDMZ(SmartDB dbInstance)
+        {
+            IInfo record = _dal.GetRecordTop(dbInstance);
+            return new ReturnInfo
+            {
+                BizObject = ((record.Code == ErrorEnum.NoError) ? record.BizObject : null),
+                Code = record.Code,
+                Message = record.Message,
+                RowsAffected = record.RowsAffected
+            };
+        }
         public ReturnInfo GetDMZList(SmartDB dbInstance)
         {
             IInfo records = _dal.GetRecords(dbInstance);

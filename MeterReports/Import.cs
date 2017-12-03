@@ -19,6 +19,8 @@ namespace MeterReports
         private Label LabelImported;
         private readonly TMF.Reports.BLL.GatewayLog _gatewayLog;
         private readonly TMF.Reports.BLL.Gateway _gatewayL;
+        private readonly TMF.Reports.BLL.DMZ _dmz;
+        private readonly TMF.Reports.BLL.City _city;
         private int _max = 0;
         private string _gateway;
         private string _csvFilename;
@@ -34,6 +36,8 @@ namespace MeterReports
             _gatewayLog = new TMF.Reports.BLL.GatewayLog();
             _gatewayL = new TMF.Reports.BLL.Gateway();
             _fileNames = fileNames;
+            _dmz = new TMF.Reports.BLL.DMZ();
+            _city = new TMF.Reports.BLL.City();
         }
         private void InitializeComponent()
         {
@@ -226,8 +230,8 @@ namespace MeterReports
 
                                 //ADD Mac Address in Gateway
                                 if (!_duplicateMac.Contains(_gateway))
-                                {
-                                    TMF.Reports.Model.Gateway gatewayC = new TMF.Reports.Model.Gateway()
+                                { 
+                                TMF.Reports.Model.Gateway gatewayC = new TMF.Reports.Model.Gateway()
                                     {
                                         MacAddress = Regex.Replace(_gateway, @"^(..)(..)(..)(..)(..)(..)$", "$1:$2:$3:$4:$5:$6"),
                                         SimCard = null,
@@ -238,8 +242,6 @@ namespace MeterReports
                                         MaintenanceDate = DateTime.Parse("06/20/1986"),
                                         Status = "Active",
                                         IPAddress = "192.0.0.1",
-                                        DMZId = null,
-                                        CityId = null,
                                         CreatedBy = "1",
                                         EditedBy = "1",
                                         DocDate = DateTime.Now,
@@ -248,9 +250,7 @@ namespace MeterReports
                                     };
                                     _gatewayL.Create(new SmartDB(), ref gatewayC);
                                 }
-
                                 //TODO ADD Meter Serial to Meter Table via stored proc REPORT METER_SYNCSERIALNUMBER_METERREADING
-
                                 bool flag = createGatewayLog.Code == ErrorEnum.NoError;
                                 if (flag)
                                 {

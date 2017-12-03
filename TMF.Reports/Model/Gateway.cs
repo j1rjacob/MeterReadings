@@ -6,7 +6,6 @@ namespace TMF.Reports.Model
 {
     public class Gateway : ModelInfo
     {
-        public string Id { get; set; }
         public string MacAddress { get; set; }
         public string SimCard { get; set; }
         public decimal X { get; set; }
@@ -26,20 +25,19 @@ namespace TMF.Reports.Model
 
         public Gateway()
         {
-            Id = "";
+            MacAddress = "";
             base.IsNew = true;
             base.IsDirty = false;
             base.IsDeleted = false;
         }
 
-        public Gateway(string Id, string MacAddress, string SimCard,
+        public Gateway(string MacAddress, string SimCard,
             decimal X, decimal Y, string Description,
             DateTime InstallationDate, DateTime MaintenanceDate,
             string Status, string IPAddress, string DMZId,
             string CityId, string CreatedBy, string EditedBy,
             DateTime DocDate, int Show, int LockCount)
         {
-            this.Id = Id;
             this.MacAddress = MacAddress;
             this.SimCard = SimCard;
             this.X = X;
@@ -62,9 +60,6 @@ namespace TMF.Reports.Model
         {
             switch (fieldname.ToLower())
             {
-                case "id":
-                    return this.Id;
-                    break;
                 case "macaddress":
                     return this.MacAddress;
                     break;
@@ -123,9 +118,6 @@ namespace TMF.Reports.Model
         {
             switch (fieldname.ToLower())
             {
-                case "id":
-                    this.Id = CastDBNull.To<string>(value, "");
-                    break;
                 case "macaddress":
                     this.MacAddress = CastDBNull.To<string>(value, "");
                     break;

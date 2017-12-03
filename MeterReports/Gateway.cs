@@ -48,11 +48,14 @@ namespace MeterReports
         private bool _save;
 
 
-        private string _gatewayId;
+        private string _gatewayMac;
         private readonly TMF.Reports.BLL.DMZ _dmz;
-        private DataGridViewTextBoxColumn ColId;
+        private readonly TMF.Reports.BLL.City _city;
+        private Button ButtonExport;
+        private Button ButtonImport;
+        private OpenFileDialog openFileDialogGateway;
+        private SaveFileDialog saveFileDialogGateway;
         private DataGridViewTextBoxColumn ColMacAddress;
-        private DataGridViewTextBoxColumn ColSimCard;
         private DataGridViewTextBoxColumn ColX;
         private DataGridViewTextBoxColumn ColY;
         private DataGridViewTextBoxColumn ColDescription;
@@ -62,11 +65,6 @@ namespace MeterReports
         private DataGridViewTextBoxColumn ColIPAddress;
         private DataGridViewTextBoxColumn ColDMZ;
         private DataGridViewTextBoxColumn ColCity;
-        private readonly TMF.Reports.BLL.City _city;
-        private Button ButtonExport;
-        private Button ButtonImport;
-        private OpenFileDialog openFileDialogGateway;
-        private SaveFileDialog saveFileDialogGateway;
         private readonly CustomUser _currentUser;
         public Gateway(CustomUser currentUser)
         {
@@ -76,9 +74,8 @@ namespace MeterReports
             _dmz = new TMF.Reports.BLL.DMZ();
             _city = new TMF.Reports.BLL.City();
             _save = true;
-            _gatewayId = "";
+            _gatewayMac = "";
         }
-
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Gateway));
@@ -89,9 +86,7 @@ namespace MeterReports
             this.ButtonNew = new System.Windows.Forms.Button();
             this.ButtonSearch = new System.Windows.Forms.Button();
             this.DataGridViewGateway = new System.Windows.Forms.DataGridView();
-            this.ColId = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColMacAddress = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColSimCard = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColX = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColY = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColDescription = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -222,9 +217,7 @@ namespace MeterReports
             this.DataGridViewGateway.AllowUserToDeleteRows = false;
             this.DataGridViewGateway.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.DataGridViewGateway.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.ColId,
             this.ColMacAddress,
-            this.ColSimCard,
             this.ColX,
             this.ColY,
             this.ColDescription,
@@ -242,27 +235,12 @@ namespace MeterReports
             this.DataGridViewGateway.TabIndex = 18;
             this.DataGridViewGateway.SelectionChanged += new System.EventHandler(this.DataGridViewGateway_SelectionChanged);
             // 
-            // ColId
-            // 
-            this.ColId.DataPropertyName = "Id";
-            this.ColId.HeaderText = "Id";
-            this.ColId.Name = "ColId";
-            this.ColId.ReadOnly = true;
-            this.ColId.Visible = false;
-            // 
             // ColMacAddress
             // 
             this.ColMacAddress.DataPropertyName = "MacAddress";
             this.ColMacAddress.HeaderText = "MacAddress";
             this.ColMacAddress.Name = "ColMacAddress";
             this.ColMacAddress.ReadOnly = true;
-            // 
-            // ColSimCard
-            // 
-            this.ColSimCard.DataPropertyName = "SimCard";
-            this.ColSimCard.HeaderText = "Sim Card";
-            this.ColSimCard.Name = "ColSimCard";
-            this.ColSimCard.ReadOnly = true;
             // 
             // ColX
             // 
@@ -352,6 +330,7 @@ namespace MeterReports
             this.TextBoxSearch.Name = "TextBoxSearch";
             this.TextBoxSearch.Size = new System.Drawing.Size(384, 27);
             this.TextBoxSearch.TabIndex = 16;
+            this.TextBoxSearch.Text = "C";
             // 
             // TextBoxMac
             // 
@@ -671,7 +650,7 @@ namespace MeterReports
             TextBoxIPAddress.Text = "";
             ComboBoxDMZ.Items.Clear();
             ComboBoxCity.Items.Clear();
-            _gatewayId = "";
+            _gatewayMac = "";
         }
         private void ButtonEdit_Click(object sender, EventArgs e)
         {
@@ -705,7 +684,7 @@ namespace MeterReports
             if (!string.IsNullOrWhiteSpace(TextBoxDescription.Text) &&
                 _currentUser.Role == "Administrator")
             {
-                var deleteGateway = _gateway.Delete(new SmartDB(), _gatewayId);
+                var deleteGateway = _gateway.Delete(new SmartDB(), _gatewayMac);
 
                 bool flag = deleteGateway.Code == ErrorEnum.NoError;
                 if (flag)
@@ -756,16 +735,17 @@ namespace MeterReports
                 bool flag = getGateway.Code == ErrorEnum.NoError;
                 TMF.Reports.Model.Gateway gateway = (TMF.Reports.Model.Gateway)getGateway.BizObject;
 
+                
                 ReturnInfo getDMZ = _dmz.GetDMZById(new SmartDB(), Convert.ToInt32(gateway.DMZId));
                 TMF.Reports.Model.DMZ dmz = (TMF.Reports.Model.DMZ)getDMZ.BizObject;
 
                 ReturnInfo getCity = _city.GetCityById(new SmartDB(), gateway.CityId.Trim());
                 TMF.Reports.Model.City city = (TMF.Reports.Model.City)getCity.BizObject;
+               
 
-                if (!string.IsNullOrEmpty(gateway.Id))
+                if (!string.IsNullOrEmpty(gateway.MacAddress))
                 {
                     TextBoxMac.Text = gateway.MacAddress;
-                    TextBoxSimCard.Text = gateway.SimCard;
                     TextBoxX.Text = gateway.X.ToString();
                     TextBoxY.Text = gateway.Y.ToString();
                     TextBoxDescription.Text = gateway.Description;
@@ -775,16 +755,15 @@ namespace MeterReports
                     TextBoxIPAddress.Text = gateway.IPAddress;
                     ComboBoxDMZ.Text = dmz.Description;
                     ComboBoxCity.Text = city.Description;
-                    _gatewayId = gateway.Id;
+                    _gatewayMac = gateway.MacAddress;
                     ButtonEdit.Enabled = true;
                     ButtonDelete.Enabled = true;
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 return;
             }
-            
         }
         #region PriveteMethod
         private void SaveGateway()
@@ -793,7 +772,6 @@ namespace MeterReports
             {
                 TMF.Reports.Model.Gateway gateway = new TMF.Reports.Model.Gateway()
                 {   //TODO User id for CreatedBy
-                    Id = Guid.NewGuid().ToString("N"),
                     MacAddress = TextBoxMac.Text,
                     SimCard = TextBoxSimCard.Text,
                     X = Convert.ToDecimal(TextBoxX.Text),
@@ -832,12 +810,12 @@ namespace MeterReports
         {
             if (!string.IsNullOrWhiteSpace(TextBoxDescription.Text))
             {   //Todo EditedBy
-                var lockcount = GetLockCount(_gatewayId);
+                var lockcount = GetLockCount(_gatewayMac);
 
                 TMF.Reports.Model.Gateway gateway = new TMF.Reports.Model.Gateway()
                 {
-                    Id = _gatewayId,
-                    MacAddress = TextBoxMac.Text,
+                    MacAddress = _gatewayMac,
+                    //MacAddress = TextBoxMac.Text,
                     SimCard = TextBoxSimCard.Text,
                     X = Convert.ToDecimal(TextBoxX.Text),
                     Y = Convert.ToDecimal(TextBoxY.Text),
@@ -953,21 +931,19 @@ namespace MeterReports
                 DataGridViewGateway.DataSource = source;
                 LabelShow.Text = $"Showing {DataGridViewGateway.CurrentRow.Index + 1} index of {DataGridViewGateway.RowCount} records";
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 return;
             }
-            
-        }
+}
         #endregion
-
         private void ExportGateways()
         {
             StreamWriter sr;
             string line = "";
             StringBuilder fileContents = new StringBuilder();
             
-            fileContents.Append("ID, MAC_ADDRESS, SIM_CARD, X, Y, DESCRIPTION, INSTALLATION_DATE, " +
+            fileContents.Append("MAC_ADDRESS, SIM_CARD, X, Y, DESCRIPTION, INSTALLATION_DATE, " +
                                 "MAINTENANCE_DATE, STATUS, IP_ADDRESS, DMZ_ID, CITY_ID, " +
                                 "CREATED_BY, EDITED_BY, DOC_DATE, SHOW, LOCK_COUNT\r\n");
             if (saveFileDialogGateway.ShowDialog() == DialogResult.OK)
@@ -980,7 +956,6 @@ namespace MeterReports
                     
                     foreach (var gw in gateway)
                     {
-                        line = gw.Id + ",";
                         line += gw.MacAddress + ",";
                         line += gw.SimCard + ",";
                         line += gw.X + ",";
@@ -1023,28 +998,26 @@ namespace MeterReports
                         let data = line.Split(',')
                         select new
                         {
-                            Id = data[0],
-                            MacAddress = data[1],
-                            SimCard = data[2],
-                            X = data[3],
-                            Y = data[4],
-                            Description = data[5],
-                            InstallationDate = data[6],
-                            MaintenanceDate = data[7],
-                            Status = data[8],
-                            IPAddress = data[9],
-                            DMZId = data[10],
-                            CityId = data[11],
-                            CreatedBy = data[12],
-                            EditedBy = data[13],
-                            DocDate = data[14],
-                            Show = data[15],
-                            Locked = data[16],
+                            MacAddress = data[0],
+                            SimCard = data[1],
+                            X = data[2],
+                            Y = data[3],
+                            Description = data[4],
+                            InstallationDate = data[5],
+                            MaintenanceDate = data[6],
+                            Status = data[7],
+                            IPAddress = data[8],
+                            DMZId = data[9],
+                            CityId = data[10],
+                            CreatedBy = data[11],
+                            EditedBy = data[12],
+                            DocDate = data[13],
+                            Show = data[14],
+                            Locked = data[15],
                         };
                     foreach (var q in query.ToList().Skip(1))
                     {
-                        MessageBox.Show(q.Id + " " +
-                                        q.MacAddress + " " +
+                        MessageBox.Show(q.MacAddress + " " +
                                         q.SimCard + " " +
                                         q.X + " " +
                                         q.Y + " " +

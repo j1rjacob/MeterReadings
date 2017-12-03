@@ -16,14 +16,13 @@ namespace TMF.Reports.DAL
             SQL_GET_LIST = "[REPORT GATEWAY_LST]";
             SQL_INSERT = "[REPORT GATEWAY_INS]";
             SQL_UPDATE = "[REPORT GATEWAY_UPD]";
-            PARM_ID = "@Id";
+            PARM_ID = "@MacAddress";
         }
         protected void SetInfo(out Model.Gateway info, SqlDataReader reader)
         {
             try
             {
                 info = new Model.Gateway();
-                info.Id = CastDBNull.To<string>(reader["Id"], "");
                 info.MacAddress = CastDBNull.To<string>(reader["MacAddress"], "");
                 info.SimCard = CastDBNull.To<string>(reader["SimCard"], "");
                 info.X = CastDBNull.To<decimal>(reader["X"], 0.0m);

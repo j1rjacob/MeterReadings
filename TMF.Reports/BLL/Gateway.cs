@@ -27,7 +27,7 @@ namespace TMF.Reports.BLL
         }
         public ReturnInfo IsValid(Model.Gateway info)
         {
-            bool flag = string.IsNullOrEmpty(info.Id);
+            bool flag = string.IsNullOrEmpty(info.MacAddress);
             ReturnInfo result;
             if (flag)
             {
@@ -53,7 +53,7 @@ namespace TMF.Reports.BLL
         }
         public ReturnInfo Update(SmartDB dbInstance, Model.Gateway info)
         {
-            IInfo info2 = _dal.GetRecord(dbInstance, info.Id);
+            IInfo info2 = _dal.GetRecord(dbInstance, info.MacAddress);
             bool flag = info2.Code == ErrorEnum.NoError;
             ReturnInfo result;
             if (flag)

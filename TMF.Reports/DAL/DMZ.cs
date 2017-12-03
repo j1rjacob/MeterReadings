@@ -160,5 +160,52 @@ namespace TMF.Reports.DAL
             array[0].Value = description;
             return this.GetRecords(dbInstance, cmdText, array);
         }
+        public IInfo GetRecordTop(SmartDB dbInstance)
+        {
+            //string cmdText = "[REPORT DMZ_TOP]";
+            //return this.GetRecords(dbInstance, cmdText, null);
+
+            string sQL_GET = "[REPORT DMZ_TOP]";
+            SqlParameter[] array = new SqlParameter[]
+            {
+                new SqlParameter(this.PARM_ID, SqlDbType.NVarChar)
+            };
+            array[0].Value = null;
+            Model.DMZ bizObject = null;
+            IInfo result;
+            try
+            {
+                bool transactionControl = dbInstance.TransactionControl;
+                SqlDataReader sqlDataReader;
+                if (transactionControl)
+                {
+                    sqlDataReader = SqlHelper.ExecuteReader(dbInstance.Transaction, CommandType.StoredProcedure, sQL_GET, array);
+                }
+                else
+                {
+                    sqlDataReader = SqlHelper.ExecuteReader(SqlHelper.MyConnectionString, CommandType.StoredProcedure, sQL_GET, array);
+                }
+                bool hasRows = sqlDataReader.HasRows;
+                if (hasRows)
+                {
+                    sqlDataReader.Read();
+                    this.SetInfo(out bizObject, sqlDataReader);
+                    result = new ReturnInfo
+                    {
+                        BizObject = bizObject,
+                        Code = ErrorEnum.NoError
+                    };
+                }
+                else
+                {
+                    result = new ReturnInfo(ErrorEnum.NoRecord, string.Format("No record found"));
+                }
+            }
+            catch (Exception ex)
+            {
+                result = new ReturnInfo(ErrorEnum.DataException, ex.Message);
+            }
+            return result;
+        }
     }
 }
