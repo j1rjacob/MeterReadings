@@ -702,7 +702,8 @@ namespace MeterReports
         }
         private void ButtonDelete_Click(object sender, EventArgs e)
         {
-            if (!string.IsNullOrWhiteSpace(TextBoxDescription.Text))
+            if (!string.IsNullOrWhiteSpace(TextBoxDescription.Text) &&
+                _currentUser.Role == "Administrator")
             {
                 var deleteGateway = _gateway.Delete(new SmartDB(), _gatewayId);
 

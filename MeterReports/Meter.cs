@@ -100,7 +100,8 @@ namespace MeterReports
         }
         private void ButtonDelete_Click(object sender, EventArgs e)
         {
-            if (!string.IsNullOrWhiteSpace(TextBoxSerialNumber.Text))
+            if (!string.IsNullOrWhiteSpace(TextBoxSerialNumber.Text) &&
+                _currentUser.Role == "Administrator")
             {
                 var deleteMeter = _meter.Delete(new SmartDB(), _meterSerialNumber);
 

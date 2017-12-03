@@ -31,6 +31,8 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MeterReading));
             this.TabControlMeterReading = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.ButtonImport = new System.Windows.Forms.Button();
+            this.ButtonExport = new System.Windows.Forms.Button();
             this.ButtonDelete = new System.Windows.Forms.Button();
             this.ButtonSave = new System.Windows.Forms.Button();
             this.ButtonEdit = new System.Windows.Forms.Button();
@@ -62,12 +64,11 @@
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.LabelShow = new System.Windows.Forms.Label();
             this.DataGridViewMeterReading = new System.Windows.Forms.DataGridView();
+            this.openFileDialogImport = new System.Windows.Forms.OpenFileDialog();
             this.ColId = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColSerialNumber = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColReadingDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColCSVType = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColReadingValue = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColDescription = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColLowBattAlr = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColLeakAlr = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColMagneticTmprAlr = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -76,17 +77,6 @@
             this.ColBrokenPipeAlr = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColEmptyPipeAlr = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColSpecificErr = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColFlowRateValue = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColAppBusyAlr = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColAnyAppErrAlr = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColAbnCondAlr = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColPermErrAlr = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColTempErrAlr = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColSpecErr1Alr = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColSpecErr2Alr = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColSpecErr3Alr = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ButtonImport = new System.Windows.Forms.Button();
-            this.ButtonExport = new System.Windows.Forms.Button();
             this.TabControlMeterReading.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -146,6 +136,36 @@
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "METER INFORMATION";
             this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // ButtonImport
+            // 
+            this.ButtonImport.AutoSize = true;
+            this.ButtonImport.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("ButtonImport.BackgroundImage")));
+            this.ButtonImport.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.ButtonImport.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ButtonImport.Location = new System.Drawing.Point(736, 432);
+            this.ButtonImport.Name = "ButtonImport";
+            this.ButtonImport.Size = new System.Drawing.Size(136, 56);
+            this.ButtonImport.TabIndex = 80;
+            this.ButtonImport.Text = "IMPORT";
+            this.ButtonImport.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.ButtonImport.UseVisualStyleBackColor = true;
+            this.ButtonImport.Click += new System.EventHandler(this.ButtonImport_Click);
+            // 
+            // ButtonExport
+            // 
+            this.ButtonExport.AutoSize = true;
+            this.ButtonExport.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("ButtonExport.BackgroundImage")));
+            this.ButtonExport.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.ButtonExport.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ButtonExport.Location = new System.Drawing.Point(592, 432);
+            this.ButtonExport.Name = "ButtonExport";
+            this.ButtonExport.Size = new System.Drawing.Size(136, 56);
+            this.ButtonExport.TabIndex = 81;
+            this.ButtonExport.Text = "EXPORT";
+            this.ButtonExport.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.ButtonExport.UseVisualStyleBackColor = true;
+            this.ButtonExport.Click += new System.EventHandler(this.ButtonExport_Click);
             // 
             // ButtonDelete
             // 
@@ -459,9 +479,7 @@
             this.ColId,
             this.ColSerialNumber,
             this.ColReadingDate,
-            this.ColCSVType,
             this.ColReadingValue,
-            this.ColDescription,
             this.ColLowBattAlr,
             this.ColLeakAlr,
             this.ColMagneticTmprAlr,
@@ -469,16 +487,7 @@
             this.ColBackFlowAlr,
             this.ColBrokenPipeAlr,
             this.ColEmptyPipeAlr,
-            this.ColSpecificErr,
-            this.ColFlowRateValue,
-            this.ColAppBusyAlr,
-            this.ColAnyAppErrAlr,
-            this.ColAbnCondAlr,
-            this.ColPermErrAlr,
-            this.ColTempErrAlr,
-            this.ColSpecErr1Alr,
-            this.ColSpecErr2Alr,
-            this.ColSpecErr3Alr});
+            this.ColSpecificErr});
             this.DataGridViewMeterReading.Location = new System.Drawing.Point(8, 31);
             this.DataGridViewMeterReading.Name = "DataGridViewMeterReading";
             this.DataGridViewMeterReading.ReadOnly = true;
@@ -486,6 +495,13 @@
             this.DataGridViewMeterReading.Size = new System.Drawing.Size(872, 457);
             this.DataGridViewMeterReading.TabIndex = 81;
             this.DataGridViewMeterReading.SelectionChanged += new System.EventHandler(this.DataGridViewMeterReading_SelectionChanged);
+            // 
+            // openFileDialogImport
+            // 
+            this.openFileDialogImport.DefaultExt = "csv";
+            this.openFileDialogImport.FileName = "GTW_RDS";
+            this.openFileDialogImport.Filter = "CSV |*.csv";
+            this.openFileDialogImport.Multiselect = true;
             // 
             // ColId
             // 
@@ -509,26 +525,12 @@
             this.ColReadingDate.Name = "ColReadingDate";
             this.ColReadingDate.ReadOnly = true;
             // 
-            // ColCSVType
-            // 
-            this.ColCSVType.DataPropertyName = "CSVType";
-            this.ColCSVType.HeaderText = "CSVType";
-            this.ColCSVType.Name = "ColCSVType";
-            this.ColCSVType.ReadOnly = true;
-            // 
             // ColReadingValue
             // 
             this.ColReadingValue.DataPropertyName = "ReadingValue";
             this.ColReadingValue.HeaderText = "ReadingValue";
             this.ColReadingValue.Name = "ColReadingValue";
             this.ColReadingValue.ReadOnly = true;
-            // 
-            // ColDescription
-            // 
-            this.ColDescription.DataPropertyName = "Description";
-            this.ColDescription.HeaderText = "Description";
-            this.ColDescription.Name = "ColDescription";
-            this.ColDescription.ReadOnly = true;
             // 
             // ColLowBattAlr
             // 
@@ -585,99 +587,6 @@
             this.ColSpecificErr.HeaderText = "SpecificErr";
             this.ColSpecificErr.Name = "ColSpecificErr";
             this.ColSpecificErr.ReadOnly = true;
-            // 
-            // ColFlowRateValue
-            // 
-            this.ColFlowRateValue.DataPropertyName = "FlowRateValue";
-            this.ColFlowRateValue.HeaderText = "FlowRateValue";
-            this.ColFlowRateValue.Name = "ColFlowRateValue";
-            this.ColFlowRateValue.ReadOnly = true;
-            // 
-            // ColAppBusyAlr
-            // 
-            this.ColAppBusyAlr.DataPropertyName = "AppBusyAlr";
-            this.ColAppBusyAlr.HeaderText = "AppBusyAlr";
-            this.ColAppBusyAlr.Name = "ColAppBusyAlr";
-            this.ColAppBusyAlr.ReadOnly = true;
-            // 
-            // ColAnyAppErrAlr
-            // 
-            this.ColAnyAppErrAlr.DataPropertyName = "AnyAppErrorAlr";
-            this.ColAnyAppErrAlr.HeaderText = "AnyAppErrAlr";
-            this.ColAnyAppErrAlr.Name = "ColAnyAppErrAlr";
-            this.ColAnyAppErrAlr.ReadOnly = true;
-            // 
-            // ColAbnCondAlr
-            // 
-            this.ColAbnCondAlr.DataPropertyName = "AbnormalConditionAlr";
-            this.ColAbnCondAlr.HeaderText = "AbnCondAlr";
-            this.ColAbnCondAlr.Name = "ColAbnCondAlr";
-            this.ColAbnCondAlr.ReadOnly = true;
-            // 
-            // ColPermErrAlr
-            // 
-            this.ColPermErrAlr.DataPropertyName = "PermanentErrorAlr";
-            this.ColPermErrAlr.HeaderText = "PermErrAlr";
-            this.ColPermErrAlr.Name = "ColPermErrAlr";
-            this.ColPermErrAlr.ReadOnly = true;
-            // 
-            // ColTempErrAlr
-            // 
-            this.ColTempErrAlr.DataPropertyName = "TemporaryErrorAlr";
-            this.ColTempErrAlr.HeaderText = "TempErrAlr";
-            this.ColTempErrAlr.Name = "ColTempErrAlr";
-            this.ColTempErrAlr.ReadOnly = true;
-            // 
-            // ColSpecErr1Alr
-            // 
-            this.ColSpecErr1Alr.DataPropertyName = "SpecificError1Alr";
-            this.ColSpecErr1Alr.HeaderText = "SpecErr1Alr";
-            this.ColSpecErr1Alr.Name = "ColSpecErr1Alr";
-            this.ColSpecErr1Alr.ReadOnly = true;
-            // 
-            // ColSpecErr2Alr
-            // 
-            this.ColSpecErr2Alr.DataPropertyName = "SpecificError2Alr";
-            this.ColSpecErr2Alr.HeaderText = "SpecErr2Alr";
-            this.ColSpecErr2Alr.Name = "ColSpecErr2Alr";
-            this.ColSpecErr2Alr.ReadOnly = true;
-            // 
-            // ColSpecErr3Alr
-            // 
-            this.ColSpecErr3Alr.DataPropertyName = "SpecificError3Alr";
-            this.ColSpecErr3Alr.HeaderText = "SpecErr3Alr";
-            this.ColSpecErr3Alr.Name = "ColSpecErr3Alr";
-            this.ColSpecErr3Alr.ReadOnly = true;
-            // 
-            // ButtonImport
-            // 
-            this.ButtonImport.AutoSize = true;
-            this.ButtonImport.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("ButtonImport.BackgroundImage")));
-            this.ButtonImport.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.ButtonImport.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ButtonImport.Location = new System.Drawing.Point(736, 432);
-            this.ButtonImport.Name = "ButtonImport";
-            this.ButtonImport.Size = new System.Drawing.Size(136, 56);
-            this.ButtonImport.TabIndex = 80;
-            this.ButtonImport.Text = "IMPORT";
-            this.ButtonImport.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.ButtonImport.UseVisualStyleBackColor = true;
-            this.ButtonImport.Click += new System.EventHandler(this.ButtonImport_Click);
-            // 
-            // ButtonExport
-            // 
-            this.ButtonExport.AutoSize = true;
-            this.ButtonExport.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("ButtonExport.BackgroundImage")));
-            this.ButtonExport.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.ButtonExport.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ButtonExport.Location = new System.Drawing.Point(592, 432);
-            this.ButtonExport.Name = "ButtonExport";
-            this.ButtonExport.Size = new System.Drawing.Size(136, 56);
-            this.ButtonExport.TabIndex = 81;
-            this.ButtonExport.Text = "EXPORT";
-            this.ButtonExport.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.ButtonExport.UseVisualStyleBackColor = true;
-            this.ButtonExport.Click += new System.EventHandler(this.ButtonExport_Click);
             // 
             // MeterReading
             // 
@@ -736,12 +645,13 @@
         private System.Windows.Forms.TextBox TextBoxLowBattAlr;
         private System.Windows.Forms.TextBox TextBoxReadingValue;
         private System.Windows.Forms.TextBox TextBoxEmptyPipeAlr;
+        private System.Windows.Forms.Button ButtonImport;
+        private System.Windows.Forms.Button ButtonExport;
+        private System.Windows.Forms.OpenFileDialog openFileDialogImport;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColId;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColSerialNumber;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColReadingDate;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ColCSVType;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColReadingValue;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ColDescription;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColLowBattAlr;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColLeakAlr;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColMagneticTmprAlr;
@@ -750,16 +660,5 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn ColBrokenPipeAlr;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColEmptyPipeAlr;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColSpecificErr;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ColFlowRateValue;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ColAppBusyAlr;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ColAnyAppErrAlr;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ColAbnCondAlr;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ColPermErrAlr;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ColTempErrAlr;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ColSpecErr1Alr;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ColSpecErr2Alr;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ColSpecErr3Alr;
-        private System.Windows.Forms.Button ButtonImport;
-        private System.Windows.Forms.Button ButtonExport;
     }
 }

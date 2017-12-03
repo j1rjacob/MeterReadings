@@ -15,11 +15,12 @@ namespace MeterReports
         private bool _save;
         private string _meterReadingId;
         //public MeterReading(CustomUser currentUser)
-        public MeterReading()
+        
+        public MeterReading(CustomUser currentUser)
         {
             InitializeComponent();
             _meterReading = new TMF.Reports.BLL.MeterReading();
-            //_currentUser = currentUser;
+            _currentUser = currentUser;
             _currentUser = new CustomUser();
             _save = true;
             _meterReadingId = "";
@@ -84,10 +85,10 @@ namespace MeterReports
             else
                 EditMeterReading();
         }
-
         private void ButtonDelete_Click(object sender, EventArgs e)
         {
-            if (!string.IsNullOrWhiteSpace(TextBoxSerialNumber.Text))
+            if (!string.IsNullOrWhiteSpace(TextBoxSerialNumber.Text) &&
+                _currentUser.Role == "Administrator")
             {
                 var deleteMeterReading = _meterReading.Delete(new SmartDB(), _meterReadingId);
 
@@ -118,12 +119,12 @@ namespace MeterReports
         }
         private void ButtonImport_Click(object sender, EventArgs e)
         {
-
-
-            var f = new Import();
-            f.ShowDialog();
+            if (openFileDialogImport.ShowDialog() == DialogResult.OK)
+            {
+                var f = new Import(openFileDialogImport.FileNames);
+                f.ShowDialog();
+            }
         }
-
         private void DataGridViewMeterReading_SelectionChanged(object sender, EventArgs e)
         {
             LabelShow.Text = $"Showing {DataGridViewMeterReading.CurrentRow.Index + 1} index of {DataGridViewMeterReading.RowCount} records";
@@ -139,7 +140,6 @@ namespace MeterReports
                 TextBoxSerialNumber.Text = meterReading.SerialNumber;
                 TextBoxReadingDate.Text = meterReading.ReadingDate.ToString();
                 TextBoxReadingValue.Text = meterReading.ReadingValue;
-               
                 TextBoxLowBattAlr.Text = meterReading.LowBatteryAlr.ToString();
                 TextBoxLeakAlr.Text = meterReading.LeakAlr.ToString();
                 TextBoxMagneticTmprAlr.Text = meterReading.MagneticTamperAlr.ToString();
@@ -159,8 +159,8 @@ namespace MeterReports
             if (!string.IsNullOrWhiteSpace(TextBoxSerialNumber.Text))
             {
                 TMF.Reports.Model.MeterReading meterReading = new TMF.Reports.Model.MeterReading()
-                {   //TODO User id for CreatedBy
-                    Id = Guid.NewGuid().ToString("N"),
+                {   
+                    //Id = Guid.NewGuid().ToString("N"),
                     SerialNumber = TextBoxSerialNumber.Text,
                     ReadingDate = Convert.ToDateTime(TextBoxReadingDate.Text),
                     ReadingValue = TextBoxReadingValue.Text,
@@ -300,7 +300,7 @@ namespace MeterReports
                 DataGridViewMeterReading.DataSource = source;
                 LabelShow.Text = $"Showing {DataGridViewMeterReading.CurrentRow.Index + 1} index of {DataGridViewMeterReading.RowCount} records";
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 return;
             }

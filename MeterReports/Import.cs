@@ -15,8 +15,6 @@ namespace MeterReports
     {
         private Label LabelDuplicate;
         private ProgressBar ProgressBarImportStatus;
-        private Button ButtonReplace;
-        private Button ButtonSkip;
         private OpenFileDialog openFileDialogImport;
         private Label LabelImported;
         private readonly TMF.Reports.BLL.GatewayLog _gatewayLog;
@@ -26,23 +24,26 @@ namespace MeterReports
         private string _csvFilename;
         private List<string> _duplicateCSVFile = new List<string>();
         private List<string> _duplicateMac = new List<string>();
+        private Button ButtonReplace;
+        private Button ButtonSkip;
+        private string[] _fileNames;
 
-        public Import()
+        public Import(string[] fileNames)
         {
             InitializeComponent();
             _gatewayLog = new TMF.Reports.BLL.GatewayLog();
             _gatewayL = new TMF.Reports.BLL.Gateway();
+            _fileNames = fileNames;
         }
-
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Import));
             this.LabelImported = new System.Windows.Forms.Label();
             this.LabelDuplicate = new System.Windows.Forms.Label();
             this.ProgressBarImportStatus = new System.Windows.Forms.ProgressBar();
+            this.openFileDialogImport = new System.Windows.Forms.OpenFileDialog();
             this.ButtonReplace = new System.Windows.Forms.Button();
             this.ButtonSkip = new System.Windows.Forms.Button();
-            this.openFileDialogImport = new System.Windows.Forms.OpenFileDialog();
             this.SuspendLayout();
             // 
             // LabelImported
@@ -74,6 +75,13 @@ namespace MeterReports
             this.ProgressBarImportStatus.Size = new System.Drawing.Size(367, 23);
             this.ProgressBarImportStatus.TabIndex = 39;
             // 
+            // openFileDialogImport
+            // 
+            this.openFileDialogImport.DefaultExt = "csv";
+            this.openFileDialogImport.FileName = "GTW_RDS";
+            this.openFileDialogImport.Filter = "CSV |*.csv";
+            this.openFileDialogImport.Multiselect = true;
+            // 
             // ButtonReplace
             // 
             this.ButtonReplace.AutoSize = true;
@@ -87,6 +95,7 @@ namespace MeterReports
             this.ButtonReplace.Text = "REPLACE ALL";
             this.ButtonReplace.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.ButtonReplace.UseVisualStyleBackColor = true;
+            this.ButtonReplace.Visible = false;
             this.ButtonReplace.Click += new System.EventHandler(this.ButtonReplace_Click);
             // 
             // ButtonSkip
@@ -102,18 +111,12 @@ namespace MeterReports
             this.ButtonSkip.Text = "SKIP ALL";
             this.ButtonSkip.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.ButtonSkip.UseVisualStyleBackColor = true;
+            this.ButtonSkip.Visible = false;
             this.ButtonSkip.Click += new System.EventHandler(this.ButtonSkip_Click);
-            // 
-            // openFileDialogImport
-            // 
-            this.openFileDialogImport.DefaultExt = "csv";
-            this.openFileDialogImport.FileName = "GTW_RDS";
-            this.openFileDialogImport.Filter = "CSV |*.csv";
-            this.openFileDialogImport.Multiselect = true;
             // 
             // Import
             // 
-            this.ClientSize = new System.Drawing.Size(382, 165);
+            this.ClientSize = new System.Drawing.Size(382, 107);
             this.Controls.Add(this.ButtonSkip);
             this.Controls.Add(this.ButtonReplace);
             this.Controls.Add(this.ProgressBarImportStatus);
@@ -125,27 +128,46 @@ namespace MeterReports
             this.Name = "Import";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Import Meter Reading";
+            this.Load += new System.EventHandler(this.Import_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
-
+        private void Import_Load(object sender, EventArgs e)
+        {
+            ImportMeterSerialNumber();
+        }
         private void ButtonReplace_Click(object sender, EventArgs e)
         {
-            //TODO CHANGE THIS REAL IMPORT
-            ProgressBarImportStatus.Maximum = 0;
-            ImportMeterSerialNumber();
+           ProgressBarImportStatus.Maximum = _max = _duplicateCSVFile.Count;
+           ImportDuplicatedMeterSerialNumber();
+        }
+
+        private void ImportDuplicatedMeterSerialNumber()
+        {
+            throw new NotImplementedException();
         }
 
         private void ImportMeterSerialNumber()
         {
-            if (openFileDialogImport.ShowDialog() == DialogResult.OK)
-            {
-                _duplicateMac = MacDuplicate.Get(openFileDialogImport.FileNames);
-                _duplicateCSVFile = CSVDuplicate.Get(openFileDialogImport.FileNames);
-                ProgressBarImportStatus.Maximum = _max = (openFileDialogImport.FileNames.Length - _duplicateCSVFile.Count);
+                //_duplicateMac = MacDuplicate.Get(openFileDialogImport.FileNames);
+                //_duplicateCSVFile = CSVDuplicate.Get(openFileDialogImport.FileNames);
+                //ProgressBarImportStatus.Maximum = 
+                //    _max = (openFileDialogImport.FileNames.Length - _duplicateCSVFile.Count);
+                //Task.Factory.StartNew(() => ImportBulkRDSCSV());
+                _duplicateMac = MacDuplicate.Get(_fileNames);
+                _duplicateCSVFile = CSVDuplicate.Get(_fileNames);
+                ProgressBarImportStatus.Maximum = 
+                    _max = (_fileNames.Length - _duplicateCSVFile.Count);
                 Task.Factory.StartNew(() => ImportBulkRDSCSV());
-            }
+
+                //TODO: Decouple; Error same count on imported and duplicated.
+                //Task.Factory.StartNew(() => BulkRDS
+                //.Import(openFileDialogImport.FileNames,
+                //                                           _max,
+                //                                           ProgressBarImportStatus,
+                //                                           LabelImported,
+                //                                           LabelDuplicate));
         }
         private void ButtonSkip_Click(object sender, EventArgs e)
         {
@@ -160,23 +182,19 @@ namespace MeterReports
                 new SqlConnection(new SmartDB().Connection.ConnectionString))
             {
                 connection.Open();
-                foreach (var filename in openFileDialogImport.FileNames)
+                foreach (var filename in _fileNames)
                 {
                     _gateway = Path.GetFileName((Path.GetDirectoryName(filename)));
                     _csvFilename = (Path.GetFileName(filename));
-                    
                     if (!_duplicateCSVFile.Contains(_csvFilename))
-                    {
-                        // Create a table with some rows.
+                    {   // Create a table with some rows.
                         DataTable newMeterReading = MakeTable.RDS(filename);
-
                         // Create the SqlBulkCopy object.
                         using (SqlBulkCopy s = new SqlBulkCopy(connection))
                         {
                             s.DestinationTableName = "MeterReading";
                             s.ColumnMappings.Add("SerialNumber", "SerialNumber");
                             s.ColumnMappings.Add("ReadingDate", "ReadingDate");
-                            s.ColumnMappings.Add("CSVType", "CSVType");
                             s.ColumnMappings.Add("ReadingValue", "ReadingValue");
                             s.ColumnMappings.Add("LowBatteryAlr", "LowBatteryAlr");
                             s.ColumnMappings.Add("LeakAlr", "LeakAlr");

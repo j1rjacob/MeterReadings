@@ -21,14 +21,16 @@ namespace MeterReports
         private CustomUserStore _userStore;
         private UserManager<CustomUser, int> _userManager;
         private readonly TMF.Reports.BLL.User _user;
+        private readonly CustomUser _currentUser;
         private int _userId;
         private bool _save;
-        public User()
+        public User(CustomUser currentUser)
         {
             InitializeComponent();
             _userStore = new CustomUserStore(new CustomUserDbContext());
             _userManager = new UserManager<CustomUser, int>(_userStore);
             _user = new TMF.Reports.BLL.User();
+            _currentUser = currentUser;
             _userId = 0;
             _save = true;
         }
@@ -39,7 +41,8 @@ namespace MeterReports
         }
         private void ButtonDelete_Click(object sender, EventArgs e)
         {
-            if (!string.IsNullOrWhiteSpace(TextBoxName.Text))
+            if (!string.IsNullOrWhiteSpace(TextBoxName.Text) &&
+                _currentUser.Role == "Administrator")
             {   
                 var user = _userManager.FindById(_userId);
 
@@ -139,7 +142,8 @@ namespace MeterReports
         #region PriveteMethod
         private void SaveUser()
         {
-            if (!string.IsNullOrWhiteSpace(TextBoxName.Text))
+            if (!string.IsNullOrWhiteSpace(TextBoxName.Text) &&
+                _currentUser.Role == "Administrator")
             {
                 CustomUser user = new CustomUser
                 {
@@ -167,9 +171,9 @@ namespace MeterReports
         }
         private void EditUser()
         {
-            if (!string.IsNullOrWhiteSpace(TextBoxName.Text))
+            if (!string.IsNullOrWhiteSpace(TextBoxName.Text) &&
+                _currentUser.Role == "Administrator")
             {   //Todo EditedBy
-
                 var user = _userManager.FindById(_userId);
 
                 user.FullName = TextBoxName.Text;

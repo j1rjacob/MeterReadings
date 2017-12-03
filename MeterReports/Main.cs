@@ -54,6 +54,9 @@ namespace MeterReports
                 case "DMZ":
                     dMZToolStripMenuItem.PerformClick();
                     break;
+                case "MeterReading":
+                    meterReadingToolStripMenuItem.PerformClick();
+                    break;
                 default:
                     break;
             }
@@ -83,7 +86,7 @@ namespace MeterReports
 
         private void userToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            var user = new User();
+            var user = new User(_currentUser);
             if (!OpenForms<User>())
             {
                 user.MdiParent = this;
@@ -128,6 +131,16 @@ namespace MeterReports
             {
                 d.MdiParent = this;
                 d.Show();
+            }
+        }
+
+        private void meterReadingToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var m = new MeterReading(_currentUser);
+            if (!OpenForms<MeterReading>())
+            {
+                m.MdiParent = this;
+                m.Show();
             }
         }
     }
