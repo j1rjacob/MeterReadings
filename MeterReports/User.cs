@@ -101,6 +101,56 @@ namespace MeterReports
         {
             BindUserWithDataGrid();
         }
+        private void ButtonLock_Click(object sender, EventArgs e)
+        {
+            if (!string.IsNullOrWhiteSpace(TextBoxName.Text) &&
+                _currentUser.Role == "Administrator")
+            {   
+                var user = _userManager.FindById(_userId);
+
+                user.Locked = 1;
+
+                var flag = _userManager.Update(user);
+
+                if (flag.Succeeded)
+                {
+                    MessageBox.Show("User Locked");
+                    ResetControls();
+                }
+                else
+                {
+                    MessageBox.Show("User is not locked!");
+                }
+            }
+            else
+            {
+                MessageBox.Show("No User to edit.");
+            }
+        }
+        private void ButtonUnlock_Click(object sender, EventArgs e)
+        {
+            if (!string.IsNullOrWhiteSpace(TextBoxName.Text) &&
+                _currentUser.Role == "Administrator")
+            {
+                var user = _userManager.FindById(_userId);
+
+                user.Locked = 0;
+
+                var flag = _userManager.Update(user);
+
+                if (flag.Succeeded)
+                {
+                    MessageBox.Show("User Locked");
+                    ResetControls();
+                }
+                else
+                {
+                    MessageBox.Show("User is not locked!");
+                }
+            }
+            else
+                MessageBox.Show("No User to edit.");
+        }
         private void ComboBoxRole_MouseClick(object sender, MouseEventArgs e)
         {
             GetRoles();

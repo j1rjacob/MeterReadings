@@ -237,6 +237,12 @@
     <Content Include="Images\cancel.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Resource Include="Images\lock.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\unlock.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
     <Resource Include="Images\export.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
