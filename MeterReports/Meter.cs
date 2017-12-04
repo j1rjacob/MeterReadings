@@ -426,7 +426,7 @@ namespace MeterReports
 
                     foreach (var m in meter)
                     {
-                        line += m.SerialNumber + ",";
+                        line = m.SerialNumber + ",";
                         line += m.X + ",";
                         line += m.Y + ",";
                         line += m.Status + ",";
@@ -446,7 +446,7 @@ namespace MeterReports
                         fileContents.Append(line);
                     }
 
-                    sr.Write(fileContents.ToString());
+                    sr.Write(fileContents);
                     sr.Flush();
                     sr.Close();
                 }

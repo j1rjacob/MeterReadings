@@ -953,11 +953,11 @@ namespace MeterReports
                 try
                 {
                     ReturnInfo getGatewayList = _gateway.GetGatewayBySimCard(new SmartDB(), TextBoxSearch.Text);
-                    List<TMF.Reports.Model.Gateway> gateway = (List<TMF.Reports.Model.Gateway>)getGatewayList.BizObject;
+                    List<TMF.Reports.Model.Gateway> gateways = (List<TMF.Reports.Model.Gateway>)getGatewayList.BizObject;
                     
-                    foreach (var gw in gateway)
+                    foreach (var gw in gateways)
                     {
-                        line += gw.MacAddress + ",";
+                        line = gw.MacAddress + ",";
                         line += gw.SimCard + ",";
                         line += gw.X + ",";
                         line += gw.Y + ",";
@@ -976,7 +976,7 @@ namespace MeterReports
                         fileContents.Append(line);
                     }
                     
-                    sr.Write(fileContents.ToString());
+                    sr.Write(fileContents);
                     sr.Flush();
                     sr.Close();
                 }
@@ -984,7 +984,6 @@ namespace MeterReports
                 {
                     MessageBox.Show("Error while exporting file!");
                 }
-
             }
         }
         private void ImportGateways()
