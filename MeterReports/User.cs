@@ -164,7 +164,7 @@ namespace MeterReports
             {
                 userId = (int)DataGridViewUser.CurrentRow.Cells[0].Value;
             }
-            catch (Exception exception)
+            catch (Exception)
             {
                 return;
             }
@@ -184,7 +184,7 @@ namespace MeterReports
                     ButtonDelete.Enabled = true;
                 }
             }
-            catch (Exception jerry)
+            catch (Exception)
             {
                 return;
             }

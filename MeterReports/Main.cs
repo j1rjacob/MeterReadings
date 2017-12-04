@@ -83,6 +83,11 @@ namespace MeterReports
             user.Locked = 0;
             _userManager.Update(user);
 
+            foreach (Form c in this.MdiChildren)
+            {
+                c.Close();
+            }
+
             var l = new Login();
             l.Show();
             this.Hide();

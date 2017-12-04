@@ -330,7 +330,6 @@ namespace MeterReports
             this.TextBoxSearch.Name = "TextBoxSearch";
             this.TextBoxSearch.Size = new System.Drawing.Size(384, 27);
             this.TextBoxSearch.TabIndex = 16;
-            this.TextBoxSearch.Text = "C";
             // 
             // TextBoxMac
             // 
