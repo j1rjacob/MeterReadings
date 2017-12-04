@@ -608,6 +608,7 @@ namespace MeterReports
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.Name = "Gateway";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -700,7 +701,7 @@ namespace MeterReports
             }
             else
             {
-                MessageBox.Show("No gateway to delete.");
+                MessageBox.Show("No gateway to delete. Contact admin");
             }
         }
         private void ButtonSearch_Click(object sender, EventArgs e)
@@ -905,7 +906,7 @@ namespace MeterReports
         }
         protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
         {
-            if (keyData == Keys.Escape)
+            if (keyData == Keys.Escape || keyData == Keys.F5)
             {
                 ResetControls();
                 return true;

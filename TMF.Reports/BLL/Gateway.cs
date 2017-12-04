@@ -70,17 +70,17 @@ namespace TMF.Reports.BLL
             result = new ReturnInfo(info2.Code, info2.Message, info2.RowsAffected);
             return result;
         }
-        public ReturnInfo Delete(SmartDB dbInstance, string Id)
+        public ReturnInfo Delete(SmartDB dbInstance, string MacAddress)
         {
-            bool flag = Id == null;
+            bool flag = MacAddress == null;
             ReturnInfo result;
             if (flag)
             {
-                result = new ReturnInfo(ErrorEnum.InvalidInput, "Invalid input. ID not found.");
+                result = new ReturnInfo(ErrorEnum.InvalidInput, "Invalid input. MAC not found.");
             }
             else
             {
-                IInfo info = _dal.Delete(dbInstance, Id);
+                IInfo info = _dal.Delete(dbInstance, MacAddress);
                 result = new ReturnInfo(info.Code, info.Message, info.RowsAffected);
             }
             return result;

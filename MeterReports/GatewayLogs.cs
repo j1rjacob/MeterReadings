@@ -156,6 +156,7 @@ namespace MeterReports
             this.Controls.Add(this.label1);
             this.Controls.Add(this.ButtonSearch);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.Name = "GatewayLogs";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;

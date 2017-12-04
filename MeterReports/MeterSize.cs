@@ -209,6 +209,7 @@ namespace MeterReports
             this.Controls.Add(this.TextBoxSearch);
             this.Controls.Add(this.label2);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.Name = "MeterSize";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -382,7 +383,7 @@ namespace MeterReports
         }
         protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
         {
-            if (keyData == Keys.Escape)
+            if (keyData == Keys.Escape || keyData == Keys.F5)
             {
                 ResetControls();
                 return true;

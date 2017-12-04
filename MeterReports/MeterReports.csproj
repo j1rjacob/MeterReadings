@@ -66,12 +66,6 @@
     <Compile Include="Citi.Designer.cs">
       <DependentUpon>Citi.cs</DependentUpon>
     </Compile>
-    <Compile Include="City.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="City.Designer.cs">
-      <DependentUpon>City.cs</DependentUpon>
-    </Compile>
     <Compile Include="DMZ.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -154,9 +148,6 @@
     </Compile>
     <EmbeddedResource Include="Citi.resx">
       <DependentUpon>Citi.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="City.resx">
-      <DependentUpon>City.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="DMZ.resx">
       <DependentUpon>DMZ.cs</DependentUpon>
@@ -255,6 +246,9 @@
     <Content Include="Images\login.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Resource Include="Images\meter.ico">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
     <Content Include="Images\new.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

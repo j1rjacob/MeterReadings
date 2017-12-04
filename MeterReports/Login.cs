@@ -109,6 +109,7 @@ namespace MeterReports
             this.Controls.Add(this.TextBoxUsername);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "Login";
@@ -142,6 +143,21 @@ namespace MeterReports
         {
             TextBoxUsername.Text = "";
             TextBoxPassword.Text = "";
+        }
+
+        protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
+        {
+            if (keyData == Keys.Enter)
+            {
+                ButtonLogin.PerformClick();
+                return true;
+            }
+            if (keyData == Keys.Escape)
+            {
+                ButtonCancel.PerformClick();
+                return true;
+            }
+            return base.ProcessCmdKey(ref msg, keyData);
         }
 
         protected override void OnClosed(EventArgs e)

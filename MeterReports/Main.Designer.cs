@@ -28,19 +28,26 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode("User");
-            System.Windows.Forms.TreeNode treeNode2 = new System.Windows.Forms.TreeNode("Gateway");
-            System.Windows.Forms.TreeNode treeNode3 = new System.Windows.Forms.TreeNode("Meter");
-            System.Windows.Forms.TreeNode treeNode4 = new System.Windows.Forms.TreeNode("MeterType");
-            System.Windows.Forms.TreeNode treeNode5 = new System.Windows.Forms.TreeNode("DMZ");
-            System.Windows.Forms.TreeNode treeNode6 = new System.Windows.Forms.TreeNode("MeterReading");
-            System.Windows.Forms.TreeNode treeNode7 = new System.Windows.Forms.TreeNode("File Management", new System.Windows.Forms.TreeNode[] {
-            treeNode1,
-            treeNode2,
-            treeNode3,
-            treeNode4,
-            treeNode5,
-            treeNode6});
+            System.Windows.Forms.TreeNode treeNode51 = new System.Windows.Forms.TreeNode("User");
+            System.Windows.Forms.TreeNode treeNode52 = new System.Windows.Forms.TreeNode("Gateway");
+            System.Windows.Forms.TreeNode treeNode53 = new System.Windows.Forms.TreeNode("Meter");
+            System.Windows.Forms.TreeNode treeNode54 = new System.Windows.Forms.TreeNode("Meter Type");
+            System.Windows.Forms.TreeNode treeNode55 = new System.Windows.Forms.TreeNode("Meter Protocol");
+            System.Windows.Forms.TreeNode treeNode56 = new System.Windows.Forms.TreeNode("Meter Size");
+            System.Windows.Forms.TreeNode treeNode57 = new System.Windows.Forms.TreeNode("City");
+            System.Windows.Forms.TreeNode treeNode58 = new System.Windows.Forms.TreeNode("DMZ");
+            System.Windows.Forms.TreeNode treeNode59 = new System.Windows.Forms.TreeNode("Meter Reading");
+            System.Windows.Forms.TreeNode treeNode60 = new System.Windows.Forms.TreeNode("File Management", new System.Windows.Forms.TreeNode[] {
+            treeNode51,
+            treeNode52,
+            treeNode53,
+            treeNode54,
+            treeNode55,
+            treeNode56,
+            treeNode57,
+            treeNode58,
+            treeNode59});
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Main));
             this.treeViewMain = new System.Windows.Forms.TreeView();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -58,6 +65,9 @@
             this.meterTypeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.dMZToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.meterReadingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.meterProtocolToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.meterSizeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.cityToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -66,23 +76,29 @@
             this.treeViewMain.Dock = System.Windows.Forms.DockStyle.Left;
             this.treeViewMain.Location = new System.Drawing.Point(0, 24);
             this.treeViewMain.Name = "treeViewMain";
-            treeNode1.Name = "Node1";
-            treeNode1.Text = "User";
-            treeNode2.Name = "Node2";
-            treeNode2.Text = "Gateway";
-            treeNode3.Name = "Node0";
-            treeNode3.Text = "Meter";
-            treeNode4.Name = "Node1";
-            treeNode4.Text = "MeterType";
-            treeNode5.Name = "Node2";
-            treeNode5.Text = "DMZ";
-            treeNode6.Name = "Node0";
-            treeNode6.Text = "MeterReading";
-            treeNode7.Name = "Node0";
-            treeNode7.Text = "File Management";
+            treeNode51.Name = "Node1";
+            treeNode51.Text = "User";
+            treeNode52.Name = "Node2";
+            treeNode52.Text = "Gateway";
+            treeNode53.Name = "Node0";
+            treeNode53.Text = "Meter";
+            treeNode54.Name = "Node1";
+            treeNode54.Text = "Meter Type";
+            treeNode55.Name = "Node0";
+            treeNode55.Text = "Meter Protocol";
+            treeNode56.Name = "Node3";
+            treeNode56.Text = "Meter Size";
+            treeNode57.Name = "Node1";
+            treeNode57.Text = "City";
+            treeNode58.Name = "Node2";
+            treeNode58.Text = "DMZ";
+            treeNode59.Name = "Node0";
+            treeNode59.Text = "Meter Reading";
+            treeNode60.Name = "Node0";
+            treeNode60.Text = "File Management";
             this.treeViewMain.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode7});
-            this.treeViewMain.Size = new System.Drawing.Size(121, 442);
+            treeNode60});
+            this.treeViewMain.Size = new System.Drawing.Size(136, 442);
             this.treeViewMain.TabIndex = 1;
             this.treeViewMain.DoubleClick += new System.EventHandler(this.treeViewMain_DoubleClick);
             // 
@@ -163,6 +179,9 @@
             this.gatewayToolStripMenuItem,
             this.meterToolStripMenuItem,
             this.meterTypeToolStripMenuItem,
+            this.meterProtocolToolStripMenuItem,
+            this.meterSizeToolStripMenuItem,
+            this.cityToolStripMenuItem,
             this.dMZToolStripMenuItem,
             this.meterReadingToolStripMenuItem});
             this.fileManagementToolStripMenuItem.Name = "fileManagementToolStripMenuItem";
@@ -172,44 +191,65 @@
             // userToolStripMenuItem
             // 
             this.userToolStripMenuItem.Name = "userToolStripMenuItem";
-            this.userToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.userToolStripMenuItem.Size = new System.Drawing.Size(151, 22);
             this.userToolStripMenuItem.Text = "User";
             this.userToolStripMenuItem.Click += new System.EventHandler(this.userToolStripMenuItem_Click);
             // 
             // gatewayToolStripMenuItem
             // 
             this.gatewayToolStripMenuItem.Name = "gatewayToolStripMenuItem";
-            this.gatewayToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.gatewayToolStripMenuItem.Size = new System.Drawing.Size(151, 22);
             this.gatewayToolStripMenuItem.Text = "Gateway";
             this.gatewayToolStripMenuItem.Click += new System.EventHandler(this.gatewayToolStripMenuItem_Click);
             // 
             // meterToolStripMenuItem
             // 
             this.meterToolStripMenuItem.Name = "meterToolStripMenuItem";
-            this.meterToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.meterToolStripMenuItem.Size = new System.Drawing.Size(151, 22);
             this.meterToolStripMenuItem.Text = "Meter";
             this.meterToolStripMenuItem.Click += new System.EventHandler(this.meterToolStripMenuItem_Click);
             // 
             // meterTypeToolStripMenuItem
             // 
             this.meterTypeToolStripMenuItem.Name = "meterTypeToolStripMenuItem";
-            this.meterTypeToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.meterTypeToolStripMenuItem.Size = new System.Drawing.Size(151, 22);
             this.meterTypeToolStripMenuItem.Text = "Meter Type";
             this.meterTypeToolStripMenuItem.Click += new System.EventHandler(this.meterTypeToolStripMenuItem_Click);
             // 
             // dMZToolStripMenuItem
             // 
             this.dMZToolStripMenuItem.Name = "dMZToolStripMenuItem";
-            this.dMZToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.dMZToolStripMenuItem.Size = new System.Drawing.Size(151, 22);
             this.dMZToolStripMenuItem.Text = "DMZ";
             this.dMZToolStripMenuItem.Click += new System.EventHandler(this.dMZToolStripMenuItem_Click);
             // 
             // meterReadingToolStripMenuItem
             // 
             this.meterReadingToolStripMenuItem.Name = "meterReadingToolStripMenuItem";
-            this.meterReadingToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.meterReadingToolStripMenuItem.Size = new System.Drawing.Size(151, 22);
             this.meterReadingToolStripMenuItem.Text = "Meter Reading";
             this.meterReadingToolStripMenuItem.Click += new System.EventHandler(this.meterReadingToolStripMenuItem_Click);
+            // 
+            // meterProtocolToolStripMenuItem
+            // 
+            this.meterProtocolToolStripMenuItem.Name = "meterProtocolToolStripMenuItem";
+            this.meterProtocolToolStripMenuItem.Size = new System.Drawing.Size(153, 22);
+            this.meterProtocolToolStripMenuItem.Text = "Meter Protocol";
+            this.meterProtocolToolStripMenuItem.Click += new System.EventHandler(this.meterProtocolToolStripMenuItem_Click);
+            // 
+            // meterSizeToolStripMenuItem
+            // 
+            this.meterSizeToolStripMenuItem.Name = "meterSizeToolStripMenuItem";
+            this.meterSizeToolStripMenuItem.Size = new System.Drawing.Size(153, 22);
+            this.meterSizeToolStripMenuItem.Text = "Meter Size";
+            this.meterSizeToolStripMenuItem.Click += new System.EventHandler(this.meterSizeToolStripMenuItem_Click);
+            // 
+            // cityToolStripMenuItem
+            // 
+            this.cityToolStripMenuItem.Name = "cityToolStripMenuItem";
+            this.cityToolStripMenuItem.Size = new System.Drawing.Size(153, 22);
+            this.cityToolStripMenuItem.Text = "City";
+            this.cityToolStripMenuItem.Click += new System.EventHandler(this.cityToolStripMenuItem_Click);
             // 
             // Main
             // 
@@ -218,6 +258,7 @@
             this.ClientSize = new System.Drawing.Size(685, 466);
             this.Controls.Add(this.treeViewMain);
             this.Controls.Add(this.menuStrip1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.IsMdiContainer = true;
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "Main";
@@ -251,5 +292,8 @@
         private System.Windows.Forms.ToolStripMenuItem dMZToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem logoutToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem meterReadingToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem meterProtocolToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem meterSizeToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem cityToolStripMenuItem;
     }
 }

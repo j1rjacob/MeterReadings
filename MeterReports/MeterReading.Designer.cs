@@ -64,7 +64,6 @@
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.LabelShow = new System.Windows.Forms.Label();
             this.DataGridViewMeterReading = new System.Windows.Forms.DataGridView();
-            this.openFileDialogImport = new System.Windows.Forms.OpenFileDialog();
             this.ColId = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColSerialNumber = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColReadingDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -77,6 +76,7 @@
             this.ColBrokenPipeAlr = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColEmptyPipeAlr = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColSpecificErr = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.openFileDialogImport = new System.Windows.Forms.OpenFileDialog();
             this.TabControlMeterReading.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -496,13 +496,6 @@
             this.DataGridViewMeterReading.TabIndex = 81;
             this.DataGridViewMeterReading.SelectionChanged += new System.EventHandler(this.DataGridViewMeterReading_SelectionChanged);
             // 
-            // openFileDialogImport
-            // 
-            this.openFileDialogImport.DefaultExt = "csv";
-            this.openFileDialogImport.FileName = "GTW_RDS";
-            this.openFileDialogImport.Filter = "CSV |*.csv";
-            this.openFileDialogImport.Multiselect = true;
-            // 
             // ColId
             // 
             this.ColId.DataPropertyName = "Id";
@@ -588,6 +581,13 @@
             this.ColSpecificErr.Name = "ColSpecificErr";
             this.ColSpecificErr.ReadOnly = true;
             // 
+            // openFileDialogImport
+            // 
+            this.openFileDialogImport.DefaultExt = "csv";
+            this.openFileDialogImport.FileName = "GTW_RDS";
+            this.openFileDialogImport.Filter = "CSV |*.csv";
+            this.openFileDialogImport.Multiselect = true;
+            // 
             // MeterReading
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -595,6 +595,7 @@
             this.ClientSize = new System.Drawing.Size(918, 502);
             this.Controls.Add(this.TabControlMeterReading);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.Name = "MeterReading";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;

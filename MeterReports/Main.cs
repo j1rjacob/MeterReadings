@@ -48,13 +48,22 @@ namespace MeterReports
                 case "Meter":
                     meterToolStripMenuItem.PerformClick();
                     break;
-                case "MeterType":
+                case "Meter Type":
                     meterTypeToolStripMenuItem.PerformClick();
+                    break;
+                case "Meter Protocol":
+                    meterProtocolToolStripMenuItem.PerformClick();
+                    break;
+                case "Meter Size":
+                    meterSizeToolStripMenuItem.PerformClick();
+                    break;
+                case "City":
+                    cityToolStripMenuItem.PerformClick();
                     break;
                 case "DMZ":
                     dMZToolStripMenuItem.PerformClick();
                     break;
-                case "MeterReading":
+                case "Meter Reading":
                     meterReadingToolStripMenuItem.PerformClick();
                     break;
                 default:
@@ -123,7 +132,24 @@ namespace MeterReports
                 mt.Show();
             }
         }
-
+        private void meterProtocolToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var mp = new MeterProtocol(_currentUser);
+            if (!OpenForms<MeterType>())
+            {
+                mp.MdiParent = this;
+                mp.Show();
+            }
+        }
+        private void meterSizeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var ms = new MeterSize(_currentUser);
+            if (!OpenForms<MeterType>())
+            {
+                ms.MdiParent = this;
+                ms.Show();
+            }
+        }
         private void dMZToolStripMenuItem_Click(object sender, EventArgs e)
         {
             var d = new DMZ(_currentUser);
@@ -133,7 +159,15 @@ namespace MeterReports
                 d.Show();
             }
         }
-
+        private void cityToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var c = new Citi(_currentUser);
+            if (!OpenForms<DMZ>())
+            {
+                c.MdiParent = this;
+                c.Show();
+            }
+        }
         private void meterReadingToolStripMenuItem_Click(object sender, EventArgs e)
         {
             var m = new MeterReading(_currentUser);
