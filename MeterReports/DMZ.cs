@@ -206,6 +206,7 @@ namespace MeterReports
             // 
             // TextBoxTotalMeters
             // 
+            this.TextBoxTotalMeters.Enabled = false;
             this.TextBoxTotalMeters.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TextBoxTotalMeters.Location = new System.Drawing.Point(280, 132);
             this.TextBoxTotalMeters.Name = "TextBoxTotalMeters";
@@ -308,7 +309,6 @@ namespace MeterReports
         {
             TextBoxDescription.Enabled = true;
             ComboBoxCity.Enabled = true;
-            TextBoxTotalMeters.Enabled = true;
             ButtonEdit.Enabled = false;
             ButtonSave.Enabled = true;
             ButtonDelete.Enabled = false;
@@ -321,7 +321,6 @@ namespace MeterReports
         {
             TextBoxDescription.Enabled = true;
             ComboBoxCity.Enabled = true;
-            TextBoxTotalMeters.Enabled = true;
             ButtonNew.Enabled = false;
             ButtonEdit.Enabled = true;
             ButtonSave.Enabled = true;
@@ -372,7 +371,7 @@ namespace MeterReports
             bool flag = getDMZ.Code == ErrorEnum.NoError;
 
             TMF.Reports.Model.DMZ dmz = (TMF.Reports.Model.DMZ)getDMZ.BizObject;
-            
+
             try
             {
                 ReturnInfo getCity = _city.GetCityById(new SmartDB(), dmz.CityId.Trim());
@@ -480,7 +479,6 @@ namespace MeterReports
         {
             TextBoxDescription.Enabled = false;
             ComboBoxCity.Enabled = false;
-            TextBoxTotalMeters.Enabled = false;
             TextBoxSearch.Text = "";
             ComboBoxCity.Items.Clear();
             TextBoxDescription.Text = "";
@@ -520,7 +518,7 @@ namespace MeterReports
                 DataGridViewDMZ.DataSource = source;
                 LabelShow.Text = $"Showing {DataGridViewDMZ.CurrentRow.Index + 1} index of {DataGridViewDMZ.RowCount} records";
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 return;
             }

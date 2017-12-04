@@ -140,16 +140,16 @@ namespace MeterReports
 
                 if (flag.Succeeded)
                 {
-                    MessageBox.Show("User Locked");
+                    MessageBox.Show("User Unlocked");
                     ResetControls();
                 }
                 else
                 {
-                    MessageBox.Show("User is not locked!");
+                    MessageBox.Show("User is not unlocked!");
                 }
             }
             else
-                MessageBox.Show("No User to edit.");
+                MessageBox.Show("No User to unlocked.");
         }
         private void ComboBoxRole_MouseClick(object sender, MouseEventArgs e)
         {
