@@ -245,6 +245,7 @@
             // 
             // TextBoxLeakAlr
             // 
+            this.TextBoxLeakAlr.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.TextBoxLeakAlr.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TextBoxLeakAlr.Location = new System.Drawing.Point(216, 208);
             this.TextBoxLeakAlr.Name = "TextBoxLeakAlr";
@@ -253,6 +254,7 @@
             // 
             // TextBoxSpecificErr
             // 
+            this.TextBoxSpecificErr.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.TextBoxSpecificErr.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TextBoxSpecificErr.Location = new System.Drawing.Point(655, 208);
             this.TextBoxSpecificErr.Name = "TextBoxSpecificErr";
@@ -261,6 +263,7 @@
             // 
             // TextBoxReadingDate
             // 
+            this.TextBoxReadingDate.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.TextBoxReadingDate.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TextBoxReadingDate.Location = new System.Drawing.Point(216, 112);
             this.TextBoxReadingDate.Name = "TextBoxReadingDate";
@@ -269,6 +272,7 @@
             // 
             // TextBoxBrokenPipeAlr
             // 
+            this.TextBoxBrokenPipeAlr.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.TextBoxBrokenPipeAlr.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TextBoxBrokenPipeAlr.Location = new System.Drawing.Point(656, 143);
             this.TextBoxBrokenPipeAlr.Name = "TextBoxBrokenPipeAlr";
@@ -277,6 +281,7 @@
             // 
             // TextBoxBackflowAlr
             // 
+            this.TextBoxBackflowAlr.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.TextBoxBackflowAlr.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TextBoxBackflowAlr.Location = new System.Drawing.Point(656, 113);
             this.TextBoxBackflowAlr.Name = "TextBoxBackflowAlr";
@@ -285,6 +290,7 @@
             // 
             // TextBoxErrorAlr
             // 
+            this.TextBoxErrorAlr.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.TextBoxErrorAlr.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TextBoxErrorAlr.Location = new System.Drawing.Point(656, 80);
             this.TextBoxErrorAlr.Name = "TextBoxErrorAlr";
@@ -293,6 +299,7 @@
             // 
             // TextBoxMagneticTmprAlr
             // 
+            this.TextBoxMagneticTmprAlr.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.TextBoxMagneticTmprAlr.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TextBoxMagneticTmprAlr.Location = new System.Drawing.Point(216, 239);
             this.TextBoxMagneticTmprAlr.Name = "TextBoxMagneticTmprAlr";
@@ -301,6 +308,7 @@
             // 
             // TextBoxLowBattAlr
             // 
+            this.TextBoxLowBattAlr.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.TextBoxLowBattAlr.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TextBoxLowBattAlr.Location = new System.Drawing.Point(216, 176);
             this.TextBoxLowBattAlr.Name = "TextBoxLowBattAlr";
@@ -309,6 +317,7 @@
             // 
             // TextBoxReadingValue
             // 
+            this.TextBoxReadingValue.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.TextBoxReadingValue.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TextBoxReadingValue.Location = new System.Drawing.Point(216, 144);
             this.TextBoxReadingValue.Name = "TextBoxReadingValue";
@@ -375,6 +384,7 @@
             // 
             // TextBoxEmptyPipeAlr
             // 
+            this.TextBoxEmptyPipeAlr.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.TextBoxEmptyPipeAlr.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TextBoxEmptyPipeAlr.Location = new System.Drawing.Point(655, 176);
             this.TextBoxEmptyPipeAlr.Name = "TextBoxEmptyPipeAlr";
@@ -383,6 +393,7 @@
             // 
             // TextBoxSerialNumber
             // 
+            this.TextBoxSerialNumber.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.TextBoxSerialNumber.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TextBoxSerialNumber.Location = new System.Drawing.Point(216, 80);
             this.TextBoxSerialNumber.Name = "TextBoxSerialNumber";

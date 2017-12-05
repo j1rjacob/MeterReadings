@@ -351,6 +351,7 @@
             // 
             // TextBoxX
             // 
+            this.TextBoxX.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.TextBoxX.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TextBoxX.Location = new System.Drawing.Point(216, 114);
             this.TextBoxX.Name = "TextBoxX";
@@ -359,6 +360,7 @@
             // 
             // TextBoxHCN
             // 
+            this.TextBoxHCN.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.TextBoxHCN.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TextBoxHCN.Location = new System.Drawing.Point(216, 209);
             this.TextBoxHCN.Name = "TextBoxHCN";
@@ -367,6 +369,7 @@
             // 
             // TextBoxY
             // 
+            this.TextBoxY.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.TextBoxY.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TextBoxY.Location = new System.Drawing.Point(216, 145);
             this.TextBoxY.Name = "TextBoxY";
@@ -443,6 +446,7 @@
             // 
             // TextBoxSerialNumber
             // 
+            this.TextBoxSerialNumber.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.TextBoxSerialNumber.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TextBoxSerialNumber.Location = new System.Drawing.Point(216, 82);
             this.TextBoxSerialNumber.Name = "TextBoxSerialNumber";

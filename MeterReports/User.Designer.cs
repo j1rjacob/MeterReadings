@@ -67,6 +67,7 @@
             // 
             // TextBoxName
             // 
+            this.TextBoxName.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.TextBoxName.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TextBoxName.Location = new System.Drawing.Point(163, 61);
             this.TextBoxName.Name = "TextBoxName";

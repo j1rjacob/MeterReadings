@@ -309,6 +309,7 @@ namespace MeterReports
             // 
             // TextBoxSimCard
             // 
+            this.TextBoxSimCard.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.TextBoxSimCard.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TextBoxSimCard.Location = new System.Drawing.Point(216, 101);
             this.TextBoxSimCard.Name = "TextBoxSimCard";
@@ -317,6 +318,7 @@ namespace MeterReports
             // 
             // TextBoxX
             // 
+            this.TextBoxX.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.TextBoxX.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TextBoxX.Location = new System.Drawing.Point(216, 132);
             this.TextBoxX.Name = "TextBoxX";
@@ -333,6 +335,7 @@ namespace MeterReports
             // 
             // TextBoxMac
             // 
+            this.TextBoxMac.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.TextBoxMac.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TextBoxMac.Location = new System.Drawing.Point(216, 69);
             this.TextBoxMac.Name = "TextBoxMac";
@@ -391,6 +394,7 @@ namespace MeterReports
             // 
             // TextBoxDescription
             // 
+            this.TextBoxDescription.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.TextBoxDescription.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TextBoxDescription.Location = new System.Drawing.Point(216, 196);
             this.TextBoxDescription.Name = "TextBoxDescription";
@@ -469,6 +473,7 @@ namespace MeterReports
             // 
             // TextBoxIPAddress
             // 
+            this.TextBoxIPAddress.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.TextBoxIPAddress.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TextBoxIPAddress.Location = new System.Drawing.Point(672, 144);
             this.TextBoxIPAddress.Name = "TextBoxIPAddress";
@@ -523,6 +528,7 @@ namespace MeterReports
             // 
             // TextBoxY
             // 
+            this.TextBoxY.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.TextBoxY.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TextBoxY.Location = new System.Drawing.Point(216, 162);
             this.TextBoxY.Name = "TextBoxY";

@@ -144,8 +144,8 @@ namespace MeterReports
         }
         private void ButtonReplace_Click(object sender, EventArgs e)
         {
-           ProgressBarImportStatus.Maximum = _max = _duplicateCSVFile.Count;
-           ImportDuplicatedMeterSerialNumber();
+            ProgressBarImportStatus.Maximum = _max = _duplicateCSVFile.Count;
+            ImportDuplicatedMeterSerialNumber();
         }
 
         private void ImportDuplicatedMeterSerialNumber()
@@ -155,15 +155,10 @@ namespace MeterReports
 
         private void ImportMeterSerialNumber()
         {
-                //_duplicateMac = MacDuplicate.Get(openFileDialogImport.FileNames);
-                //_duplicateCSVFile = CSVDuplicate.Get(openFileDialogImport.FileNames);
-                //ProgressBarImportStatus.Maximum = 
-                //    _max = (openFileDialogImport.FileNames.Length - _duplicateCSVFile.Count);
-                //Task.Factory.StartNew(() => ImportBulkRDSCSV());
-                _duplicateMac = MacDuplicate.Get(_fileNames);
-                _duplicateCSVFile = CSVDuplicate.Get(_fileNames);
-                ProgressBarImportStatus.Maximum = 
-                    _max = (_fileNames.Length - _duplicateCSVFile.Count);
+            _duplicateMac = MacDuplicate.Get(_fileNames);
+            _duplicateCSVFile = CSVDuplicate.Get(_fileNames);
+            ProgressBarImportStatus.Maximum =
+                _max = (_fileNames.Length - _duplicateCSVFile.Count);
             //Task.Factory.StartNew(() => ImportBulkRDSCSV());
 
 
@@ -176,13 +171,13 @@ namespace MeterReports
                         ProgressBarImportStatus,
                         LabelImported,
                         LabelDuplicate));
-           
+
         }
         private void ButtonSkip_Click(object sender, EventArgs e)
         {
             this.Close();
         }
-        
+
         private void ImportBulkRDSCSV()
         {
             int count = 0;
@@ -217,7 +212,7 @@ namespace MeterReports
                             {
                                 // Write from the source to the destination.
                                 s.WriteToServer(newMeterReading);
-                                
+
                                 //Add GatewayLog
                                 TMF.Reports.Model.GatewayLog gatewayLog = new TMF.Reports.Model.GatewayLog()
                                 {
@@ -235,8 +230,8 @@ namespace MeterReports
 
                                 //ADD Mac Address in Gateway
                                 if (!_duplicateMac.Contains(_gateway))
-                                { 
-                                TMF.Reports.Model.Gateway gatewayC = new TMF.Reports.Model.Gateway()
+                                {
+                                    TMF.Reports.Model.Gateway gatewayC = new TMF.Reports.Model.Gateway()
                                     {
                                         MacAddress = Regex.Replace(_gateway, @"^(..)(..)(..)(..)(..)(..)$", "$1:$2:$3:$4:$5:$6"),
                                         SimCard = null,
