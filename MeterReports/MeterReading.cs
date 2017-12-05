@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.IO;
+using System.Text;
 using System.Windows.Forms;
 using TMF.Core;
 using TMF.Core.Model;
@@ -14,7 +16,7 @@ namespace MeterReports
         private readonly CustomUser _currentUser;
         private bool _save;
         private string _meterReadingId;
-        //public MeterReading(CustomUser currentUser)
+        
         
         public MeterReading(CustomUser currentUser)
         {
@@ -115,7 +117,7 @@ namespace MeterReports
         }
         private void ButtonExport_Click(object sender, EventArgs e)
         {
-
+            ExportGateways();
         }
         private void ButtonImport_Click(object sender, EventArgs e)
         {
@@ -303,6 +305,55 @@ namespace MeterReports
             catch (Exception)
             {
                 return;
+            }
+        }
+        private void ExportGateways()
+        {
+            StreamWriter sr;
+            string line = "";
+            StringBuilder fileContents = new StringBuilder();
+
+            fileContents.Append("Id, SerialNumber, ReadingDate, ReadingValue, LowBatteryAlr, LeakAlr, " +
+                                "MagneticTamperAlr, MeterErrorAlr, BackFlowAlr, BrokenPipeAlr, EmptyPipeAlr, " +
+                                "SpecificErr, Createdby, Editedby, DocDate, Show, LockCount\r\n");
+            if (saveFileDialogMeterReading.ShowDialog() == DialogResult.OK)
+            {
+                sr = new StreamWriter(saveFileDialogMeterReading.FileName, false);
+                try
+                {
+                    ReturnInfo getMeterReadingList = _meterReading.GetMeterReadingList(new SmartDB());
+                    List<TMF.Reports.Model.MeterReading> meterReadings = (List<TMF.Reports.Model.MeterReading>)getMeterReadingList.BizObject;
+
+                    foreach (var mr in meterReadings)
+                    {
+                        line = mr.Id + ",";
+                        line += mr.SerialNumber + ",";
+                        line += mr.ReadingDate + ",";
+                        line += mr.ReadingValue + ",";
+                        line += mr.LowBatteryAlr + ",";
+                        line += mr.LeakAlr + ",";
+                        line += mr.MagneticTamperAlr + ",";
+                        line += mr.MeterErrorAlr + ",";
+                        line += mr.BackFlowAlr + ",";
+                        line += mr.BrokenPipeAlr + ",";
+                        line += mr.EmptyPipeAlr + ",";
+                        line += mr.SpecificErr + ",";
+                        line += mr.CreatedBy + ",";
+                        line += mr.EditedBy + ",";
+                        line += mr.DocDate + ",";
+                        line += mr.Show + ",";
+                        line += mr.LockCount + "\r\n";
+                        fileContents.Append(line);
+                    }
+
+                    sr.Write(fileContents);
+                    sr.Flush();
+                    sr.Close();
+                }
+                catch (Exception)
+                {
+                    MessageBox.Show("Error while exporting file!");
+                }
             }
         }
         #endregion

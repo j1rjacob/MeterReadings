@@ -167,11 +167,11 @@ namespace MeterReports
         }
         private void cityToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            var c = new Citi(_currentUser);
+            var ct = new Citi(_currentUser);
             if (!OpenForms<DMZ>())
             {
-                c.MdiParent = this;
-                c.Show();
+                ct.MdiParent = this;
+                ct.Show();
             }
         }
         private void meterReadingToolStripMenuItem_Click(object sender, EventArgs e)

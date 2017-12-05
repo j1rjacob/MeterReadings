@@ -77,6 +77,7 @@
             this.ColEmptyPipeAlr = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColSpecificErr = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.openFileDialogImport = new System.Windows.Forms.OpenFileDialog();
+            this.saveFileDialogMeterReading = new System.Windows.Forms.SaveFileDialog();
             this.TabControlMeterReading.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -588,6 +589,11 @@
             this.openFileDialogImport.Filter = "CSV |*.csv";
             this.openFileDialogImport.Multiselect = true;
             // 
+            // saveFileDialogMeterReading
+            // 
+            this.saveFileDialogMeterReading.DefaultExt = "csv";
+            this.saveFileDialogMeterReading.Filter = "CSV |*.csv";
+            // 
             // MeterReading
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -661,5 +667,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn ColBrokenPipeAlr;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColEmptyPipeAlr;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColSpecificErr;
+        private System.Windows.Forms.SaveFileDialog saveFileDialogMeterReading;
     }
 }

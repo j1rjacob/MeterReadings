@@ -412,7 +412,7 @@ namespace MeterReports
             string line = "";
             StringBuilder fileContents = new StringBuilder();
 
-            fileContents.Append("SERIAL_NUMBER, X, Y, STATUS, HCN, INSTALLATION_DATE" +
+            fileContents.Append("SERIAL_NUMBER, X, Y, STATUS, HCN, INSTALLATION_DATE," +
                                 "MAINTENANCE_DATE, METER_TYPE_ID, METER_SIZE_ID," +
                                 "METER_PROTOCOL_ID, DMZ_ID, CITY_ID, " +
                                 "CREATED_BY, EDITED_BY, DOC_DATE, SHOW, LOCK_COUNT\r\n");
@@ -469,28 +469,26 @@ namespace MeterReports
                                 let data = line.Split(',')
                                 select new
                                 {
-                                    Id = data[0],
-                                    SerialNumber = data[1],
-                                    X = data[2],
-                                    Y = data[3],
-                                    Status = data[4],
-                                    HCN = data[5],
-                                    InstallationDate = data[6],
-                                    MaintenanceDate = data[7],
-                                    MeterTypeId = data[8],
-                                    MeterSizeId = data[9],
-                                    MeterProtocolId = data[10],
-                                    CityId = data[11],
-                                    CreatedBy = data[12],
-                                    EditedBy = data[13],
-                                    DocDate = data[14],
-                                    Show = data[15],
-                                    Locked = data[16],
+                                    SerialNumber = data[0],
+                                    X = data[1],
+                                    Y = data[2],
+                                    Status = data[3],
+                                    HCN = data[4],
+                                    InstallationDate = data[5],
+                                    MaintenanceDate = data[6],
+                                    MeterTypeId = data[7],
+                                    MeterSizeId = data[8],
+                                    MeterProtocolId = data[9],
+                                    CityId = data[10],
+                                    CreatedBy = data[11],
+                                    EditedBy = data[12],
+                                    DocDate = data[13],
+                                    Show = data[14],
+                                    Locked = data[15],
                                 };
                     foreach (var q in query.ToList().Skip(1))
                     {
-                        MessageBox.Show(q.Id + " " +
-                                        q.SerialNumber + " " +
+                        MessageBox.Show(q.SerialNumber + " " +
                                         q.X + " " +
                                         q.Y + " " +
                                         q.Status + " " +
