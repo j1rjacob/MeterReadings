@@ -164,15 +164,19 @@ namespace MeterReports
                 _duplicateCSVFile = CSVDuplicate.Get(_fileNames);
                 ProgressBarImportStatus.Maximum = 
                     _max = (_fileNames.Length - _duplicateCSVFile.Count);
-                Task.Factory.StartNew(() => ImportBulkRDSCSV());
+            //Task.Factory.StartNew(() => ImportBulkRDSCSV());
 
-                //TODO: Decouple; Error same count on imported and duplicated.
-                //Task.Factory.StartNew(() => BulkRDS
-                //.Import(openFileDialogImport.FileNames,
-                //                                           _max,
-                //                                           ProgressBarImportStatus,
-                //                                           LabelImported,
-                //                                           LabelDuplicate));
+
+            //TODO: Decouple; Error same count on imported and duplicated.
+            LabelImported.Text = $"Number of imported CSV File/s: {0} Ok";
+            LabelDuplicate.Text = $"Number of duplicated CSV File/ s: {0}";
+            Task.Factory.StartNew(() => BulkRDS
+                .Import(_fileNames,
+                        _max,
+                        ProgressBarImportStatus,
+                        LabelImported,
+                        LabelDuplicate));
+           
         }
         private void ButtonSkip_Click(object sender, EventArgs e)
         {
@@ -221,8 +225,8 @@ namespace MeterReports
                                     OMS = 0,
                                     GatewayMacAddress = _gateway,
                                     CSVFilename = _csvFilename,
-                                    CreatedBy = "646f18f9-6425-4769-aa79-16ecdb7cf816",
-                                    EditedBy = "646f18f9-6425-4769-aa79-16ecdb7cf816",
+                                    CreatedBy = "2",
+                                    EditedBy = "2",
                                     DocDate = DateTime.Now,
                                     Show = 1,
                                     LockCount = 0
