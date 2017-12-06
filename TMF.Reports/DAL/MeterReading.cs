@@ -169,6 +169,16 @@ namespace TMF.Reports.DAL
             array[0].Value = description;
             return this.GetRecords(dbInstance, cmdText, array);
         }
+        public IInfo GetLatestRecord(SmartDB dbInstance, string serialNumber)
+        {
+            string cmdText = "[REPORT METERREADING_LATEST]";
+            SqlParameter[] array = new SqlParameter[]
+            {
+                new SqlParameter("@SerialNumber", SqlDbType.NVarChar)
+            };
+            array[0].Value = serialNumber;
+            return this.GetRecords(dbInstance, cmdText, array);
+        }
         public IInfo CheckRecord(SmartDB dbInstance, string SerialNumber, DateTime ReadingDate,
                                                      string CSVType, string ReadingValue)
         {

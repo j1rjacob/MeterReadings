@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.IO;
 using System.Text;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 using TMF.Core;
 using TMF.Core.Model;
@@ -29,7 +30,7 @@ namespace MeterReports
         }
         private void MeterReading_Load(object sender, EventArgs e)
         {
-            BindMeterReadingWithDataGrid();
+            //BindMeterReadingWithDataGrid();
             ResetControls();
         }
         private void ButtonNew_Click(object sender, EventArgs e)
@@ -99,7 +100,7 @@ namespace MeterReports
                 {
                     MessageBox.Show("Meter Reading Deleted");
                     ResetControls();
-                    BindMeterReadingWithDataGrid();
+                    //BindMeterReadingWithDataGrid();
                 }
                 else
                 {
@@ -114,10 +115,23 @@ namespace MeterReports
         private void ButtonSearch_Click(object sender, EventArgs e)
         {
             BindMeterReadingWithDataGrid();
+            BindMeterReadingLatestWithDataGrid();
+        }
+        private void TextBoxSerialNumber_TextChanged(object sender, EventArgs e)
+        {
+            if (TextBoxSerialNumber.Text != "")
+            {
+                BindMeterReadingLatestWithDataGrid();
+            }
+            else
+            {
+                DataGridViewLatestMeterReading.DataSource = null;
+            }
+
         }
         private void ButtonExport_Click(object sender, EventArgs e)
         {
-            ExportGateways();
+            ExportMeterReadings();
         }
         private void ButtonImport_Click(object sender, EventArgs e)
         {
@@ -187,7 +201,7 @@ namespace MeterReports
                 {
                     MessageBox.Show("Meter Reading Created");
                     ResetControls();
-                    BindMeterReadingWithDataGrid();
+                    //BindMeterReadingWithDataGrid();
                 }
                 else
                 {
@@ -230,7 +244,7 @@ namespace MeterReports
                 {
                     MessageBox.Show("Meter Reading Updated");
                     ResetControls();
-                    BindMeterReadingWithDataGrid();
+                    //BindMeterReadingWithDataGrid();
                 }
                 else
                 {
@@ -272,7 +286,8 @@ namespace MeterReports
             ButtonSave.Enabled = false;
             ButtonDelete.Enabled = false;
             _save = true;
-            BindMeterReadingWithDataGrid();
+            Task.Factory.StartNew(() => BindMeterReadingWithDataGrid());
+            BindMeterReadingLatestWithDataGrid();
         }
         protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
         {
@@ -307,7 +322,25 @@ namespace MeterReports
                 return;
             }
         }
-        private void ExportGateways()
+        private void BindMeterReadingLatestWithDataGrid()
+        {   //TODO: Refactor this for reuse.
+            try
+            {
+                ReturnInfo getMeterReadingList = _meterReading.GetLatestMeterReadingRecord(new SmartDB(), TextBoxSerialNumber.Text);
+                //bool flag = getCityList.Code == ErrorEnum.NoError;
+                List<TMF.Reports.Model.MeterReading> meterReading = (List<TMF.Reports.Model.MeterReading>)getMeterReadingList.BizObject;
+                var bindingList = new BindingList<TMF.Reports.Model.MeterReading>(meterReading);
+                var source = new BindingSource(bindingList, null);
+                DataGridViewLatestMeterReading.AutoGenerateColumns = false;
+                DataGridViewLatestMeterReading.DataSource = source;
+                //LabelShow.Text = $"Showing {DataGridViewLatestMeterReading.CurrentRow.Index + 1} index of {DataGridViewLatestMeterReading.RowCount} records";
+            }
+            catch (Exception)
+            {
+                return;
+            }
+        }
+        private void ExportMeterReadings()
         {
             StreamWriter sr;
             string line = "";

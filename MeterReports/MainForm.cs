@@ -37,19 +37,7 @@ namespace MeterReports
         {
             TreeNode node = treeViewMain.SelectedNode;
 
-            MainPanel.Controls.Clear();
-            if (node.Text == "City")
-            {
-                ucCity uc = new ucCity();
-                uc.Dock = DockStyle.Fill;
-                MainPanel.Controls.Add(uc);
-            }
-            if (node.Text == "DMZ")
-            {
-                ucDMZ uc = new ucDMZ();
-                uc.Dock = DockStyle.Fill;
-                MainPanel.Controls.Add(uc);
-            }
+            
         }
     }
 }

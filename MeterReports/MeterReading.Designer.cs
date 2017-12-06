@@ -31,6 +31,19 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MeterReading));
             this.TabControlMeterReading = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.DataGridViewLatestMeterReading = new System.Windows.Forms.DataGridView();
+            this.Col_Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColSN = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColRD = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColRV = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColLBA = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColLA = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColMTA = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColEA = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColBA = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColBPA = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColEPA = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColSE = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ButtonImport = new System.Windows.Forms.Button();
             this.ButtonExport = new System.Windows.Forms.Button();
             this.ButtonDelete = new System.Windows.Forms.Button();
@@ -80,6 +93,7 @@
             this.saveFileDialogMeterReading = new System.Windows.Forms.SaveFileDialog();
             this.TabControlMeterReading.SuspendLayout();
             this.tabPage1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.DataGridViewLatestMeterReading)).BeginInit();
             this.tabPage2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DataGridViewMeterReading)).BeginInit();
             this.SuspendLayout();
@@ -100,6 +114,7 @@
             // 
             // tabPage1
             // 
+            this.tabPage1.Controls.Add(this.DataGridViewLatestMeterReading);
             this.tabPage1.Controls.Add(this.ButtonImport);
             this.tabPage1.Controls.Add(this.ButtonExport);
             this.tabPage1.Controls.Add(this.ButtonDelete);
@@ -137,6 +152,115 @@
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "METER INFORMATION";
             this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // DataGridViewLatestMeterReading
+            // 
+            this.DataGridViewLatestMeterReading.AllowUserToAddRows = false;
+            this.DataGridViewLatestMeterReading.AllowUserToDeleteRows = false;
+            this.DataGridViewLatestMeterReading.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.DataGridViewLatestMeterReading.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Col_Id,
+            this.ColSN,
+            this.ColRD,
+            this.ColRV,
+            this.ColLBA,
+            this.ColLA,
+            this.ColMTA,
+            this.ColEA,
+            this.ColBA,
+            this.ColBPA,
+            this.ColEPA,
+            this.ColSE});
+            this.DataGridViewLatestMeterReading.Location = new System.Drawing.Point(10, 281);
+            this.DataGridViewLatestMeterReading.Name = "DataGridViewLatestMeterReading";
+            this.DataGridViewLatestMeterReading.ReadOnly = true;
+            this.DataGridViewLatestMeterReading.Size = new System.Drawing.Size(864, 142);
+            this.DataGridViewLatestMeterReading.TabIndex = 82;
+            // 
+            // Col_Id
+            // 
+            this.Col_Id.DataPropertyName = "Id";
+            this.Col_Id.HeaderText = "Id";
+            this.Col_Id.Name = "Col_Id";
+            this.Col_Id.ReadOnly = true;
+            this.Col_Id.Visible = false;
+            // 
+            // ColSN
+            // 
+            this.ColSN.DataPropertyName = "SerialNumber";
+            this.ColSN.HeaderText = "SerialNumber";
+            this.ColSN.Name = "ColSN";
+            this.ColSN.ReadOnly = true;
+            // 
+            // ColRD
+            // 
+            this.ColRD.DataPropertyName = "ReadingDate";
+            this.ColRD.HeaderText = "ReadingDate";
+            this.ColRD.Name = "ColRD";
+            this.ColRD.ReadOnly = true;
+            // 
+            // ColRV
+            // 
+            this.ColRV.DataPropertyName = "ReadingValue";
+            this.ColRV.HeaderText = "ReadingValue";
+            this.ColRV.Name = "ColRV";
+            this.ColRV.ReadOnly = true;
+            // 
+            // ColLBA
+            // 
+            this.ColLBA.DataPropertyName = "LowBatteryAlr";
+            this.ColLBA.HeaderText = "LowBattAlr";
+            this.ColLBA.Name = "ColLBA";
+            this.ColLBA.ReadOnly = true;
+            // 
+            // ColLA
+            // 
+            this.ColLA.DataPropertyName = "LeakAlr";
+            this.ColLA.HeaderText = "LeakAlr";
+            this.ColLA.Name = "ColLA";
+            this.ColLA.ReadOnly = true;
+            // 
+            // ColMTA
+            // 
+            this.ColMTA.DataPropertyName = "MagneticTamperAlr";
+            this.ColMTA.HeaderText = "MagneticTmprAlr";
+            this.ColMTA.Name = "ColMTA";
+            this.ColMTA.ReadOnly = true;
+            // 
+            // ColEA
+            // 
+            this.ColEA.DataPropertyName = "MeterErrorAlr";
+            this.ColEA.HeaderText = "ErrorAlr";
+            this.ColEA.Name = "ColEA";
+            this.ColEA.ReadOnly = true;
+            // 
+            // ColBA
+            // 
+            this.ColBA.DataPropertyName = "BackFlowAlr";
+            this.ColBA.HeaderText = "BackflowAlr";
+            this.ColBA.Name = "ColBA";
+            this.ColBA.ReadOnly = true;
+            // 
+            // ColBPA
+            // 
+            this.ColBPA.DataPropertyName = "BrokenPipeAlr";
+            this.ColBPA.HeaderText = "BrokenPipeAlr";
+            this.ColBPA.Name = "ColBPA";
+            this.ColBPA.ReadOnly = true;
+            // 
+            // ColEPA
+            // 
+            this.ColEPA.DataPropertyName = "EmptyPipeAlr";
+            this.ColEPA.HeaderText = "EmptyPipeAlr";
+            this.ColEPA.Name = "ColEPA";
+            this.ColEPA.ReadOnly = true;
+            // 
+            // ColSE
+            // 
+            this.ColSE.DataPropertyName = "SpecificErr";
+            this.ColSE.HeaderText = "SpecificErr";
+            this.ColSE.Name = "ColSE";
+            this.ColSE.ReadOnly = true;
             // 
             // ButtonImport
             // 
@@ -399,6 +523,7 @@
             this.TextBoxSerialNumber.Name = "TextBoxSerialNumber";
             this.TextBoxSerialNumber.Size = new System.Drawing.Size(216, 27);
             this.TextBoxSerialNumber.TabIndex = 73;
+            this.TextBoxSerialNumber.TextChanged += new System.EventHandler(this.TextBoxSerialNumber_TextChanged);
             // 
             // label16
             // 
@@ -621,6 +746,7 @@
             this.TabControlMeterReading.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.DataGridViewLatestMeterReading)).EndInit();
             this.tabPage2.ResumeLayout(false);
             this.tabPage2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DataGridViewMeterReading)).EndInit();
@@ -679,5 +805,18 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn ColEmptyPipeAlr;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColSpecificErr;
         private System.Windows.Forms.SaveFileDialog saveFileDialogMeterReading;
+        private System.Windows.Forms.DataGridView DataGridViewLatestMeterReading;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Col_Id;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColSN;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColRD;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColRV;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColLBA;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColLA;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColMTA;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColEA;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColBA;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColBPA;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColEPA;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColSE;
     }
 }

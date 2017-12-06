@@ -108,6 +108,17 @@ namespace TMF.Reports.BLL
                 RowsAffected = record.RowsAffected
             };
         }
+        public ReturnInfo GetLatestMeterReadingRecord(SmartDB dbInstance, string SerialNumber)
+        {
+            IInfo record = _dal.GetLatestRecord(dbInstance, SerialNumber);
+            return new ReturnInfo
+            {
+                BizObject = ((record.Code == ErrorEnum.NoError) ? record.BizObject : null),
+                Code = record.Code,
+                Message = record.Message,
+                RowsAffected = record.RowsAffected
+            };
+        }
         public ReturnInfo CheckRecordDuplicate(SmartDB dbInstance, string SerialNumber, DateTime ReadingDate,
                                                                    string CSVType, string ReadingValue)
         {
