@@ -61,7 +61,6 @@ namespace MeterReports
                 MessageBox.Show("There are invalid controls on the form.");
                 //Return user to form...
             }
-            
         }
         private void ButtonDelete_Click(object sender, EventArgs e)
         {

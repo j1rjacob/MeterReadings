@@ -67,6 +67,8 @@ namespace MeterReports
             this.TextBoxUsername.Name = "TextBoxUsername";
             this.TextBoxUsername.Size = new System.Drawing.Size(288, 27);
             this.TextBoxUsername.TabIndex = 0;
+            this.TextBoxUsername.Validating += new System.ComponentModel.CancelEventHandler(this.TextBoxUsername_Validating);
+            this.TextBoxUsername.Validated += new System.EventHandler(this.TextBoxUsername_Validated);
             // 
             // TextBoxPassword
             // 
@@ -76,6 +78,8 @@ namespace MeterReports
             this.TextBoxPassword.PasswordChar = '*';
             this.TextBoxPassword.Size = new System.Drawing.Size(288, 27);
             this.TextBoxPassword.TabIndex = 1;
+            this.TextBoxPassword.Validating += new System.ComponentModel.CancelEventHandler(this.TextBoxPassword_Validating);
+            this.TextBoxPassword.Validated += new System.EventHandler(this.TextBoxPassword_Validated);
             // 
             // ButtonLogin
             // 
@@ -111,6 +115,7 @@ namespace MeterReports
             // 
             // Login
             // 
+            this.AutoValidate = System.Windows.Forms.AutoValidate.Disable;
             this.ClientSize = new System.Drawing.Size(471, 312);
             this.Controls.Add(this.ButtonCancel);
             this.Controls.Add(this.ButtonLogin);
@@ -132,20 +137,28 @@ namespace MeterReports
 
         private void ButtonLogin_Click(object sender, EventArgs e)
         {//junarjacob, Password123!
-            var user = _userManager.FindByName(TextBoxUsername.Text.Trim());
-            if (_userManager.CheckPassword(user, TextBoxPassword.Text.Trim()) 
-                && user.Locked != 1)
+            if (this.ValidateChildren(ValidationConstraints.Enabled))
             {
+                var user = _userManager.FindByName(TextBoxUsername.Text.Trim());
+                if (_userManager.CheckPassword(user, TextBoxPassword.Text.Trim())
+                    && user.Locked != 1)
+                {
 
-                var f = new Main(user);
-                f.Show();
-                user.Locked = 1;
-                _userManager.Update(user);
-                this.Hide();
+                    var f = new Main(user);
+                    f.Show();
+                    user.Locked = 1;
+                    _userManager.Update(user);
+                    this.Hide();
+                }
+                else
+                {
+                    MessageBox.Show("Username or Password not match.");
+                }
             }
             else
             {
-                MessageBox.Show("Username or Password not match.");
+                MessageBox.Show("There are invalid controls on the form.");
+                //Return user to form...
             }
         }
 
@@ -174,6 +187,37 @@ namespace MeterReports
         {
             base.OnClosed(e);
             Application.Exit();
+        }
+
+        private void TextBoxUsername_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            bool cancel = false;
+            if (string.IsNullOrEmpty(this.TextBoxUsername.Text))
+            {
+                //This control fails validation: Name cannot be empty.
+                cancel = true;
+                this.errorProviderLogin.SetError(this.TextBoxUsername, "You must provide Username!");
+            }
+            e.Cancel = cancel;
+        }
+        private void TextBoxUsername_Validated(object sender, EventArgs e)
+        {
+            this.errorProviderLogin.SetError(this.TextBoxUsername, string.Empty);
+        }
+        private void TextBoxPassword_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            bool cancel = false;
+            if (string.IsNullOrEmpty(this.TextBoxPassword.Text))
+            {
+                //This control fails validation: Name cannot be empty.
+                cancel = true;
+                this.errorProviderLogin.SetError(this.TextBoxPassword, "You must provide Password!");
+            }
+            e.Cancel = cancel;
+        }
+        private void TextBoxPassword_Validated(object sender, EventArgs e)
+        {
+            this.errorProviderLogin.SetError(this.TextBoxPassword, string.Empty);
         }
     }
 }
