@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MeterReading));
             this.TabControlMeterReading = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
@@ -91,11 +92,13 @@
             this.ColSpecificErr = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.openFileDialogImport = new System.Windows.Forms.OpenFileDialog();
             this.saveFileDialogMeterReading = new System.Windows.Forms.SaveFileDialog();
+            this.errorProviderMeterReading = new System.Windows.Forms.ErrorProvider(this.components);
             this.TabControlMeterReading.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DataGridViewLatestMeterReading)).BeginInit();
             this.tabPage2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DataGridViewMeterReading)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProviderMeterReading)).BeginInit();
             this.SuspendLayout();
             // 
             // TabControlMeterReading
@@ -730,6 +733,10 @@
             this.saveFileDialogMeterReading.DefaultExt = "csv";
             this.saveFileDialogMeterReading.Filter = "CSV |*.csv";
             // 
+            // errorProviderMeterReading
+            // 
+            this.errorProviderMeterReading.ContainerControl = this;
+            // 
             // MeterReading
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -750,6 +757,7 @@
             this.tabPage2.ResumeLayout(false);
             this.tabPage2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DataGridViewMeterReading)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProviderMeterReading)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -818,5 +826,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn ColBPA;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColEPA;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColSE;
+        private System.Windows.Forms.ErrorProvider errorProviderMeterReading;
     }
 }

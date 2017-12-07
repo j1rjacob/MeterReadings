@@ -26,6 +26,8 @@ namespace MeterReports
         private bool _save;
         private DataGridViewTextBoxColumn ColId;
         private DataGridViewTextBoxColumn ColDescription;
+        private ErrorProvider errorProviderMeterSize;
+        private IContainer components;
         private int _meterSizeId;
         public MeterSize(CustomUser currentUser)
         {
@@ -37,6 +39,7 @@ namespace MeterReports
         }
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MeterSize));
             this.LabelShow = new System.Windows.Forms.Label();
             this.ButtonDelete = new System.Windows.Forms.Button();
@@ -50,7 +53,9 @@ namespace MeterReports
             this.TextBoxDescription = new System.Windows.Forms.TextBox();
             this.TextBoxSearch = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
+            this.errorProviderMeterSize = new System.Windows.Forms.ErrorProvider(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.DataGridViewMeterSize)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProviderMeterSize)).BeginInit();
             this.SuspendLayout();
             // 
             // LabelShow
@@ -196,6 +201,10 @@ namespace MeterReports
             this.label2.TabIndex = 37;
             this.label2.Text = "DESCRIPTION";
             // 
+            // errorProviderMeterSize
+            // 
+            this.errorProviderMeterSize.ContainerControl = this;
+            // 
             // MeterSize
             // 
             this.ClientSize = new System.Drawing.Size(670, 367);
@@ -217,6 +226,7 @@ namespace MeterReports
             this.Text = "Meter Size";
             this.Load += new System.EventHandler(this.MeterSize_Load);
             ((System.ComponentModel.ISupportInitialize)(this.DataGridViewMeterSize)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProviderMeterSize)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

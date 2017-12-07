@@ -47,10 +47,21 @@ namespace MeterReports
         }
         private void ButtonSave_Click(object sender, EventArgs e)
         {
-            if (_save)
-                SaveCity();
+            if (this.ValidateChildren(ValidationConstraints.Enabled))
+            {
+                //MessageBox.Show("All controls are valid!");
+                //Logic to save...
+                if (_save)
+                    SaveCity();
+                else
+                    EditCity();
+            }
             else
-                EditCity();
+            {
+                MessageBox.Show("There are invalid controls on the form.");
+                //Return user to form...
+            }
+            
         }
         private void ButtonDelete_Click(object sender, EventArgs e)
         {
@@ -98,6 +109,22 @@ namespace MeterReports
                 ButtonEdit.Enabled = true;
                 ButtonDelete.Enabled = true;
             }
+        }
+        private void TextBoxDescription_Validating(object sender, CancelEventArgs e)
+        {
+            bool cancel = false;
+            if (string.IsNullOrEmpty(this.TextBoxDescription.Text))
+            {
+                //This control fails validation: Name cannot be empty.
+                cancel = true;
+                this.errorProviderCity.SetError(this.TextBoxDescription, "You must provide description!");
+            }
+            e.Cancel = cancel;
+        }
+
+        private void TextBoxDescription_Validated(object sender, EventArgs e)
+        {
+            this.errorProviderCity.SetError(this.TextBoxDescription, string.Empty);
         }
         #region PriveteMethod
         private void SaveCity()

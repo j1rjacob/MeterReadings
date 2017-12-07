@@ -16,6 +16,8 @@ namespace MeterReports
         private Label label2;
 
         private CustomUserStore _userStore;
+        private ErrorProvider errorProviderLogin;
+        private System.ComponentModel.IContainer components;
         private UserManager<CustomUser, int> _userManager;
         public Login()
         {
@@ -26,6 +28,7 @@ namespace MeterReports
 
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Login));
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -33,6 +36,8 @@ namespace MeterReports
             this.TextBoxPassword = new System.Windows.Forms.TextBox();
             this.ButtonLogin = new System.Windows.Forms.Button();
             this.ButtonCancel = new System.Windows.Forms.Button();
+            this.errorProviderLogin = new System.Windows.Forms.ErrorProvider(this.components);
+            ((System.ComponentModel.ISupportInitialize)(this.errorProviderLogin)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -100,6 +105,10 @@ namespace MeterReports
             this.ButtonCancel.UseVisualStyleBackColor = true;
             this.ButtonCancel.Click += new System.EventHandler(this.ButtonCancel_Click);
             // 
+            // errorProviderLogin
+            // 
+            this.errorProviderLogin.ContainerControl = this;
+            // 
             // Login
             // 
             this.ClientSize = new System.Drawing.Size(471, 312);
@@ -115,6 +124,7 @@ namespace MeterReports
             this.Name = "Login";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Login";
+            ((System.ComponentModel.ISupportInitialize)(this.errorProviderLogin)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

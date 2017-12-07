@@ -33,6 +33,8 @@ namespace MeterReports
         private DataGridViewTextBoxColumn ColDescription;
         private DataGridViewTextBoxColumn ColCity;
         private DataGridViewTextBoxColumn ColTotMeter;
+        private ErrorProvider errorProviderDMZ;
+        private IContainer components;
         private readonly CustomUser _currentUser;
         public DMZ(CustomUser currentUser)
         {
@@ -46,6 +48,7 @@ namespace MeterReports
 
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DMZ));
             this.LabelShow = new System.Windows.Forms.Label();
             this.ButtonDelete = new System.Windows.Forms.Button();
@@ -65,7 +68,9 @@ namespace MeterReports
             this.label1 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.ComboBoxCity = new System.Windows.Forms.ComboBox();
+            this.errorProviderDMZ = new System.Windows.Forms.ErrorProvider(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.DataGridViewDMZ)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProviderDMZ)).BeginInit();
             this.SuspendLayout();
             // 
             // LabelShow
@@ -270,6 +275,10 @@ namespace MeterReports
             this.ComboBoxCity.TabIndex = 37;
             this.ComboBoxCity.MouseClick += new System.Windows.Forms.MouseEventHandler(this.ComboBoxCity_MouseClick);
             // 
+            // errorProviderDMZ
+            // 
+            this.errorProviderDMZ.ContainerControl = this;
+            // 
             // DMZ
             // 
             this.ClientSize = new System.Drawing.Size(670, 428);
@@ -295,6 +304,7 @@ namespace MeterReports
             this.Text = "DMZ";
             this.Load += new System.EventHandler(this.DMZ_Load);
             ((System.ComponentModel.ISupportInitialize)(this.DataGridViewDMZ)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProviderDMZ)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

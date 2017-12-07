@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Meter));
             this.DateTimePickerMaintenanceDate = new System.Windows.Forms.DateTimePicker();
             this.DateTimePickerInstallationDate = new System.Windows.Forms.DateTimePicker();
@@ -77,7 +78,9 @@
             this.ButtonExport = new System.Windows.Forms.Button();
             this.saveFileDialogMeter = new System.Windows.Forms.SaveFileDialog();
             this.openFileDialogMeter = new System.Windows.Forms.OpenFileDialog();
+            this.errorProviderMeter = new System.Windows.Forms.ErrorProvider(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.DataGridViewMeter)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProviderMeter)).BeginInit();
             this.SuspendLayout();
             // 
             // DateTimePickerMaintenanceDate
@@ -581,6 +584,10 @@
             this.openFileDialogMeter.FileName = "Meters";
             this.openFileDialogMeter.Filter = "CSV |*.csv";
             // 
+            // errorProviderMeter
+            // 
+            this.errorProviderMeter.ContainerControl = this;
+            // 
             // Meter
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -628,6 +635,7 @@
             this.Text = "Meter";
             this.Load += new System.EventHandler(this.Meter_Load);
             ((System.ComponentModel.ISupportInitialize)(this.DataGridViewMeter)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProviderMeter)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -683,5 +691,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn ColMeterProtocol;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColDMZ;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColCity;
+        private System.Windows.Forms.ErrorProvider errorProviderMeter;
     }
 }

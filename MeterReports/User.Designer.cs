@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(User));
             this.TextBoxUsername = new System.Windows.Forms.TextBox();
             this.TextBoxName = new System.Windows.Forms.TextBox();
@@ -54,7 +55,9 @@
             this.ComboBoxStatus = new System.Windows.Forms.ComboBox();
             this.ButtonLock = new System.Windows.Forms.Button();
             this.ButtonUnlock = new System.Windows.Forms.Button();
+            this.errorProviderUser = new System.Windows.Forms.ErrorProvider(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.DataGridViewUser)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProviderUser)).BeginInit();
             this.SuspendLayout();
             // 
             // TextBoxUsername
@@ -335,6 +338,10 @@
             this.ButtonUnlock.UseVisualStyleBackColor = true;
             this.ButtonUnlock.Click += new System.EventHandler(this.ButtonUnlock_Click);
             // 
+            // errorProviderUser
+            // 
+            this.errorProviderUser.ContainerControl = this;
+            // 
             // User
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -369,6 +376,7 @@
             this.Text = "User";
             this.Load += new System.EventHandler(this.User_Load);
             ((System.ComponentModel.ISupportInitialize)(this.DataGridViewUser)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProviderUser)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -401,5 +409,6 @@
         private System.Windows.Forms.ComboBox ComboBoxStatus;
         private System.Windows.Forms.Button ButtonLock;
         private System.Windows.Forms.Button ButtonUnlock;
+        private System.Windows.Forms.ErrorProvider errorProviderUser;
     }
 }

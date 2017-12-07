@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MeterType));
             this.LabelShow = new System.Windows.Forms.Label();
             this.ButtonDelete = new System.Windows.Forms.Button();
@@ -41,7 +42,9 @@
             this.TextBoxDescription = new System.Windows.Forms.TextBox();
             this.TextBoxSearch = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
+            this.errorProviderMeterType = new System.Windows.Forms.ErrorProvider(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.DataGridViewMeterType)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProviderMeterType)).BeginInit();
             this.SuspendLayout();
             // 
             // LabelShow
@@ -187,6 +190,10 @@
             this.label2.TabIndex = 25;
             this.label2.Text = "DESCRIPTION";
             // 
+            // errorProviderMeterType
+            // 
+            this.errorProviderMeterType.ContainerControl = this;
+            // 
             // MeterType
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -210,6 +217,7 @@
             this.Text = "Meter Type";
             this.Load += new System.EventHandler(this.MeterType_Load);
             ((System.ComponentModel.ISupportInitialize)(this.DataGridViewMeterType)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProviderMeterType)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -229,5 +237,6 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColId;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColDescription;
+        private System.Windows.Forms.ErrorProvider errorProviderMeterType;
     }
 }

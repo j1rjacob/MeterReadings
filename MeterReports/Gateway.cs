@@ -65,6 +65,8 @@ namespace MeterReports
         private DataGridViewTextBoxColumn ColIPAddress;
         private DataGridViewTextBoxColumn ColDMZ;
         private DataGridViewTextBoxColumn ColCity;
+        private ErrorProvider errorProviderGateway;
+        private IContainer components;
         private readonly CustomUser _currentUser;
         public Gateway(CustomUser currentUser)
         {
@@ -78,6 +80,7 @@ namespace MeterReports
         }
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Gateway));
             this.LabelShow = new System.Windows.Forms.Label();
             this.ButtonDelete = new System.Windows.Forms.Button();
@@ -123,7 +126,9 @@ namespace MeterReports
             this.ButtonImport = new System.Windows.Forms.Button();
             this.openFileDialogGateway = new System.Windows.Forms.OpenFileDialog();
             this.saveFileDialogGateway = new System.Windows.Forms.SaveFileDialog();
+            this.errorProviderGateway = new System.Windows.Forms.ErrorProvider(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.DataGridViewGateway)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProviderGateway)).BeginInit();
             this.SuspendLayout();
             // 
             // LabelShow
@@ -577,6 +582,10 @@ namespace MeterReports
             this.saveFileDialogGateway.FileName = "Gateway";
             this.saveFileDialogGateway.Filter = "CSV |*.csv";
             // 
+            // errorProviderGateway
+            // 
+            this.errorProviderGateway.ContainerControl = this;
+            // 
             // Gateway
             // 
             this.ClientSize = new System.Drawing.Size(907, 512);
@@ -620,6 +629,7 @@ namespace MeterReports
             this.Text = "Gateway";
             this.Load += new System.EventHandler(this.Gateway_Load);
             ((System.ComponentModel.ISupportInitialize)(this.DataGridViewGateway)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProviderGateway)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

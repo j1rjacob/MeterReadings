@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MeterProtocol));
             this.LabelShow = new System.Windows.Forms.Label();
             this.ButtonDelete = new System.Windows.Forms.Button();
@@ -41,7 +42,9 @@
             this.TextBoxDescription = new System.Windows.Forms.TextBox();
             this.TextBoxSearch = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
+            this.errorProviderMeterProtocol = new System.Windows.Forms.ErrorProvider(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.DataGridViewMeterProtocol)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProviderMeterProtocol)).BeginInit();
             this.SuspendLayout();
             // 
             // LabelShow
@@ -187,6 +190,10 @@
             this.label2.TabIndex = 37;
             this.label2.Text = "DESCRIPTION";
             // 
+            // errorProviderMeterProtocol
+            // 
+            this.errorProviderMeterProtocol.ContainerControl = this;
+            // 
             // MeterProtocol
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -209,6 +216,7 @@
             this.Text = "Meter Protocol";
             this.Load += new System.EventHandler(this.MeterProtocol_Load);
             ((System.ComponentModel.ISupportInitialize)(this.DataGridViewMeterProtocol)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProviderMeterProtocol)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -228,5 +236,6 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColId;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColDescription;
+        private System.Windows.Forms.ErrorProvider errorProviderMeterProtocol;
     }
 }

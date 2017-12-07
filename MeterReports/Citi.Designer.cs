@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Citi));
             this.LabelShow = new System.Windows.Forms.Label();
             this.ButtonDelete = new System.Windows.Forms.Button();
@@ -44,7 +45,9 @@
             this.TextBoxDescription = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
+            this.errorProviderCity = new System.Windows.Forms.ErrorProvider(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.DataGridViewCity)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProviderCity)).BeginInit();
             this.SuspendLayout();
             // 
             // LabelShow
@@ -199,6 +202,8 @@
             this.TextBoxDescription.Name = "TextBoxDescription";
             this.TextBoxDescription.Size = new System.Drawing.Size(376, 27);
             this.TextBoxDescription.TabIndex = 17;
+            this.TextBoxDescription.Validating += new System.ComponentModel.CancelEventHandler(this.TextBoxDescription_Validating);
+            this.TextBoxDescription.Validated += new System.EventHandler(this.TextBoxDescription_Validated);
             // 
             // label2
             // 
@@ -220,11 +225,16 @@
             this.label1.TabIndex = 13;
             this.label1.Text = "DESCRIPTION";
             // 
+            // errorProviderCity
+            // 
+            this.errorProviderCity.ContainerControl = this;
+            // 
             // Citi
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(671, 397);
+            this.AutoValidate = System.Windows.Forms.AutoValidate.Disable;
+            this.ClientSize = new System.Drawing.Size(677, 397);
             this.Controls.Add(this.LabelShow);
             this.Controls.Add(this.ButtonDelete);
             this.Controls.Add(this.ButtonSave);
@@ -246,6 +256,7 @@
             this.Text = "City";
             this.Load += new System.EventHandler(this.Citi_Load);
             ((System.ComponentModel.ISupportInitialize)(this.DataGridViewCity)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProviderCity)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -267,5 +278,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn ColId;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColDescription;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColTotalMeters;
+        private System.Windows.Forms.ErrorProvider errorProviderCity;
     }
 }
