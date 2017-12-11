@@ -4,8 +4,8 @@ using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
 using System.IO;
-using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 using TMF.Core;
 using TMF.Core.Model;
@@ -116,8 +116,15 @@ namespace MeterReports
         }
         private void ButtonSearch_Click(object sender, EventArgs e)
         {
-            BindMeterReadingWithDataGrid();
-            BindMeterReadingLatestWithDataGrid();
+            if (TextBoxSearch.Text != "")
+            {
+                BindMeterReadingWithDataGrid();
+                BindMeterReadingLatestWithDataGrid();
+            }
+            else
+            {
+                return;
+            }
         }
         private void TextBoxSerialNumber_TextChanged(object sender, EventArgs e)
         {
@@ -145,32 +152,37 @@ namespace MeterReports
         }
         private void DataGridViewMeterReading_SelectionChanged(object sender, EventArgs e)
         {
-            LabelShow.Text = $"Showing {DataGridViewMeterReading.CurrentRow.Index + 1} index of {DataGridViewMeterReading.RowCount} records";
-
-            var meterReadingId = DataGridViewMeterReading.CurrentRow.Cells[0].Value.ToString();
-            ReturnInfo getMeterReading = _meterReading.GetMeterReadingById(new SmartDB(), meterReadingId);
-
-            bool flag = getMeterReading.Code == ErrorEnum.NoError;
-
-            TMF.Reports.Model.MeterReading meterReading = (TMF.Reports.Model.MeterReading)getMeterReading.BizObject;
-            if (!string.IsNullOrEmpty(meterReading.Id))
+            try
             {
-                TextBoxSerialNumber.Text = meterReading.SerialNumber;
-                TextBoxReadingDate.Text = meterReading.ReadingDate.ToString();
-                TextBoxReadingValue.Text = meterReading.ReadingValue;
-                TextBoxLowBattAlr.Text = meterReading.LowBatteryAlr.ToString();
-                TextBoxLeakAlr.Text = meterReading.LeakAlr.ToString();
-                TextBoxMagneticTmprAlr.Text = meterReading.MagneticTamperAlr.ToString();
-                TextBoxErrorAlr.Text = meterReading.MeterErrorAlr.ToString();
-                TextBoxBackflowAlr.Text = meterReading.BackFlowAlr.ToString();
-                TextBoxBrokenPipeAlr.Text = meterReading.BrokenPipeAlr.ToString();
-                TextBoxEmptyPipeAlr.Text = meterReading.EmptyPipeAlr.ToString();
-                TextBoxSpecificErr.Text = meterReading.SpecificErr.ToString();
-                _meterReadingId = meterReading.Id;
-                ButtonEdit.Enabled = true;
-                ButtonDelete.Enabled = true;
-            }
+                var meterReadingId = DataGridViewMeterReading.CurrentRow.Cells[0].Value.ToString() ?? "";
+                ReturnInfo getMeterReading = _meterReading.GetMeterReadingById(new SmartDB(), meterReadingId);
+
+                bool flag = getMeterReading.Code == ErrorEnum.NoError;
+
+                TMF.Reports.Model.MeterReading meterReading = (TMF.Reports.Model.MeterReading)getMeterReading.BizObject;
+                if (!string.IsNullOrEmpty(meterReading.Id))
+                {
+                    TextBoxSerialNumber.Text = meterReading.SerialNumber;
+                    TextBoxReadingDate.Text = meterReading.ReadingDate.ToString();
+                    TextBoxReadingValue.Text = meterReading.ReadingValue;
+                    TextBoxLowBattAlr.Text = meterReading.LowBatteryAlr.ToString();
+                    TextBoxLeakAlr.Text = meterReading.LeakAlr.ToString();
+                    TextBoxMagneticTmprAlr.Text = meterReading.MagneticTamperAlr.ToString();
+                    TextBoxErrorAlr.Text = meterReading.MeterErrorAlr.ToString();
+                    TextBoxBackflowAlr.Text = meterReading.BackFlowAlr.ToString();
+                    TextBoxBrokenPipeAlr.Text = meterReading.BrokenPipeAlr.ToString();
+                    TextBoxEmptyPipeAlr.Text = meterReading.EmptyPipeAlr.ToString();
+                    TextBoxSpecificErr.Text = meterReading.SpecificErr.ToString();
+                    _meterReadingId = meterReading.Id;
+                    ButtonEdit.Enabled = true;
+                    ButtonDelete.Enabled = true;
+                }
         }
+            catch (Exception)
+            {
+                ResetControls();
+    }
+}
         #region PriveteMethod
         private void SaveMeterReading()
         {
@@ -288,9 +300,10 @@ namespace MeterReports
             ButtonSave.Enabled = false;
             ButtonDelete.Enabled = false;
             _save = true;
-            //Task.Factory.StartNew(() => BindMeterReadingWithDataGrid());
-            BindMeterReadingWithDataGrid();
-            BindMeterReadingLatestWithDataGrid();
+            Task.Factory.StartNew(() => BindMeterReadingWithDataGrid());
+            //BindMeterReadingWithDataGrid();
+            //BindMeterReadingLatestWithDataGrid();
+            //ButtonSearch.PerformClick();
         }
         protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
         {
@@ -316,15 +329,15 @@ namespace MeterReports
 
         private void BindMeterReadingWithDataGrid()
         {   //TODO: Refactor this for reuse.
-            //try
-            //{
-            ReturnInfo getMeterReadingList = _meterReading.GetMeterReadingBySerialNumber(new SmartDB(), TextBoxSearch.Text);
-            //bool flag = getCityList.Code == ErrorEnum.NoError;
-            List<TMF.Reports.Model.MeterReading> meterReading = (List<TMF.Reports.Model.MeterReading>)getMeterReadingList.BizObject;
-            var bindingList = new BindingList<TMF.Reports.Model.MeterReading>(meterReading);
+            try
+            {
+            //ReturnInfo getMeterReadingList = _meterReading.GetMeterReadingBySerialNumber(new SmartDB(), TextBoxSearch.Text);
+            ////bool flag = getCityList.Code == ErrorEnum.NoError;
+            //List<TMF.Reports.Model.MeterReading> meterReading = (List<TMF.Reports.Model.MeterReading>)getMeterReadingList.BizObject;
+            //var bindingList = new BindingList<TMF.Reports.Model.MeterReading>(meterReading);
             
-            var source = new BindingSource(bindingList.Skip(perPage * currentPage).Take(perPage), null);
-            DataGridViewMeterReading.AutoGenerateColumns = false;
+            //var source = new BindingSource(bindingList.Skip(perPage * currentPage).Take(perPage), null);
+            //DataGridViewMeterReading.AutoGenerateColumns = false;
             FillGrid();
             //Paging.FillGrid(DataGridViewLatestMeterReading, bindingNavigatorPositionItem, bindingNavigatorCountItem);
 
@@ -333,11 +346,11 @@ namespace MeterReports
             //DataGridViewMeterReading.DataSource = source;
             //BindingNavigatorMeterReading.BindingSource = Paging.FillGrid(DataGridViewLatestMeterReading, bindingNavigatorPositionItem, bindingNavigatorCountItem); 
             //LabelShow.Text = $"Showing {DataGridViewMeterReading.CurrentRow.Index + 1} index of {DataGridViewMeterReading.RowCount} records";
-            //}
-            //catch (Exception)
-            //{
-            //    return;
-            //}
+            }
+            catch (Exception)
+            {
+                return;
+            }
         }
         private void BindMeterReadingLatestWithDataGrid()
         {   //TODO: Refactor this for reuse.
@@ -414,11 +427,10 @@ namespace MeterReports
         private int _mintPageSize = 0;
         private int _mintPageCount = 0;
         private int _mintCurrentPage = 1;
-
         private void FillGrid()
         {
             // For Page view.
-            _mintPageSize = 17;
+            _mintPageSize = 18;
             _mintTotalRecords = GetCount();
             _mintPageCount = _mintTotalRecords / _mintPageSize;
 
@@ -430,7 +442,7 @@ namespace MeterReports
             LoadPage();
         }
 
-        public static int GetCount()
+        public int GetCount()
         {
             int intCount = 0;
             using (SqlConnection connection =
@@ -439,11 +451,12 @@ namespace MeterReports
                 connection.Open();
                 // This select statement is very fast compare to SELECT COUNT(*)
                 string strSql = "SELECT Rows FROM SYSINDEXES " +
-                                "WHERE Id = OBJECT_ID('MeterReading') AND IndId < 2";
+                                "WHERE Id = OBJECT_ID('MeterReading') AND IndId < 2";// +
+                                //"AND SerialNumber LIKE @SerialNumber";
 
                 SqlCommand cmd = connection.CreateCommand();
                 cmd.CommandText = strSql;
-
+                //cmd.Parameters.AddWithValue("@SerialNumber", "%" + TextBoxSearch.Text + "%");
                 intCount = (int)cmd.ExecuteScalar();
                 cmd.Dispose();
             }
@@ -465,11 +478,13 @@ namespace MeterReports
                 //Select only the n records.
                 strSql = "SELECT TOP " + _mintPageSize +
                          " * FROM MeterReading WHERE Id NOT IN " +
-                         "(SELECT TOP " + intSkip + " Id FROM MeterReading)";
+                         "(SELECT TOP " + intSkip + " Id FROM MeterReading)" +
+                         "AND SerialNumber LIKE @SerialNumber"; 
                 //strSql = "SELECT * FROM MeterReading";
 
                 cmd = connection.CreateCommand();
                 cmd.CommandText = strSql;
+                cmd.Parameters.AddWithValue("@SerialNumber", "%" + TextBoxSearch.Text + "%");
                 da = new SqlDataAdapter(cmd);
                 da.Fill(ds, "MeterReading");
 
@@ -523,51 +538,6 @@ namespace MeterReports
             LoadPage();
         }
         #endregion
-
-        private void btnFirst_Click(object sender, EventArgs e)
-        {
-            GoFirst();
-        }
-
-        private void btnPrevious_Click(object sender, EventArgs e)
-        {
-            GoPrevious();
-        }
-
-        private void btnNext_Click(object sender, EventArgs e)
-        {
-            GoNext();
-        }
-
-        private void btnLast_Click(object sender, EventArgs e)
-        {
-            GoLast();
-        }
-
-        private void bindingNavigatorMoveFirstItem_Click(object sender, EventArgs e)
-        {
-            ReturnInfo getMeterReadingList = _meterReading.GetMeterReadingBySerialNumber(new SmartDB(), TextBoxSearch.Text);
-            List<TMF.Reports.Model.MeterReading> meterReading = (List<TMF.Reports.Model.MeterReading>)getMeterReadingList.BizObject;
-            var bindingList = new BindingList<TMF.Reports.Model.MeterReading>(meterReading);
-
-            var source = new BindingSource(bindingList.Skip(perPage * currentPage).Take(perPage), null);
-            DataGridViewMeterReading.AutoGenerateColumns = false;
-            DataGridViewMeterReading.DataSource = source;
-        }
-        private void bindingNavigatorMovePreviousItem_Click_1(object sender, EventArgs e)
-        {
-            BindingSourceMeterReading.MovePrevious();
-        }
-        private void bindingNavigatorMoveNextItem_Click(object sender, EventArgs e)
-        {
-            bindingNavigatorPositionItem.Text += 1;
-            //BindingSourceMeterReading.MoveNext();
-        }
-        private void bindingNavigatorMoveLastItem_Click(object sender, EventArgs e)
-        {
-            BindingSourceMeterReading.MoveLast();
-        }
-
         private void ButtonFirst_Click(object sender, EventArgs e)
         {
             GoFirst();

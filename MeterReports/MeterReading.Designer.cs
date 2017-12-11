@@ -76,22 +76,11 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.ButtonFirst = new System.Windows.Forms.Button();
+            this.ButtonPrevious = new System.Windows.Forms.Button();
+            this.ButtonNext = new System.Windows.Forms.Button();
+            this.ButtonLast = new System.Windows.Forms.Button();
             this.lblStatus = new System.Windows.Forms.Label();
-            this.btnLast = new System.Windows.Forms.Button();
-            this.btnNext = new System.Windows.Forms.Button();
-            this.btnPrevious = new System.Windows.Forms.Button();
-            this.btnFirst = new System.Windows.Forms.Button();
-            this.BindingNavigatorMeterReading = new System.Windows.Forms.BindingNavigator(this.components);
-            this.bindingNavigatorCountItem = new System.Windows.Forms.ToolStripLabel();
-            this.bindingNavigatorMoveFirstItem = new System.Windows.Forms.ToolStripButton();
-            this.bindingNavigatorMovePreviousItem = new System.Windows.Forms.ToolStripButton();
-            this.bindingNavigatorSeparator = new System.Windows.Forms.ToolStripSeparator();
-            this.bindingNavigatorPositionItem = new System.Windows.Forms.ToolStripTextBox();
-            this.bindingNavigatorSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-            this.bindingNavigatorMoveNextItem = new System.Windows.Forms.ToolStripButton();
-            this.bindingNavigatorMoveLastItem = new System.Windows.Forms.ToolStripButton();
-            this.bindingNavigatorSeparator2 = new System.Windows.Forms.ToolStripSeparator();
-            this.LabelShow = new System.Windows.Forms.Label();
             this.DataGridViewMeterReading = new System.Windows.Forms.DataGridView();
             this.ColId = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColSerialNumber = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -109,16 +98,10 @@
             this.saveFileDialogMeterReading = new System.Windows.Forms.SaveFileDialog();
             this.errorProviderMeterReading = new System.Windows.Forms.ErrorProvider(this.components);
             this.BindingSourceMeterReading = new System.Windows.Forms.BindingSource(this.components);
-            this.ButtonLast = new System.Windows.Forms.Button();
-            this.ButtonNext = new System.Windows.Forms.Button();
-            this.ButtonPrevious = new System.Windows.Forms.Button();
-            this.ButtonFirst = new System.Windows.Forms.Button();
             this.TabControlMeterReading.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DataGridViewLatestMeterReading)).BeginInit();
             this.tabPage2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.BindingNavigatorMeterReading)).BeginInit();
-            this.BindingNavigatorMeterReading.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DataGridViewMeterReading)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProviderMeterReading)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.BindingSourceMeterReading)).BeginInit();
@@ -618,12 +601,6 @@
             this.tabPage2.Controls.Add(this.ButtonNext);
             this.tabPage2.Controls.Add(this.ButtonLast);
             this.tabPage2.Controls.Add(this.lblStatus);
-            this.tabPage2.Controls.Add(this.btnLast);
-            this.tabPage2.Controls.Add(this.btnNext);
-            this.tabPage2.Controls.Add(this.btnPrevious);
-            this.tabPage2.Controls.Add(this.btnFirst);
-            this.tabPage2.Controls.Add(this.BindingNavigatorMeterReading);
-            this.tabPage2.Controls.Add(this.LabelShow);
             this.tabPage2.Controls.Add(this.DataGridViewMeterReading);
             this.tabPage2.Location = new System.Drawing.Point(4, 4);
             this.tabPage2.Name = "tabPage2";
@@ -633,166 +610,61 @@
             this.tabPage2.Text = "LIST OF RECORDS";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
+            // ButtonFirst
+            // 
+            this.ButtonFirst.AutoSize = true;
+            this.ButtonFirst.Image = ((System.Drawing.Image)(resources.GetObject("ButtonFirst.Image")));
+            this.ButtonFirst.Location = new System.Drawing.Point(8, 8);
+            this.ButtonFirst.Name = "ButtonFirst";
+            this.ButtonFirst.Size = new System.Drawing.Size(30, 30);
+            this.ButtonFirst.TabIndex = 89;
+            this.ButtonFirst.UseVisualStyleBackColor = true;
+            this.ButtonFirst.Click += new System.EventHandler(this.ButtonFirst_Click);
+            // 
+            // ButtonPrevious
+            // 
+            this.ButtonPrevious.AutoSize = true;
+            this.ButtonPrevious.Image = ((System.Drawing.Image)(resources.GetObject("ButtonPrevious.Image")));
+            this.ButtonPrevious.Location = new System.Drawing.Point(40, 8);
+            this.ButtonPrevious.Name = "ButtonPrevious";
+            this.ButtonPrevious.Size = new System.Drawing.Size(30, 30);
+            this.ButtonPrevious.TabIndex = 89;
+            this.ButtonPrevious.UseVisualStyleBackColor = true;
+            this.ButtonPrevious.Click += new System.EventHandler(this.ButtonPrevious_Click);
+            // 
+            // ButtonNext
+            // 
+            this.ButtonNext.AutoSize = true;
+            this.ButtonNext.Image = ((System.Drawing.Image)(resources.GetObject("ButtonNext.Image")));
+            this.ButtonNext.Location = new System.Drawing.Point(232, 6);
+            this.ButtonNext.Name = "ButtonNext";
+            this.ButtonNext.Size = new System.Drawing.Size(30, 30);
+            this.ButtonNext.TabIndex = 89;
+            this.ButtonNext.UseVisualStyleBackColor = true;
+            this.ButtonNext.Click += new System.EventHandler(this.ButtonNext_Click);
+            // 
+            // ButtonLast
+            // 
+            this.ButtonLast.AutoSize = true;
+            this.ButtonLast.Image = global::MeterReports.Properties.Resources.last;
+            this.ButtonLast.Location = new System.Drawing.Point(264, 6);
+            this.ButtonLast.Name = "ButtonLast";
+            this.ButtonLast.Size = new System.Drawing.Size(30, 30);
+            this.ButtonLast.TabIndex = 89;
+            this.ButtonLast.UseVisualStyleBackColor = true;
+            this.ButtonLast.Click += new System.EventHandler(this.ButtonLast_Click);
+            // 
             // lblStatus
             // 
             this.lblStatus.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.lblStatus.Enabled = false;
             this.lblStatus.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.lblStatus.Location = new System.Drawing.Point(72, 32);
+            this.lblStatus.Location = new System.Drawing.Point(72, 12);
             this.lblStatus.Name = "lblStatus";
             this.lblStatus.Size = new System.Drawing.Size(152, 20);
             this.lblStatus.TabIndex = 88;
             this.lblStatus.Text = "0 / 0";
             this.lblStatus.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // btnLast
-            // 
-            this.btnLast.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.btnLast.Image = global::MeterReports.Properties.Resources.last;
-            this.btnLast.Location = new System.Drawing.Point(569, 8);
-            this.btnLast.Name = "btnLast";
-            this.btnLast.Size = new System.Drawing.Size(24, 23);
-            this.btnLast.TabIndex = 87;
-            this.btnLast.Text = ">|";
-            this.btnLast.Click += new System.EventHandler(this.btnLast_Click);
-            // 
-            // btnNext
-            // 
-            this.btnNext.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.btnNext.Location = new System.Drawing.Point(545, 8);
-            this.btnNext.Name = "btnNext";
-            this.btnNext.Size = new System.Drawing.Size(24, 23);
-            this.btnNext.TabIndex = 86;
-            this.btnNext.Text = ">";
-            this.btnNext.Click += new System.EventHandler(this.btnNext_Click);
-            // 
-            // btnPrevious
-            // 
-            this.btnPrevious.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.btnPrevious.Location = new System.Drawing.Point(368, 8);
-            this.btnPrevious.Name = "btnPrevious";
-            this.btnPrevious.Size = new System.Drawing.Size(24, 23);
-            this.btnPrevious.TabIndex = 85;
-            this.btnPrevious.Text = "<";
-            this.btnPrevious.Click += new System.EventHandler(this.btnPrevious_Click);
-            // 
-            // btnFirst
-            // 
-            this.btnFirst.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.btnFirst.Location = new System.Drawing.Point(344, 8);
-            this.btnFirst.Name = "btnFirst";
-            this.btnFirst.Size = new System.Drawing.Size(24, 23);
-            this.btnFirst.TabIndex = 84;
-            this.btnFirst.Text = "|<";
-            this.btnFirst.Click += new System.EventHandler(this.btnFirst_Click);
-            // 
-            // BindingNavigatorMeterReading
-            // 
-            this.BindingNavigatorMeterReading.AddNewItem = null;
-            this.BindingNavigatorMeterReading.CountItem = this.bindingNavigatorCountItem;
-            this.BindingNavigatorMeterReading.DeleteItem = null;
-            this.BindingNavigatorMeterReading.Dock = System.Windows.Forms.DockStyle.None;
-            this.BindingNavigatorMeterReading.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.bindingNavigatorMoveFirstItem,
-            this.bindingNavigatorMovePreviousItem,
-            this.bindingNavigatorSeparator,
-            this.bindingNavigatorPositionItem,
-            this.bindingNavigatorCountItem,
-            this.bindingNavigatorSeparator1,
-            this.bindingNavigatorMoveNextItem,
-            this.bindingNavigatorMoveLastItem,
-            this.bindingNavigatorSeparator2});
-            this.BindingNavigatorMeterReading.Location = new System.Drawing.Point(608, 16);
-            this.BindingNavigatorMeterReading.MoveFirstItem = this.bindingNavigatorMoveFirstItem;
-            this.BindingNavigatorMeterReading.MoveLastItem = this.bindingNavigatorMoveLastItem;
-            this.BindingNavigatorMeterReading.MoveNextItem = this.bindingNavigatorMoveNextItem;
-            this.BindingNavigatorMeterReading.MovePreviousItem = this.bindingNavigatorMovePreviousItem;
-            this.BindingNavigatorMeterReading.Name = "BindingNavigatorMeterReading";
-            this.BindingNavigatorMeterReading.PositionItem = this.bindingNavigatorPositionItem;
-            this.BindingNavigatorMeterReading.Size = new System.Drawing.Size(209, 25);
-            this.BindingNavigatorMeterReading.TabIndex = 83;
-            this.BindingNavigatorMeterReading.Text = "bindingNavigator1";
-            // 
-            // bindingNavigatorCountItem
-            // 
-            this.bindingNavigatorCountItem.Name = "bindingNavigatorCountItem";
-            this.bindingNavigatorCountItem.Size = new System.Drawing.Size(35, 22);
-            this.bindingNavigatorCountItem.Text = "of {0}";
-            this.bindingNavigatorCountItem.ToolTipText = "Total number of items";
-            // 
-            // bindingNavigatorMoveFirstItem
-            // 
-            this.bindingNavigatorMoveFirstItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.bindingNavigatorMoveFirstItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorMoveFirstItem.Image")));
-            this.bindingNavigatorMoveFirstItem.Name = "bindingNavigatorMoveFirstItem";
-            this.bindingNavigatorMoveFirstItem.RightToLeftAutoMirrorImage = true;
-            this.bindingNavigatorMoveFirstItem.Size = new System.Drawing.Size(23, 22);
-            this.bindingNavigatorMoveFirstItem.Text = "Move first";
-            this.bindingNavigatorMoveFirstItem.Click += new System.EventHandler(this.bindingNavigatorMoveFirstItem_Click);
-            // 
-            // bindingNavigatorMovePreviousItem
-            // 
-            this.bindingNavigatorMovePreviousItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.bindingNavigatorMovePreviousItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorMovePreviousItem.Image")));
-            this.bindingNavigatorMovePreviousItem.Name = "bindingNavigatorMovePreviousItem";
-            this.bindingNavigatorMovePreviousItem.RightToLeftAutoMirrorImage = true;
-            this.bindingNavigatorMovePreviousItem.Size = new System.Drawing.Size(23, 22);
-            this.bindingNavigatorMovePreviousItem.Text = "Move previous";
-            this.bindingNavigatorMovePreviousItem.Click += new System.EventHandler(this.bindingNavigatorMovePreviousItem_Click_1);
-            // 
-            // bindingNavigatorSeparator
-            // 
-            this.bindingNavigatorSeparator.Name = "bindingNavigatorSeparator";
-            this.bindingNavigatorSeparator.Size = new System.Drawing.Size(6, 25);
-            // 
-            // bindingNavigatorPositionItem
-            // 
-            this.bindingNavigatorPositionItem.AccessibleName = "Position";
-            this.bindingNavigatorPositionItem.AutoSize = false;
-            this.bindingNavigatorPositionItem.Name = "bindingNavigatorPositionItem";
-            this.bindingNavigatorPositionItem.Size = new System.Drawing.Size(50, 23);
-            this.bindingNavigatorPositionItem.Text = "0";
-            this.bindingNavigatorPositionItem.ToolTipText = "Current position";
-            // 
-            // bindingNavigatorSeparator1
-            // 
-            this.bindingNavigatorSeparator1.Name = "bindingNavigatorSeparator1";
-            this.bindingNavigatorSeparator1.Size = new System.Drawing.Size(6, 25);
-            // 
-            // bindingNavigatorMoveNextItem
-            // 
-            this.bindingNavigatorMoveNextItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.bindingNavigatorMoveNextItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorMoveNextItem.Image")));
-            this.bindingNavigatorMoveNextItem.Name = "bindingNavigatorMoveNextItem";
-            this.bindingNavigatorMoveNextItem.RightToLeftAutoMirrorImage = true;
-            this.bindingNavigatorMoveNextItem.Size = new System.Drawing.Size(23, 22);
-            this.bindingNavigatorMoveNextItem.Text = "Move next";
-            this.bindingNavigatorMoveNextItem.Click += new System.EventHandler(this.bindingNavigatorMoveNextItem_Click);
-            // 
-            // bindingNavigatorMoveLastItem
-            // 
-            this.bindingNavigatorMoveLastItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.bindingNavigatorMoveLastItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorMoveLastItem.Image")));
-            this.bindingNavigatorMoveLastItem.Name = "bindingNavigatorMoveLastItem";
-            this.bindingNavigatorMoveLastItem.RightToLeftAutoMirrorImage = true;
-            this.bindingNavigatorMoveLastItem.Size = new System.Drawing.Size(23, 22);
-            this.bindingNavigatorMoveLastItem.Text = "Move last";
-            this.bindingNavigatorMoveLastItem.Click += new System.EventHandler(this.bindingNavigatorMoveLastItem_Click);
-            // 
-            // bindingNavigatorSeparator2
-            // 
-            this.bindingNavigatorSeparator2.Name = "bindingNavigatorSeparator2";
-            this.bindingNavigatorSeparator2.Size = new System.Drawing.Size(6, 25);
-            // 
-            // LabelShow
-            // 
-            this.LabelShow.AutoSize = true;
-            this.LabelShow.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LabelShow.Location = new System.Drawing.Point(8, 5);
-            this.LabelShow.Name = "LabelShow";
-            this.LabelShow.Size = new System.Drawing.Size(262, 22);
-            this.LabelShow.TabIndex = 82;
-            this.LabelShow.Text = "SHOWING 1 OF 10 RECORDS";
             // 
             // DataGridViewMeterReading
             // 
@@ -812,11 +684,11 @@
             this.ColBrokenPipeAlr,
             this.ColEmptyPipeAlr,
             this.ColSpecificErr});
-            this.DataGridViewMeterReading.Location = new System.Drawing.Point(8, 64);
+            this.DataGridViewMeterReading.Location = new System.Drawing.Point(8, 40);
             this.DataGridViewMeterReading.Name = "DataGridViewMeterReading";
             this.DataGridViewMeterReading.ReadOnly = true;
             this.DataGridViewMeterReading.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.DataGridViewMeterReading.Size = new System.Drawing.Size(872, 425);
+            this.DataGridViewMeterReading.Size = new System.Drawing.Size(872, 448);
             this.DataGridViewMeterReading.TabIndex = 81;
             this.DataGridViewMeterReading.SelectionChanged += new System.EventHandler(this.DataGridViewMeterReading_SelectionChanged);
             // 
@@ -925,50 +797,6 @@
             // 
             this.BindingSourceMeterReading.Filter = "0";
             // 
-            // ButtonLast
-            // 
-            this.ButtonLast.AutoSize = true;
-            this.ButtonLast.Image = global::MeterReports.Properties.Resources.last;
-            this.ButtonLast.Location = new System.Drawing.Point(264, 26);
-            this.ButtonLast.Name = "ButtonLast";
-            this.ButtonLast.Size = new System.Drawing.Size(30, 30);
-            this.ButtonLast.TabIndex = 89;
-            this.ButtonLast.UseVisualStyleBackColor = true;
-            this.ButtonLast.Click += new System.EventHandler(this.ButtonLast_Click);
-            // 
-            // ButtonNext
-            // 
-            this.ButtonNext.AutoSize = true;
-            this.ButtonNext.Image = ((System.Drawing.Image)(resources.GetObject("ButtonNext.Image")));
-            this.ButtonNext.Location = new System.Drawing.Point(232, 26);
-            this.ButtonNext.Name = "ButtonNext";
-            this.ButtonNext.Size = new System.Drawing.Size(30, 30);
-            this.ButtonNext.TabIndex = 89;
-            this.ButtonNext.UseVisualStyleBackColor = true;
-            this.ButtonNext.Click += new System.EventHandler(this.ButtonNext_Click);
-            // 
-            // ButtonPrevious
-            // 
-            this.ButtonPrevious.AutoSize = true;
-            this.ButtonPrevious.Image = ((System.Drawing.Image)(resources.GetObject("ButtonPrevious.Image")));
-            this.ButtonPrevious.Location = new System.Drawing.Point(40, 28);
-            this.ButtonPrevious.Name = "ButtonPrevious";
-            this.ButtonPrevious.Size = new System.Drawing.Size(30, 30);
-            this.ButtonPrevious.TabIndex = 89;
-            this.ButtonPrevious.UseVisualStyleBackColor = true;
-            this.ButtonPrevious.Click += new System.EventHandler(this.ButtonPrevious_Click);
-            // 
-            // ButtonFirst
-            // 
-            this.ButtonFirst.AutoSize = true;
-            this.ButtonFirst.Image = ((System.Drawing.Image)(resources.GetObject("ButtonFirst.Image")));
-            this.ButtonFirst.Location = new System.Drawing.Point(8, 28);
-            this.ButtonFirst.Name = "ButtonFirst";
-            this.ButtonFirst.Size = new System.Drawing.Size(30, 30);
-            this.ButtonFirst.TabIndex = 89;
-            this.ButtonFirst.UseVisualStyleBackColor = true;
-            this.ButtonFirst.Click += new System.EventHandler(this.ButtonFirst_Click);
-            // 
             // MeterReading
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -988,9 +816,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.DataGridViewLatestMeterReading)).EndInit();
             this.tabPage2.ResumeLayout(false);
             this.tabPage2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.BindingNavigatorMeterReading)).EndInit();
-            this.BindingNavigatorMeterReading.ResumeLayout(false);
-            this.BindingNavigatorMeterReading.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DataGridViewMeterReading)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProviderMeterReading)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.BindingSourceMeterReading)).EndInit();
@@ -1017,7 +842,6 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TabPage tabPage2;
-        private System.Windows.Forms.Label LabelShow;
         private System.Windows.Forms.DataGridView DataGridViewMeterReading;
         private System.Windows.Forms.TextBox TextBoxLeakAlr;
         private System.Windows.Forms.TextBox TextBoxBackflowAlr;
@@ -1063,21 +887,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn ColEPA;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColSE;
         private System.Windows.Forms.ErrorProvider errorProviderMeterReading;
-        private System.Windows.Forms.BindingNavigator BindingNavigatorMeterReading;
-        private System.Windows.Forms.ToolStripLabel bindingNavigatorCountItem;
-        private System.Windows.Forms.ToolStripButton bindingNavigatorMoveFirstItem;
-        private System.Windows.Forms.ToolStripButton bindingNavigatorMovePreviousItem;
-        private System.Windows.Forms.ToolStripSeparator bindingNavigatorSeparator;
-        private System.Windows.Forms.ToolStripTextBox bindingNavigatorPositionItem;
-        private System.Windows.Forms.ToolStripSeparator bindingNavigatorSeparator1;
-        private System.Windows.Forms.ToolStripButton bindingNavigatorMoveNextItem;
-        private System.Windows.Forms.ToolStripButton bindingNavigatorMoveLastItem;
-        private System.Windows.Forms.ToolStripSeparator bindingNavigatorSeparator2;
         private System.Windows.Forms.Label lblStatus;
-        private System.Windows.Forms.Button btnLast;
-        private System.Windows.Forms.Button btnNext;
-        private System.Windows.Forms.Button btnPrevious;
-        private System.Windows.Forms.Button btnFirst;
         private System.Windows.Forms.BindingSource BindingSourceMeterReading;
         private System.Windows.Forms.Button ButtonFirst;
         private System.Windows.Forms.Button ButtonPrevious;
