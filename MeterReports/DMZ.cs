@@ -36,6 +36,7 @@ namespace MeterReports
         private ErrorProvider errorProviderDMZ;
         private IContainer components;
         private readonly CustomUser _currentUser;
+        private int _rowCount;
         public DMZ(CustomUser currentUser)
         {
             InitializeComponent();
@@ -44,6 +45,7 @@ namespace MeterReports
             _currentUser = currentUser;
             _save = true;
             _dmzId = 0;
+            _rowCount = 0;
         }
 
         private void InitializeComponent()
@@ -234,6 +236,8 @@ namespace MeterReports
             this.TextBoxDescription.Name = "TextBoxDescription";
             this.TextBoxDescription.Size = new System.Drawing.Size(376, 27);
             this.TextBoxDescription.TabIndex = 29;
+            this.TextBoxDescription.Validating += new System.ComponentModel.CancelEventHandler(this.TextBoxDescription_Validating);
+            this.TextBoxDescription.Validated += new System.EventHandler(this.TextBoxDescription_Validated);
             // 
             // label2
             // 
@@ -274,6 +278,8 @@ namespace MeterReports
             this.ComboBoxCity.Size = new System.Drawing.Size(376, 28);
             this.ComboBoxCity.TabIndex = 37;
             this.ComboBoxCity.MouseClick += new System.Windows.Forms.MouseEventHandler(this.ComboBoxCity_MouseClick);
+            this.ComboBoxCity.Validating += new System.ComponentModel.CancelEventHandler(this.ComboBoxCity_Validating);
+            this.ComboBoxCity.Validated += new System.EventHandler(this.ComboBoxCity_Validated);
             // 
             // errorProviderDMZ
             // 
@@ -281,7 +287,8 @@ namespace MeterReports
             // 
             // DMZ
             // 
-            this.ClientSize = new System.Drawing.Size(670, 428);
+            this.AutoValidate = System.Windows.Forms.AutoValidate.Disable;
+            this.ClientSize = new System.Drawing.Size(685, 428);
             this.Controls.Add(this.ComboBoxCity);
             this.Controls.Add(this.LabelShow);
             this.Controls.Add(this.ButtonDelete);
@@ -374,8 +381,6 @@ namespace MeterReports
         }
         private void DataGridViewDMZ_SelectionChanged(object sender, EventArgs e)
         {
-            LabelShow.Text = $"Showing {DataGridViewDMZ.CurrentRow.Index + 1} index of {DataGridViewDMZ.RowCount} records";
-
             var dmzId = (int)DataGridViewDMZ.CurrentRow.Cells[0].Value;
             ReturnInfo getDMZ = _dmz.GetDMZById(new SmartDB(), dmzId);
 
@@ -402,6 +407,7 @@ namespace MeterReports
             {
                 return;
             }
+            LabelShow.Text = $"Showing {DataGridViewDMZ.CurrentRow.Index + 1} index of {_rowCount} records";
         }
         private void ComboBoxCity_MouseClick(object sender, MouseEventArgs e)
         {
@@ -527,7 +533,8 @@ namespace MeterReports
                 var source = new BindingSource(bindingList, null);
                 DataGridViewDMZ.AutoGenerateColumns = false;
                 DataGridViewDMZ.DataSource = source;
-                LabelShow.Text = $"Showing {DataGridViewDMZ.CurrentRow.Index + 1} index of {DataGridViewDMZ.RowCount} records";
+                _rowCount = DataGridViewDMZ.RowCount;
+                LabelShow.Text = $"Showing {DataGridViewDMZ.CurrentRow.Index + 1} index of {_rowCount} records";
             }
             catch (Exception)
             {
@@ -535,5 +542,22 @@ namespace MeterReports
             }
         }
         #endregion
+
+        private void TextBoxDescription_Validating(object sender, CancelEventArgs e)
+        {
+
+        }
+        private void TextBoxDescription_Validated(object sender, EventArgs e)
+        {
+
+        }
+        private void ComboBoxCity_Validating(object sender, CancelEventArgs e)
+        {
+
+        }
+        private void ComboBoxCity_Validated(object sender, EventArgs e)
+        {
+
+        }
     }
 }

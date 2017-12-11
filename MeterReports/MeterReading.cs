@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Data;
+using System.Data.SqlClient;
 using System.IO;
+using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using TMF.Core;
 using TMF.Core.Model;
@@ -286,7 +288,8 @@ namespace MeterReports
             ButtonSave.Enabled = false;
             ButtonDelete.Enabled = false;
             _save = true;
-            Task.Factory.StartNew(() => BindMeterReadingWithDataGrid());
+            //Task.Factory.StartNew(() => BindMeterReadingWithDataGrid());
+            BindMeterReadingWithDataGrid();
             BindMeterReadingLatestWithDataGrid();
         }
         protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
@@ -304,23 +307,37 @@ namespace MeterReports
             var lockcount = (info.BizObject as TMF.Reports.Model.MeterReading).LockCount;
             return lockcount;
         }
+
+        private int perPage = 10;
+        private int currentPage = 1;
+        private int pageCount = 0;
+        private int pageSize = 0;
+
+
         private void BindMeterReadingWithDataGrid()
         {   //TODO: Refactor this for reuse.
-            try
-            {
-                ReturnInfo getMeterReadingList = _meterReading.GetMeterReadingBySerialNumber(new SmartDB(), TextBoxSearch.Text);
-                //bool flag = getCityList.Code == ErrorEnum.NoError;
-                List<TMF.Reports.Model.MeterReading> meterReading = (List<TMF.Reports.Model.MeterReading>)getMeterReadingList.BizObject;
-                var bindingList = new BindingList<TMF.Reports.Model.MeterReading>(meterReading);
-                var source = new BindingSource(bindingList, null);
-                DataGridViewMeterReading.AutoGenerateColumns = false;
-                DataGridViewMeterReading.DataSource = source;
-                LabelShow.Text = $"Showing {DataGridViewMeterReading.CurrentRow.Index + 1} index of {DataGridViewMeterReading.RowCount} records";
-            }
-            catch (Exception)
-            {
-                return;
-            }
+            //try
+            //{
+            ReturnInfo getMeterReadingList = _meterReading.GetMeterReadingBySerialNumber(new SmartDB(), TextBoxSearch.Text);
+            //bool flag = getCityList.Code == ErrorEnum.NoError;
+            List<TMF.Reports.Model.MeterReading> meterReading = (List<TMF.Reports.Model.MeterReading>)getMeterReadingList.BizObject;
+            var bindingList = new BindingList<TMF.Reports.Model.MeterReading>(meterReading);
+            
+            var source = new BindingSource(bindingList.Skip(perPage * currentPage).Take(perPage), null);
+            DataGridViewMeterReading.AutoGenerateColumns = false;
+            FillGrid();
+            //Paging.FillGrid(DataGridViewLatestMeterReading, bindingNavigatorPositionItem, bindingNavigatorCountItem);
+
+            //BindingSourceMeterReading.DataSource = bindingList;
+            //BindingNavigatorMeterReading.BindingSource = BindingSourceMeterReading;
+            //DataGridViewMeterReading.DataSource = source;
+            //BindingNavigatorMeterReading.BindingSource = Paging.FillGrid(DataGridViewLatestMeterReading, bindingNavigatorPositionItem, bindingNavigatorCountItem); 
+            //LabelShow.Text = $"Showing {DataGridViewMeterReading.CurrentRow.Index + 1} index of {DataGridViewMeterReading.RowCount} records";
+            //}
+            //catch (Exception)
+            //{
+            //    return;
+            //}
         }
         private void BindMeterReadingLatestWithDataGrid()
         {   //TODO: Refactor this for reuse.
@@ -333,6 +350,7 @@ namespace MeterReports
                 var source = new BindingSource(bindingList, null);
                 DataGridViewLatestMeterReading.AutoGenerateColumns = false;
                 DataGridViewLatestMeterReading.DataSource = source;
+                
                 //LabelShow.Text = $"Showing {DataGridViewLatestMeterReading.CurrentRow.Index + 1} index of {DataGridViewLatestMeterReading.RowCount} records";
             }
             catch (Exception)
@@ -390,5 +408,184 @@ namespace MeterReports
             }
         }
         #endregion
+        
+        #region Paging
+        private int _mintTotalRecords = 0;
+        private int _mintPageSize = 0;
+        private int _mintPageCount = 0;
+        private int _mintCurrentPage = 1;
+
+        private void FillGrid()
+        {
+            // For Page view.
+            _mintPageSize = 17;
+            _mintTotalRecords = GetCount();
+            _mintPageCount = _mintTotalRecords / _mintPageSize;
+
+            // Adjust page count if the last page contains partial page.
+            if (_mintTotalRecords % _mintPageSize > 0)
+                _mintPageCount++;
+
+            _mintCurrentPage = 0;
+            LoadPage();
+        }
+
+        public static int GetCount()
+        {
+            int intCount = 0;
+            using (SqlConnection connection =
+                new SqlConnection(new SmartDB().Connection.ConnectionString))
+            {
+                connection.Open();
+                // This select statement is very fast compare to SELECT COUNT(*)
+                string strSql = "SELECT Rows FROM SYSINDEXES " +
+                                "WHERE Id = OBJECT_ID('MeterReading') AND IndId < 2";
+
+                SqlCommand cmd = connection.CreateCommand();
+                cmd.CommandText = strSql;
+
+                intCount = (int)cmd.ExecuteScalar();
+                cmd.Dispose();
+            }
+            return intCount;
+        }
+
+        public void LoadPage()
+        {
+            string strSql = "";
+            int intSkip = 0;
+
+            intSkip = (_mintCurrentPage * _mintPageSize);
+            SqlCommand cmd;
+            SqlDataAdapter da;
+            DataSet ds = new DataSet();
+            using (SqlConnection connection =
+                new SqlConnection(new SmartDB().Connection.ConnectionString))
+            {
+                //Select only the n records.
+                strSql = "SELECT TOP " + _mintPageSize +
+                         " * FROM MeterReading WHERE Id NOT IN " +
+                         "(SELECT TOP " + intSkip + " Id FROM MeterReading)";
+                //strSql = "SELECT * FROM MeterReading";
+
+                cmd = connection.CreateCommand();
+                cmd.CommandText = strSql;
+                da = new SqlDataAdapter(cmd);
+                da.Fill(ds, "MeterReading");
+
+                // Populate Data Grid
+                var source = new BindingSource(ds.Tables["MeterReading"].DefaultView, null);
+                DataGridViewMeterReading.DataSource = source;
+                //BindingNavigatorMeterReading.BindingSource = source;
+                // Show Status
+                //bindingNavigatorPositionItem.Text = (_mintCurrentPage + 1).ToString();
+                //bindingNavigatorCountItem.Text = $"of {_mintPageCount}";
+                lblStatus.Text = (_mintCurrentPage + 1) +
+                                      " / " + _mintPageCount;
+                cmd.Dispose();
+                da.Dispose();
+                ds.Dispose();
+            }
+        }
+
+        public void GoFirst()
+        {
+            _mintCurrentPage = 0;
+            LoadPage();
+        }
+
+        public void GoPrevious()
+        {
+            if (_mintCurrentPage == _mintPageCount)
+                _mintCurrentPage = _mintPageCount - 1;
+
+            _mintCurrentPage--;
+
+            if (_mintCurrentPage < 1)
+                _mintCurrentPage = 0;
+
+            LoadPage();
+        }
+
+        public void GoNext()
+        {
+            _mintCurrentPage++;
+
+            if (_mintCurrentPage > (_mintPageCount - 1))
+                _mintCurrentPage = _mintPageCount - 1;
+
+            LoadPage();
+        }
+
+        public void GoLast()
+        {
+            _mintCurrentPage = _mintPageCount - 1;
+            LoadPage();
+        }
+        #endregion
+
+        private void btnFirst_Click(object sender, EventArgs e)
+        {
+            GoFirst();
+        }
+
+        private void btnPrevious_Click(object sender, EventArgs e)
+        {
+            GoPrevious();
+        }
+
+        private void btnNext_Click(object sender, EventArgs e)
+        {
+            GoNext();
+        }
+
+        private void btnLast_Click(object sender, EventArgs e)
+        {
+            GoLast();
+        }
+
+        private void bindingNavigatorMoveFirstItem_Click(object sender, EventArgs e)
+        {
+            ReturnInfo getMeterReadingList = _meterReading.GetMeterReadingBySerialNumber(new SmartDB(), TextBoxSearch.Text);
+            List<TMF.Reports.Model.MeterReading> meterReading = (List<TMF.Reports.Model.MeterReading>)getMeterReadingList.BizObject;
+            var bindingList = new BindingList<TMF.Reports.Model.MeterReading>(meterReading);
+
+            var source = new BindingSource(bindingList.Skip(perPage * currentPage).Take(perPage), null);
+            DataGridViewMeterReading.AutoGenerateColumns = false;
+            DataGridViewMeterReading.DataSource = source;
+        }
+        private void bindingNavigatorMovePreviousItem_Click_1(object sender, EventArgs e)
+        {
+            BindingSourceMeterReading.MovePrevious();
+        }
+        private void bindingNavigatorMoveNextItem_Click(object sender, EventArgs e)
+        {
+            bindingNavigatorPositionItem.Text += 1;
+            //BindingSourceMeterReading.MoveNext();
+        }
+        private void bindingNavigatorMoveLastItem_Click(object sender, EventArgs e)
+        {
+            BindingSourceMeterReading.MoveLast();
+        }
+
+        private void ButtonFirst_Click(object sender, EventArgs e)
+        {
+            GoFirst();
+        }
+
+        private void ButtonPrevious_Click(object sender, EventArgs e)
+        {
+            GoPrevious();
+        }
+
+        private void ButtonNext_Click(object sender, EventArgs e)
+        {
+            GoNext();
+        }
+
+        private void ButtonLast_Click(object sender, EventArgs e)
+        {
+            GoLast();
+        }
     }
 }

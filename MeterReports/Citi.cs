@@ -14,6 +14,7 @@ namespace MeterReports
         private readonly CustomUser _currentUser;
         private bool _save;
         private string _cityId;
+        private int _rowCount;
         public Citi(CustomUser currentUser)
         {
             InitializeComponent();
@@ -21,6 +22,7 @@ namespace MeterReports
             _currentUser = currentUser;
             _save = true;
             _cityId = "";
+            _rowCount = 0;
         }
         private void Citi_Load(object sender, EventArgs e)
         {
@@ -92,14 +94,12 @@ namespace MeterReports
         }
         private void DataGridViewCity_SelectionChanged(object sender, EventArgs e)
         {
-            LabelShow.Text = $"Showing {DataGridViewCity.CurrentRow.Index + 1} index of {DataGridViewCity.RowCount} records";
-
             var cityId = DataGridViewCity.CurrentRow.Cells[0].Value.ToString();
             ReturnInfo getCity = _city.GetCityById(new SmartDB(), cityId);
 
             bool flag = getCity.Code == ErrorEnum.NoError;
 
-            TMF.Reports.Model.City city = (TMF.Reports.Model.City)getCity.BizObject;
+            City city = (City)getCity.BizObject;
             if (!string.IsNullOrEmpty(city.Id))
             {
                 TextBoxDescription.Text = city.Description;
@@ -108,6 +108,7 @@ namespace MeterReports
                 ButtonEdit.Enabled = true;
                 ButtonDelete.Enabled = true;
             }
+            LabelShow.Text = $"Showing {DataGridViewCity.CurrentRow.Index + 1} index of {_rowCount} records";
         }
         private void TextBoxDescription_Validating(object sender, CancelEventArgs e)
         {
@@ -227,12 +228,13 @@ namespace MeterReports
             {
                 ReturnInfo getCityList = _city.GetCityByDescription(new SmartDB(), TextBoxSearch.Text);
                 //bool flag = getCityList.Code == ErrorEnum.NoError;
-                List<TMF.Reports.Model.City> city = (List<TMF.Reports.Model.City>)getCityList.BizObject;
-                var bindingList = new BindingList<TMF.Reports.Model.City>(city);
+                List<City> city = (List<City>)getCityList.BizObject;
+                var bindingList = new BindingList<City>(city);
                 var source = new BindingSource(bindingList, null);
                 DataGridViewCity.AutoGenerateColumns = false;
                 DataGridViewCity.DataSource = source;
-                LabelShow.Text = $"Showing {DataGridViewCity.CurrentRow.Index + 1} index of {DataGridViewCity.RowCount} records";
+                _rowCount=DataGridViewCity.RowCount;
+                LabelShow.Text = $"Showing {DataGridViewCity.CurrentRow.Index + 1} index of {_rowCount} records";
             }
             catch (Exception)
             {

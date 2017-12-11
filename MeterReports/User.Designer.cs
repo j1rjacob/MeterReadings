@@ -65,7 +65,7 @@
             this.TextBoxUsername.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TextBoxUsername.Location = new System.Drawing.Point(163, 96);
             this.TextBoxUsername.Name = "TextBoxUsername";
-            this.TextBoxUsername.Size = new System.Drawing.Size(216, 27);
+            this.TextBoxUsername.Size = new System.Drawing.Size(565, 27);
             this.TextBoxUsername.TabIndex = 4;
             // 
             // TextBoxName
@@ -74,7 +74,7 @@
             this.TextBoxName.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TextBoxName.Location = new System.Drawing.Point(163, 61);
             this.TextBoxName.Name = "TextBoxName";
-            this.TextBoxName.Size = new System.Drawing.Size(216, 27);
+            this.TextBoxName.Size = new System.Drawing.Size(565, 27);
             this.TextBoxName.TabIndex = 5;
             // 
             // label2
@@ -123,7 +123,7 @@
             this.TextBoxPassword.Location = new System.Drawing.Point(163, 136);
             this.TextBoxPassword.Name = "TextBoxPassword";
             this.TextBoxPassword.PasswordChar = '$';
-            this.TextBoxPassword.Size = new System.Drawing.Size(216, 27);
+            this.TextBoxPassword.Size = new System.Drawing.Size(565, 27);
             this.TextBoxPassword.TabIndex = 5;
             // 
             // TextBoxSearch
@@ -131,7 +131,7 @@
             this.TextBoxSearch.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TextBoxSearch.Location = new System.Drawing.Point(163, 12);
             this.TextBoxSearch.Name = "TextBoxSearch";
-            this.TextBoxSearch.Size = new System.Drawing.Size(280, 27);
+            this.TextBoxSearch.Size = new System.Drawing.Size(565, 27);
             this.TextBoxSearch.TabIndex = 5;
             // 
             // DataGridViewUser
@@ -149,7 +149,7 @@
             this.DataGridViewUser.Name = "DataGridViewUser";
             this.DataGridViewUser.ReadOnly = true;
             this.DataGridViewUser.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.DataGridViewUser.Size = new System.Drawing.Size(965, 150);
+            this.DataGridViewUser.Size = new System.Drawing.Size(847, 150);
             this.DataGridViewUser.TabIndex = 6;
             this.DataGridViewUser.SelectionChanged += new System.EventHandler(this.DataGridViewUser_SelectionChanged);
             // 
@@ -195,9 +195,9 @@
             this.ButtonSearch.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("ButtonSearch.BackgroundImage")));
             this.ButtonSearch.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.ButtonSearch.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ButtonSearch.Location = new System.Drawing.Point(451, 8);
+            this.ButtonSearch.Location = new System.Drawing.Point(736, 8);
             this.ButtonSearch.Name = "ButtonSearch";
-            this.ButtonSearch.Size = new System.Drawing.Size(151, 56);
+            this.ButtonSearch.Size = new System.Drawing.Size(133, 56);
             this.ButtonSearch.TabIndex = 7;
             this.ButtonSearch.Text = "SEARCH";
             this.ButtonSearch.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -212,7 +212,7 @@
             this.ButtonNew.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ButtonNew.Location = new System.Drawing.Point(19, 208);
             this.ButtonNew.Name = "ButtonNew";
-            this.ButtonNew.Size = new System.Drawing.Size(151, 56);
+            this.ButtonNew.Size = new System.Drawing.Size(133, 56);
             this.ButtonNew.TabIndex = 7;
             this.ButtonNew.Text = "NEW";
             this.ButtonNew.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -225,9 +225,9 @@
             this.ButtonEdit.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("ButtonEdit.BackgroundImage")));
             this.ButtonEdit.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.ButtonEdit.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ButtonEdit.Location = new System.Drawing.Point(187, 208);
+            this.ButtonEdit.Location = new System.Drawing.Point(160, 208);
             this.ButtonEdit.Name = "ButtonEdit";
-            this.ButtonEdit.Size = new System.Drawing.Size(151, 56);
+            this.ButtonEdit.Size = new System.Drawing.Size(133, 56);
             this.ButtonEdit.TabIndex = 7;
             this.ButtonEdit.Text = "EDIT";
             this.ButtonEdit.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -240,9 +240,9 @@
             this.ButtonSave.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("ButtonSave.BackgroundImage")));
             this.ButtonSave.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.ButtonSave.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ButtonSave.Location = new System.Drawing.Point(347, 208);
+            this.ButtonSave.Location = new System.Drawing.Point(304, 208);
             this.ButtonSave.Name = "ButtonSave";
-            this.ButtonSave.Size = new System.Drawing.Size(151, 56);
+            this.ButtonSave.Size = new System.Drawing.Size(133, 56);
             this.ButtonSave.TabIndex = 7;
             this.ButtonSave.Text = "SAVE";
             this.ButtonSave.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -255,9 +255,9 @@
             this.ButtonDelete.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("ButtonDelete.BackgroundImage")));
             this.ButtonDelete.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.ButtonDelete.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ButtonDelete.Location = new System.Drawing.Point(507, 208);
+            this.ButtonDelete.Location = new System.Drawing.Point(448, 208);
             this.ButtonDelete.Name = "ButtonDelete";
-            this.ButtonDelete.Size = new System.Drawing.Size(151, 56);
+            this.ButtonDelete.Size = new System.Drawing.Size(133, 56);
             this.ButtonDelete.TabIndex = 7;
             this.ButtonDelete.Text = "DELETE";
             this.ButtonDelete.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -283,7 +283,7 @@
             "Encoder"});
             this.ComboBoxRole.Location = new System.Drawing.Point(163, 176);
             this.ComboBoxRole.Name = "ComboBoxRole";
-            this.ComboBoxRole.Size = new System.Drawing.Size(216, 28);
+            this.ComboBoxRole.Size = new System.Drawing.Size(565, 28);
             this.ComboBoxRole.TabIndex = 9;
             this.ComboBoxRole.MouseClick += new System.Windows.Forms.MouseEventHandler(this.ComboBoxRole_MouseClick);
             // 
@@ -291,7 +291,7 @@
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(444, 120);
+            this.label5.Location = new System.Drawing.Point(560, 80);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(83, 22);
             this.label5.TabIndex = 2;
@@ -314,9 +314,9 @@
             this.ButtonLock.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("ButtonLock.BackgroundImage")));
             this.ButtonLock.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.ButtonLock.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ButtonLock.Location = new System.Drawing.Point(669, 208);
+            this.ButtonLock.Location = new System.Drawing.Point(592, 208);
             this.ButtonLock.Name = "ButtonLock";
-            this.ButtonLock.Size = new System.Drawing.Size(151, 56);
+            this.ButtonLock.Size = new System.Drawing.Size(133, 56);
             this.ButtonLock.TabIndex = 7;
             this.ButtonLock.Text = "LOCK";
             this.ButtonLock.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -329,9 +329,9 @@
             this.ButtonUnlock.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("ButtonUnlock.BackgroundImage")));
             this.ButtonUnlock.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.ButtonUnlock.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ButtonUnlock.Location = new System.Drawing.Point(829, 208);
+            this.ButtonUnlock.Location = new System.Drawing.Point(736, 208);
             this.ButtonUnlock.Name = "ButtonUnlock";
-            this.ButtonUnlock.Size = new System.Drawing.Size(151, 56);
+            this.ButtonUnlock.Size = new System.Drawing.Size(133, 56);
             this.ButtonUnlock.TabIndex = 7;
             this.ButtonUnlock.Text = "UNLOCK";
             this.ButtonUnlock.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -346,7 +346,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(988, 461);
+            this.ClientSize = new System.Drawing.Size(880, 461);
             this.Controls.Add(this.ComboBoxStatus);
             this.Controls.Add(this.ComboBoxRole);
             this.Controls.Add(this.LabelShow);

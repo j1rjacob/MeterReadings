@@ -96,6 +96,7 @@
     <Compile Include="UTIL\CSVDuplicate.cs" />
     <Compile Include="UTIL\MacDuplicate.cs" />
     <Compile Include="UTIL\MakeTable.cs" />
+    <Compile Include="UTIL\Paging.cs" />
     <Compile Include="UTIL\Util.cs" />
   </ItemGroup>
   <ItemGroup>
