@@ -73,7 +73,7 @@ namespace MeterReports.Test
             //Arrange
             TMF.Reports.Model.Gateway gateway = new TMF.Reports.Model.Gateway()
             {
-                Id = "e5bd9db0c995482a9ca73c27949b2c64",
+                //Id = "e5bd9db0c995482a9ca73c27949b2c64",
                 MacAddress = "12:AF:18:32:34:B5",
                 SimCard = "09448833481",
                 X = 5.56484m,

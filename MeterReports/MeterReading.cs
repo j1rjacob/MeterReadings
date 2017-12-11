@@ -118,7 +118,8 @@ namespace MeterReports
         {
             if (TextBoxSearch.Text != "")
             {
-                BindMeterReadingWithDataGrid();
+                //BindMeterReadingWithDataGrid();
+                FillGrid();
                 BindMeterReadingLatestWithDataGrid();
             }
             else
@@ -320,32 +321,29 @@ namespace MeterReports
             var lockcount = (info.BizObject as TMF.Reports.Model.MeterReading).LockCount;
             return lockcount;
         }
-
         private int perPage = 10;
         private int currentPage = 1;
         private int pageCount = 0;
         private int pageSize = 0;
-
-
         private void BindMeterReadingWithDataGrid()
         {   //TODO: Refactor this for reuse.
             try
             {
-            //ReturnInfo getMeterReadingList = _meterReading.GetMeterReadingBySerialNumber(new SmartDB(), TextBoxSearch.Text);
-            ////bool flag = getCityList.Code == ErrorEnum.NoError;
-            //List<TMF.Reports.Model.MeterReading> meterReading = (List<TMF.Reports.Model.MeterReading>)getMeterReadingList.BizObject;
-            //var bindingList = new BindingList<TMF.Reports.Model.MeterReading>(meterReading);
-            
-            //var source = new BindingSource(bindingList.Skip(perPage * currentPage).Take(perPage), null);
-            //DataGridViewMeterReading.AutoGenerateColumns = false;
-            FillGrid();
-            //Paging.FillGrid(DataGridViewLatestMeterReading, bindingNavigatorPositionItem, bindingNavigatorCountItem);
+                //ReturnInfo getMeterReadingList = _meterReading.GetMeterReadingBySerialNumber(new SmartDB(), TextBoxSearch.Text);
+                ////bool flag = getCityList.Code == ErrorEnum.NoError;
+                //List<TMF.Reports.Model.MeterReading> meterReading = (List<TMF.Reports.Model.MeterReading>)getMeterReadingList.BizObject;
+                //var bindingList = new BindingList<TMF.Reports.Model.MeterReading>(meterReading);
+                //var source = new BindingSource(bindingList.Skip(perPage * currentPage).Take(perPage), null);
 
-            //BindingSourceMeterReading.DataSource = bindingList;
-            //BindingNavigatorMeterReading.BindingSource = BindingSourceMeterReading;
-            //DataGridViewMeterReading.DataSource = source;
-            //BindingNavigatorMeterReading.BindingSource = Paging.FillGrid(DataGridViewLatestMeterReading, bindingNavigatorPositionItem, bindingNavigatorCountItem); 
-            //LabelShow.Text = $"Showing {DataGridViewMeterReading.CurrentRow.Index + 1} index of {DataGridViewMeterReading.RowCount} records";
+                DataGridViewMeterReading.AutoGenerateColumns = false;
+                FillGrid();
+
+                //Paging.FillGrid(DataGridViewLatestMeterReading, bindingNavigatorPositionItem, bindingNavigatorCountItem);
+                //BindingSourceMeterReading.DataSource = bindingList;
+                //BindingNavigatorMeterReading.BindingSource = BindingSourceMeterReading;
+                //DataGridViewMeterReading.DataSource = source;
+                //BindingNavigatorMeterReading.BindingSource = Paging.FillGrid(DataGridViewLatestMeterReading, bindingNavigatorPositionItem, bindingNavigatorCountItem); 
+                //LabelShow.Text = $"Showing {DataGridViewMeterReading.CurrentRow.Index + 1} index of {DataGridViewMeterReading.RowCount} records";
             }
             catch (Exception)
             {
@@ -421,7 +419,6 @@ namespace MeterReports
             }
         }
         #endregion
-        
         #region Paging
         private int _mintTotalRecords = 0;
         private int _mintPageSize = 0;
@@ -441,7 +438,6 @@ namespace MeterReports
             _mintCurrentPage = 0;
             LoadPage();
         }
-
         public int GetCount()
         {
             int intCount = 0;
@@ -451,7 +447,7 @@ namespace MeterReports
                 connection.Open();
                 // This select statement is very fast compare to SELECT COUNT(*)
                 string strSql = "SELECT Rows FROM SYSINDEXES " +
-                                "WHERE Id = OBJECT_ID('MeterReading') AND IndId < 2";// +
+                                "WHERE Id = OBJECT_ID('MeterReading') AND IndId < 2 ";// +
                                 //"AND SerialNumber LIKE @SerialNumber";
 
                 SqlCommand cmd = connection.CreateCommand();
@@ -462,7 +458,6 @@ namespace MeterReports
             }
             return intCount;
         }
-
         public void LoadPage()
         {
             string strSql = "";
@@ -490,7 +485,8 @@ namespace MeterReports
 
                 // Populate Data Grid
                 var source = new BindingSource(ds.Tables["MeterReading"].DefaultView, null);
-                DataGridViewMeterReading.DataSource = source;
+                //DataGridViewMeterReading.DataSource = source;
+                DataGridViewMeterReading.Invoke((Action) delegate { DataGridViewMeterReading.DataSource = source; });
                 //BindingNavigatorMeterReading.BindingSource = source;
                 // Show Status
                 //bindingNavigatorPositionItem.Text = (_mintCurrentPage + 1).ToString();
@@ -502,13 +498,11 @@ namespace MeterReports
                 ds.Dispose();
             }
         }
-
         public void GoFirst()
         {
             _mintCurrentPage = 0;
             LoadPage();
         }
-
         public void GoPrevious()
         {
             if (_mintCurrentPage == _mintPageCount)
@@ -521,7 +515,6 @@ namespace MeterReports
 
             LoadPage();
         }
-
         public void GoNext()
         {
             _mintCurrentPage++;
@@ -531,9 +524,7 @@ namespace MeterReports
 
             LoadPage();
         }
-
-        public void GoLast()
-        {
+        public void GoLast(){
             _mintCurrentPage = _mintPageCount - 1;
             LoadPage();
         }
@@ -542,17 +533,14 @@ namespace MeterReports
         {
             GoFirst();
         }
-
         private void ButtonPrevious_Click(object sender, EventArgs e)
         {
             GoPrevious();
         }
-
         private void ButtonNext_Click(object sender, EventArgs e)
         {
             GoNext();
         }
-
         private void ButtonLast_Click(object sender, EventArgs e)
         {
             GoLast();

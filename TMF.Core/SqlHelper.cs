@@ -28,7 +28,7 @@ namespace TMF.Core
                 return result;
             }
         }
-
+        
         public static int ExecuteNonQuery(string connectionString, CommandType cmdType, string cmdText, params SqlParameter[] commandParameters)
         {
             SqlCommand sqlCommand = new SqlCommand();
