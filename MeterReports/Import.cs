@@ -161,7 +161,6 @@ namespace MeterReports
                 _max = (_fileNames.Length - _duplicateCSVFile.Count);
             //Task.Factory.StartNew(() => ImportBulkRDSCSV());
 
-
             //TODO: Decouple; Error same count on imported and duplicated.
             LabelImported.Text = $"Number of imported CSV File/s: {0} Ok";
             LabelDuplicate.Text = $"Number of duplicated CSV File/ s: {0}";
@@ -171,7 +170,6 @@ namespace MeterReports
                         ProgressBarImportStatus,
                         LabelImported,
                         LabelDuplicate));
-
         }
         private void ButtonSkip_Click(object sender, EventArgs e)
         {

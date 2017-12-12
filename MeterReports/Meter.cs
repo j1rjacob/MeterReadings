@@ -130,7 +130,10 @@ namespace MeterReports
         }
         private void ButtonExport_Click(object sender, EventArgs e)
         {
-            ExportMeters();
+            if (saveFileDialogMeter.ShowDialog() == DialogResult.OK)
+            {
+                Task.Factory.StartNew(() => ExportMeters(saveFileDialogMeter));
+            }
         }
         private void ButtonImport_Click(object sender, EventArgs e)
         {
@@ -138,8 +141,6 @@ namespace MeterReports
         }
         private void DataGridViewMeter_SelectionChanged(object sender, EventArgs e)
         {
-            //LabelShow.Text = $"Showing {DataGridViewMeter.CurrentRow.Index + 1} index of {DataGridViewMeter.RowCount} records";
-
             try
             {
                 var serialNumber = DataGridViewMeter.CurrentRow.Cells[0].Value.ToString();
@@ -147,18 +148,18 @@ namespace MeterReports
                 bool flag = getMeter.Code == ErrorEnum.NoError;
                 TMF.Reports.Model.Meter meter = (TMF.Reports.Model.Meter)getMeter.BizObject;
 
-            ReturnInfo getMeterType = _meterType.GetMeterTypeById(new SmartDB(), Convert.ToInt32(meter.MeterTypeId));
-            TMF.Reports.Model.MeterType meterType = (TMF.Reports.Model.MeterType)getMeterType.BizObject;
-            ReturnInfo getMeterSize = _meterSize.GetMeterSizeById(new SmartDB(), Convert.ToInt32(meter.MeterSizeId));
-            TMF.Reports.Model.MeterSize meterSize = (TMF.Reports.Model.MeterSize)getMeterSize.BizObject;
-            ReturnInfo getMeterProtocol = _meterProtocol.GetMeterProtocolById(new SmartDB(), Convert.ToInt32(meter.MeterProtocolId));
-            TMF.Reports.Model.MeterProtocol meterProtocol = (TMF.Reports.Model.MeterProtocol)getMeterProtocol.BizObject;
-            ReturnInfo getDMZ = _dmz.GetDMZById(new SmartDB(), Convert.ToInt32(meter.DMZId));
-            TMF.Reports.Model.DMZ dmz = (TMF.Reports.Model.DMZ)getDMZ.BizObject;
-            ReturnInfo getCity = _city.GetCityById(new SmartDB(), meter.CityId);
-            TMF.Reports.Model.City city = (TMF.Reports.Model.City)getCity.BizObject;
+                ReturnInfo getMeterType = _meterType.GetMeterTypeById(new SmartDB(), Convert.ToInt32(meter.MeterTypeId));
+                TMF.Reports.Model.MeterType meterType = (TMF.Reports.Model.MeterType)getMeterType.BizObject;
+                ReturnInfo getMeterSize = _meterSize.GetMeterSizeById(new SmartDB(), Convert.ToInt32(meter.MeterSizeId));
+                TMF.Reports.Model.MeterSize meterSize = (TMF.Reports.Model.MeterSize)getMeterSize.BizObject;
+                ReturnInfo getMeterProtocol = _meterProtocol.GetMeterProtocolById(new SmartDB(), Convert.ToInt32(meter.MeterProtocolId));
+                TMF.Reports.Model.MeterProtocol meterProtocol = (TMF.Reports.Model.MeterProtocol)getMeterProtocol.BizObject;
+                ReturnInfo getDMZ = _dmz.GetDMZById(new SmartDB(), Convert.ToInt32(meter.DMZId));
+                TMF.Reports.Model.DMZ dmz = (TMF.Reports.Model.DMZ)getDMZ.BizObject;
+                ReturnInfo getCity = _city.GetCityById(new SmartDB(), meter.CityId);
+                TMF.Reports.Model.City city = (TMF.Reports.Model.City)getCity.BizObject;
 
-            if (!string.IsNullOrEmpty(meter.SerialNumber))
+                if (!string.IsNullOrEmpty(meter.SerialNumber))
                 {
                     _meterSerialNumber = meter.SerialNumber;
                     TextBoxSerialNumber.Text = meter.SerialNumber;
@@ -168,21 +169,21 @@ namespace MeterReports
                     TextBoxHCN.Text = meter.HCN;
                     DateTimePickerInstallationDate.Text = meter.InstallationDate.ToString();
                     DateTimePickerMaintenanceDate.Text = meter.MaintenanceDate.ToString();
-                ComboBoxMeterType.Text = meterType.Description;
-                ComboBoxMeterSize.Text = meterSize.Description;
-                ComboBoxMeterProtocol.Text = meterProtocol.Description;
-                ComboBoxDMZ.Text = dmz.Description;
-                ComboBoxCity.Text = city.Description;
-                ButtonEdit.Enabled = true;
+                    ComboBoxMeterType.Text = meterType.Description;
+                    ComboBoxMeterSize.Text = meterSize.Description;
+                    ComboBoxMeterProtocol.Text = meterProtocol.Description;
+                    ComboBoxDMZ.Text = dmz.Description;
+                    ComboBoxCity.Text = city.Description;
+                    ButtonEdit.Enabled = true;
                     ButtonDelete.Enabled = true;
                 }
-        }
+            }
             catch (Exception)
             {
                 return;
             }
 
-}
+        }
         private void ComboBoxMeterType_MouseClick(object sender, MouseEventArgs e)
         {
             GetMeterType();
@@ -391,8 +392,8 @@ namespace MeterReports
         }
         private void BindMeterWithDataGrid()
         {   //TODO: Refactor this for reuse.
-            //try
-            //{
+            try
+            {
                 //ReturnInfo getMeterList = _meter.GetMeterBySerialNumber(new SmartDB(), TextBoxSearch.Text);
                 //bool flag = getCityList.Code == ErrorEnum.NoError;
                 //List<TMF.Reports.Model.Meter> meter = (List<TMF.Reports.Model.Meter>)getMeterList.BizObject;
@@ -402,14 +403,14 @@ namespace MeterReports
                 FillGrid();
                 //DataGridViewMeter.DataSource = source;
                 //LabelShow.Text = $"Showing {DataGridViewMeter.CurrentRow.Index + 1} index of {DataGridViewMeter.RowCount} records";
-            //}
-            //catch (Exception)
-            //{
-            //    return;
-            //}
+            }
+            catch (Exception)
+            {
+                return;
+            }
         }
         #endregion
-        private void ExportMeters()
+        private void ExportMeters(SaveFileDialog sfdMeter)
         {
             StreamWriter sr;
             string line = "";
@@ -419,46 +420,47 @@ namespace MeterReports
                                 "MAINTENANCE_DATE, METER_TYPE_ID, METER_SIZE_ID," +
                                 "METER_PROTOCOL_ID, DMZ_ID, CITY_ID, " +
                                 "CREATED_BY, EDITED_BY, DOC_DATE, SHOW, LOCK_COUNT\r\n");
-            if (saveFileDialogMeter.ShowDialog() == DialogResult.OK)
+            //if (saveFileDialogMeter.ShowDialog() == DialogResult.OK)
+            //{
+            sr = new StreamWriter(sfdMeter.FileName, false);
+            try
             {
-                sr = new StreamWriter(saveFileDialogMeter.FileName, false);
-                try
-                {
-                    ReturnInfo getMeterList = _meter.GetMeterBySerialNumber(new SmartDB(), TextBoxSearch.Text);
-                    List<TMF.Reports.Model.Meter> meter = (List<TMF.Reports.Model.Meter>)getMeterList.BizObject;
+                ReturnInfo getMeterList = _meter.GetMeterBySerialNumber(new SmartDB(), TextBoxSearch.Text);
+                List<TMF.Reports.Model.Meter> meter = (List<TMF.Reports.Model.Meter>)getMeterList.BizObject;
 
-                    foreach (var m in meter)
-                    {
-                        line = m.SerialNumber + ",";
-                        line += m.X + ",";
-                        line += m.Y + ",";
-                        line += m.Status + ",";
-                        line += m.HCN + ",";
-                        line += m.InstallationDate + ",";
-                        line += m.MaintenanceDate + ",";
-                        line += m.MeterTypeId + ",";
-                        line += m.MeterSizeId + ",";
-                        line += m.MeterProtocolId + ",";
-                        line += m.DMZId + ",";
-                        line += m.CityId + ",";
-                        line += m.CreatedBy + ",";
-                        line += m.EditedBy + ",";
-                        line += m.DocDate + ",";
-                        line += m.Show + ",";
-                        line += m.LockCount + "\r\n";
-                        fileContents.Append(line);
-                    }
-
-                    sr.Write(fileContents);
-                    sr.Flush();
-                    sr.Close();
-                }
-                catch (Exception)
+                foreach (var m in meter)
                 {
-                    MessageBox.Show("Error while exporting file!");
+                    line = m.SerialNumber + ",";
+                    line += m.X + ",";
+                    line += m.Y + ",";
+                    line += m.Status + ",";
+                    line += m.HCN + ",";
+                    line += m.InstallationDate + ",";
+                    line += m.MaintenanceDate + ",";
+                    line += m.MeterTypeId + ",";
+                    line += m.MeterSizeId + ",";
+                    line += m.MeterProtocolId + ",";
+                    line += m.DMZId + ",";
+                    line += m.CityId + ",";
+                    line += m.CreatedBy + ",";
+                    line += m.EditedBy + ",";
+                    line += m.DocDate + ",";
+                    line += m.Show + ",";
+                    line += m.LockCount + "\r\n";
+                    fileContents.Append(line);
                 }
 
+                sr.Write(fileContents);
+                sr.Flush();
+                sr.Close();
+                MessageBox.Show("Export Successful");
             }
+            catch (Exception)
+            {
+                MessageBox.Show("Error while exporting file!");
+            }
+
+            //}
         }
         private void ImportMeters()
         {
@@ -523,10 +525,10 @@ namespace MeterReports
         private int _mintCurrentPage = 1;
         private void FillGrid()
         {
-            _mintPageSize = 10;
+            _mintPageSize = 6;
             _mintTotalRecords = GetCount();
             _mintPageCount = _mintTotalRecords / _mintPageSize;
-            
+
             if (_mintTotalRecords % _mintPageSize > 0)
                 _mintPageCount++;
 
@@ -540,12 +542,12 @@ namespace MeterReports
                 new SqlConnection(new SmartDB().Connection.ConnectionString))
             {
                 connection.Open();
-                
+
                 //string strSql = "SELECT Rows FROM SYSINDEXES " +
                 //                "WHERE Id = OBJECT_ID('Meter') AND IndId < 2 ";// +
                 string strSql = "SELECT COUNT(SerialNumber) FROM Meter " +
                                 "WHERE SerialNumber LIKE @SerialNumber";// +
-               
+
                 SqlCommand cmd = connection.CreateCommand();
                 cmd.CommandText = strSql;
                 cmd.Parameters.AddWithValue("@SerialNumber", "%" + TextBoxSearch.Text + "%");
@@ -581,8 +583,11 @@ namespace MeterReports
                 // Populate Data Grid
                 var source = new BindingSource(ds.Tables["Meter"].DefaultView, null);
                 DataGridViewMeter.Invoke((Action)delegate { DataGridViewMeter.DataSource = source; });
-                lblStatus.Invoke((Action)delegate { lblStatus.Text = (_mintCurrentPage + 1) +
-                                                                     " / " + _mintPageCount; });
+                lblStatus.Invoke((Action)delegate
+                {
+                    lblStatus.Text = (_mintCurrentPage + 1) +
+                                     " / " + _mintPageCount;
+                });
                 //lblStatus.Text = (_mintCurrentPage + 1) +
                 //                 " / " + _mintPageCount;
                 cmd.Dispose();

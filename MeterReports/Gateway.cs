@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 using TMF.Core;
 using TMF.Core.Model;
@@ -725,7 +726,10 @@ namespace MeterReports
         }
         private void ButtonExport_Click(object sender, EventArgs e)
         {
-            ExportGateways();
+            if (saveFileDialogGateway.ShowDialog() == DialogResult.OK)
+            {
+                Task.Factory.StartNew(() => ExportGateways(saveFileDialogGateway));
+            }
         }
         private void ButtonImport_Click(object sender, EventArgs e)
         {
@@ -871,7 +875,7 @@ namespace MeterReports
         {
             ComboBoxCity.Items.Clear();
             ReturnInfo getCity = _city.GetCityList(new SmartDB());
-            List<TMF.Reports.Model.City> cities = (List<TMF.Reports.Model.City>)getCity.BizObject;
+            List<City> cities = (List<City>)getCity.BizObject;
             foreach (var city in cities)
             {
                 ComboBoxCity.Items.Add(city.Description);
@@ -953,7 +957,7 @@ namespace MeterReports
             }
 }
         #endregion
-        private void ExportGateways()
+        private void ExportGateways(SaveFileDialog sfdGateway)
         {
             StreamWriter sr;
             string line = "";
@@ -962,9 +966,9 @@ namespace MeterReports
             fileContents.Append("MAC_ADDRESS, SIM_CARD, X, Y, DESCRIPTION, INSTALLATION_DATE, " +
                                 "MAINTENANCE_DATE, STATUS, IP_ADDRESS, DMZ_ID, CITY_ID, " +
                                 "CREATED_BY, EDITED_BY, DOC_DATE, SHOW, LOCK_COUNT\r\n");
-            if (saveFileDialogGateway.ShowDialog() == DialogResult.OK)
-            {
-                sr = new StreamWriter(saveFileDialogGateway.FileName, false);
+            //if (saveFileDialogGateway.ShowDialog() == DialogResult.OK)
+            //{
+                sr = new StreamWriter(sfdGateway.FileName, false);
                 try
                 {
                     ReturnInfo getGatewayList = _gateway.GetGatewayBySimCard(new SmartDB(), TextBoxSearch.Text);
@@ -994,12 +998,13 @@ namespace MeterReports
                     sr.Write(fileContents);
                     sr.Flush();
                     sr.Close();
-                }
+                MessageBox.Show("Export Successful");
+            }
                 catch (Exception)
                 {
                     MessageBox.Show("Error while exporting file!");
                 }
-            }
+            //}
         }
         private void ImportGateways()
         {

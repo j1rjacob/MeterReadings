@@ -19,8 +19,8 @@ namespace MeterReports
         private readonly CustomUser _currentUser;
         private bool _save;
         private string _meterReadingId;
-        
-        
+
+
         public MeterReading(CustomUser currentUser)
         {
             InitializeComponent();
@@ -141,7 +141,10 @@ namespace MeterReports
         }
         private void ButtonExport_Click(object sender, EventArgs e)
         {
-            ExportMeterReadings();
+            if (saveFileDialogMeterReading.ShowDialog() == DialogResult.OK)
+            {
+                Task.Factory.StartNew(() => ExportMeterReadings(saveFileDialogMeterReading));
+            }
         }
         private void ButtonImport_Click(object sender, EventArgs e)
         {
@@ -178,19 +181,19 @@ namespace MeterReports
                     ButtonEdit.Enabled = true;
                     ButtonDelete.Enabled = true;
                 }
-        }
+            }
             catch (Exception)
             {
                 ResetControls();
-    }
-}
+            }
+        }
         #region PriveteMethod
         private void SaveMeterReading()
         {
             if (!string.IsNullOrWhiteSpace(TextBoxSerialNumber.Text))
             {
                 TMF.Reports.Model.MeterReading meterReading = new TMF.Reports.Model.MeterReading()
-                {   
+                {
                     //Id = Guid.NewGuid().ToString("N"),
                     SerialNumber = TextBoxSerialNumber.Text,
                     ReadingDate = Convert.ToDateTime(TextBoxReadingDate.Text),
@@ -367,7 +370,7 @@ namespace MeterReports
                 return;
             }
         }
-        private void ExportMeterReadings()
+        private void ExportMeterReadings(SaveFileDialog sfdMeterReading)
         {
             StreamWriter sr;
             string line = "";
@@ -376,45 +379,45 @@ namespace MeterReports
             fileContents.Append("Id, SerialNumber, ReadingDate, ReadingValue, LowBatteryAlr, LeakAlr, " +
                                 "MagneticTamperAlr, MeterErrorAlr, BackFlowAlr, BrokenPipeAlr, EmptyPipeAlr, " +
                                 "SpecificErr, Createdby, Editedby, DocDate, Show, LockCount\r\n");
-            if (saveFileDialogMeterReading.ShowDialog() == DialogResult.OK)
+            //if (sfdMeterReading.ShowDialog() == DialogResult.OK)
+            //{
+            sr = new StreamWriter(sfdMeterReading.FileName, false);
+            try
             {
-                sr = new StreamWriter(saveFileDialogMeterReading.FileName, false);
-                try
-                {
-                    ReturnInfo getMeterReadingList = _meterReading.GetMeterReadingList(new SmartDB());
-                    List<TMF.Reports.Model.MeterReading> meterReadings = (List<TMF.Reports.Model.MeterReading>)getMeterReadingList.BizObject;
+                ReturnInfo getMeterReadingList = _meterReading.GetMeterReadingList(new SmartDB());
+                List<TMF.Reports.Model.MeterReading> meterReadings = (List<TMF.Reports.Model.MeterReading>)getMeterReadingList.BizObject;
 
-                    foreach (var mr in meterReadings)
-                    {
-                        line = mr.Id + ",";
-                        line += mr.SerialNumber + ",";
-                        line += mr.ReadingDate + ",";
-                        line += mr.ReadingValue + ",";
-                        line += mr.LowBatteryAlr + ",";
-                        line += mr.LeakAlr + ",";
-                        line += mr.MagneticTamperAlr + ",";
-                        line += mr.MeterErrorAlr + ",";
-                        line += mr.BackFlowAlr + ",";
-                        line += mr.BrokenPipeAlr + ",";
-                        line += mr.EmptyPipeAlr + ",";
-                        line += mr.SpecificErr + ",";
-                        line += mr.CreatedBy + ",";
-                        line += mr.EditedBy + ",";
-                        line += mr.DocDate + ",";
-                        line += mr.Show + ",";
-                        line += mr.LockCount + "\r\n";
-                        fileContents.Append(line);
-                    }
-
-                    sr.Write(fileContents);
-                    sr.Flush();
-                    sr.Close();
-                }
-                catch (Exception)
+                foreach (var mr in meterReadings)
                 {
-                    MessageBox.Show("Error while exporting file!");
+                    line = mr.Id + ",";
+                    line += mr.SerialNumber + ",";
+                    line += mr.ReadingDate + ",";
+                    line += mr.ReadingValue + ",";
+                    line += mr.LowBatteryAlr + ",";
+                    line += mr.LeakAlr + ",";
+                    line += mr.MagneticTamperAlr + ",";
+                    line += mr.MeterErrorAlr + ",";
+                    line += mr.BackFlowAlr + ",";
+                    line += mr.BrokenPipeAlr + ",";
+                    line += mr.EmptyPipeAlr + ",";
+                    line += mr.SpecificErr + ",";
+                    line += mr.CreatedBy + ",";
+                    line += mr.EditedBy + ",";
+                    line += mr.DocDate + ",";
+                    line += mr.Show + ",";
+                    line += mr.LockCount + "\r\n";
+                    fileContents.Append(line);
                 }
+                sr.Write(fileContents);
+                sr.Flush();
+                sr.Close();
+                MessageBox.Show("Export Successful");
             }
+            catch (Exception)
+            {
+                MessageBox.Show("Error while exporting file!");
+            }
+            //}
         }
         #endregion
         #region Paging
@@ -446,7 +449,7 @@ namespace MeterReports
                 // This select statement is very fast compare to SELECT COUNT(*)
                 string strSql = "SELECT Rows FROM SYSINDEXES " +
                                 "WHERE Id = OBJECT_ID('MeterReading') AND IndId < 2 ";// +
-                                //"AND SerialNumber LIKE @SerialNumber";
+                                                                                      //"AND SerialNumber LIKE @SerialNumber";
 
                 SqlCommand cmd = connection.CreateCommand();
                 cmd.CommandText = strSql;
@@ -472,7 +475,7 @@ namespace MeterReports
                 strSql = "SELECT TOP " + _mintPageSize +
                          " * FROM MeterReading WHERE Id NOT IN " +
                          "(SELECT TOP " + intSkip + " Id FROM MeterReading)" +
-                         "AND SerialNumber LIKE @SerialNumber"; 
+                         "AND SerialNumber LIKE @SerialNumber";
                 //strSql = "SELECT * FROM MeterReading";
 
                 cmd = connection.CreateCommand();
@@ -484,7 +487,7 @@ namespace MeterReports
                 // Populate Data Grid
                 var source = new BindingSource(ds.Tables["MeterReading"].DefaultView, null);
                 //DataGridViewMeterReading.DataSource = source;
-                DataGridViewMeterReading.Invoke((Action) delegate { DataGridViewMeterReading.DataSource = source; });
+                DataGridViewMeterReading.Invoke((Action)delegate { DataGridViewMeterReading.DataSource = source; });
                 //BindingNavigatorMeterReading.BindingSource = source;
                 // Show Status
                 //bindingNavigatorPositionItem.Text = (_mintCurrentPage + 1).ToString();
@@ -522,7 +525,8 @@ namespace MeterReports
 
             LoadPage();
         }
-        public void GoLast(){
+        public void GoLast()
+        {
             _mintCurrentPage = _mintPageCount - 1;
             LoadPage();
         }
