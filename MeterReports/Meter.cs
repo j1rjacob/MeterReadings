@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
+using System.Data;
+using System.Data.SqlClient;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 using TMF.Core;
 using TMF.Core.Model;
@@ -136,7 +138,7 @@ namespace MeterReports
         }
         private void DataGridViewMeter_SelectionChanged(object sender, EventArgs e)
         {
-            LabelShow.Text = $"Showing {DataGridViewMeter.CurrentRow.Index + 1} index of {DataGridViewMeter.RowCount} records";
+            //LabelShow.Text = $"Showing {DataGridViewMeter.CurrentRow.Index + 1} index of {DataGridViewMeter.RowCount} records";
 
             try
             {
@@ -370,7 +372,7 @@ namespace MeterReports
             ButtonSave.Enabled = false;
             ButtonDelete.Enabled = false;
             _save = true;
-            BindMeterWithDataGrid();
+            Task.Factory.StartNew(() => BindMeterWithDataGrid());
         }
         protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
         {
@@ -389,21 +391,22 @@ namespace MeterReports
         }
         private void BindMeterWithDataGrid()
         {   //TODO: Refactor this for reuse.
-            try
-            {
-                ReturnInfo getMeterList = _meter.GetMeterBySerialNumber(new SmartDB(), TextBoxSearch.Text);
+            //try
+            //{
+                //ReturnInfo getMeterList = _meter.GetMeterBySerialNumber(new SmartDB(), TextBoxSearch.Text);
                 //bool flag = getCityList.Code == ErrorEnum.NoError;
-                List<TMF.Reports.Model.Meter> meter = (List<TMF.Reports.Model.Meter>)getMeterList.BizObject;
-                var bindingList = new BindingList<TMF.Reports.Model.Meter>(meter);
-                var source = new BindingSource(bindingList, null);
+                //List<TMF.Reports.Model.Meter> meter = (List<TMF.Reports.Model.Meter>)getMeterList.BizObject;
+                //var bindingList = new BindingList<TMF.Reports.Model.Meter>(meter);
+                //var source = new BindingSource(bindingList, null);
                 DataGridViewMeter.AutoGenerateColumns = false;
-                DataGridViewMeter.DataSource = source;
-                LabelShow.Text = $"Showing {DataGridViewMeter.CurrentRow.Index + 1} index of {DataGridViewMeter.RowCount} records";
-            }
-            catch (Exception e)
-            {
-                return;
-            }
+                FillGrid();
+                //DataGridViewMeter.DataSource = source;
+                //LabelShow.Text = $"Showing {DataGridViewMeter.CurrentRow.Index + 1} index of {DataGridViewMeter.RowCount} records";
+            //}
+            //catch (Exception)
+            //{
+            //    return;
+            //}
         }
         #endregion
         private void ExportMeters()
@@ -512,5 +515,128 @@ namespace MeterReports
                 MessageBox.Show("Error while importing file!");
             }
         }
+
+        #region Paging
+        private int _mintTotalRecords = 0;
+        private int _mintPageSize = 0;
+        private int _mintPageCount = 0;
+        private int _mintCurrentPage = 1;
+        private void FillGrid()
+        {
+            _mintPageSize = 10;
+            _mintTotalRecords = GetCount();
+            _mintPageCount = _mintTotalRecords / _mintPageSize;
+            
+            if (_mintTotalRecords % _mintPageSize > 0)
+                _mintPageCount++;
+
+            _mintCurrentPage = 0;
+            LoadPage();
+        }
+        public int GetCount()
+        {
+            int intCount = 0;
+            using (SqlConnection connection =
+                new SqlConnection(new SmartDB().Connection.ConnectionString))
+            {
+                connection.Open();
+                
+                //string strSql = "SELECT Rows FROM SYSINDEXES " +
+                //                "WHERE Id = OBJECT_ID('Meter') AND IndId < 2 ";// +
+                string strSql = "SELECT COUNT(SerialNumber) FROM Meter " +
+                                "WHERE SerialNumber LIKE @SerialNumber";// +
+               
+                SqlCommand cmd = connection.CreateCommand();
+                cmd.CommandText = strSql;
+                cmd.Parameters.AddWithValue("@SerialNumber", "%" + TextBoxSearch.Text + "%");
+                intCount = (int)cmd.ExecuteScalar();
+                cmd.Dispose();
+            }
+            return intCount;
+        }
+        public void LoadPage()
+        {
+            string strSql = "";
+            int intSkip = 0;
+
+            intSkip = (_mintCurrentPage * _mintPageSize);
+            SqlCommand cmd;
+            SqlDataAdapter da;
+            DataSet ds = new DataSet();
+            using (SqlConnection connection =
+                new SqlConnection(new SmartDB().Connection.ConnectionString))
+            {
+                //Select only the n records.
+                strSql = "SELECT TOP " + _mintPageSize +
+                         " * FROM Meter WHERE SerialNumber NOT IN " +
+                         "(SELECT TOP " + intSkip + " SerialNumber FROM Meter)" +
+                         "AND SerialNumber LIKE @SerialNumber";
+
+                cmd = connection.CreateCommand();
+                cmd.CommandText = strSql;
+                cmd.Parameters.AddWithValue("@SerialNumber", "%" + TextBoxSearch.Text + "%");
+                da = new SqlDataAdapter(cmd);
+                da.Fill(ds, "Meter");
+
+                // Populate Data Grid
+                var source = new BindingSource(ds.Tables["Meter"].DefaultView, null);
+                DataGridViewMeter.Invoke((Action)delegate { DataGridViewMeter.DataSource = source; });
+                lblStatus.Invoke((Action)delegate { lblStatus.Text = (_mintCurrentPage + 1) +
+                                                                     " / " + _mintPageCount; });
+                //lblStatus.Text = (_mintCurrentPage + 1) +
+                //                 " / " + _mintPageCount;
+                cmd.Dispose();
+                da.Dispose();
+                ds.Dispose();
+            }
+        }
+        public void GoFirst()
+        {
+            _mintCurrentPage = 0;
+            LoadPage();
+        }
+        public void GoPrevious()
+        {
+            if (_mintCurrentPage == _mintPageCount)
+                _mintCurrentPage = _mintPageCount - 1;
+
+            _mintCurrentPage--;
+
+            if (_mintCurrentPage < 1)
+                _mintCurrentPage = 0;
+
+            LoadPage();
+        }
+        public void GoNext()
+        {
+            _mintCurrentPage++;
+
+            if (_mintCurrentPage > (_mintPageCount - 1))
+                _mintCurrentPage = _mintPageCount - 1;
+
+            LoadPage();
+        }
+        public void GoLast()
+        {
+            _mintCurrentPage = _mintPageCount - 1;
+            LoadPage();
+        }
+        private void ButtonFirst_Click(object sender, EventArgs e)
+        {
+            GoFirst();
+        }
+        private void ButtonPrevious_Click(object sender, EventArgs e)
+        {
+            GoPrevious();
+        }
+        private void ButtonNext_Click(object sender, EventArgs e)
+        {
+            GoNext();
+        }
+        private void ButtonLast_Click(object sender, EventArgs e)
+        {
+            GoLast();
+        }
+        #endregion
     }
 }

@@ -109,7 +109,6 @@
             // 
             // TabControlMeterReading
             // 
-            this.TabControlMeterReading.Alignment = System.Windows.Forms.TabAlignment.Right;
             this.TabControlMeterReading.Controls.Add(this.tabPage1);
             this.TabControlMeterReading.Controls.Add(this.tabPage2);
             this.TabControlMeterReading.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -118,7 +117,7 @@
             this.TabControlMeterReading.Multiline = true;
             this.TabControlMeterReading.Name = "TabControlMeterReading";
             this.TabControlMeterReading.SelectedIndex = 0;
-            this.TabControlMeterReading.Size = new System.Drawing.Size(918, 502);
+            this.TabControlMeterReading.Size = new System.Drawing.Size(905, 525);
             this.TabControlMeterReading.TabIndex = 0;
             // 
             // tabPage1
@@ -154,10 +153,10 @@
             this.tabPage1.Controls.Add(this.label14);
             this.tabPage1.Controls.Add(this.label2);
             this.tabPage1.Controls.Add(this.label1);
-            this.tabPage1.Location = new System.Drawing.Point(4, 4);
+            this.tabPage1.Location = new System.Drawing.Point(4, 29);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(885, 494);
+            this.tabPage1.Size = new System.Drawing.Size(897, 492);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "METER INFORMATION";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -183,7 +182,7 @@
             this.DataGridViewLatestMeterReading.Location = new System.Drawing.Point(10, 281);
             this.DataGridViewLatestMeterReading.Name = "DataGridViewLatestMeterReading";
             this.DataGridViewLatestMeterReading.ReadOnly = true;
-            this.DataGridViewLatestMeterReading.Size = new System.Drawing.Size(864, 142);
+            this.DataGridViewLatestMeterReading.Size = new System.Drawing.Size(878, 142);
             this.DataGridViewLatestMeterReading.TabIndex = 82;
             // 
             // Col_Id
@@ -602,10 +601,10 @@
             this.tabPage2.Controls.Add(this.ButtonLast);
             this.tabPage2.Controls.Add(this.lblStatus);
             this.tabPage2.Controls.Add(this.DataGridViewMeterReading);
-            this.tabPage2.Location = new System.Drawing.Point(4, 4);
+            this.tabPage2.Location = new System.Drawing.Point(4, 29);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(885, 494);
+            this.tabPage2.Size = new System.Drawing.Size(910, 469);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "LIST OF RECORDS";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -801,7 +800,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(918, 502);
+            this.ClientSize = new System.Drawing.Size(905, 525);
             this.Controls.Add(this.TabControlMeterReading);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));

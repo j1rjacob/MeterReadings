@@ -36,7 +36,6 @@
             this.ComboBoxMeterProtocol = new System.Windows.Forms.ComboBox();
             this.ComboBoxMeterType = new System.Windows.Forms.ComboBox();
             this.ComboBoxStatus = new System.Windows.Forms.ComboBox();
-            this.LabelShow = new System.Windows.Forms.Label();
             this.ButtonDelete = new System.Windows.Forms.Button();
             this.ButtonSave = new System.Windows.Forms.Button();
             this.ButtonEdit = new System.Windows.Forms.Button();
@@ -79,6 +78,11 @@
             this.saveFileDialogMeter = new System.Windows.Forms.SaveFileDialog();
             this.openFileDialogMeter = new System.Windows.Forms.OpenFileDialog();
             this.errorProviderMeter = new System.Windows.Forms.ErrorProvider(this.components);
+            this.ButtonFirst = new System.Windows.Forms.Button();
+            this.ButtonPrevious = new System.Windows.Forms.Button();
+            this.ButtonNext = new System.Windows.Forms.Button();
+            this.ButtonLast = new System.Windows.Forms.Button();
+            this.lblStatus = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.DataGridViewMeter)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProviderMeter)).BeginInit();
             this.SuspendLayout();
@@ -151,16 +155,6 @@
             this.ComboBoxStatus.Name = "ComboBoxStatus";
             this.ComboBoxStatus.Size = new System.Drawing.Size(216, 28);
             this.ComboBoxStatus.TabIndex = 51;
-            // 
-            // LabelShow
-            // 
-            this.LabelShow.AutoSize = true;
-            this.LabelShow.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LabelShow.Location = new System.Drawing.Point(16, 344);
-            this.LabelShow.Name = "LabelShow";
-            this.LabelShow.Size = new System.Drawing.Size(262, 22);
-            this.LabelShow.TabIndex = 50;
-            this.LabelShow.Text = "SHOWING 1 OF 10 RECORDS";
             // 
             // ButtonDelete
             // 
@@ -588,11 +582,72 @@
             // 
             this.errorProviderMeter.ContainerControl = this;
             // 
+            // ButtonFirst
+            // 
+            this.ButtonFirst.AutoSize = true;
+            this.ButtonFirst.Image = ((System.Drawing.Image)(resources.GetObject("ButtonFirst.Image")));
+            this.ButtonFirst.Location = new System.Drawing.Point(20, 337);
+            this.ButtonFirst.Name = "ButtonFirst";
+            this.ButtonFirst.Size = new System.Drawing.Size(30, 30);
+            this.ButtonFirst.TabIndex = 91;
+            this.ButtonFirst.UseVisualStyleBackColor = true;
+            this.ButtonFirst.Click += new System.EventHandler(this.ButtonFirst_Click);
+            // 
+            // ButtonPrevious
+            // 
+            this.ButtonPrevious.AutoSize = true;
+            this.ButtonPrevious.Image = ((System.Drawing.Image)(resources.GetObject("ButtonPrevious.Image")));
+            this.ButtonPrevious.Location = new System.Drawing.Point(52, 337);
+            this.ButtonPrevious.Name = "ButtonPrevious";
+            this.ButtonPrevious.Size = new System.Drawing.Size(30, 30);
+            this.ButtonPrevious.TabIndex = 92;
+            this.ButtonPrevious.UseVisualStyleBackColor = true;
+            this.ButtonPrevious.Click += new System.EventHandler(this.ButtonPrevious_Click);
+            // 
+            // ButtonNext
+            // 
+            this.ButtonNext.AutoSize = true;
+            this.ButtonNext.Image = ((System.Drawing.Image)(resources.GetObject("ButtonNext.Image")));
+            this.ButtonNext.Location = new System.Drawing.Point(244, 335);
+            this.ButtonNext.Name = "ButtonNext";
+            this.ButtonNext.Size = new System.Drawing.Size(30, 30);
+            this.ButtonNext.TabIndex = 93;
+            this.ButtonNext.UseVisualStyleBackColor = true;
+            this.ButtonNext.Click += new System.EventHandler(this.ButtonNext_Click);
+            // 
+            // ButtonLast
+            // 
+            this.ButtonLast.AutoSize = true;
+            this.ButtonLast.Image = global::MeterReports.Properties.Resources.last;
+            this.ButtonLast.Location = new System.Drawing.Point(276, 335);
+            this.ButtonLast.Name = "ButtonLast";
+            this.ButtonLast.Size = new System.Drawing.Size(30, 30);
+            this.ButtonLast.TabIndex = 94;
+            this.ButtonLast.UseVisualStyleBackColor = true;
+            this.ButtonLast.Click += new System.EventHandler(this.ButtonLast_Click);
+            // 
+            // lblStatus
+            // 
+            this.lblStatus.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.lblStatus.Enabled = false;
+            this.lblStatus.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.lblStatus.Location = new System.Drawing.Point(84, 341);
+            this.lblStatus.Name = "lblStatus";
+            this.lblStatus.Size = new System.Drawing.Size(152, 20);
+            this.lblStatus.TabIndex = 90;
+            this.lblStatus.Text = "0 / 0";
+            this.lblStatus.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // Meter
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(906, 532);
+            this.ClientSize = new System.Drawing.Size(907, 532);
+            this.Controls.Add(this.ButtonFirst);
+            this.Controls.Add(this.ButtonPrevious);
+            this.Controls.Add(this.ButtonNext);
+            this.Controls.Add(this.ButtonLast);
+            this.Controls.Add(this.lblStatus);
             this.Controls.Add(this.ButtonImport);
             this.Controls.Add(this.ButtonExport);
             this.Controls.Add(this.DateTimePickerMaintenanceDate);
@@ -603,7 +658,6 @@
             this.Controls.Add(this.ComboBoxMeterSize);
             this.Controls.Add(this.ComboBoxMeterType);
             this.Controls.Add(this.ComboBoxStatus);
-            this.Controls.Add(this.LabelShow);
             this.Controls.Add(this.ButtonDelete);
             this.Controls.Add(this.ButtonSave);
             this.Controls.Add(this.ButtonEdit);
@@ -649,7 +703,6 @@
         private System.Windows.Forms.ComboBox ComboBoxMeterProtocol;
         private System.Windows.Forms.ComboBox ComboBoxMeterType;
         private System.Windows.Forms.ComboBox ComboBoxStatus;
-        private System.Windows.Forms.Label LabelShow;
         private System.Windows.Forms.Button ButtonDelete;
         private System.Windows.Forms.Button ButtonSave;
         private System.Windows.Forms.Button ButtonEdit;
@@ -692,5 +745,10 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn ColDMZ;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColCity;
         private System.Windows.Forms.ErrorProvider errorProviderMeter;
+        private System.Windows.Forms.Button ButtonFirst;
+        private System.Windows.Forms.Button ButtonPrevious;
+        private System.Windows.Forms.Button ButtonNext;
+        private System.Windows.Forms.Button ButtonLast;
+        private System.Windows.Forms.Label lblStatus;
     }
 }

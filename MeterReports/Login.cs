@@ -290,19 +290,19 @@ namespace MeterReports
         private void ButtonLogin_Click_1(object sender, EventArgs e)
         {
             //j1rjacob, Password123!
-            //try
-            //{
-            ConnectionStringManager.Create
-            (TextBoxDataSource.Text, TextBoxInitialCatalog.Text,
+            try
+            {
+                ConnectionStringManager.Create
+                (TextBoxDataSource.Text, TextBoxInitialCatalog.Text,
                 TextBoxDBUsername.Text, TextBoxDBPassword.Text);
-            //}
-            //catch (Exception exception)
-            //{
-            //    MessageBox.Show(exception.Message);
-            //    return;
-            //}
+            }
+            catch (Exception exception)
+            {
+                MessageBox.Show(exception.Message);
+                return;
+            }
 
-            System.Threading.Thread.Sleep(5000);
+            System.Threading.Thread.Sleep(3000);
 
             if (this.ValidateChildren(ValidationConstraints.Enabled))
             {
@@ -324,7 +324,6 @@ namespace MeterReports
             else
             {
                 MessageBox.Show("There are invalid controls on the form.");
-                //Return user to form...
             }
         }
         private void ButtonCancel_Click(object sender, EventArgs e)

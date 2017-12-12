@@ -361,8 +361,6 @@ namespace MeterReports
                 var source = new BindingSource(bindingList, null);
                 DataGridViewLatestMeterReading.AutoGenerateColumns = false;
                 DataGridViewLatestMeterReading.DataSource = source;
-                
-                //LabelShow.Text = $"Showing {DataGridViewLatestMeterReading.CurrentRow.Index + 1} index of {DataGridViewLatestMeterReading.RowCount} records";
             }
             catch (Exception)
             {
@@ -528,7 +526,6 @@ namespace MeterReports
             _mintCurrentPage = _mintPageCount - 1;
             LoadPage();
         }
-        #endregion
         private void ButtonFirst_Click(object sender, EventArgs e)
         {
             GoFirst();
@@ -545,5 +542,6 @@ namespace MeterReports
         {
             GoLast();
         }
+        #endregion
     }
 }
