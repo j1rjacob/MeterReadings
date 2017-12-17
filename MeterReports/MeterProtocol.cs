@@ -106,7 +106,7 @@ namespace MeterReports
                     ButtonDelete.Enabled = true;
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 return;
             }
@@ -208,7 +208,7 @@ namespace MeterReports
             try
             {
                 ReturnInfo getMeterProtocolList = _meterProtocol.GetMeterProtocolByDescription(new SmartDB(), TextBoxSearch.Text);
-                //bool flag = getCityList.Code == ErrorEnum.NoError;
+               
                 List<TMF.Reports.Model.MeterProtocol> meterProtocol = (List<TMF.Reports.Model.MeterProtocol>)getMeterProtocolList.BizObject;
                 var bindingList = new BindingList<TMF.Reports.Model.MeterProtocol>(meterProtocol);
                 var source = new BindingSource(bindingList, null);

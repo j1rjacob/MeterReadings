@@ -137,7 +137,6 @@ namespace MeterReports
         }
         private void ButtonImport_Click(object sender, EventArgs e)
         {
-            //ImportMeters();
             try
             {
                 if (openFileDialogMeter.ShowDialog() == DialogResult.OK)
@@ -408,15 +407,8 @@ namespace MeterReports
         {   //TODO: Refactor this for reuse.
             try
             {
-                //ReturnInfo getMeterList = _meter.GetMeterBySerialNumber(new SmartDB(), TextBoxSearch.Text);
-                //bool flag = getCityList.Code == ErrorEnum.NoError;
-                //List<TMF.Reports.Model.Meter> meter = (List<TMF.Reports.Model.Meter>)getMeterList.BizObject;
-                //var bindingList = new BindingList<TMF.Reports.Model.Meter>(meter);
-                //var source = new BindingSource(bindingList, null);
                 DataGridViewMeter.AutoGenerateColumns = false;
                 FillGrid();
-                //DataGridViewMeter.DataSource = source;
-                //LabelShow.Text = $"Showing {DataGridViewMeter.CurrentRow.Index + 1} index of {DataGridViewMeter.RowCount} records";
             }
             catch (Exception)
             {
@@ -434,8 +426,7 @@ namespace MeterReports
                                 "MAINTENANCE_DATE, METER_TYPE_ID, METER_SIZE_ID," +
                                 "METER_PROTOCOL_ID, DMZ_ID, CITY_ID, " +
                                 "CREATED_BY, EDITED_BY, DOC_DATE, SHOW, LOCK_COUNT\r\n");
-            //if (saveFileDialogMeter.ShowDialog() == DialogResult.OK)
-            //{
+            
             sr = new StreamWriter(sfdMeter.FileName, false);
             try
             {
@@ -473,8 +464,6 @@ namespace MeterReports
             {
                 MessageBox.Show("Error while exporting file!");
             }
-
-            //}
         }
         private void ImportMeters(string[] fileNames)
         {
@@ -513,11 +502,9 @@ namespace MeterReports
                 new SqlConnection(new SmartDB().Connection.ConnectionString))
             {
                 connection.Open();
-
-                //string strSql = "SELECT Rows FROM SYSINDEXES " +
-                //                "WHERE Id = OBJECT_ID('Meter') AND IndId < 2 ";// +
+          
                 string strSql = "SELECT COUNT(SerialNumber) FROM Meter " +
-                                "WHERE SerialNumber LIKE @SerialNumber";// +
+                                "WHERE SerialNumber LIKE @SerialNumber";
 
                 SqlCommand cmd = connection.CreateCommand();
                 cmd.CommandText = strSql;
@@ -539,7 +526,6 @@ namespace MeterReports
             using (SqlConnection connection =
                 new SqlConnection(new SmartDB().Connection.ConnectionString))
             {
-                //Select only the n records.
                 strSql = "SELECT TOP " + _mintPageSize +
                          " * FROM Meter WHERE SerialNumber NOT IN " +
                          "(SELECT TOP " + intSkip + " SerialNumber FROM Meter)" +
@@ -550,8 +536,7 @@ namespace MeterReports
                 cmd.Parameters.AddWithValue("@SerialNumber", "%" + TextBoxSearch.Text + "%");
                 da = new SqlDataAdapter(cmd);
                 da.Fill(ds, "Meter");
-
-                // Populate Data Grid
+                
                 var source = new BindingSource(ds.Tables["Meter"].DefaultView, null);
                 DataGridViewMeter.Invoke((Action)delegate { DataGridViewMeter.DataSource = source; });
                 lblStatus.Invoke((Action)delegate
@@ -559,8 +544,7 @@ namespace MeterReports
                     lblStatus.Text = (_mintCurrentPage + 1) +
                                      " / " + _mintPageCount;
                 });
-                //lblStatus.Text = (_mintCurrentPage + 1) +
-                //                 " / " + _mintPageCount;
+                
                 cmd.Dispose();
                 da.Dispose();
                 ds.Dispose();

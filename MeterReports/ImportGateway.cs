@@ -81,17 +81,7 @@ namespace MeterReports
 
         private void ImportMeterGateway()
         {
-            //foreach (var fileName in _fileNames)
-            //{
-            //    _removeDuplicateMac = MACDuplicateInCSV.Get(fileName);
-            //}
-           
-            //ProgressBarImportStatus.Maximum =
-            //    _max = (_fileNames.Length - _duplicateCSVFile.Count);
-
             //TODO: Decouple; Error same count on imported and duplicated.
-            //LabelImported.Text = $"Number of imported MAC Address/s: {0} Ok";
-            //LabelDuplicate.Text = $"Number of duplicated MAC Address/ s: {0}";
             try
             {
                 Task.Factory.StartNew(() => BulkGateway.Import(_fileNames));

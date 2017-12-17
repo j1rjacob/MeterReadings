@@ -63,10 +63,8 @@ namespace TMF.Reports.UTIL
                         Show = Convert.ToInt32(q.Show),
                         LockCount = Convert.ToInt32(q.LockCount)
                     });
-
-                    //Retrieve all Gateways
+                    
                     ReturnInfo getGatewayList = _gateway.GetGatewayBySimCard(new SmartDB(), "");
-                    //bool flag = getCityList.Code == ErrorEnum.NoError;
                     List<Gateway> gateway = (List<Gateway>)getGatewayList.BizObject;
 
                     result = (List<Gateway>) gateway1.Except(gateway);

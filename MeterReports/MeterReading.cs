@@ -32,7 +32,6 @@ namespace MeterReports
         }
         private void MeterReading_Load(object sender, EventArgs e)
         {
-            //BindMeterReadingWithDataGrid();
             ResetControls();
         }
         private void ButtonNew_Click(object sender, EventArgs e)
@@ -118,7 +117,6 @@ namespace MeterReports
         {
             if (TextBoxSearch.Text != "")
             {
-                //BindMeterReadingWithDataGrid();
                 FillGrid();
                 BindMeterReadingLatestWithDataGrid();
             }
@@ -194,7 +192,6 @@ namespace MeterReports
             {
                 TMF.Reports.Model.MeterReading meterReading = new TMF.Reports.Model.MeterReading()
                 {
-                    //Id = Guid.NewGuid().ToString("N"),
                     SerialNumber = TextBoxSerialNumber.Text,
                     ReadingDate = Convert.ToDateTime(TextBoxReadingDate.Text),
                     ReadingValue = TextBoxReadingValue.Text,
@@ -219,7 +216,6 @@ namespace MeterReports
                 {
                     MessageBox.Show("Meter Reading Created");
                     ResetControls();
-                    //BindMeterReadingWithDataGrid();
                 }
                 else
                 {
@@ -262,7 +258,6 @@ namespace MeterReports
                 {
                     MessageBox.Show("Meter Reading Updated");
                     ResetControls();
-                    //BindMeterReadingWithDataGrid();
                 }
                 else
                 {
@@ -332,21 +327,8 @@ namespace MeterReports
         {   //TODO: Refactor this for reuse.
             try
             {
-                //ReturnInfo getMeterReadingList = _meterReading.GetMeterReadingBySerialNumber(new SmartDB(), TextBoxSearch.Text);
-                ////bool flag = getCityList.Code == ErrorEnum.NoError;
-                //List<TMF.Reports.Model.MeterReading> meterReading = (List<TMF.Reports.Model.MeterReading>)getMeterReadingList.BizObject;
-                //var bindingList = new BindingList<TMF.Reports.Model.MeterReading>(meterReading);
-                //var source = new BindingSource(bindingList.Skip(perPage * currentPage).Take(perPage), null);
-
                 DataGridViewMeterReading.AutoGenerateColumns = false;
                 FillGrid();
-
-                //Paging.FillGrid(DataGridViewLatestMeterReading, bindingNavigatorPositionItem, bindingNavigatorCountItem);
-                //BindingSourceMeterReading.DataSource = bindingList;
-                //BindingNavigatorMeterReading.BindingSource = BindingSourceMeterReading;
-                //DataGridViewMeterReading.DataSource = source;
-                //BindingNavigatorMeterReading.BindingSource = Paging.FillGrid(DataGridViewLatestMeterReading, bindingNavigatorPositionItem, bindingNavigatorCountItem); 
-                //LabelShow.Text = $"Showing {DataGridViewMeterReading.CurrentRow.Index + 1} index of {DataGridViewMeterReading.RowCount} records";
             }
             catch (Exception)
             {
@@ -358,7 +340,7 @@ namespace MeterReports
             try
             {
                 ReturnInfo getMeterReadingList = _meterReading.GetLatestMeterReadingRecord(new SmartDB(), TextBoxSerialNumber.Text);
-                //bool flag = getCityList.Code == ErrorEnum.NoError;
+              
                 List<TMF.Reports.Model.MeterReading> meterReading = (List<TMF.Reports.Model.MeterReading>)getMeterReadingList.BizObject;
                 var bindingList = new BindingList<TMF.Reports.Model.MeterReading>(meterReading);
                 var source = new BindingSource(bindingList, null);
@@ -379,8 +361,7 @@ namespace MeterReports
             fileContents.Append("Id, SerialNumber, ReadingDate, ReadingValue, LowBatteryAlr, LeakAlr, " +
                                 "MagneticTamperAlr, MeterErrorAlr, BackFlowAlr, BrokenPipeAlr, EmptyPipeAlr, " +
                                 "SpecificErr, Createdby, Editedby, DocDate, Show, LockCount\r\n");
-            //if (sfdMeterReading.ShowDialog() == DialogResult.OK)
-            //{
+           
             sr = new StreamWriter(sfdMeterReading.FileName, false);
             try
             {
@@ -420,6 +401,7 @@ namespace MeterReports
             //}
         }
         #endregion
+
         #region Paging
         private int _mintTotalRecords = 0;
         private int _mintPageSize = 0;
@@ -427,12 +409,10 @@ namespace MeterReports
         private int _mintCurrentPage = 1;
         private void FillGrid()
         {
-            // For Page view.
             _mintPageSize = 18;
             _mintTotalRecords = GetCount();
             _mintPageCount = _mintTotalRecords / _mintPageSize;
 
-            // Adjust page count if the last page contains partial page.
             if (_mintTotalRecords % _mintPageSize > 0)
                 _mintPageCount++;
 
@@ -446,14 +426,12 @@ namespace MeterReports
                 new SqlConnection(new SmartDB().Connection.ConnectionString))
             {
                 connection.Open();
-                // This select statement is very fast compare to SELECT COUNT(*)
                 string strSql = "SELECT Rows FROM SYSINDEXES " +
-                                "WHERE Id = OBJECT_ID('MeterReading') AND IndId < 2 ";// +
-                                                                                      //"AND SerialNumber LIKE @SerialNumber";
+                                "WHERE Id = OBJECT_ID('MeterReading') AND IndId < 2 ";
 
                 SqlCommand cmd = connection.CreateCommand();
                 cmd.CommandText = strSql;
-                //cmd.Parameters.AddWithValue("@SerialNumber", "%" + TextBoxSearch.Text + "%");
+                
                 intCount = (int)cmd.ExecuteScalar();
                 cmd.Dispose();
             }
@@ -471,12 +449,10 @@ namespace MeterReports
             using (SqlConnection connection =
                 new SqlConnection(new SmartDB().Connection.ConnectionString))
             {
-                //Select only the n records.
                 strSql = "SELECT TOP " + _mintPageSize +
                          " * FROM MeterReading WHERE Id NOT IN " +
                          "(SELECT TOP " + intSkip + " Id FROM MeterReading)" +
                          "AND SerialNumber LIKE @SerialNumber";
-                //strSql = "SELECT * FROM MeterReading";
 
                 cmd = connection.CreateCommand();
                 cmd.CommandText = strSql;
@@ -484,14 +460,9 @@ namespace MeterReports
                 da = new SqlDataAdapter(cmd);
                 da.Fill(ds, "MeterReading");
 
-                // Populate Data Grid
                 var source = new BindingSource(ds.Tables["MeterReading"].DefaultView, null);
-                //DataGridViewMeterReading.DataSource = source;
+             
                 DataGridViewMeterReading.Invoke((Action)delegate { DataGridViewMeterReading.DataSource = source; });
-                //BindingNavigatorMeterReading.BindingSource = source;
-                // Show Status
-                //bindingNavigatorPositionItem.Text = (_mintCurrentPage + 1).ToString();
-                //bindingNavigatorCountItem.Text = $"of {_mintPageCount}";
                 lblStatus.Text = (_mintCurrentPage + 1) +
                                       " / " + _mintPageCount;
                 cmd.Dispose();

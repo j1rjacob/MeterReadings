@@ -51,8 +51,6 @@ namespace MeterReports
         {
             if (this.ValidateChildren(ValidationConstraints.Enabled))
             {
-                //MessageBox.Show("All controls are valid!");
-                //Logic to save...
                 if (_save)
                     SaveCity();
                 else
@@ -61,7 +59,6 @@ namespace MeterReports
             else
             {
                 MessageBox.Show("There are invalid controls on the form.");
-                //Return user to form...
             }
         }
         private void ButtonDelete_Click(object sender, EventArgs e)
@@ -115,7 +112,6 @@ namespace MeterReports
             bool cancel = false;
             if (string.IsNullOrEmpty(this.TextBoxDescription.Text))
             {
-                //This control fails validation: Name cannot be empty.
                 cancel = true;
                 this.errorProviderCity.SetError(this.TextBoxDescription, "You must provide description!");
             }
@@ -227,7 +223,7 @@ namespace MeterReports
             try
             {
                 ReturnInfo getCityList = _city.GetCityByDescription(new SmartDB(), TextBoxSearch.Text);
-                //bool flag = getCityList.Code == ErrorEnum.NoError;
+               
                 List<City> city = (List<City>)getCityList.BizObject;
                 var bindingList = new BindingList<City>(city);
                 var source = new BindingSource(bindingList, null);

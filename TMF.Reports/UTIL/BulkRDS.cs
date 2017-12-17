@@ -39,10 +39,8 @@ namespace TMF.Reports.UTIL
 
                     if (!CSVDuplicate.Get(ofdFilenames).Contains(_csvFilename))
                     {
-                        // Create a table with some rows.
                         DataTable newMeterReading = MakeTable.RDS(filename);
 
-                        // Create the SqlBulkCopy object.
                         using (SqlBulkCopy s = new SqlBulkCopy(connection))
                         {
                             s.DestinationTableName = "MeterReading";
@@ -59,10 +57,8 @@ namespace TMF.Reports.UTIL
                             s.ColumnMappings.Add("SpecificErr", "SpecificErr");
                             try
                             {
-                                // Write from the source to the destination.
                                 s.WriteToServer(newMeterReading);
 
-                                //Add GatewayLog
                                 Model.GatewayLog gatewayLog = new Model.GatewayLog()
                                 {
                                     RDS = 1,
@@ -77,7 +73,6 @@ namespace TMF.Reports.UTIL
                                 };
                                 var createGatewayLog = _gatewayLog.Create(new SmartDB(), ref gatewayLog);
 
-                                //ADD Mac Address in Gateway
                                 if (!MacDuplicate.Get(ofdFilenames).Contains(_gw))
                                 {
                                     Model.Gateway gatewayC = new Model.Gateway()
@@ -103,7 +98,6 @@ namespace TMF.Reports.UTIL
                                 }
 
                                 //TODO ADD Meter Serial to Meter Table via stored proc REPORT METER_SYNCSERIALNUMBER_METERREADING
-
                                 bool flag = createGatewayLog.Code == ErrorEnum.NoError;
                                 if (flag)
                                 {   //TODO

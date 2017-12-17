@@ -404,7 +404,7 @@ namespace MeterReports
                     ButtonDelete.Enabled = true;
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 return;
             }
@@ -528,7 +528,7 @@ namespace MeterReports
             try
             {
                 ReturnInfo getDMZList = _dmz.GetDMZByDescription(new SmartDB(), TextBoxSearch.Text);
-                //bool flag = getCityList.Code == ErrorEnum.NoError;
+               
                 List<TMF.Reports.Model.DMZ> dmz = (List<TMF.Reports.Model.DMZ>)getDMZList.BizObject;
                 var bindingList = new BindingList<TMF.Reports.Model.DMZ>(dmz);
                 var source = new BindingSource(bindingList, null);

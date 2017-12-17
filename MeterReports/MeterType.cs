@@ -108,7 +108,7 @@ namespace MeterReports
                     ButtonDelete.Enabled = true;
                 }
             }
-            catch (Exception jerry)
+            catch (Exception)
             {
                 return;
             }
@@ -209,7 +209,7 @@ namespace MeterReports
         private void BindMeterTypeWithDataGrid()
         {   //TODO: Refactor this for reuse.
             ReturnInfo getMeterTypeList = _meterType.GetMeterTypeDescription(new SmartDB(), TextBoxSearch.Text);
-            //bool flag = getCityList.Code == ErrorEnum.NoError;
+            
             List<TMF.Reports.Model.MeterType> meterType = (List<TMF.Reports.Model.MeterType>)getMeterTypeList.BizObject;
             var bindingList = new BindingList<TMF.Reports.Model.MeterType>(meterType);
             var source = new BindingSource(bindingList, null);

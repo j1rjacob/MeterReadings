@@ -413,7 +413,7 @@ namespace MeterReports
             try
             {
                 ReturnInfo getMeterSizeList = _meterSize.GetMeterSizeByDescription(new SmartDB(), TextBoxSearch.Text);
-                //bool flag = getCityList.Code == ErrorEnum.NoError;
+                
                 List<TMF.Reports.Model.MeterSize> meterSize = (List<TMF.Reports.Model.MeterSize>)getMeterSizeList.BizObject;
                 var bindingList = new BindingList<TMF.Reports.Model.MeterSize>(meterSize);
                 var source = new BindingSource(bindingList, null);
@@ -421,7 +421,7 @@ namespace MeterReports
                 DataGridViewMeterSize.DataSource = source;
                 LabelShow.Text = $"Showing {DataGridViewMeterSize.CurrentRow.Index + 1} index of {DataGridViewMeterSize.RowCount} records";
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 return;
             }

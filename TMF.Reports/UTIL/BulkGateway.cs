@@ -25,14 +25,11 @@ namespace TMF.Reports.UTIL
 
                 foreach (var filename in ofdFilenames)
                 {
-                    // Create a table with some rows.
                     DataTable newGateway = MakeTable.Gateway(filename);
 
                     //TODO Create temptable
                     DataTable fetchGateway = FetchTable.GetGateway();
-
-                    //DataTable dtUniqueGateway = newGateway.AsEnumerable().Distinct().Except(
-                    //    fetchGateway.AsEnumerable(), DataRowComparer.Default).CopyToDataTable();
+                    
                     var fGateway = new HashSet<string>(fetchGateway.AsEnumerable()
                         .Select(x => x.Field<string>("MacAddress")));
                     DataTable dtUniqueGateway = newGateway.AsEnumerable()

@@ -73,7 +73,6 @@ namespace MeterReports
 
         private void Main_Load(object sender, EventArgs e)
         {
-            //MessageBox.Show(_currentUser.Id.ToString());
             logoutToolStripMenuItem.Text = $"Logout {_currentUser.UserName}";
         }
 

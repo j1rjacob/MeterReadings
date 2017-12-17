@@ -17,8 +17,7 @@ namespace TMF.Reports.UTIL
             {
                 _gateway = Path.GetFileName((Path.GetDirectoryName(filename)));
                 _csvFilename = (Path.GetFileName(filename));
-
-                //add to list gatewaylog duplicate
+                
                 ReturnInfo getGatewayLog = _gatewayLog.GetRecordsByMacCsv(new SmartDB(), _gateway, _csvFilename);
                 bool flag = getGatewayLog.Code == ErrorEnum.NoError;
                 if (flag)

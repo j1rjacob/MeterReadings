@@ -358,7 +358,6 @@ namespace MeterReports
             bool cancel = false;
             if (string.IsNullOrEmpty(this.TextBoxUsername.Text))
             {
-                //This control fails validation: Name cannot be empty.
                 cancel = true;
                 this.errorProviderLogin.SetError(this.TextBoxUsername, "You must provide Username!");
             }
@@ -373,7 +372,6 @@ namespace MeterReports
             bool cancel = false;
             if (string.IsNullOrEmpty(this.TextBoxPassword.Text))
             {
-                //This control fails validation: Name cannot be empty.
                 cancel = true;
                 this.errorProviderLogin.SetError(this.TextBoxPassword, "You must provide Password!");
             }

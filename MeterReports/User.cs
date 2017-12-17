@@ -288,12 +288,7 @@ namespace MeterReports
             }
             return base.ProcessCmdKey(ref msg, keyData);
         }
-        //private int GetLockCount(int Id)
-        //{
-        //    IInfo info = _dmz.GetDMZById(new SmartDB(), Id);
-        //    var lockcount = (info.BizObject as TMF.Reports.Model.DMZ).LockCount;
-        //    return lockcount;
-        //}
+        
         private void BindUserWithDataGrid()
         {   //TODO: Refactor this for reuse. 
             try

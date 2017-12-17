@@ -11,8 +11,7 @@ namespace TMF.Reports.UTIL
         public static DataTable RDS(string Filename)
         {
             DataTable newMeterReading = new DataTable("MeterReading");
-
-            // Add three column objects to the table. 
+            
             DataColumn meterReadingId = new DataColumn();
             meterReadingId.DataType = Type.GetType("System.Int32");
             meterReadingId.ColumnName = "Id";
@@ -78,8 +77,7 @@ namespace TMF.Reports.UTIL
             specificErr.DataType = Type.GetType("System.Int32");
             specificErr.ColumnName = "SpecificErr";
             newMeterReading.Columns.Add(specificErr);
-
-            // Create an array for DataColumn objects.
+            
             DataColumn[] keys = new DataColumn[1];
             keys[0] = meterReadingId;
             newMeterReading.PrimaryKey = keys;
@@ -138,12 +136,10 @@ namespace TMF.Reports.UTIL
         public static DataTable Gateway(string Filename)
         {
             DataTable newGateway = new DataTable("Gateway");
-
-            // Add three column objects to the table. 
+            
             DataColumn macAddress = new DataColumn();
             macAddress.DataType = Type.GetType("System.String");
             macAddress.ColumnName = "MacAddress";
-            //macAddress.AutoIncrement = true;
             newGateway.Columns.Add(macAddress);
 
             DataColumn simCard = new DataColumn();
@@ -220,8 +216,7 @@ namespace TMF.Reports.UTIL
             lockCount.DataType = Type.GetType("System.Int32");
             lockCount.ColumnName = "LockCount";
             newGateway.Columns.Add(lockCount);
-
-            // Create an array for DataColumn objects.
+            
             DataColumn[] keys = new DataColumn[1];
             keys[0] = macAddress;
             newGateway.PrimaryKey = keys;
@@ -231,7 +226,7 @@ namespace TMF.Reports.UTIL
                 string[] allLines = File.ReadAllLines(Filename);
                 var columnCount = allLines[0].Split(',').Length;
                 if (columnCount == 16)
-                {//Gateway
+                {   //Gateway
                     var query = from line in allLines
                                 let data = line.Split(',')
                                 select new
@@ -290,12 +285,10 @@ namespace TMF.Reports.UTIL
         public static DataTable Meter(string Filename)
         {
             DataTable newMeter = new DataTable("Meter");
-
-            // Add three column objects to the table. 
+            
             DataColumn serialNumber = new DataColumn();
             serialNumber.DataType = Type.GetType("System.String");
             serialNumber.ColumnName = "SerialNumber";
-            //serialNumber.AutoIncrement = true;
             newMeter.Columns.Add(serialNumber);
 
             DataColumn X = new DataColumn();
@@ -388,7 +381,7 @@ namespace TMF.Reports.UTIL
                 string[] allLines = File.ReadAllLines(Filename);
                 var columnCount = allLines[0].Split(',').Length;
                 if (columnCount == 17)
-                {   //RDS
+                {   //Meter
                     var query = from line in allLines
                         let data = line.Split(',')
                         select new
