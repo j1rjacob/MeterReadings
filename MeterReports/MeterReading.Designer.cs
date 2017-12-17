@@ -468,6 +468,7 @@
             // 
             // TextBoxSearch
             // 
+            this.TextBoxSearch.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.TextBoxSearch.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TextBoxSearch.Location = new System.Drawing.Point(320, 8);
             this.TextBoxSearch.Name = "TextBoxSearch";
@@ -604,7 +605,7 @@
             this.tabPage2.Location = new System.Drawing.Point(4, 29);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(910, 469);
+            this.tabPage2.Size = new System.Drawing.Size(897, 492);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "LIST OF RECORDS";
             this.tabPage2.UseVisualStyleBackColor = true;

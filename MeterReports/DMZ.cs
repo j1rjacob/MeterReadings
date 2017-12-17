@@ -222,6 +222,7 @@ namespace MeterReports
             // 
             // TextBoxSearch
             // 
+            this.TextBoxSearch.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.TextBoxSearch.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TextBoxSearch.Location = new System.Drawing.Point(217, 8);
             this.TextBoxSearch.Name = "TextBoxSearch";

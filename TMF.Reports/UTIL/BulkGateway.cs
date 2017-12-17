@@ -59,13 +59,6 @@ namespace TMF.Reports.UTIL
                         s.ColumnMappings.Add("LockCount", "LockCount");
                         try
                         {
-                            // Write from the source to the destination.
-                            //s.WriteToServer(newGateway);
-
-                            //var x = from m in dtUniqueGateway.AsEnumerable()
-                            //    where m.Field<string>("MacAddress") == "1C:BA:8C:98:F4:C8"
-                            //        select m;
-
                             s.WriteToServer(dtUniqueGateway);
                             Console.WriteLine($"Importing was successful.");
                         }
