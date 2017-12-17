@@ -420,8 +420,8 @@ namespace TMF.Reports.UTIL
                         row["Y"] = q.Y;
                         row["Status"] = q.Status;
                         row["HCN"] = q.HCN;
-                        row["InstallationDate"] = Convert.ToDateTime(q.InstallationDate); //DateTime.ParseExact(q.InstallationDate, "HH:mm:ss dd/MM/yyyy", new CultureInfo("en-US"));
-                        row["MaintenanceDate"] = Convert.ToDateTime(q.MaintenanceDate); //DateTime.ParseExact(q.MaintenanceDate, "HH:mm:ss dd/MM/yyyy", new CultureInfo("en-US"));
+                        row["InstallationDate"] = Convert.ToDateTime(q.InstallationDate); 
+                        row["MaintenanceDate"] = Convert.ToDateTime(q.MaintenanceDate); 
                         row["MeterTypeId"] = q.MeterTypeId;
                         row["MeterSizeId"] = q.MeterSizeId;
                         row["MeterProtocolId"] = q.MeterProtocolId;
@@ -429,7 +429,7 @@ namespace TMF.Reports.UTIL
                         row["CityId"] = q.CityId;
                         row["Createdby"] = q.Createdby;
                         row["Editedby"] = q.Editedby;
-                        row["DocDate"] = Convert.ToDateTime(q.DocDate); //DateTime.ParseExact(q.DocDate, "HH:mm:ss dd/MM/yyyy", new CultureInfo("en-US"));
+                        row["DocDate"] = Convert.ToDateTime(q.DocDate); 
                         row["Show"] = Convert.ToInt32(q.Show);
                         row["LockCount"] = Convert.ToInt32(q.LockCount);
                         newMeter.Rows.Add(row);

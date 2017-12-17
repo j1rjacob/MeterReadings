@@ -8,6 +8,7 @@ using System.Windows.Forms;
 using TMF.Core;
 using TMF.Core.Model;
 using TMF.Reports.Model;
+using TMF.Reports.UTIL;
 
 namespace MeterReports
 {
@@ -736,8 +737,9 @@ namespace MeterReports
             {
                 if (openFileDialogGateway.ShowDialog() == DialogResult.OK)
                 {
-                    var f = new ImportGateway(openFileDialogGateway.FileNames);
-                    f.ShowDialog();
+                    //var f = new ImportGateway(openFileDialogGateway.FileNames);
+                    //f.ShowDialog();
+                    Task.Factory.StartNew(() => BulkGateway.Import(openFileDialogGateway.FileNames));
                 }
                 MessageBox.Show("Import was successful");
             }
