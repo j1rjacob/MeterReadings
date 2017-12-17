@@ -29,7 +29,7 @@ namespace TMF.Reports.UTIL
                     DataTable newGateway = MakeTable.Gateway(filename);
 
                     //TODO Create temptable
-                    DataTable fetchGateway = FetchTable.Get();
+                    DataTable fetchGateway = FetchTable.GetGateway();
 
                     //DataTable dtUniqueGateway = newGateway.AsEnumerable().Distinct().Except(
                     //    fetchGateway.AsEnumerable(), DataRowComparer.Default).CopyToDataTable();

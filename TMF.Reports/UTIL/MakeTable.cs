@@ -295,7 +295,7 @@ namespace TMF.Reports.UTIL
             DataColumn serialNumber = new DataColumn();
             serialNumber.DataType = Type.GetType("System.String");
             serialNumber.ColumnName = "SerialNumber";
-            serialNumber.AutoIncrement = true;
+            //serialNumber.AutoIncrement = true;
             newMeter.Columns.Add(serialNumber);
 
             DataColumn X = new DataColumn();
@@ -393,45 +393,45 @@ namespace TMF.Reports.UTIL
                         let data = line.Split(',')
                         select new
                         {
-                            SERIAL_NUMBER = data[0],
+                            SerialNumber = data[0],
                             X = data[1],
                             Y = data[2],
-                            STATUS = data[3],
+                            Status = data[3],
                             HCN = data[4],
-                            INSTALLATION_DATE = data[5],
-                            MAINTENANCE_DATE = data[6],
-                            METER_TYPE_ID = data[7],
-                            METER_SIZE_ID = data[8],
-                            METER_PROTOCOL_ID = data[9],
-                            DMZ_ID = data[10],
-                            CITY_ID = data[11],
-                            CREATED_BY = data[12],
-                            EDITED_BY = data[13],
-                            DOC_DATE = data[14],
-                            SHOW = data[15],
-                            LOCK_COUNT = data[16],
+                            InstallationDate = data[5],
+                            MaintenanceDate = data[6],
+                            MeterTypeId = data[7],
+                            MeterSizeId = data[8],
+                            MeterProtocolId = data[9],
+                            DMZId = data[10],
+                            CityId = data[11],
+                            Createdby = data[12],
+                            Editedby = data[13],
+                            DocDate = data[14],
+                            Show = data[15],
+                            LockCount = data[16],
                         };
                     DataRow row;
                     foreach (var q in query.ToList().Skip(1))
                     {
                         row = newMeter.NewRow();
-                        row["SerialNumber"] = q.SERIAL_NUMBER;
+                        row["SerialNumber"] = q.SerialNumber;
                         row["X"] = q.X;
                         row["Y"] = q.Y;
-                        row["Status"] = q.STATUS;
+                        row["Status"] = q.Status;
                         row["HCN"] = q.HCN;
-                        row["InstallationDate"] = DateTime.ParseExact(q.INSTALLATION_DATE, "HH:mm:ss dd/MM/yyyy", new CultureInfo("en-US"));
-                        row["MaintenanceDate"] = DateTime.ParseExact(q.MAINTENANCE_DATE, "HH:mm:ss dd/MM/yyyy", new CultureInfo("en-US"));
-                        row["MeterTypeId"] = q.METER_TYPE_ID;
-                        row["MeterSizeId"] = q.METER_SIZE_ID;
-                        row["MeterProtocolId"] = q.METER_PROTOCOL_ID;
-                        row["DMZId"] = Convert.ToInt32(q.DMZ_ID);
-                        row["CityId"] = q.CITY_ID;
-                        row["Createdby"] = q.CREATED_BY;
-                        row["Editedby"] = q.EDITED_BY;
-                        row["DocDate"] = DateTime.ParseExact(q.DOC_DATE, "HH:mm:ss dd/MM/yyyy", new CultureInfo("en-US"));
-                        row["Show"] = Convert.ToInt32(q.SHOW);
-                        row["LockCount"] = Convert.ToInt32(q.LOCK_COUNT);
+                        row["InstallationDate"] = Convert.ToDateTime(q.InstallationDate); //DateTime.ParseExact(q.InstallationDate, "HH:mm:ss dd/MM/yyyy", new CultureInfo("en-US"));
+                        row["MaintenanceDate"] = Convert.ToDateTime(q.MaintenanceDate); //DateTime.ParseExact(q.MaintenanceDate, "HH:mm:ss dd/MM/yyyy", new CultureInfo("en-US"));
+                        row["MeterTypeId"] = q.MeterTypeId;
+                        row["MeterSizeId"] = q.MeterSizeId;
+                        row["MeterProtocolId"] = q.MeterProtocolId;
+                        row["DMZId"] = Convert.ToInt32(q.DMZId);
+                        row["CityId"] = q.CityId;
+                        row["Createdby"] = q.Createdby;
+                        row["Editedby"] = q.Editedby;
+                        row["DocDate"] = Convert.ToDateTime(q.DocDate); //DateTime.ParseExact(q.DocDate, "HH:mm:ss dd/MM/yyyy", new CultureInfo("en-US"));
+                        row["Show"] = Convert.ToInt32(q.Show);
+                        row["LockCount"] = Convert.ToInt32(q.LockCount);
                         newMeter.Rows.Add(row);
                     }
                 }

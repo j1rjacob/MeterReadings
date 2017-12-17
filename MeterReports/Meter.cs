@@ -3,13 +3,13 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.IO;
-using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using TMF.Core;
 using TMF.Core.Model;
 using TMF.Reports.Model;
+using TMF.Reports.UTIL;
 
 namespace MeterReports
 {
@@ -137,7 +137,21 @@ namespace MeterReports
         }
         private void ButtonImport_Click(object sender, EventArgs e)
         {
-            ImportMeters();
+            //ImportMeters();
+            try
+            {
+                if (openFileDialogMeter.ShowDialog() == DialogResult.OK)
+                {
+                    ImportMeters(openFileDialogMeter.FileNames);
+                }
+                MessageBox.Show("Import was successful");
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Import was not successful");
+            }
+
+            ResetControls();
         }
         private void DataGridViewMeter_SelectionChanged(object sender, EventArgs e)
         {
@@ -462,59 +476,16 @@ namespace MeterReports
 
             //}
         }
-        private void ImportMeters()
+        private void ImportMeters(string[] fileNames)
         {
+            //TODO: Decouple; Error same count on imported and duplicated.
             try
             {
-                if (openFileDialogMeter.ShowDialog() == System.Windows.Forms.DialogResult.OK)
-                {
-                    string[] allLines = File.ReadAllLines(openFileDialogMeter.FileName);
-
-                    var query = from line in allLines
-                                let data = line.Split(',')
-                                select new
-                                {
-                                    SerialNumber = data[0],
-                                    X = data[1],
-                                    Y = data[2],
-                                    Status = data[3],
-                                    HCN = data[4],
-                                    InstallationDate = data[5],
-                                    MaintenanceDate = data[6],
-                                    MeterTypeId = data[7],
-                                    MeterSizeId = data[8],
-                                    MeterProtocolId = data[9],
-                                    CityId = data[10],
-                                    CreatedBy = data[11],
-                                    EditedBy = data[12],
-                                    DocDate = data[13],
-                                    Show = data[14],
-                                    Locked = data[15],
-                                };
-                    foreach (var q in query.ToList().Skip(1))
-                    {
-                        MessageBox.Show(q.SerialNumber + " " +
-                                        q.X + " " +
-                                        q.Y + " " +
-                                        q.Status + " " +
-                                        q.HCN + " " +
-                                        q.InstallationDate + " " +
-                                        q.MaintenanceDate + " " +
-                                        q.MeterTypeId + " " +
-                                        q.MeterSizeId + " " +
-                                        q.MeterProtocolId + " " +
-                                        q.CityId + " " +
-                                        q.CreatedBy + " " +
-                                        q.EditedBy + " " +
-                                        q.DocDate + " " +
-                                        q.Show + " " +
-                                        q.Locked);
-                    }
-                }
+                Task.Factory.StartNew(() => BulkMeter.Import(fileNames));
             }
-            catch (Exception)
+            catch (Exception e)
             {
-                MessageBox.Show("Error while importing file!");
+                MessageBox.Show($"Error importing file {e.Message}");
             }
         }
 

@@ -732,12 +732,20 @@ namespace MeterReports
         }
         private void ButtonImport_Click(object sender, EventArgs e)
         {
-            //ImportGateways();
-            if (openFileDialogGateway.ShowDialog() == DialogResult.OK)
+            try
             {
-                var f = new ImportGateway(openFileDialogGateway.FileNames);
-                f.ShowDialog();
+                if (openFileDialogGateway.ShowDialog() == DialogResult.OK)
+                {
+                    var f = new ImportGateway(openFileDialogGateway.FileNames);
+                    f.ShowDialog();
+                }
+                MessageBox.Show("Import was successful");
             }
+            catch (Exception)
+            {
+                MessageBox.Show("Import was not successful");
+            }
+            
             ResetControls();
         }
         private void ComboBoxDMZ_MouseClick(object sender, MouseEventArgs e)

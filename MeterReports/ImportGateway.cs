@@ -67,6 +67,7 @@ namespace MeterReports
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "ImportGateway";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Load += new System.EventHandler(this.ImportGateway_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
