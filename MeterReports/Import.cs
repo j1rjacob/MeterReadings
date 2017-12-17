@@ -1,12 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data;
-using System.Data.SqlClient;
-using System.IO;
-using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using TMF.Core;
 using TMF.Reports.UTIL;
 
 namespace MeterReports
@@ -159,7 +154,6 @@ namespace MeterReports
             _duplicateCSVFile = CSVDuplicate.Get(_fileNames);
             ProgressBarImportStatus.Maximum =
                 _max = (_fileNames.Length - _duplicateCSVFile.Count);
-            //Task.Factory.StartNew(() => ImportBulkRDSCSV());
 
             //TODO: Decouple; Error same count on imported and duplicated.
             LabelImported.Text = $"Number of imported CSV File/s: {0} Ok";
@@ -174,116 +168,6 @@ namespace MeterReports
         private void ButtonSkip_Click(object sender, EventArgs e)
         {
             this.Close();
-        }
-
-        private void ImportBulkRDSCSV()
-        {
-            int count = 0;
-
-            using (SqlConnection connection =
-                new SqlConnection(new SmartDB().Connection.ConnectionString))
-            {
-                connection.Open();
-                foreach (var filename in _fileNames)
-                {
-                    _gateway = Path.GetFileName((Path.GetDirectoryName(filename)));
-                    _csvFilename = (Path.GetFileName(filename));
-                    if (!_duplicateCSVFile.Contains(_csvFilename))
-                    {   // Create a table with some rows.
-                        DataTable newMeterReading = MakeTable.RDS(filename);
-                        // Create the SqlBulkCopy object.
-                        using (SqlBulkCopy s = new SqlBulkCopy(connection))
-                        {
-                            s.DestinationTableName = "MeterReading";
-                            s.ColumnMappings.Add("SerialNumber", "SerialNumber");
-                            s.ColumnMappings.Add("ReadingDate", "ReadingDate");
-                            s.ColumnMappings.Add("ReadingValue", "ReadingValue");
-                            s.ColumnMappings.Add("LowBatteryAlr", "LowBatteryAlr");
-                            s.ColumnMappings.Add("LeakAlr", "LeakAlr");
-                            s.ColumnMappings.Add("MagneticTamperAlr", "MagneticTamperAlr");
-                            s.ColumnMappings.Add("MeterErrorAlr", "MeterErrorAlr");
-                            s.ColumnMappings.Add("BackFlowAlr", "BackFlowAlr");
-                            s.ColumnMappings.Add("BrokenPipeAlr", "BrokenPipeAlr");
-                            s.ColumnMappings.Add("EmptyPipeAlr", "EmptyPipeAlr");
-                            s.ColumnMappings.Add("SpecificErr", "SpecificErr");
-                            try
-                            {
-                                // Write from the source to the destination.
-                                s.WriteToServer(newMeterReading);
-
-                                //Add GatewayLog
-                                TMF.Reports.Model.GatewayLog gatewayLog = new TMF.Reports.Model.GatewayLog()
-                                {
-                                    RDS = 1,
-                                    OMS = 0,
-                                    GatewayMacAddress = _gateway,
-                                    CSVFilename = _csvFilename,
-                                    CreatedBy = "2",
-                                    EditedBy = "2",
-                                    DocDate = DateTime.Now,
-                                    Show = 1,
-                                    LockCount = 0
-                                };
-                                var createGatewayLog = _gatewayLog.Create(new SmartDB(), ref gatewayLog);
-
-                                //ADD Mac Address in Gateway
-                                if (!_duplicateMac.Contains(_gateway))
-                                {
-                                    TMF.Reports.Model.Gateway gatewayC = new TMF.Reports.Model.Gateway()
-                                    {
-                                        MacAddress = Regex.Replace(_gateway, @"^(..)(..)(..)(..)(..)(..)$", "$1:$2:$3:$4:$5:$6"),
-                                        SimCard = null,
-                                        X = 0,
-                                        Y = 0,
-                                        Description = null,
-                                        InstallationDate = DateTime.Parse("06/20/1986"),
-                                        MaintenanceDate = DateTime.Parse("06/20/1986"),
-                                        Status = "Active",
-                                        IPAddress = "192.0.0.1",
-                                        CreatedBy = "1",
-                                        EditedBy = "1",
-                                        DocDate = DateTime.Now,
-                                        Show = 1,
-                                        LockCount = 0
-                                    };
-                                    _gatewayL.Create(new SmartDB(), ref gatewayC);
-                                }
-                                //TODO ADD Meter Serial to Meter Table via stored proc REPORT METER_SYNCSERIALNUMBER_METERREADING
-                                bool flag = createGatewayLog.Code == ErrorEnum.NoError;
-                                if (flag)
-                                {
-                                    ProgressBarImportStatus.Invoke((Action)delegate
-                                    {
-                                        ProgressBarImportStatus.Increment(1);
-                                    });
-                                    count++;
-                                    if (count == _max)
-                                    {
-                                        LabelImported.Invoke((Action)delegate
-                                        {
-                                            LabelImported.Text = $"Number of imported CSV File/s: {count} Ok";
-                                        });
-                                        MessageBox.Show("Importing was successful.");
-                                    }
-                                }
-                                else
-                                {
-                                    MessageBox.Show($"Contact Admin: Gateway log error", "Import");
-                                }
-
-                            }
-                            catch (Exception ex)
-                            {
-                                MessageBox.Show($"Contact Admin: {ex.Message}", "Import");
-                            }
-                        }
-                    }
-                }
-            }
-            LabelDuplicate.Invoke((Action)delegate
-            {
-                LabelDuplicate.Text = $"Number of duplicated CSV File/ s: {_duplicateCSVFile.Count}";
-            });
         }
     }
 }

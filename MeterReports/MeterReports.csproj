@@ -78,6 +78,9 @@
     <Compile Include="Import.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="ImportGateway.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Login.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -151,6 +154,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Import.resx">
       <DependentUpon>Import.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ImportGateway.resx">
+      <DependentUpon>ImportGateway.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Login.resx">
       <DependentUpon>Login.cs</DependentUpon>

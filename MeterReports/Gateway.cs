@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.IO;
-using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -733,7 +732,13 @@ namespace MeterReports
         }
         private void ButtonImport_Click(object sender, EventArgs e)
         {
-            ImportGateways();
+            //ImportGateways();
+            if (openFileDialogGateway.ShowDialog() == DialogResult.OK)
+            {
+                var f = new ImportGateway(openFileDialogGateway.FileNames);
+                f.ShowDialog();
+            }
+            ResetControls();
         }
         private void ComboBoxDMZ_MouseClick(object sender, MouseEventArgs e)
         {
@@ -963,9 +968,9 @@ namespace MeterReports
             string line = "";
             StringBuilder fileContents = new StringBuilder();
             
-            fileContents.Append("MAC_ADDRESS, SIM_CARD, X, Y, DESCRIPTION, INSTALLATION_DATE, " +
-                                "MAINTENANCE_DATE, STATUS, IP_ADDRESS, DMZ_ID, CITY_ID, " +
-                                "CREATED_BY, EDITED_BY, DOC_DATE, SHOW, LOCK_COUNT\r\n");
+            fileContents.Append("MacAddress, SimCard, X, Y, Description, InstallationDate, " +
+                                "MaintenanceDate, Status, IPAddress, DMZId, CityId, " +
+                                "Createdby, Editedby, DocDate, Show, LockCount\r\n");
             //if (saveFileDialogGateway.ShowDialog() == DialogResult.OK)
             //{
                 sr = new StreamWriter(sfdGateway.FileName, false);
@@ -994,12 +999,11 @@ namespace MeterReports
                         line += gw.LockCount + "\r\n";
                         fileContents.Append(line);
                     }
-                    
                     sr.Write(fileContents);
                     sr.Flush();
                     sr.Close();
                 MessageBox.Show("Export Successful");
-            }
+                }
                 catch (Exception)
                 {
                     MessageBox.Show("Error while exporting file!");
@@ -1008,58 +1012,58 @@ namespace MeterReports
         }
         private void ImportGateways()
         {
-            try
-            {
-                if (openFileDialogGateway.ShowDialog() == System.Windows.Forms.DialogResult.OK)
-                {
-                    string[] allLines = File.ReadAllLines(openFileDialogGateway.FileName);
+            //try
+            //{
+            //    if (openFileDialogGateway.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            //    {
+            //        string[] allLines = File.ReadAllLines(openFileDialogGateway.FileName);
 
-                    var query = from line in allLines
-                        let data = line.Split(',')
-                        select new
-                        {
-                            MacAddress = data[0],
-                            SimCard = data[1],
-                            X = data[2],
-                            Y = data[3],
-                            Description = data[4],
-                            InstallationDate = data[5],
-                            MaintenanceDate = data[6],
-                            Status = data[7],
-                            IPAddress = data[8],
-                            DMZId = data[9],
-                            CityId = data[10],
-                            CreatedBy = data[11],
-                            EditedBy = data[12],
-                            DocDate = data[13],
-                            Show = data[14],
-                            Locked = data[15],
-                        };
-                    foreach (var q in query.ToList().Skip(1))
-                    {
-                        MessageBox.Show(q.MacAddress + " " +
-                                        q.SimCard + " " +
-                                        q.X + " " +
-                                        q.Y + " " +
-                                        q.Description + " " +
-                                        q.InstallationDate + " " +
-                                        q.MaintenanceDate + " " +
-                                        q.Status + " " +
-                                        q.IPAddress + " " +
-                                        q.DMZId + " " +
-                                        q.CityId + " " +
-                                        q.CreatedBy + " " +
-                                        q.EditedBy + " " +
-                                        q.DocDate + " " +
-                                        q.Show + " " +
-                                        q.Locked);
-                    }
-                }
-            }
-            catch (Exception)
-            {
-                MessageBox.Show("Error while importing file!");
-            }
+            //        var query = from line in allLines
+            //            let data = line.Split(',')
+            //            select new
+            //            {
+            //                MacAddress = data[0],
+            //                SimCard = data[1],
+            //                X = data[2],
+            //                Y = data[3],
+            //                Description = data[4],
+            //                InstallationDate = data[5],
+            //                MaintenanceDate = data[6],
+            //                Status = data[7],
+            //                IPAddress = data[8],
+            //                DMZId = data[9],
+            //                CityId = data[10],
+            //                CreatedBy = data[11],
+            //                EditedBy = data[12],
+            //                DocDate = data[13],
+            //                Show = data[14],
+            //                Locked = data[15],
+            //            };
+            //        foreach (var q in query.ToList().Skip(1))
+            //        {
+            //            MessageBox.Show(q.MacAddress + " " +
+            //                            q.SimCard + " " +
+            //                            q.X + " " +
+            //                            q.Y + " " +
+            //                            q.Description + " " +
+            //                            q.InstallationDate + " " +
+            //                            q.MaintenanceDate + " " +
+            //                            q.Status + " " +
+            //                            q.IPAddress + " " +
+            //                            q.DMZId + " " +
+            //                            q.CityId + " " +
+            //                            q.CreatedBy + " " +
+            //                            q.EditedBy + " " +
+            //                            q.DocDate + " " +
+            //                            q.Show + " " +
+            //                            q.Locked);
+            //        }
+            //    }
+            //}
+            //catch (Exception)
+            //{
+            //    MessageBox.Show("Error while importing file!");
+            //}
         }
     }
 }

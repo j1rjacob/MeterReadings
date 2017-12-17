@@ -93,13 +93,16 @@
     <Compile Include="Model\Roles.cs" />
     <Compile Include="Model\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UTIL\BulkGateway.cs" />
+    <Compile Include="UTIL\BulkMeter.cs" />
     <Compile Include="UTIL\BulkRDS.cs" />
     <Compile Include="UTIL\ConnectionStringManager.cs" />
     <Compile Include="UTIL\CSVDuplicate.cs" />
+    <Compile Include="UTIL\FetchTable.cs" />
     <Compile Include="UTIL\MacDuplicate.cs" />
+    <Compile Include="UTIL\MACDuplicateInCSV.cs" />
     <Compile Include="UTIL\MakeTable.cs" />
     <Compile Include="UTIL\Paging.cs" />
-    <Compile Include="UTIL\Util.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
