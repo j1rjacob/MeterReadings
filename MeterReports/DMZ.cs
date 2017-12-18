@@ -373,7 +373,7 @@ namespace MeterReports
             }
             else
             {
-                MessageBox.Show("No DMZ to delete.");
+                MessageBox.Show("No DMZ to delete or Contact Admin.");
             }
         }
         private void ButtonSearch_Click(object sender, EventArgs e)
@@ -445,7 +445,7 @@ namespace MeterReports
                 }
             }
             else
-                MessageBox.Show("No DMZ to save.");
+                MessageBox.Show("No DMZ to save or Contact Admin.");
         }
         private void EditDMZ()
         {
@@ -480,7 +480,7 @@ namespace MeterReports
             }
             else
             {
-                MessageBox.Show("No DMZ to edit.");
+                MessageBox.Show("No DMZ to edit or Contact Admin.");
             }
         }
         private void GetCities()

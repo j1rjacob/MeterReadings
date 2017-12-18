@@ -182,6 +182,7 @@
             this.DataGridViewLatestMeterReading.Location = new System.Drawing.Point(10, 281);
             this.DataGridViewLatestMeterReading.Name = "DataGridViewLatestMeterReading";
             this.DataGridViewLatestMeterReading.ReadOnly = true;
+            this.DataGridViewLatestMeterReading.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.DataGridViewLatestMeterReading.Size = new System.Drawing.Size(878, 142);
             this.DataGridViewLatestMeterReading.TabIndex = 82;
             // 

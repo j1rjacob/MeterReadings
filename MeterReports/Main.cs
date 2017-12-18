@@ -167,7 +167,7 @@ namespace MeterReports
         private void cityToolStripMenuItem_Click(object sender, EventArgs e)
         {
             var ct = new Citi(_currentUser);
-            if (!OpenForms<DMZ>())
+            if (!OpenForms<Citi>())
             {
                 ct.MdiParent = this;
                 ct.Show();

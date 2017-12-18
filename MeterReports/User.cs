@@ -60,7 +60,7 @@ namespace MeterReports
             }
             else
             {
-                MessageBox.Show("No User to delete.");
+                MessageBox.Show("No User to delete or Contact Admin.");
             }
         }
         private void ButtonNew_Click(object sender, EventArgs e)
@@ -217,7 +217,7 @@ namespace MeterReports
                 }
             }
             else
-                MessageBox.Show("No User to save.");
+                MessageBox.Show("No User to save or Contact Admin.");
         }
         private void EditUser()
         {
@@ -246,7 +246,7 @@ namespace MeterReports
             }
             else
             {
-                MessageBox.Show("No User to edit.");
+                MessageBox.Show("No User to edit or Contact Admin.");
             }
         }
         private void GetRoles()
@@ -302,7 +302,7 @@ namespace MeterReports
                 DataGridViewUser.DataSource = source;
                 LabelShow.Text = $"Showing {DataGridViewUser.CurrentRow.Index + 1} index of {DataGridViewUser.RowCount} records";
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 return;
             }

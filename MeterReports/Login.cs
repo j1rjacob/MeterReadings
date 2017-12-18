@@ -46,20 +46,20 @@ namespace MeterReports
             this.errorProviderLogin = new System.Windows.Forms.ErrorProvider(this.components);
             this.tabControl2 = new System.Windows.Forms.TabControl();
             this.tabPage3 = new System.Windows.Forms.TabPage();
-            this.tabPage4 = new System.Windows.Forms.TabPage();
             this.ButtonLogin = new System.Windows.Forms.Button();
             this.TextBoxPassword = new System.Windows.Forms.TextBox();
             this.TextBoxUsername = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
+            this.tabPage4 = new System.Windows.Forms.TabPage();
             this.TextBoxDBPassword = new System.Windows.Forms.TextBox();
             this.TextBoxDBUsername = new System.Windows.Forms.TextBox();
             this.TextBoxInitialCatalog = new System.Windows.Forms.TextBox();
             this.TextBoxDataSource = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.errorProviderLogin)).BeginInit();
             this.tabControl2.SuspendLayout();
             this.tabPage3.SuspendLayout();
@@ -111,24 +111,6 @@ namespace MeterReports
             this.tabPage3.Text = "User Credential";
             this.tabPage3.UseVisualStyleBackColor = true;
             // 
-            // tabPage4
-            // 
-            this.tabPage4.Controls.Add(this.TextBoxDBPassword);
-            this.tabPage4.Controls.Add(this.TextBoxDBUsername);
-            this.tabPage4.Controls.Add(this.TextBoxInitialCatalog);
-            this.tabPage4.Controls.Add(this.TextBoxDataSource);
-            this.tabPage4.Controls.Add(this.label6);
-            this.tabPage4.Controls.Add(this.label5);
-            this.tabPage4.Controls.Add(this.label4);
-            this.tabPage4.Controls.Add(this.label3);
-            this.tabPage4.Location = new System.Drawing.Point(4, 22);
-            this.tabPage4.Name = "tabPage4";
-            this.tabPage4.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage4.Size = new System.Drawing.Size(482, 318);
-            this.tabPage4.TabIndex = 1;
-            this.tabPage4.Text = "Connection Manager";
-            this.tabPage4.UseVisualStyleBackColor = true;
-            // 
             // ButtonLogin
             // 
             this.ButtonLogin.AutoSize = true;
@@ -164,6 +146,16 @@ namespace MeterReports
             this.TextBoxUsername.Validating += new System.ComponentModel.CancelEventHandler(this.TextBoxUsername_Validating);
             this.TextBoxUsername.Validated += new System.EventHandler(this.TextBoxUsername_Validated);
             // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(63, 78);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(115, 22);
+            this.label2.TabIndex = 16;
+            this.label2.Text = "PASSWORD";
+            // 
             // label1
             // 
             this.label1.AutoSize = true;
@@ -173,6 +165,24 @@ namespace MeterReports
             this.label1.Size = new System.Drawing.Size(111, 22);
             this.label1.TabIndex = 17;
             this.label1.Text = "USERNAME";
+            // 
+            // tabPage4
+            // 
+            this.tabPage4.Controls.Add(this.TextBoxDBPassword);
+            this.tabPage4.Controls.Add(this.TextBoxDBUsername);
+            this.tabPage4.Controls.Add(this.TextBoxInitialCatalog);
+            this.tabPage4.Controls.Add(this.TextBoxDataSource);
+            this.tabPage4.Controls.Add(this.label6);
+            this.tabPage4.Controls.Add(this.label5);
+            this.tabPage4.Controls.Add(this.label4);
+            this.tabPage4.Controls.Add(this.label3);
+            this.tabPage4.Location = new System.Drawing.Point(4, 22);
+            this.tabPage4.Name = "tabPage4";
+            this.tabPage4.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage4.Size = new System.Drawing.Size(482, 318);
+            this.tabPage4.TabIndex = 1;
+            this.tabPage4.Text = "Connection Manager";
+            this.tabPage4.UseVisualStyleBackColor = true;
             // 
             // TextBoxDBPassword
             // 
@@ -234,17 +244,6 @@ namespace MeterReports
             this.label5.TabIndex = 29;
             this.label5.Text = "USERNAME";
             // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(64, 32);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(141, 22);
-            this.label3.TabIndex = 26;
-            this.label3.Text = "DATA SOURCE";
-            // 
             // label4
             // 
             this.label4.AutoSize = true;
@@ -256,15 +255,16 @@ namespace MeterReports
             this.label4.TabIndex = 27;
             this.label4.Text = "INITIAL CATALOG";
             // 
-            // label2
+            // label3
             // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(63, 78);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(115, 22);
-            this.label2.TabIndex = 16;
-            this.label2.Text = "PASSWORD";
+            this.label3.AutoSize = true;
+            this.label3.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(64, 32);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(141, 22);
+            this.label3.TabIndex = 26;
+            this.label3.Text = "DATA SOURCE";
             // 
             // Login
             // 

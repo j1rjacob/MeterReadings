@@ -82,7 +82,7 @@ namespace MeterReports
             }
             else
             {
-                MessageBox.Show("No city to delete.");
+                MessageBox.Show("No city to delete or Contact Admin.");
             }
         }
         private void ButtonSearch_Click(object sender, EventArgs e)
@@ -153,7 +153,7 @@ namespace MeterReports
                 }
             }
             else
-                MessageBox.Show("No city to save.");
+                MessageBox.Show("No city to save or Contact Admin.");
         }
         private void EditCity()
         {
@@ -187,7 +187,7 @@ namespace MeterReports
             }
             else
             {
-                MessageBox.Show("No city to edit.");
+                MessageBox.Show("No city to edit or Contact Admin.");
             }
         }
         private void ResetControls()

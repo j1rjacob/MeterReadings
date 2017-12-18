@@ -121,7 +121,7 @@ namespace MeterReports
             }
             else
             {
-                MessageBox.Show("No meter to delete.");
+                MessageBox.Show("No meter to delete or Contact Admin.");
             }
         }
         private void ButtonSearch_Click(object sender, EventArgs e)
@@ -257,7 +257,7 @@ namespace MeterReports
                 }
             }
             else
-                MessageBox.Show("No meter to save.");
+                MessageBox.Show("No meter to save or Contact Admin.");
         }
         private void EditMeter()
         {
@@ -301,7 +301,7 @@ namespace MeterReports
             }
             else
             {
-                MessageBox.Show("No meter to edit.");
+                MessageBox.Show("No meter to edit or Contact Admin.");
             }
         }
         private void GetCities()
@@ -504,7 +504,18 @@ namespace MeterReports
                 connection.Open();
           
                 string strSql = "SELECT COUNT(SerialNumber) FROM Meter " +
-                                "WHERE SerialNumber LIKE @SerialNumber";
+                                "WHERE SerialNumber LIKE @SerialNumber " +
+                                "OR X LIKE @SerialNumber " +
+                                "OR Y LIKE @SerialNumber " +
+                                "OR Status LIKE @SerialNumber " +
+                                "OR HCN LIKE @SerialNumber " +
+                                "OR InstallationDate LIKE @SerialNumber " +
+                                "OR MaintenanceDate LIKE @SerialNumber " +
+                                "OR MeterTypeId LIKE (SELECT DISTINCT Id FROM MeterType Where Description LIKE @SerialNumber) " +
+                                "OR MeterSizeId LIKE (SELECT DISTINCT Id FROM MeterSize Where Description LIKE @SerialNumber) " +
+                                "OR MeterProtocolId LIKE (SELECT DISTINCT Id FROM MeterProtocol Where Description LIKE @SerialNumber) " +
+                                "OR CityId LIKE (SELECT DISTINCT Id FROM City Where Description LIKE @SerialNumber) " +
+                                "OR DMZId LIKE (SELECT DISTINCT Id FROM DMZ Where Description LIKE @SerialNumber)";
 
                 SqlCommand cmd = connection.CreateCommand();
                 cmd.CommandText = strSql;
@@ -526,28 +537,46 @@ namespace MeterReports
             using (SqlConnection connection =
                 new SqlConnection(new SmartDB().Connection.ConnectionString))
             {
-                strSql = "SELECT TOP " + _mintPageSize +
-                         " * FROM Meter WHERE SerialNumber NOT IN " +
-                         "(SELECT TOP " + intSkip + " SerialNumber FROM Meter)" +
-                         "AND SerialNumber LIKE @SerialNumber";
-
-                cmd = connection.CreateCommand();
-                cmd.CommandText = strSql;
-                cmd.Parameters.AddWithValue("@SerialNumber", "%" + TextBoxSearch.Text + "%");
-                da = new SqlDataAdapter(cmd);
-                da.Fill(ds, "Meter");
-                
-                var source = new BindingSource(ds.Tables["Meter"].DefaultView, null);
-                DataGridViewMeter.Invoke((Action)delegate { DataGridViewMeter.DataSource = source; });
-                lblStatus.Invoke((Action)delegate
+                try
                 {
-                    lblStatus.Text = (_mintCurrentPage + 1) +
-                                     " / " + _mintPageCount;
-                });
-                
-                cmd.Dispose();
-                da.Dispose();
-                ds.Dispose();
+                    strSql = "SELECT TOP " + _mintPageSize +
+                             " * FROM Meter WHERE SerialNumber NOT IN " +
+                             "(SELECT TOP " + intSkip + " SerialNumber FROM Meter)" +
+                             "AND SerialNumber LIKE @SerialNumber " +
+                             "OR X LIKE @SerialNumber " +
+                             "OR Y LIKE @SerialNumber " +
+                             "OR Status LIKE @SerialNumber " +
+                             "OR HCN LIKE @SerialNumber " +
+                             "OR InstallationDate LIKE @SerialNumber " +
+                             "OR MaintenanceDate LIKE @SerialNumber " +
+                             "OR MeterTypeId LIKE (SELECT DISTINCT Id FROM MeterType Where Description LIKE @SerialNumber) " +
+                             "OR MeterSizeId LIKE (SELECT DISTINCT Id FROM MeterSize Where Description LIKE @SerialNumber) " +
+                             "OR MeterProtocolId LIKE (SELECT DISTINCT Id FROM MeterProtocol Where Description LIKE @SerialNumber) " +
+                             "OR CityId LIKE (SELECT DISTINCT Id FROM City Where Description LIKE @SerialNumber) " +
+                             "OR DMZId LIKE (SELECT DISTINCT Id FROM DMZ Where Description LIKE @SerialNumber)";
+
+                    cmd = connection.CreateCommand();
+                    cmd.CommandText = strSql;
+                    cmd.Parameters.AddWithValue("@SerialNumber", "%" + TextBoxSearch.Text + "%");
+                    da = new SqlDataAdapter(cmd);
+                    da.Fill(ds, "Meter");
+
+                    var source = new BindingSource(ds.Tables["Meter"].DefaultView, null);
+                    DataGridViewMeter.Invoke((Action)delegate { DataGridViewMeter.DataSource = source; });
+                    lblStatus.Invoke((Action)delegate
+                    {
+                        lblStatus.Text = (_mintCurrentPage + 1) +
+                                         " / " + _mintPageCount;
+                    });
+
+                    cmd.Dispose();
+                    da.Dispose();
+                    ds.Dispose();
+                }
+                catch (Exception)
+                {
+                    return;
+                }
             }
         }
         public void GoFirst()

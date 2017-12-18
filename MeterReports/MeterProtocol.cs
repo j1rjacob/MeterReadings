@@ -77,7 +77,7 @@ namespace MeterReports
             }
             else
             {
-                MessageBox.Show("No meter protocol to delete.");
+                MessageBox.Show("No meter protocol to delete or Contact Admin.");
             }
         }
 
@@ -140,7 +140,7 @@ namespace MeterReports
                 }
             }
             else
-                MessageBox.Show("No meter protocol to save.");
+                MessageBox.Show("No meter protocol to save or Contact Admin.");
         }
         private void EditMeterProtocol()
         {
@@ -173,7 +173,7 @@ namespace MeterReports
             }
             else
             {
-                MessageBox.Show("No meter protocol to edit.");
+                MessageBox.Show("No meter protocol to edit or Contact Admin.");
             }
         }
         private void ResetControls()

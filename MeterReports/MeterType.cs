@@ -73,7 +73,7 @@ namespace MeterReports
                 }
             }
             else
-                MessageBox.Show("No meter type to delete.");
+                MessageBox.Show("No meter type to delete or Contact Admin.");
         }
         private void ButtonSearch_Click(object sender, EventArgs e)
         {
@@ -142,7 +142,7 @@ namespace MeterReports
                 }
             }
             else
-                MessageBox.Show("No meter type to save.");
+                MessageBox.Show("No meter type to save or Contact Admin.");
         }
         private void EditMeterType()
         {
@@ -176,7 +176,7 @@ namespace MeterReports
             }
             else
             {
-                MessageBox.Show("No meter type to edit.");
+                MessageBox.Show("No meter type to edit or Contact Admin.");
             }
         }
         private void ResetControls()

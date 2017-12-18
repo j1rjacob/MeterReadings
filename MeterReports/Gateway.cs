@@ -840,7 +840,7 @@ namespace MeterReports
                 }
             }
             else
-                MessageBox.Show("No gateway to save.");
+                MessageBox.Show("No gateway to save or Contact Admin.");
         }
         private void EditGateway()
         {
@@ -884,7 +884,7 @@ namespace MeterReports
             }
             else
             {
-                MessageBox.Show("No gateway to edit.");
+                MessageBox.Show("No gateway to edit or Contact Admin.");
             }
         }
         private void GetCities()

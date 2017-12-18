@@ -110,7 +110,7 @@ namespace MeterReports
             }
             else
             {
-                MessageBox.Show("No meter reading to delete.");
+                MessageBox.Show("No meter reading to delete or Contact Admin.");
             }
         }
         private void ButtonSearch_Click(object sender, EventArgs e)
@@ -223,7 +223,7 @@ namespace MeterReports
                 }
             }
             else
-                MessageBox.Show("No meter reading to save.");
+                MessageBox.Show("No meter reading to save or Contact Admin.");
         }
         private void EditMeterReading()
         {
@@ -266,7 +266,7 @@ namespace MeterReports
             }
             else
             {
-                MessageBox.Show("No meter reading to edit.");
+                MessageBox.Show("No meter reading to edit or Contact Admin.");
             }
         }
         private void ResetControls()
