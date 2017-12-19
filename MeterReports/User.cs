@@ -103,54 +103,16 @@ namespace MeterReports
         }
         private void ButtonLock_Click(object sender, EventArgs e)
         {
-            if (!string.IsNullOrWhiteSpace(TextBoxName.Text) &&
-                _currentUser.Role == "Administrator")
-            {   
-                var user = _userManager.FindById(_userId);
-
-                user.Locked = 1;
-
-                var flag = _userManager.Update(user);
-
-                if (flag.Succeeded)
-                {
-                    MessageBox.Show("User Locked");
-                    ResetControls();
-                }
-                else
-                {
-                    MessageBox.Show("User is not locked!");
-                }
-            }
-            else
-            {
-                MessageBox.Show("No User to edit.");
-            }
+            PerformLock();
         }
+        
         private void ButtonUnlock_Click(object sender, EventArgs e)
         {
-            if (!string.IsNullOrWhiteSpace(TextBoxName.Text) &&
-                _currentUser.Role == "Administrator")
-            {
-                var user = _userManager.FindById(_userId);
-
-                user.Locked = 0;
-
-                var flag = _userManager.Update(user);
-
-                if (flag.Succeeded)
-                {
-                    MessageBox.Show("User Unlocked");
-                    ResetControls();
-                }
-                else
-                {
-                    MessageBox.Show("User is not unlocked!");
-                }
-            }
-            else
-                MessageBox.Show("No User to unlocked.");
+            PerformUnlock();
         }
+
+        
+
         private void ComboBoxRole_MouseClick(object sender, MouseEventArgs e)
         {
             GetRoles();
@@ -189,7 +151,91 @@ namespace MeterReports
                 return;
             }
         }
+        private void DataGridViewUser_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            DataGridViewUser.Rows[e.RowIndex].Cells[5].Value = "Lock";
+            DataGridViewUser.Rows[e.RowIndex].Cells[6].Value = "UnLock";
+        }
+        private void DataGridViewUser_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            //var senderGrid = (DataGridView)sender;
+
+            //if (senderGrid.Columns[e.ColumnIndex] is DataGridViewButtonColumn &&
+            //    e.RowIndex >= 0)
+            //{
+            //    PerformLock();
+            //}
+            //if (senderGrid.Columns[e.ColumnIndex] is DataGridViewButtonColumn &&
+            //    e.RowIndex >= 0)
+            //{
+            //    PerformUnlock();
+            //}
+
+            DataGridViewButtonCell cell = (DataGridViewButtonCell)DataGridViewUser
+                                          .Rows[e.RowIndex].Cells[e.ColumnIndex];
+            string selectedCell = cell.Value.ToString();
+
+            if (selectedCell == "Lock")
+            {
+                PerformLock();
+            }
+            if (selectedCell == "UnLock")
+            {
+                PerformUnlock();
+            }
+        }
+
         #region PriveteMethod
+        private void PerformLock()
+        {
+            if (!string.IsNullOrWhiteSpace(TextBoxName.Text) &&
+                _currentUser.Role == "Administrator")
+            {
+                var user = _userManager.FindById(_userId);
+
+                user.Locked = 1;
+
+                var flag = _userManager.Update(user);
+
+                if (flag.Succeeded)
+                {
+                    MessageBox.Show("User Locked");
+                    ResetControls();
+                }
+                else
+                {
+                    MessageBox.Show("User is not locked!");
+                }
+            }
+            else
+            {
+                MessageBox.Show("No User to edit.");
+            }
+        }
+        private void PerformUnlock()
+        {
+            if (!string.IsNullOrWhiteSpace(TextBoxName.Text) &&
+                _currentUser.Role == "Administrator")
+            {
+                var user = _userManager.FindById(_userId);
+
+                user.Locked = 0;
+
+                var flag = _userManager.Update(user);
+
+                if (flag.Succeeded)
+                {
+                    MessageBox.Show("User Unlocked");
+                    ResetControls();
+                }
+                else
+                {
+                    MessageBox.Show("User is not unlocked!");
+                }
+            }
+            else
+                MessageBox.Show("No User to unlocked.");
+        }
         private void SaveUser()
         {
             if (!string.IsNullOrWhiteSpace(TextBoxName.Text) &&

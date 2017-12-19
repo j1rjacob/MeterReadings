@@ -187,7 +187,7 @@ namespace MeterReports
             // TextBoxDBPassword
             // 
             this.TextBoxDBPassword.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TextBoxDBPassword.Location = new System.Drawing.Point(64, 224);
+            this.TextBoxDBPassword.Location = new System.Drawing.Point(64, 240);
             this.TextBoxDBPassword.Name = "TextBoxDBPassword";
             this.TextBoxDBPassword.PasswordChar = '*';
             this.TextBoxDBPassword.Size = new System.Drawing.Size(360, 27);
@@ -198,7 +198,7 @@ namespace MeterReports
             // TextBoxDBUsername
             // 
             this.TextBoxDBUsername.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TextBoxDBUsername.Location = new System.Drawing.Point(64, 168);
+            this.TextBoxDBUsername.Location = new System.Drawing.Point(64, 176);
             this.TextBoxDBUsername.Name = "TextBoxDBUsername";
             this.TextBoxDBUsername.Size = new System.Drawing.Size(360, 27);
             this.TextBoxDBUsername.TabIndex = 36;
@@ -216,7 +216,7 @@ namespace MeterReports
             // TextBoxDataSource
             // 
             this.TextBoxDataSource.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TextBoxDataSource.Location = new System.Drawing.Point(64, 56);
+            this.TextBoxDataSource.Location = new System.Drawing.Point(64, 48);
             this.TextBoxDataSource.Name = "TextBoxDataSource";
             this.TextBoxDataSource.Size = new System.Drawing.Size(360, 27);
             this.TextBoxDataSource.TabIndex = 25;
@@ -227,7 +227,7 @@ namespace MeterReports
             this.label6.AutoSize = true;
             this.label6.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(64, 200);
+            this.label6.Location = new System.Drawing.Point(64, 216);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(217, 22);
             this.label6.TabIndex = 31;
@@ -238,7 +238,7 @@ namespace MeterReports
             this.label5.AutoSize = true;
             this.label5.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(64, 144);
+            this.label5.Location = new System.Drawing.Point(64, 152);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(111, 22);
             this.label5.TabIndex = 29;
@@ -260,7 +260,7 @@ namespace MeterReports
             this.label3.AutoSize = true;
             this.label3.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(64, 32);
+            this.label3.Location = new System.Drawing.Point(64, 24);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(141, 22);
             this.label3.TabIndex = 26;

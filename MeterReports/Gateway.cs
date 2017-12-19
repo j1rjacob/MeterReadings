@@ -851,7 +851,6 @@ namespace MeterReports
                 TMF.Reports.Model.Gateway gateway = new TMF.Reports.Model.Gateway()
                 {
                     MacAddress = _gatewayMac,
-                    //MacAddress = TextBoxMac.Text,
                     SimCard = TextBoxSimCard.Text,
                     X = Convert.ToDecimal(TextBoxX.Text),
                     Y = Convert.ToDecimal(TextBoxY.Text),
