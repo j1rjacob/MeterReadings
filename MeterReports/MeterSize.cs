@@ -181,7 +181,7 @@ namespace MeterReports
             this.TextBoxDescription.Location = new System.Drawing.Point(152, 73);
             this.TextBoxDescription.Name = "TextBoxDescription";
             this.TextBoxDescription.Size = new System.Drawing.Size(501, 27);
-            this.TextBoxDescription.TabIndex = 39;
+            this.TextBoxDescription.TabIndex = 0;
             // 
             // TextBoxSearch
             // 
@@ -245,6 +245,7 @@ namespace MeterReports
             ButtonDelete.Enabled = false;
             TextBoxDescription.Text = "";
             _meterSizeId = 0;
+            TextBoxDescription.Focus();
         }
         private void ButtonEdit_Click(object sender, EventArgs e)
         {
@@ -254,6 +255,7 @@ namespace MeterReports
             ButtonSave.Enabled = true;
             ButtonDelete.Enabled = false;
             _save = false;
+            TextBoxDescription.Focus();
         }
         private void ButtonSave_Click(object sender, EventArgs e)
         {

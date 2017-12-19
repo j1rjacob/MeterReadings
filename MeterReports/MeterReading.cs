@@ -62,6 +62,7 @@ namespace MeterReports
             TextBoxEmptyPipeAlr.Text = "";
             TextBoxSpecificErr.Text = "";
             _meterReadingId = "";
+            TextBoxSerialNumber.Focus();
         }
         private void ButtonEdit_Click(object sender, EventArgs e)
         {
@@ -81,6 +82,7 @@ namespace MeterReports
             ButtonSave.Enabled = true;
             ButtonDelete.Enabled = false;
             _save = false;
+            TextBoxSerialNumber.Focus();
         }
         private void ButtonSave_Click(object sender, EventArgs e)
         {

@@ -170,7 +170,7 @@
             this.TextBoxDescription.Location = new System.Drawing.Point(152, 75);
             this.TextBoxDescription.Name = "TextBoxDescription";
             this.TextBoxDescription.Size = new System.Drawing.Size(501, 27);
-            this.TextBoxDescription.TabIndex = 27;
+            this.TextBoxDescription.TabIndex = 0;
             // 
             // TextBoxSearch
             // 

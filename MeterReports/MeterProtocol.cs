@@ -36,6 +36,7 @@ namespace MeterReports
             ButtonDelete.Enabled = false;
             TextBoxDescription.Text = "";
             _meterProtocolId = 0;
+            TextBoxDescription.Focus();
         }
 
         private void ButtonEdit_Click(object sender, EventArgs e)
@@ -46,6 +47,7 @@ namespace MeterReports
             ButtonSave.Enabled = true;
             ButtonDelete.Enabled = false;
             _save = false;
+            TextBoxDescription.Focus();
         }
 
         private void ButtonSave_Click(object sender, EventArgs e)

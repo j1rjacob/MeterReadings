@@ -183,7 +183,7 @@
             this.TextBoxTotalMeters.Location = new System.Drawing.Point(280, 105);
             this.TextBoxTotalMeters.Name = "TextBoxTotalMeters";
             this.TextBoxTotalMeters.Size = new System.Drawing.Size(376, 27);
-            this.TextBoxTotalMeters.TabIndex = 14;
+            this.TextBoxTotalMeters.TabIndex = 1;
             // 
             // TextBoxSearch
             // 
@@ -202,7 +202,7 @@
             this.TextBoxDescription.Location = new System.Drawing.Point(280, 70);
             this.TextBoxDescription.Name = "TextBoxDescription";
             this.TextBoxDescription.Size = new System.Drawing.Size(376, 27);
-            this.TextBoxDescription.TabIndex = 17;
+            this.TextBoxDescription.TabIndex = 0;
             this.TextBoxDescription.Validating += new System.ComponentModel.CancelEventHandler(this.TextBoxDescription_Validating);
             this.TextBoxDescription.Validated += new System.EventHandler(this.TextBoxDescription_Validated);
             // 

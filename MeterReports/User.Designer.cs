@@ -68,7 +68,7 @@
             this.TextBoxUsername.Location = new System.Drawing.Point(163, 96);
             this.TextBoxUsername.Name = "TextBoxUsername";
             this.TextBoxUsername.Size = new System.Drawing.Size(421, 27);
-            this.TextBoxUsername.TabIndex = 4;
+            this.TextBoxUsername.TabIndex = 1;
             // 
             // TextBoxName
             // 
@@ -77,7 +77,7 @@
             this.TextBoxName.Location = new System.Drawing.Point(163, 61);
             this.TextBoxName.Name = "TextBoxName";
             this.TextBoxName.Size = new System.Drawing.Size(421, 27);
-            this.TextBoxName.TabIndex = 5;
+            this.TextBoxName.TabIndex = 0;
             // 
             // label2
             // 
@@ -126,7 +126,7 @@
             this.TextBoxPassword.Name = "TextBoxPassword";
             this.TextBoxPassword.PasswordChar = '$';
             this.TextBoxPassword.Size = new System.Drawing.Size(421, 27);
-            this.TextBoxPassword.TabIndex = 5;
+            this.TextBoxPassword.TabIndex = 2;
             // 
             // TextBoxSearch
             // 
@@ -255,7 +255,7 @@
             this.ComboBoxRole.Location = new System.Drawing.Point(163, 176);
             this.ComboBoxRole.Name = "ComboBoxRole";
             this.ComboBoxRole.Size = new System.Drawing.Size(421, 28);
-            this.ComboBoxRole.TabIndex = 9;
+            this.ComboBoxRole.TabIndex = 3;
             this.ComboBoxRole.MouseClick += new System.Windows.Forms.MouseEventHandler(this.ComboBoxRole_MouseClick);
             // 
             // label5

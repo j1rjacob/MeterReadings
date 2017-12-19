@@ -383,7 +383,7 @@
             this.TextBoxLeakAlr.Location = new System.Drawing.Point(216, 208);
             this.TextBoxLeakAlr.Name = "TextBoxLeakAlr";
             this.TextBoxLeakAlr.Size = new System.Drawing.Size(216, 27);
-            this.TextBoxLeakAlr.TabIndex = 68;
+            this.TextBoxLeakAlr.TabIndex = 4;
             // 
             // TextBoxSpecificErr
             // 
@@ -392,7 +392,7 @@
             this.TextBoxSpecificErr.Location = new System.Drawing.Point(655, 208);
             this.TextBoxSpecificErr.Name = "TextBoxSpecificErr";
             this.TextBoxSpecificErr.Size = new System.Drawing.Size(216, 27);
-            this.TextBoxSpecificErr.TabIndex = 68;
+            this.TextBoxSpecificErr.TabIndex = 10;
             // 
             // TextBoxReadingDate
             // 
@@ -401,7 +401,7 @@
             this.TextBoxReadingDate.Location = new System.Drawing.Point(216, 112);
             this.TextBoxReadingDate.Name = "TextBoxReadingDate";
             this.TextBoxReadingDate.Size = new System.Drawing.Size(216, 27);
-            this.TextBoxReadingDate.TabIndex = 68;
+            this.TextBoxReadingDate.TabIndex = 1;
             // 
             // TextBoxBrokenPipeAlr
             // 
@@ -410,7 +410,7 @@
             this.TextBoxBrokenPipeAlr.Location = new System.Drawing.Point(656, 143);
             this.TextBoxBrokenPipeAlr.Name = "TextBoxBrokenPipeAlr";
             this.TextBoxBrokenPipeAlr.Size = new System.Drawing.Size(216, 27);
-            this.TextBoxBrokenPipeAlr.TabIndex = 70;
+            this.TextBoxBrokenPipeAlr.TabIndex = 8;
             // 
             // TextBoxBackflowAlr
             // 
@@ -419,7 +419,7 @@
             this.TextBoxBackflowAlr.Location = new System.Drawing.Point(656, 113);
             this.TextBoxBackflowAlr.Name = "TextBoxBackflowAlr";
             this.TextBoxBackflowAlr.Size = new System.Drawing.Size(216, 27);
-            this.TextBoxBackflowAlr.TabIndex = 70;
+            this.TextBoxBackflowAlr.TabIndex = 7;
             // 
             // TextBoxErrorAlr
             // 
@@ -428,7 +428,7 @@
             this.TextBoxErrorAlr.Location = new System.Drawing.Point(656, 80);
             this.TextBoxErrorAlr.Name = "TextBoxErrorAlr";
             this.TextBoxErrorAlr.Size = new System.Drawing.Size(216, 27);
-            this.TextBoxErrorAlr.TabIndex = 69;
+            this.TextBoxErrorAlr.TabIndex = 6;
             // 
             // TextBoxMagneticTmprAlr
             // 
@@ -437,7 +437,7 @@
             this.TextBoxMagneticTmprAlr.Location = new System.Drawing.Point(216, 239);
             this.TextBoxMagneticTmprAlr.Name = "TextBoxMagneticTmprAlr";
             this.TextBoxMagneticTmprAlr.Size = new System.Drawing.Size(216, 27);
-            this.TextBoxMagneticTmprAlr.TabIndex = 69;
+            this.TextBoxMagneticTmprAlr.TabIndex = 5;
             // 
             // TextBoxLowBattAlr
             // 
@@ -446,7 +446,7 @@
             this.TextBoxLowBattAlr.Location = new System.Drawing.Point(216, 176);
             this.TextBoxLowBattAlr.Name = "TextBoxLowBattAlr";
             this.TextBoxLowBattAlr.Size = new System.Drawing.Size(216, 27);
-            this.TextBoxLowBattAlr.TabIndex = 70;
+            this.TextBoxLowBattAlr.TabIndex = 3;
             // 
             // TextBoxReadingValue
             // 
@@ -455,7 +455,7 @@
             this.TextBoxReadingValue.Location = new System.Drawing.Point(216, 144);
             this.TextBoxReadingValue.Name = "TextBoxReadingValue";
             this.TextBoxReadingValue.Size = new System.Drawing.Size(216, 27);
-            this.TextBoxReadingValue.TabIndex = 69;
+            this.TextBoxReadingValue.TabIndex = 2;
             // 
             // label9
             // 
@@ -523,7 +523,7 @@
             this.TextBoxEmptyPipeAlr.Location = new System.Drawing.Point(655, 176);
             this.TextBoxEmptyPipeAlr.Name = "TextBoxEmptyPipeAlr";
             this.TextBoxEmptyPipeAlr.Size = new System.Drawing.Size(216, 27);
-            this.TextBoxEmptyPipeAlr.TabIndex = 73;
+            this.TextBoxEmptyPipeAlr.TabIndex = 9;
             // 
             // TextBoxSerialNumber
             // 
@@ -532,7 +532,7 @@
             this.TextBoxSerialNumber.Location = new System.Drawing.Point(216, 80);
             this.TextBoxSerialNumber.Name = "TextBoxSerialNumber";
             this.TextBoxSerialNumber.Size = new System.Drawing.Size(216, 27);
-            this.TextBoxSerialNumber.TabIndex = 73;
+            this.TextBoxSerialNumber.TabIndex = 0;
             this.TextBoxSerialNumber.TextChanged += new System.EventHandler(this.TextBoxSerialNumber_TextChanged);
             // 
             // label16

@@ -218,7 +218,7 @@ namespace MeterReports
             this.TextBoxTotalMeters.Location = new System.Drawing.Point(280, 132);
             this.TextBoxTotalMeters.Name = "TextBoxTotalMeters";
             this.TextBoxTotalMeters.Size = new System.Drawing.Size(376, 27);
-            this.TextBoxTotalMeters.TabIndex = 27;
+            this.TextBoxTotalMeters.TabIndex = 2;
             // 
             // TextBoxSearch
             // 
@@ -236,7 +236,7 @@ namespace MeterReports
             this.TextBoxDescription.Location = new System.Drawing.Point(280, 66);
             this.TextBoxDescription.Name = "TextBoxDescription";
             this.TextBoxDescription.Size = new System.Drawing.Size(376, 27);
-            this.TextBoxDescription.TabIndex = 29;
+            this.TextBoxDescription.TabIndex = 0;
             this.TextBoxDescription.Validating += new System.ComponentModel.CancelEventHandler(this.TextBoxDescription_Validating);
             this.TextBoxDescription.Validated += new System.EventHandler(this.TextBoxDescription_Validated);
             // 
@@ -277,7 +277,7 @@ namespace MeterReports
             this.ComboBoxCity.Location = new System.Drawing.Point(280, 98);
             this.ComboBoxCity.Name = "ComboBoxCity";
             this.ComboBoxCity.Size = new System.Drawing.Size(376, 28);
-            this.ComboBoxCity.TabIndex = 37;
+            this.ComboBoxCity.TabIndex = 1;
             this.ComboBoxCity.MouseClick += new System.Windows.Forms.MouseEventHandler(this.ComboBoxCity_MouseClick);
             this.ComboBoxCity.Validating += new System.ComponentModel.CancelEventHandler(this.ComboBoxCity_Validating);
             this.ComboBoxCity.Validated += new System.EventHandler(this.ComboBoxCity_Validated);
@@ -335,6 +335,7 @@ namespace MeterReports
             ComboBoxCity.Items.Clear();
             TextBoxTotalMeters.Text = "";
             _dmzId = 0;
+            TextBoxDescription.Focus();
         }
         private void ButtonEdit_Click(object sender, EventArgs e)
         {
@@ -345,6 +346,7 @@ namespace MeterReports
             ButtonSave.Enabled = true;
             ButtonDelete.Enabled = false;
             _save = false;
+            TextBoxDescription.Focus();
         }
         private void ButtonSave_Click(object sender, EventArgs e)
         {

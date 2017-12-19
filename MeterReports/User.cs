@@ -77,6 +77,7 @@ namespace MeterReports
             TextBoxPassword.Text = "";
             ComboBoxRole.Enabled = true;
             _userId = 0;
+            TextBoxName.Focus();
         }
         private void ButtonEdit_Click(object sender, EventArgs e)
         {
@@ -89,6 +90,7 @@ namespace MeterReports
             ButtonSave.Enabled = true;
             ButtonDelete.Enabled = false;
             _save = false;
+            TextBoxName.Focus();
         }
         private void ButtonSave_Click(object sender, EventArgs e)
         {

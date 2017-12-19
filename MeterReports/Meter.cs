@@ -72,6 +72,7 @@ namespace MeterReports
             ComboBoxDMZ.Items.Clear();
             ComboBoxCity.Items.Clear();
             _meterSerialNumber = "";
+            TextBoxSerialNumber.Focus();
         }
         private void ButtonEdit_Click(object sender, EventArgs e)
         {
@@ -92,6 +93,7 @@ namespace MeterReports
             ButtonSave.Enabled = true;
             ButtonDelete.Enabled = false;
             _save = false;
+            TextBoxSerialNumber.Focus();
         }
         private void ButtonSave_Click(object sender, EventArgs e)
         {

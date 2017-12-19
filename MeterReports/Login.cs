@@ -132,7 +132,7 @@ namespace MeterReports
             this.TextBoxPassword.Name = "TextBoxPassword";
             this.TextBoxPassword.PasswordChar = '*';
             this.TextBoxPassword.Size = new System.Drawing.Size(360, 27);
-            this.TextBoxPassword.TabIndex = 26;
+            this.TextBoxPassword.TabIndex = 1;
             this.TextBoxPassword.Validating += new System.ComponentModel.CancelEventHandler(this.TextBoxPassword_Validating);
             this.TextBoxPassword.Validated += new System.EventHandler(this.TextBoxPassword_Validated);
             // 
@@ -142,7 +142,7 @@ namespace MeterReports
             this.TextBoxUsername.Location = new System.Drawing.Point(64, 34);
             this.TextBoxUsername.Name = "TextBoxUsername";
             this.TextBoxUsername.Size = new System.Drawing.Size(360, 27);
-            this.TextBoxUsername.TabIndex = 14;
+            this.TextBoxUsername.TabIndex = 0;
             this.TextBoxUsername.Validating += new System.ComponentModel.CancelEventHandler(this.TextBoxUsername_Validating);
             this.TextBoxUsername.Validated += new System.EventHandler(this.TextBoxUsername_Validated);
             // 
@@ -277,6 +277,7 @@ namespace MeterReports
             this.Name = "Login";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Login";
+            this.Load += new System.EventHandler(this.Login_Load);
             ((System.ComponentModel.ISupportInitialize)(this.errorProviderLogin)).EndInit();
             this.tabControl2.ResumeLayout(false);
             this.tabPage3.ResumeLayout(false);
@@ -380,6 +381,11 @@ namespace MeterReports
         private void TextBoxPassword_Validated(object sender, EventArgs e)
         {
             this.errorProviderLogin.SetError(this.TextBoxPassword, string.Empty);
+        }
+
+        private void Login_Load(object sender, EventArgs e)
+        {
+            TextBoxUsername.Focus();
         }
     }
 }

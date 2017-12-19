@@ -94,7 +94,7 @@
             this.DateTimePickerMaintenanceDate.Location = new System.Drawing.Point(672, 80);
             this.DateTimePickerMaintenanceDate.Name = "DateTimePickerMaintenanceDate";
             this.DateTimePickerMaintenanceDate.Size = new System.Drawing.Size(216, 27);
-            this.DateTimePickerMaintenanceDate.TabIndex = 56;
+            this.DateTimePickerMaintenanceDate.TabIndex = 6;
             // 
             // DateTimePickerInstallationDate
             // 
@@ -103,7 +103,7 @@
             this.DateTimePickerInstallationDate.Location = new System.Drawing.Point(216, 240);
             this.DateTimePickerInstallationDate.Name = "DateTimePickerInstallationDate";
             this.DateTimePickerInstallationDate.Size = new System.Drawing.Size(216, 27);
-            this.DateTimePickerInstallationDate.TabIndex = 55;
+            this.DateTimePickerInstallationDate.TabIndex = 5;
             // 
             // ComboBoxDMZ
             // 
@@ -115,7 +115,7 @@
             this.ComboBoxDMZ.Location = new System.Drawing.Point(672, 208);
             this.ComboBoxDMZ.Name = "ComboBoxDMZ";
             this.ComboBoxDMZ.Size = new System.Drawing.Size(216, 28);
-            this.ComboBoxDMZ.TabIndex = 54;
+            this.ComboBoxDMZ.TabIndex = 10;
             this.ComboBoxDMZ.MouseClick += new System.Windows.Forms.MouseEventHandler(this.ComboBoxDMZ_MouseClick);
             // 
             // ComboBoxMeterProtocol
@@ -128,7 +128,7 @@
             this.ComboBoxMeterProtocol.Location = new System.Drawing.Point(672, 176);
             this.ComboBoxMeterProtocol.Name = "ComboBoxMeterProtocol";
             this.ComboBoxMeterProtocol.Size = new System.Drawing.Size(216, 28);
-            this.ComboBoxMeterProtocol.TabIndex = 53;
+            this.ComboBoxMeterProtocol.TabIndex = 9;
             this.ComboBoxMeterProtocol.MouseClick += new System.Windows.Forms.MouseEventHandler(this.ComboBoxMeterProtocol_MouseClick);
             // 
             // ComboBoxMeterType
@@ -141,7 +141,7 @@
             this.ComboBoxMeterType.Location = new System.Drawing.Point(672, 112);
             this.ComboBoxMeterType.Name = "ComboBoxMeterType";
             this.ComboBoxMeterType.Size = new System.Drawing.Size(216, 28);
-            this.ComboBoxMeterType.TabIndex = 52;
+            this.ComboBoxMeterType.TabIndex = 7;
             this.ComboBoxMeterType.MouseClick += new System.Windows.Forms.MouseEventHandler(this.ComboBoxMeterType_MouseClick);
             // 
             // ComboBoxStatus
@@ -154,7 +154,7 @@
             this.ComboBoxStatus.Location = new System.Drawing.Point(216, 176);
             this.ComboBoxStatus.Name = "ComboBoxStatus";
             this.ComboBoxStatus.Size = new System.Drawing.Size(216, 28);
-            this.ComboBoxStatus.TabIndex = 51;
+            this.ComboBoxStatus.TabIndex = 3;
             // 
             // ButtonDelete
             // 
@@ -353,7 +353,7 @@
             this.TextBoxX.Location = new System.Drawing.Point(216, 114);
             this.TextBoxX.Name = "TextBoxX";
             this.TextBoxX.Size = new System.Drawing.Size(216, 27);
-            this.TextBoxX.TabIndex = 38;
+            this.TextBoxX.TabIndex = 1;
             // 
             // TextBoxHCN
             // 
@@ -362,7 +362,7 @@
             this.TextBoxHCN.Location = new System.Drawing.Point(216, 209);
             this.TextBoxHCN.Name = "TextBoxHCN";
             this.TextBoxHCN.Size = new System.Drawing.Size(216, 27);
-            this.TextBoxHCN.TabIndex = 40;
+            this.TextBoxHCN.TabIndex = 4;
             // 
             // TextBoxY
             // 
@@ -371,7 +371,7 @@
             this.TextBoxY.Location = new System.Drawing.Point(216, 145);
             this.TextBoxY.Name = "TextBoxY";
             this.TextBoxY.Size = new System.Drawing.Size(216, 27);
-            this.TextBoxY.TabIndex = 39;
+            this.TextBoxY.TabIndex = 2;
             // 
             // label9
             // 
@@ -449,7 +449,7 @@
             this.TextBoxSerialNumber.Location = new System.Drawing.Point(216, 82);
             this.TextBoxSerialNumber.Name = "TextBoxSerialNumber";
             this.TextBoxSerialNumber.Size = new System.Drawing.Size(216, 27);
-            this.TextBoxSerialNumber.TabIndex = 43;
+            this.TextBoxSerialNumber.TabIndex = 0;
             // 
             // label6
             // 
@@ -521,7 +521,7 @@
             this.ComboBoxCity.Location = new System.Drawing.Point(672, 240);
             this.ComboBoxCity.Name = "ComboBoxCity";
             this.ComboBoxCity.Size = new System.Drawing.Size(216, 28);
-            this.ComboBoxCity.TabIndex = 54;
+            this.ComboBoxCity.TabIndex = 11;
             this.ComboBoxCity.MouseClick += new System.Windows.Forms.MouseEventHandler(this.ComboBoxCity_MouseClick);
             // 
             // ComboBoxMeterSize
@@ -534,7 +534,7 @@
             this.ComboBoxMeterSize.Location = new System.Drawing.Point(672, 144);
             this.ComboBoxMeterSize.Name = "ComboBoxMeterSize";
             this.ComboBoxMeterSize.Size = new System.Drawing.Size(216, 28);
-            this.ComboBoxMeterSize.TabIndex = 52;
+            this.ComboBoxMeterSize.TabIndex = 8;
             this.ComboBoxMeterSize.MouseClick += new System.Windows.Forms.MouseEventHandler(this.ComboBoxMeterSize_MouseClick);
             // 
             // ButtonImport

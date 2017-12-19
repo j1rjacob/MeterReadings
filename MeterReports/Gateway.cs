@@ -320,7 +320,7 @@ namespace MeterReports
             this.TextBoxSimCard.Location = new System.Drawing.Point(216, 101);
             this.TextBoxSimCard.Name = "TextBoxSimCard";
             this.TextBoxSimCard.Size = new System.Drawing.Size(216, 27);
-            this.TextBoxSimCard.TabIndex = 14;
+            this.TextBoxSimCard.TabIndex = 1;
             // 
             // TextBoxX
             // 
@@ -329,7 +329,7 @@ namespace MeterReports
             this.TextBoxX.Location = new System.Drawing.Point(216, 132);
             this.TextBoxX.Name = "TextBoxX";
             this.TextBoxX.Size = new System.Drawing.Size(216, 27);
-            this.TextBoxX.TabIndex = 15;
+            this.TextBoxX.TabIndex = 2;
             // 
             // TextBoxSearch
             // 
@@ -347,7 +347,7 @@ namespace MeterReports
             this.TextBoxMac.Location = new System.Drawing.Point(216, 69);
             this.TextBoxMac.Name = "TextBoxMac";
             this.TextBoxMac.Size = new System.Drawing.Size(216, 27);
-            this.TextBoxMac.TabIndex = 17;
+            this.TextBoxMac.TabIndex = 0;
             // 
             // label4
             // 
@@ -406,7 +406,7 @@ namespace MeterReports
             this.TextBoxDescription.Location = new System.Drawing.Point(216, 196);
             this.TextBoxDescription.Name = "TextBoxDescription";
             this.TextBoxDescription.Size = new System.Drawing.Size(216, 27);
-            this.TextBoxDescription.TabIndex = 15;
+            this.TextBoxDescription.TabIndex = 4;
             // 
             // label7
             // 
@@ -425,7 +425,7 @@ namespace MeterReports
             this.DateTimePickerInstallationDate.Location = new System.Drawing.Point(216, 227);
             this.DateTimePickerInstallationDate.Name = "DateTimePickerInstallationDate";
             this.DateTimePickerInstallationDate.Size = new System.Drawing.Size(216, 27);
-            this.DateTimePickerInstallationDate.TabIndex = 26;
+            this.DateTimePickerInstallationDate.TabIndex = 5;
             // 
             // label8
             // 
@@ -454,7 +454,7 @@ namespace MeterReports
             this.DateTimePickerMaintenanceDate.Location = new System.Drawing.Point(672, 80);
             this.DateTimePickerMaintenanceDate.Name = "DateTimePickerMaintenanceDate";
             this.DateTimePickerMaintenanceDate.Size = new System.Drawing.Size(216, 27);
-            this.DateTimePickerMaintenanceDate.TabIndex = 26;
+            this.DateTimePickerMaintenanceDate.TabIndex = 6;
             // 
             // ComboBoxStatus
             // 
@@ -466,7 +466,7 @@ namespace MeterReports
             this.ComboBoxStatus.Location = new System.Drawing.Point(672, 112);
             this.ComboBoxStatus.Name = "ComboBoxStatus";
             this.ComboBoxStatus.Size = new System.Drawing.Size(216, 28);
-            this.ComboBoxStatus.TabIndex = 25;
+            this.ComboBoxStatus.TabIndex = 7;
             // 
             // label10
             // 
@@ -485,7 +485,7 @@ namespace MeterReports
             this.TextBoxIPAddress.Location = new System.Drawing.Point(672, 144);
             this.TextBoxIPAddress.Name = "TextBoxIPAddress";
             this.TextBoxIPAddress.Size = new System.Drawing.Size(216, 27);
-            this.TextBoxIPAddress.TabIndex = 15;
+            this.TextBoxIPAddress.TabIndex = 8;
             // 
             // label11
             // 
@@ -507,7 +507,7 @@ namespace MeterReports
             this.ComboBoxDMZ.Location = new System.Drawing.Point(672, 176);
             this.ComboBoxDMZ.Name = "ComboBoxDMZ";
             this.ComboBoxDMZ.Size = new System.Drawing.Size(216, 28);
-            this.ComboBoxDMZ.TabIndex = 25;
+            this.ComboBoxDMZ.TabIndex = 9;
             this.ComboBoxDMZ.MouseClick += new System.Windows.Forms.MouseEventHandler(this.ComboBoxDMZ_MouseClick);
             // 
             // label12
@@ -530,7 +530,7 @@ namespace MeterReports
             this.ComboBoxCity.Location = new System.Drawing.Point(672, 208);
             this.ComboBoxCity.Name = "ComboBoxCity";
             this.ComboBoxCity.Size = new System.Drawing.Size(216, 28);
-            this.ComboBoxCity.TabIndex = 25;
+            this.ComboBoxCity.TabIndex = 10;
             this.ComboBoxCity.MouseClick += new System.Windows.Forms.MouseEventHandler(this.ComboBoxCity_MouseClick);
             // 
             // TextBoxY
@@ -540,7 +540,7 @@ namespace MeterReports
             this.TextBoxY.Location = new System.Drawing.Point(216, 162);
             this.TextBoxY.Name = "TextBoxY";
             this.TextBoxY.Size = new System.Drawing.Size(216, 27);
-            this.TextBoxY.TabIndex = 15;
+            this.TextBoxY.TabIndex = 3;
             // 
             // ButtonExport
             // 
@@ -669,6 +669,7 @@ namespace MeterReports
             ComboBoxDMZ.Items.Clear();
             ComboBoxCity.Items.Clear();
             _gatewayMac = "";
+            TextBoxMac.Focus();
         }
         private void ButtonEdit_Click(object sender, EventArgs e)
         {
@@ -689,6 +690,7 @@ namespace MeterReports
             ButtonSave.Enabled = true;
             ButtonDelete.Enabled = false;
             _save = false;
+            TextBoxMac.Focus();
         }
         private void ButtonSave_Click(object sender, EventArgs e)
         {
