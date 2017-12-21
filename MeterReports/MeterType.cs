@@ -90,7 +90,7 @@ namespace MeterReports
             {
                 meterId = (int)DataGridViewMeterType.CurrentRow.Cells[0].Value;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 return;
             }
