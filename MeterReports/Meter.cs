@@ -156,47 +156,6 @@ namespace MeterReports
         }
         private void DataGridViewMeter_SelectionChanged(object sender, EventArgs e)
         {
-            //try
-            //{
-                //var serialNumber = DataGridViewMeter.CurrentRow.Cells[0].Value.ToString();
-                //ReturnInfo getMeter = _meter.GetMeterById(new SmartDB(), serialNumber);
-                //bool flag = getMeter.Code == ErrorEnum.NoError;
-                //TMF.Reports.Model.Meter meter = (TMF.Reports.Model.Meter)getMeter.BizObject;
-
-                //ReturnInfo getMeterType = _meterType.GetMeterTypeById(new SmartDB(), Convert.ToInt32(meter.MeterTypeId));
-                //TMF.Reports.Model.MeterType meterType = (TMF.Reports.Model.MeterType)getMeterType.BizObject;
-                //ReturnInfo getMeterSize = _meterSize.GetMeterSizeById(new SmartDB(), Convert.ToInt32(meter.MeterSizeId));
-                //TMF.Reports.Model.MeterSize meterSize = (TMF.Reports.Model.MeterSize)getMeterSize.BizObject;
-                //ReturnInfo getMeterProtocol = _meterProtocol.GetMeterProtocolById(new SmartDB(), Convert.ToInt32(meter.MeterProtocolId));
-                //TMF.Reports.Model.MeterProtocol meterProtocol = (TMF.Reports.Model.MeterProtocol)getMeterProtocol.BizObject;
-                //ReturnInfo getDMZ = _dmz.GetDMZById(new SmartDB(), Convert.ToInt32(meter.DMZId));
-                //TMF.Reports.Model.DMZ dmz = (TMF.Reports.Model.DMZ)getDMZ.BizObject;
-                //ReturnInfo getCity = _city.GetCityById(new SmartDB(), meter.CityId);
-                //City city = (City)getCity.BizObject;
-
-                //if (!string.IsNullOrEmpty(meter.SerialNumber))
-                //{
-                //_meterSerialNumber = meter.SerialNumber;
-                //TextBoxSerialNumber.Text = meter.SerialNumber;
-            //    TextBoxX.Text = meter.X.ToString();
-            //    TextBoxY.Text = meter.Y.ToString();
-            //    ComboBoxStatus.Text = meter.Status;
-            //    TextBoxHCN.Text = meter.HCN;
-            //    DateTimePickerInstallationDate.Text = meter.InstallationDate.ToString();
-            //    DateTimePickerMaintenanceDate.Text = meter.MaintenanceDate.ToString();
-            //    ComboBoxMeterType.Text = meterType.Description;
-            //    ComboBoxMeterSize.Text = meterSize.Description;
-            //    ComboBoxMeterProtocol.Text = meterProtocol.Description;
-            //    ComboBoxDMZ.Text = dmz.Description;
-            //    ComboBoxCity.Text = city.Description;
-            //    ButtonEdit.Enabled = true;
-            //    ButtonDelete.Enabled = true;
-            //}
-            //}
-            //catch (Exception)
-            //{
-            //    return;
-            //}
             try
             {
                 _meterSerialNumber = DataGridViewMeter.CurrentRow.Cells[0].Value.ToString();

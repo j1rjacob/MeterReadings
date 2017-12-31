@@ -1,5 +1,8 @@
 ﻿using Microsoft.AspNet.Identity;
 using System;
+using System.Configuration;
+using System.Data.SqlClient;
+using System.Drawing;
 using System.Windows.Forms;
 using TMF.Reports.BLL;
 using TMF.Reports.Model;
@@ -9,8 +12,6 @@ namespace MeterReports
 {
     public partial class Login : Form
     {
-        private Button ButtonCancel;
-
         private CustomUserStore _userStore;
         private ErrorProvider errorProviderLogin;
         private System.ComponentModel.IContainer components;
@@ -30,6 +31,13 @@ namespace MeterReports
         private Label label4;
         private Label label3;
         private Label label2;
+        private TabPage tabPage1;
+        private Button ButtonChangePassword;
+        private TextBox TextBoxChangePassword;
+        private TextBox TextBoxChangeUsername;
+        private Label label7;
+        private Label label8;
+        private Button ButtonConnect;
         private UserManager<CustomUser, int> _userManager;
         public Login()
         {
@@ -37,12 +45,10 @@ namespace MeterReports
             _userStore = new CustomUserStore(new CustomUserDbContext());
             _userManager = new UserManager<CustomUser, int>(_userStore);
         }
-
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Login));
-            this.ButtonCancel = new System.Windows.Forms.Button();
             this.errorProviderLogin = new System.Windows.Forms.ErrorProvider(this.components);
             this.tabControl2 = new System.Windows.Forms.TabControl();
             this.tabPage3 = new System.Windows.Forms.TabPage();
@@ -60,25 +66,19 @@ namespace MeterReports
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
+            this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.ButtonChangePassword = new System.Windows.Forms.Button();
+            this.TextBoxChangePassword = new System.Windows.Forms.TextBox();
+            this.TextBoxChangeUsername = new System.Windows.Forms.TextBox();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
+            this.ButtonConnect = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.errorProviderLogin)).BeginInit();
             this.tabControl2.SuspendLayout();
             this.tabPage3.SuspendLayout();
             this.tabPage4.SuspendLayout();
+            this.tabPage1.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // ButtonCancel
-            // 
-            this.ButtonCancel.AutoSize = true;
-            this.ButtonCancel.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("ButtonCancel.BackgroundImage")));
-            this.ButtonCancel.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.ButtonCancel.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ButtonCancel.Location = new System.Drawing.Point(64, 226);
-            this.ButtonCancel.Name = "ButtonCancel";
-            this.ButtonCancel.Size = new System.Drawing.Size(360, 56);
-            this.ButtonCancel.TabIndex = 3;
-            this.ButtonCancel.Text = "CANCEL";
-            this.ButtonCancel.UseVisualStyleBackColor = true;
-            this.ButtonCancel.Click += new System.EventHandler(this.ButtonCancel_Click);
             // 
             // errorProviderLogin
             // 
@@ -88,6 +88,7 @@ namespace MeterReports
             // 
             this.tabControl2.Controls.Add(this.tabPage3);
             this.tabControl2.Controls.Add(this.tabPage4);
+            this.tabControl2.Controls.Add(this.tabPage1);
             this.tabControl2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabControl2.Location = new System.Drawing.Point(0, 0);
             this.tabControl2.Name = "tabControl2";
@@ -98,7 +99,6 @@ namespace MeterReports
             // tabPage3
             // 
             this.tabPage3.Controls.Add(this.ButtonLogin);
-            this.tabPage3.Controls.Add(this.ButtonCancel);
             this.tabPage3.Controls.Add(this.TextBoxPassword);
             this.tabPage3.Controls.Add(this.TextBoxUsername);
             this.tabPage3.Controls.Add(this.label2);
@@ -117,7 +117,7 @@ namespace MeterReports
             this.ButtonLogin.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("ButtonLogin.BackgroundImage")));
             this.ButtonLogin.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.ButtonLogin.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ButtonLogin.Location = new System.Drawing.Point(64, 144);
+            this.ButtonLogin.Location = new System.Drawing.Point(64, 176);
             this.ButtonLogin.Name = "ButtonLogin";
             this.ButtonLogin.Size = new System.Drawing.Size(360, 56);
             this.ButtonLogin.TabIndex = 28;
@@ -128,7 +128,7 @@ namespace MeterReports
             // TextBoxPassword
             // 
             this.TextBoxPassword.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TextBoxPassword.Location = new System.Drawing.Point(64, 105);
+            this.TextBoxPassword.Location = new System.Drawing.Point(64, 121);
             this.TextBoxPassword.Name = "TextBoxPassword";
             this.TextBoxPassword.PasswordChar = '*';
             this.TextBoxPassword.Size = new System.Drawing.Size(360, 27);
@@ -139,7 +139,7 @@ namespace MeterReports
             // TextBoxUsername
             // 
             this.TextBoxUsername.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TextBoxUsername.Location = new System.Drawing.Point(64, 34);
+            this.TextBoxUsername.Location = new System.Drawing.Point(64, 50);
             this.TextBoxUsername.Name = "TextBoxUsername";
             this.TextBoxUsername.Size = new System.Drawing.Size(360, 27);
             this.TextBoxUsername.TabIndex = 0;
@@ -150,7 +150,7 @@ namespace MeterReports
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(63, 78);
+            this.label2.Location = new System.Drawing.Point(63, 94);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(115, 22);
             this.label2.TabIndex = 16;
@@ -160,7 +160,7 @@ namespace MeterReports
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(62, 8);
+            this.label1.Location = new System.Drawing.Point(62, 24);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(111, 22);
             this.label1.TabIndex = 17;
@@ -168,6 +168,7 @@ namespace MeterReports
             // 
             // tabPage4
             // 
+            this.tabPage4.Controls.Add(this.ButtonConnect);
             this.tabPage4.Controls.Add(this.TextBoxDBPassword);
             this.tabPage4.Controls.Add(this.TextBoxDBUsername);
             this.tabPage4.Controls.Add(this.TextBoxInitialCatalog);
@@ -187,7 +188,7 @@ namespace MeterReports
             // TextBoxDBPassword
             // 
             this.TextBoxDBPassword.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TextBoxDBPassword.Location = new System.Drawing.Point(64, 240);
+            this.TextBoxDBPassword.Location = new System.Drawing.Point(64, 219);
             this.TextBoxDBPassword.Name = "TextBoxDBPassword";
             this.TextBoxDBPassword.PasswordChar = '*';
             this.TextBoxDBPassword.Size = new System.Drawing.Size(360, 27);
@@ -198,7 +199,7 @@ namespace MeterReports
             // TextBoxDBUsername
             // 
             this.TextBoxDBUsername.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TextBoxDBUsername.Location = new System.Drawing.Point(64, 176);
+            this.TextBoxDBUsername.Location = new System.Drawing.Point(64, 155);
             this.TextBoxDBUsername.Name = "TextBoxDBUsername";
             this.TextBoxDBUsername.Size = new System.Drawing.Size(360, 27);
             this.TextBoxDBUsername.TabIndex = 36;
@@ -207,7 +208,7 @@ namespace MeterReports
             // TextBoxInitialCatalog
             // 
             this.TextBoxInitialCatalog.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TextBoxInitialCatalog.Location = new System.Drawing.Point(64, 112);
+            this.TextBoxInitialCatalog.Location = new System.Drawing.Point(64, 91);
             this.TextBoxInitialCatalog.Name = "TextBoxInitialCatalog";
             this.TextBoxInitialCatalog.Size = new System.Drawing.Size(360, 27);
             this.TextBoxInitialCatalog.TabIndex = 34;
@@ -216,7 +217,7 @@ namespace MeterReports
             // TextBoxDataSource
             // 
             this.TextBoxDataSource.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TextBoxDataSource.Location = new System.Drawing.Point(64, 48);
+            this.TextBoxDataSource.Location = new System.Drawing.Point(64, 27);
             this.TextBoxDataSource.Name = "TextBoxDataSource";
             this.TextBoxDataSource.Size = new System.Drawing.Size(360, 27);
             this.TextBoxDataSource.TabIndex = 25;
@@ -227,7 +228,7 @@ namespace MeterReports
             this.label6.AutoSize = true;
             this.label6.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(64, 216);
+            this.label6.Location = new System.Drawing.Point(64, 195);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(217, 22);
             this.label6.TabIndex = 31;
@@ -238,7 +239,7 @@ namespace MeterReports
             this.label5.AutoSize = true;
             this.label5.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(64, 152);
+            this.label5.Location = new System.Drawing.Point(64, 131);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(111, 22);
             this.label5.TabIndex = 29;
@@ -249,7 +250,7 @@ namespace MeterReports
             this.label4.AutoSize = true;
             this.label4.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(64, 88);
+            this.label4.Location = new System.Drawing.Point(64, 67);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(161, 22);
             this.label4.TabIndex = 27;
@@ -260,17 +261,99 @@ namespace MeterReports
             this.label3.AutoSize = true;
             this.label3.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(64, 24);
+            this.label3.Location = new System.Drawing.Point(64, 3);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(141, 22);
             this.label3.TabIndex = 26;
             this.label3.Text = "DATA SOURCE";
+            // 
+            // tabPage1
+            // 
+            this.tabPage1.Controls.Add(this.ButtonChangePassword);
+            this.tabPage1.Controls.Add(this.TextBoxChangePassword);
+            this.tabPage1.Controls.Add(this.TextBoxChangeUsername);
+            this.tabPage1.Controls.Add(this.label7);
+            this.tabPage1.Controls.Add(this.label8);
+            this.tabPage1.Location = new System.Drawing.Point(4, 22);
+            this.tabPage1.Name = "tabPage1";
+            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage1.Size = new System.Drawing.Size(482, 318);
+            this.tabPage1.TabIndex = 2;
+            this.tabPage1.Text = "Reset Password";
+            this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // ButtonChangePassword
+            // 
+            this.ButtonChangePassword.AutoSize = true;
+            this.ButtonChangePassword.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("ButtonChangePassword.BackgroundImage")));
+            this.ButtonChangePassword.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.ButtonChangePassword.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ButtonChangePassword.Location = new System.Drawing.Point(61, 168);
+            this.ButtonChangePassword.Name = "ButtonChangePassword";
+            this.ButtonChangePassword.Size = new System.Drawing.Size(360, 56);
+            this.ButtonChangePassword.TabIndex = 22;
+            this.ButtonChangePassword.Text = "CHANGE PASSWORD";
+            this.ButtonChangePassword.UseVisualStyleBackColor = true;
+            this.ButtonChangePassword.Click += new System.EventHandler(this.ButtonChangePassword_Click);
+            // 
+            // TextBoxChangePassword
+            // 
+            this.TextBoxChangePassword.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TextBoxChangePassword.Location = new System.Drawing.Point(62, 112);
+            this.TextBoxChangePassword.Name = "TextBoxChangePassword";
+            this.TextBoxChangePassword.PasswordChar = '*';
+            this.TextBoxChangePassword.Size = new System.Drawing.Size(360, 27);
+            this.TextBoxChangePassword.TabIndex = 19;
+            // 
+            // TextBoxChangeUsername
+            // 
+            this.TextBoxChangeUsername.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TextBoxChangeUsername.Location = new System.Drawing.Point(62, 41);
+            this.TextBoxChangeUsername.Name = "TextBoxChangeUsername";
+            this.TextBoxChangeUsername.Size = new System.Drawing.Size(360, 27);
+            this.TextBoxChangeUsername.TabIndex = 18;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.Location = new System.Drawing.Point(61, 85);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(115, 22);
+            this.label7.TabIndex = 20;
+            this.label7.Text = "PASSWORD";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label8.Location = new System.Drawing.Point(60, 15);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(111, 22);
+            this.label8.TabIndex = 21;
+            this.label8.Text = "USERNAME";
+            // 
+            // ButtonConnect
+            // 
+            this.ButtonConnect.AutoSize = true;
+            this.ButtonConnect.BackColor = System.Drawing.Color.Red;
+            this.ButtonConnect.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("ButtonConnect.BackgroundImage")));
+            this.ButtonConnect.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.ButtonConnect.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ButtonConnect.Location = new System.Drawing.Point(64, 256);
+            this.ButtonConnect.Name = "ButtonConnect";
+            this.ButtonConnect.Size = new System.Drawing.Size(360, 56);
+            this.ButtonConnect.TabIndex = 39;
+            this.ButtonConnect.Text = "CONNECT";
+            this.ButtonConnect.UseVisualStyleBackColor = false;
+            this.ButtonConnect.Click += new System.EventHandler(this.ButtonConnect_Click);
             // 
             // Login
             // 
             this.AutoValidate = System.Windows.Forms.AutoValidate.Disable;
             this.ClientSize = new System.Drawing.Size(490, 344);
             this.Controls.Add(this.tabControl2);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MinimizeBox = false;
@@ -284,27 +367,14 @@ namespace MeterReports
             this.tabPage3.PerformLayout();
             this.tabPage4.ResumeLayout(false);
             this.tabPage4.PerformLayout();
+            this.tabPage1.ResumeLayout(false);
+            this.tabPage1.PerformLayout();
             this.ResumeLayout(false);
 
         }
-        
         private void ButtonLogin_Click_1(object sender, EventArgs e)
         {
             //j1rjacob, Password123!
-            try
-            {
-                ConnectionStringManager.Create
-                (TextBoxDataSource.Text, TextBoxInitialCatalog.Text,
-                TextBoxDBUsername.Text, TextBoxDBPassword.Text);
-            }
-            catch (Exception exception)
-            {
-                MessageBox.Show(exception.Message);
-                return;
-            }
-
-            System.Threading.Thread.Sleep(3000);
-
             if (this.ValidateChildren(ValidationConstraints.Enabled))
             {
                 var user = _userManager.FindByName(TextBoxUsername.Text.Trim());
@@ -332,7 +402,6 @@ namespace MeterReports
             TextBoxUsername.Text = "";
             TextBoxPassword.Text = "";
         }
-
         protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
         {
             if (keyData == Keys.Enter)
@@ -342,18 +411,17 @@ namespace MeterReports
             }
             if (keyData == Keys.Escape)
             {
-                ButtonCancel.PerformClick();
+                TextBoxUsername.Text = "";
+                TextBoxPassword.Text = "";
                 return true;
             }
             return base.ProcessCmdKey(ref msg, keyData);
         }
-
         protected override void OnClosed(EventArgs e)
         {
             base.OnClosed(e);
             Application.Exit();
         }
-
         private void TextBoxUsername_Validating(object sender, System.ComponentModel.CancelEventArgs e)
         {
             bool cancel = false;
@@ -382,10 +450,79 @@ namespace MeterReports
         {
             this.errorProviderLogin.SetError(this.TextBoxPassword, string.Empty);
         }
-
         private void Login_Load(object sender, EventArgs e)
         {
             TextBoxUsername.Focus();
+        }
+        private void ButtonChangePassword_Click(object sender, EventArgs e)
+        {
+            if (!string.IsNullOrWhiteSpace(TextBoxChangeUsername.Text) &&
+                !string.IsNullOrWhiteSpace(TextBoxChangePassword.Text))
+            {   //Todo EditedBy
+                var user = _userManager.FindByName(TextBoxChangeUsername.Text);
+                
+                user.UserName = TextBoxChangeUsername.Text;
+                user.PasswordHash = _userManager.PasswordHasher.HashPassword(TextBoxChangePassword.Text);
+                
+                var flag = _userManager.Update(user);
+
+                if (flag.Succeeded)
+                {
+                    MessageBox.Show("Password was changed");
+                }
+                else
+                {
+                    MessageBox.Show("User is not updated!");
+                }
+            }
+            else
+            {
+                MessageBox.Show("Password was not changed");
+            }
+        }
+        private void ButtonConnect_Click(object sender, EventArgs e)
+        {
+            ButtonConnect.BackColor = Color.Red;
+            try
+            {
+                ConnectionStringManager.Create
+                (TextBoxDataSource.Text, TextBoxInitialCatalog.Text,
+                    TextBoxDBUsername.Text, TextBoxDBPassword.Text);
+
+                if (IsServerConnected())
+                {
+                    ButtonConnect.BackColor = Color.Green;
+                    MessageBox.Show("Connection Successful.");
+                }
+                else
+                {
+                    MessageBox.Show("Connection Unsuccessful.");
+                }
+            }
+            catch (Exception exception)
+            {
+                MessageBox.Show(exception.Message);
+                return;
+            }
+            System.Threading.Thread.Sleep(3000);
+        }
+        public bool IsServerConnected()
+        {
+            var config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
+
+            var connectionString = config.ConnectionStrings.ConnectionStrings["DefaultConnection"];
+            using (var conn = new SqlConnection(connectionString.ConnectionString))
+            {
+                try
+                {
+                    conn.Open();
+                    return true;
+                }
+                catch (SqlException)
+                {
+                    return false;
+                }
+            }
         }
     }
 }
