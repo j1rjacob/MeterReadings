@@ -7,21 +7,7 @@ namespace TMF.Core
     public class UserInfoBLL : BusinessBase
     {
         private static readonly UserInfoDAL dal = new UserInfoDAL();
-
-        private string lang = "en";
-
-        public string Lang
-        {
-            get
-            {
-                return this.lang;
-            }
-            set
-            {
-                this.lang = value;
-            }
-        }
-
+        
         public IInfo CheckRight()
         {
             return new ReturnInfo(ErrorEnum.NoError, "");
@@ -29,7 +15,7 @@ namespace TMF.Core
 
         public ReturnInfo Create(SmartDB dbInstance, ref UserInfo info)
         {
-            bool flag = info.User_Id.Trim().Length < 5;
+            bool flag = info.UserId.Trim().Length < 5;
             ReturnInfo result;
             if (flag)
             {
@@ -69,7 +55,7 @@ namespace TMF.Core
 
         public ReturnInfo Update(SmartDB dbInstance, UserInfo info)
         {
-            bool flag = string.IsNullOrEmpty(info.User_Id);
+            bool flag = string.IsNullOrEmpty(info.UserId);
             ReturnInfo result;
             if (flag)
             {
@@ -77,7 +63,7 @@ namespace TMF.Core
             }
             else
             {
-                bool flag2 = info.User_Id.Trim().Length < 5;
+                bool flag2 = info.UserId.Trim().Length < 5;
                 if (flag2)
                 {
                     result = new ReturnInfo(ErrorEnum.InvalidInput, "Invalid User Id");

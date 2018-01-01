@@ -8,78 +8,72 @@ namespace TMF.Core.DAL
 {
     public class UserInfoDAL
     {
-        private const string SQL_INSERT = "USER_INS";
+        private const string SQL_INSERT = "REPORT USERINFO_INS";
 
-        private const string SQL_UPDATE = "USER_UPD";
+        private const string SQL_UPDATE = "REPORT USERINFO_UPD";
 
-        private const string SQL_UPDATE_LOGIN = "USER_ISLOGIN_UPD";
+        private const string SQL_UPDATE_LOGIN = "REPORT USERINFO_ISLOGIN_UPD";
 
-        private const string SQL_DELETE = "USER_DEL";
+        private const string SQL_DELETE = "REPORT USERINFO_DEL";
 
-        private const string SQL_REMOVE = "USER_DID";
+        private const string SQL_REMOVE = "REPORT USERINFO_DID";
 
-        private const string SQL_GET_COMPANY = "USER_GET_COMPANY";
+        private const string SQL_GET_ROLE = "REPORT USERINFO_GET_ROLE";
 
-        private const string SQL_GET_ROLE = "USER_GET_ROLE";
+        private const string SQL_GET_USER_ID = "REPORT USERINFO_GET_USER_ID";
 
-        private const string SQL_GET_USER_ID = "USER_GET_USER_ID";
+        private const string SQL_GET_ID = "REPORT USERINFO_GID";
 
-        private const string SQL_GET_ID = "USER_GID";
-
-        private const string SQL_GET_LIST = "USER_LST";
+        private const string SQL_GET_LIST = "REPORT USERINFO_LST";
 
         private const string PARM_ID = "@ID";
 
-        private const string PARM_USER_ID = "@USER_ID";
+        private const string PARM_USERID = "@USERID";
 
         private const string PARM_PASSWORD = "@PASSWORD";
 
         private const string PARM_NAME = "@NAME";
 
-        private const string PARM_ROLE_ID = "@ROLE_ID";
+        private const string PARM_ROLEID = "@ROLEID";
 
         private const string PARM_EMAIL = "@EMAIL";
 
-        private const string PARM_COMPANY = "@COMPANY";
+        private const string PARM_ISDELETE = "@ISDELETE";
 
-        private const string PARM_LANGUAGE_ID = "@LANGUAGE_ID";
+        private const string PARM_ISLOCK = "@ISLOCK";
 
-        private const string PARM_IS_DELETE = "@IS_DELETE";
+        private const string PARM_CREATEDBY = "@CREATEDBY";
 
-        private const string PARM_IS_LOCK = "@IS_LOCK";
+        private const string PARM_DATECREATED = "@DATECREATED";
 
-        private const string PARM_CREATED_BY = "@CREATED_BY";
+        private const string PARM_EDITEDBY = "@EDITEDBY";
 
-        private const string PARM_DATE_CREATED = "@DATE_CREATED";
-
-        private const string PARM_MODIFIED_BY = "@MODIFIED_BY";
-
-        private const string PARM_DATE_MODIFIED = "@DATE_MODIFIED";
+        private const string PARM_DATEEDITED = "@DATEEDITED";
 
         private const string PARM_REMARK = "@REMARK";
 
-        private const string PARM_LOCK_COUNT = "@LOCK_COUNT";
+        private const string PARM_LOCKCOUNT = "@LOCKCOUNT";
 
-        private const string PARM_IS_LOGIN = "@IS_LOGIN";
+        private const string PARM_ISLOGIN = "@ISLOGIN";
 
         private SqlParameter[] GetInsertParameters(string connectionString)
         {
-            SqlParameter[] array = SqlHelper.GetCachedParameters("USER_INS");
+            SqlParameter[] array = SqlHelper.GetCachedParameters("REPORT USERINFO_INS");
             bool flag = array == null;
             if (flag)
             {
-                array = SqlHelper.GetParameters(connectionString, "USER_INS");
+                array = SqlHelper.GetParameters(connectionString, "REPORT USERINFO_INS");
             }
             return array;
         }
 
         private SqlParameter[] GetUpdateParameters(string connectionString)
         {
-            SqlParameter[] array = SqlHelper.GetCachedParameters("USER_UPD");
+            SqlParameter[] array = SqlHelper.GetCachedParameters("REPORT USERINFO_UPD");
             bool flag = array == null;
             if (flag)
             {
-                array = SqlHelper.GetParameters(connectionString, "USER_UPD");
+                array = SqlHelper.GetParameters(connectionString, "REPORT USERINFO_UPD");
             }
             return array;
         }
@@ -89,28 +83,22 @@ namespace TMF.Core.DAL
             try
             {
                 info = new UserInfo();
-                info.Created_By = CastDBNull.To<string>(rdr["Created_By"], "");
-                info.Date_Created = CastDBNull.To<DateTime>(rdr["Date_Created"], DateTime.Today);
-                info.Date_Modified = CastDBNull.To<DateTime>(rdr["Date_Modified"], DateTime.Today);
-                info.Id = CastDBNull.To<long>(rdr["Id"], 0L);
-                info.Is_Delete = CastDBNull.To<bool>(rdr["Is_Delete"], false);
-                info.Is_Lock = CastDBNull.To<bool>(rdr["Is_Lock"], false);
-                info.Language_Id = CastDBNull.To<int?>(rdr["Language_Id"], null);
-                info.Lock_Count = CastDBNull.To<int>(rdr["Lock_Count"], 1);
-                info.Modified_By = CastDBNull.To<string>(rdr["Modified_By"], "admin");
+                info.CreatedBy = CastDBNull.To<string>(rdr["CreatedBy"], "");
+                info.DateCreated = CastDBNull.To<DateTime>(rdr["DateCreated"], DateTime.Today);
+                info.DateEdited = CastDBNull.To<DateTime>(rdr["DateEdited"], DateTime.Today);
+                info.Id = CastDBNull.To<string>(rdr["Id"], "");
+                info.IsDelete = CastDBNull.To<bool>(rdr["IsDelete"], false);
+                info.IsLock = CastDBNull.To<bool>(rdr["IsLock"], false);
+                info.LockCount = CastDBNull.To<int>(rdr["LockCount"], 1);
+                info.EditedBy = CastDBNull.To<string>(rdr["EditedBy"], "admin");
                 info.Remark = CastDBNull.To<string>(rdr["Remark"], "");
-                info.User_Id = CastDBNull.To<string>(rdr["User_Id"], "");
+                info.UserId = CastDBNull.To<string>(rdr["UserId"], "");
                 info.Password = CastDBNull.To<string>(rdr["Password"], "");
                 info.Name = CastDBNull.To<string>(rdr["Name"], "");
-                info.Role_Id = CastDBNull.To<int>(rdr["Role_Id"], 1);
+                info.RoleId = CastDBNull.To<string>(rdr["RoleId"], "");
                 info.Email = CastDBNull.To<string>(rdr["Email"], "");
-                info.Company = CastDBNull.To<string>(rdr["Company"], "");
-                info.Is_Login = CastDBNull.To<bool>(rdr["Is_Login"], false);
-                info.Is_Active = CastDBNull.To<bool>(rdr["Is_Active"], false);
-                info.Title = CastDBNull.To<string>(rdr["Title"], "");
-                info.Office = CastDBNull.To<string>(rdr["Office"], "Kota Kemuning, HQ");
-                info.Manager = CastDBNull.To<string>(rdr["Manager"], "");
-                info.Manager_Id = CastDBNull.To<long?>(rdr["Manager_Id"], null);
+                info.IsLogin = CastDBNull.To<bool>(rdr["IsLogin"], false);
+                info.IsActive = CastDBNull.To<bool>(rdr["IsActive"], false);
             }
             catch (Exception ex)
             {
@@ -121,78 +109,68 @@ namespace TMF.Core.DAL
         public IInfo Insert(SmartDB dbInstance, ref UserInfo info)
         {
             SqlParameter[] insertParameters = this.GetInsertParameters(dbInstance.Connection.ConnectionString);
-            string cmdText = "USER_INS";
-            insertParameters[0].Value = info.User_Id;
-            insertParameters[1].Value = info.Password;
-            insertParameters[2].Value = info.Name;
-            insertParameters[3].Value = info.Role_Id;
+            string cmdText = "REPORT USERINFO_INS";
+            insertParameters[0].Value = info.Id;
+            insertParameters[1].Value = info.UserId;
+            insertParameters[2].Value = info.Password;
+            insertParameters[3].Value = info.Name;
             insertParameters[4].Value = info.Email;
-            insertParameters[5].Value = info.Company;
-            bool flag = !info.Language_Id.HasValue;
-            if (flag)
-            {
-                insertParameters[6].Value = DBNull.Value;
-            }
-            else
-            {
-                insertParameters[6].Value = info.Language_Id;
-            }
-            insertParameters[7].Value = info.Is_Delete;
-            insertParameters[8].Value = info.Is_Lock;
-            insertParameters[9].Value = info.Created_By;
-            insertParameters[10].Value = info.Date_Created;
-            insertParameters[11].Value = info.Modified_By;
-            insertParameters[12].Value = info.Date_Modified;
-            insertParameters[13].Value = info.Lock_Count;
-            insertParameters[14].Value = info.Remark;
-            insertParameters[15].Value = info.Is_Login;
-            insertParameters[16].Value = info.Is_Active;
-            insertParameters[17].Value = info.Title;
-            insertParameters[18].Value = info.Office;
+            insertParameters[5].Value = info.RoleId;
+            insertParameters[6].Value = info.IsDelete;
+            insertParameters[7].Value = info.IsLock;
+            insertParameters[8].Value = info.CreatedBy;
+            insertParameters[9].Value = info.DateCreated;
+            insertParameters[10].Value = info.EditedBy;
+            insertParameters[11].Value = info.DateEdited;
+            insertParameters[12].Value = info.LockCount;
+            insertParameters[13].Value = info.Remark;
+            insertParameters[14].Value = info.IsLogin;
+            insertParameters[15].Value = info.IsActive;
             IInfo result;
-            try
-            {
-                bool transactionControl = dbInstance.TransactionControl;
-                if (transactionControl)
-                {
-                    SqlDataReader sqlDataReader = SqlHelper.ExecuteReader(dbInstance.Transaction, CommandType.StoredProcedure, cmdText, insertParameters);
-                    bool hasRows = sqlDataReader.HasRows;
-                    if (!hasRows)
-                    {
-                        result = new ReturnInfo(ErrorEnum.TransactionError, "Insert User failed");
-                        return result;
-                    }
-                    sqlDataReader.Read();
-                    long id = Convert.ToInt64(sqlDataReader[0]);
-                    info.Id = id;
-                    sqlDataReader.Close();
-                }
-                else
-                {
+            //try
+            //{
+            //    bool transactionControl = dbInstance.TransactionControl;
+            //    if (transactionControl)
+            //    {
+            //        SqlDataReader sqlDataReader = SqlHelper.ExecuteReader(dbInstance.Transaction, CommandType.StoredProcedure, cmdText, insertParameters);
+            //        bool hasRows = sqlDataReader.HasRows;
+            //        if (!hasRows)
+            //        {
+            //            result = new ReturnInfo(ErrorEnum.TransactionError, "Insert User failed");
+            //            return result;
+            //        }
+            //        sqlDataReader.Read();
+            //        string id = Convert.ToString(sqlDataReader[0]);
+            //        info.Id = id;
+            //        sqlDataReader.Close();
+            //    }
+            //    else
+            //    {
                     SqlDataReader sqlDataReader = SqlHelper.ExecuteReader(dbInstance.Connection.ConnectionString, CommandType.StoredProcedure, cmdText, insertParameters);
                     bool hasRows2 = sqlDataReader.HasRows;
-                    if (!hasRows2)
+                    if (hasRows2)
                     {
                         result = new ReturnInfo(ErrorEnum.TransactionError, "Insert User failed");
                         return result;
                     }
-                    sqlDataReader.Read();
-                    long id = Convert.ToInt64(sqlDataReader[0]);
-                    info.Id = id;
+                    //sqlDataReader.Read();
+                    //string id = Convert.ToString(sqlDataReader[0]);
+                    //info.Id = id;
                     sqlDataReader.Close();
-                }
-            }
-            catch (Exception ex)
-            {
-                bool flag2 = ex.Message.Contains("unique constraint");
-                if (flag2)
-                {
-                    result = new ReturnInfo(ErrorEnum.UniqueConstraint, string.Format("User {0} already exist in the system", info.Name));
-                    return result;
-                }
-                result = new ReturnInfo(ErrorEnum.DataException, ex.Message);
-                return result;
-            }
+            //    }
+            //}
+            //catch (Exception ex)
+            //{
+            //    Console.WriteLine(ex.ToString());
+            //    bool flag2 = ex.Message.Contains("PRIMARY KEY constraint");
+            //    if (flag2)
+            //    {
+            //        result = new ReturnInfo(ErrorEnum.UniqueConstraint, string.Format("User {0} already exist in the system", info.Name));
+            //        return result;
+            //    }
+                //result = new ReturnInfo(ErrorEnum.DataException, ex.Message);
+                //return result;
+            //}
             result = new ReturnInfo(ErrorEnum.NoError, "", 1);
             return result;
         }
@@ -201,35 +179,23 @@ namespace TMF.Core.DAL
         {
             int rowsAffected = 0;
             SqlParameter[] updateParameters = this.GetUpdateParameters(dbInstance.Connection.ConnectionString);
-            string cmdText = "USER_UPD";
+            string cmdText = "REPORT USERINFO_UPD";
             updateParameters[0].Value = info.Id;
-            updateParameters[1].Value = info.User_Id;
+            updateParameters[1].Value = info.UserId;
             updateParameters[2].Value = info.Password;
             updateParameters[3].Value = info.Name;
-            updateParameters[4].Value = info.Role_Id;
+            updateParameters[4].Value = info.RoleId;
             updateParameters[5].Value = info.Email;
-            updateParameters[6].Value = info.Company;
-            bool flag = !info.Language_Id.HasValue;
-            if (flag)
-            {
-                updateParameters[7].Value = DBNull.Value;
-            }
-            else
-            {
-                updateParameters[7].Value = info.Language_Id;
-            }
-            updateParameters[8].Value = info.Is_Delete;
-            updateParameters[9].Value = info.Is_Lock;
-            updateParameters[10].Value = info.Created_By;
-            updateParameters[11].Value = info.Date_Created;
-            updateParameters[12].Value = info.Modified_By;
-            updateParameters[13].Value = info.Date_Modified;
-            updateParameters[14].Value = info.Lock_Count;
-            updateParameters[15].Value = info.Remark;
-            updateParameters[16].Value = info.Is_Login;
-            updateParameters[17].Value = info.Is_Active;
-            updateParameters[18].Value = info.Title;
-            updateParameters[19].Value = info.Office;
+            updateParameters[6].Value = info.IsDelete;
+            updateParameters[7].Value = info.IsLock;
+            updateParameters[8].Value = info.CreatedBy;
+            updateParameters[9].Value = info.DateCreated;
+            updateParameters[10].Value = info.EditedBy;
+            updateParameters[11].Value = info.DateEdited;
+            updateParameters[12].Value = info.LockCount;
+            updateParameters[13].Value = info.Remark;
+            updateParameters[14].Value = info.IsLogin;
+            updateParameters[15].Value = info.IsActive;
             IInfo result;
             try
             {
@@ -261,8 +227,8 @@ namespace TMF.Core.DAL
         public IInfo UpdateLoginStatus(SmartDB dbInstance, string userId, bool isLogin)
         {
             int rowsAffected = 0;
-            SqlParameter[] parameters = SqlHelper.GetParameters(dbInstance.Connection.ConnectionString, "USER_ISLOGIN_UPD");
-            string cmdText = "USER_ISLOGIN_UPD";
+            SqlParameter[] parameters = SqlHelper.GetParameters(dbInstance.Connection.ConnectionString, "REPORT USERINFO_ISLOGIN_UPD");
+            string cmdText = "REPORT USERINFO_ISLOGIN_UPD";
             parameters[0].Value = isLogin;
             parameters[1].Value = userId;
             IInfo result;
@@ -286,11 +252,10 @@ namespace TMF.Core.DAL
             result = new ReturnInfo(ErrorEnum.NoError, "", rowsAffected);
             return result;
         }
-
         public IInfo Delete(SmartDB dbInstance, long Id)
         {
             int rowsAffected = 0;
-            string cmdText = "USER_DEL";
+            string cmdText = "REPORT USERINFO_DEL";
             SqlParameter[] array = new SqlParameter[]
             {
                 new SqlParameter("@ID", SqlDbType.BigInt)
@@ -323,11 +288,10 @@ namespace TMF.Core.DAL
             result = new ReturnInfo(ErrorEnum.NoError, "", rowsAffected);
             return result;
         }
-
         public IInfo Remove(SmartDB dbInstance, long Id)
         {
             int rowsAffected = 0;
-            string cmdText = "USER_DID";
+            string cmdText = "REPORT USERINFO_DID";
             SqlParameter[] array = new SqlParameter[]
             {
                 new SqlParameter("@ID", SqlDbType.BigInt)
@@ -364,10 +328,10 @@ namespace TMF.Core.DAL
         public IInfo GetRecord(SmartDB dbInstance, string userId, out UserInfo info)
         {
             info = null;
-            string cmdText = "USER_GET_USER_ID";
+            string cmdText = "REPORT USERINFO_GET_USER_ID";
             SqlParameter[] array = new SqlParameter[]
             {
-                new SqlParameter("@USER_ID", SqlDbType.NVarChar)
+                new SqlParameter("@USERID", SqlDbType.NVarChar)
             };
             array[0].Value = userId;
             IInfo result;
@@ -415,7 +379,7 @@ namespace TMF.Core.DAL
         public IInfo GetRecord(SmartDB dbInstance, long Id, out UserInfo info)
         {
             info = null;
-            string cmdText = "USER_GID";
+            string cmdText = "REPORT USERINFO_GID";
             SqlParameter[] array = new SqlParameter[]
             {
                 new SqlParameter("@ID", SqlDbType.BigInt)
@@ -472,7 +436,7 @@ namespace TMF.Core.DAL
                 bool transactionControl = dbInstance.TransactionControl;
                 if (transactionControl)
                 {
-                    using (SqlDataReader sqlDataReader = SqlHelper.ExecuteReader(dbInstance.Transaction, CommandType.StoredProcedure, "USER_LST", new SqlParameter[0]))
+                    using (SqlDataReader sqlDataReader = SqlHelper.ExecuteReader(dbInstance.Transaction, CommandType.StoredProcedure, "REPORT USERINFO_LST", new SqlParameter[0]))
                     {
                         while (sqlDataReader.Read())
                         {
@@ -484,7 +448,7 @@ namespace TMF.Core.DAL
                 }
                 else
                 {
-                    using (SqlDataReader sqlDataReader2 = SqlHelper.ExecuteReader(dbInstance.Connection.ConnectionString, CommandType.StoredProcedure, "USER_LST", new SqlParameter[0]))
+                    using (SqlDataReader sqlDataReader2 = SqlHelper.ExecuteReader(dbInstance.Connection.ConnectionString, CommandType.StoredProcedure, "REPORT USERINFO_LST", new SqlParameter[0]))
                     {
                         while (sqlDataReader2.Read())
                         {
