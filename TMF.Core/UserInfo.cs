@@ -1,4 +1,6 @@
 ﻿using System.Collections.Generic;
+using System.Data;
+using System.Data.SqlClient;
 using TMF.Core.DAL;
 using TMF.Core.Model;
 
@@ -15,11 +17,11 @@ namespace TMF.Core
 
         public ReturnInfo Create(SmartDB dbInstance, ref UserInfo info)
         {
-            bool flag = info.UserId.Trim().Length < 5;
+            bool flag = info.Username.Trim().Length < 5;
             ReturnInfo result;
             if (flag)
             {
-                result = new ReturnInfo(ErrorEnum.InvalidInput, "User Id too short! Minimum 6 characters.");
+                result = new ReturnInfo(ErrorEnum.InvalidInput, "Username too short! Minimum 6 characters.");
             }
             else
             {
@@ -55,18 +57,18 @@ namespace TMF.Core
 
         public ReturnInfo Update(SmartDB dbInstance, UserInfo info)
         {
-            bool flag = string.IsNullOrEmpty(info.UserId);
+            bool flag = string.IsNullOrEmpty(info.Username);
             ReturnInfo result;
             if (flag)
             {
-                result = new ReturnInfo(ErrorEnum.NullReference, "User Id is required");
+                result = new ReturnInfo(ErrorEnum.NullReference, "Username is required");
             }
             else
             {
-                bool flag2 = info.UserId.Trim().Length < 5;
+                bool flag2 = info.Username.Trim().Length < 5;
                 if (flag2)
                 {
-                    result = new ReturnInfo(ErrorEnum.InvalidInput, "Invalid User Id");
+                    result = new ReturnInfo(ErrorEnum.InvalidInput, "Invalid Username");
                 }
                 else
                 {
@@ -101,9 +103,9 @@ namespace TMF.Core
             return result;
         }
 
-        public ReturnInfo UpdateLoginStatus(SmartDB dbInstance, string userId, bool isLogin)
+        public ReturnInfo UpdateLoginStatus(SmartDB dbInstance, string username, bool isActive)
         {
-            bool flag = string.IsNullOrEmpty(userId);
+            bool flag = string.IsNullOrEmpty(username);
             ReturnInfo result;
             if (flag)
             {
@@ -111,23 +113,23 @@ namespace TMF.Core
             }
             else
             {
-                bool flag2 = userId.Trim().Length < 5;
+                bool flag2 = username.Trim().Length < 5;
                 if (flag2)
                 {
                     result = new ReturnInfo(ErrorEnum.InvalidInput, "Invalid User ID");
                 }
                 else
                 {
-                    IInfo info = UserInfoBLL.dal.UpdateLoginStatus(dbInstance, userId, isLogin);
+                    IInfo info = UserInfoBLL.dal.UpdateLoginStatus(dbInstance, username, isActive);
                     result = new ReturnInfo(info.Code, info.Message, info.RowsAffected);
                 }
             }
             return result;
         }
 
-        public ReturnInfo Delete(SmartDB dbInstance, long Id)
+        public ReturnInfo Delete(SmartDB dbInstance, string Id)
         {
-            bool flag = Id <= 0L;
+            bool flag = Id == "";
             ReturnInfo result;
             if (flag)
             {
@@ -197,22 +199,49 @@ namespace TMF.Core
             }
             return result;
         }
-
-        public ReturnInfo GetUserList(SmartDB dbInstance, out List<UserInfo> list)
+        public ReturnInfo GetUserByUsernamePassword(SmartDB dbInstance, string username, string password)
         {
-            list = new List<UserInfo>();
-            IInfo records = UserInfoBLL.dal.GetRecords(dbInstance, out list);
-            bool flag = records.Code > ErrorEnum.NoError;
-            ReturnInfo result;
-            if (flag)
+            string cmdText = "[REPORT USERINFO_USERNAME_PASSWORD]";
+            SqlParameter[] array = new SqlParameter[]
             {
-                result = new ReturnInfo(records.Code, records.Message);
-            }
-            else
+                new SqlParameter("@Username", SqlDbType.NVarChar),
+                new SqlParameter("@Password", SqlDbType.NVarChar)
+            };
+            array[0].Value = username;
+            array[1].Value = password;
+            IInfo records = UserInfoBLL.dal.GetRecords(dbInstance, cmdText, array);
+            return new ReturnInfo
             {
-                result = new ReturnInfo();
-            }
-            return result;
+                Code = records.Code,
+                Message = records.Message,
+                BizObject = ((records.Code == ErrorEnum.NoError) ? records.BizObject : new List<Model.UserInfo>())
+            };
+        }
+        public ReturnInfo GetUserByName(SmartDB dbInstance, string name)
+        {
+            string cmdText = "[REPORT USERINFO_NAME]";
+            SqlParameter[] array = new SqlParameter[]
+            {
+                new SqlParameter("@Name", SqlDbType.NVarChar)
+            };
+            array[0].Value = name;
+            IInfo records = UserInfoBLL.dal.GetRecords(dbInstance, cmdText, array);
+            return new ReturnInfo
+            {
+                Code = records.Code,
+                Message = records.Message,
+                BizObject = ((records.Code == ErrorEnum.NoError) ? records.BizObject : new List<UserInfo>())
+            };
+        }
+        public ReturnInfo GetUserList(SmartDB dbInstance)
+        {
+            IInfo records = UserInfoBLL.dal.GetRecords(dbInstance, "REPORT USERINFO_LST", null);
+            return new ReturnInfo
+            {
+                Code = records.Code,
+                Message = records.Message,
+                BizObject = ((records.Code == ErrorEnum.NoError) ? records.BizObject : new List<Model.UserInfo>())
+            };
         }
     }
 }

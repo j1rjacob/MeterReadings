@@ -2,6 +2,7 @@
 using NUnit.Framework.Internal;
 using System;
 using TMF.Core;
+using TMF.Core.Model;
 
 namespace MeterReports.Test
 {
@@ -9,6 +10,7 @@ namespace MeterReports.Test
     public class UserInfo
     {
         private readonly TMF.Core.UserInfoBLL _userInfo;
+        
         public UserInfo()
         {
             _userInfo = new UserInfoBLL();
@@ -19,27 +21,80 @@ namespace MeterReports.Test
             //Arrange
             TMF.Core.Model.UserInfo user = new TMF.Core.Model.UserInfo()
             {
-                Id = 6,
-                UserId = "1",
-                Password = "qwerty123!",
+                Id = Guid.NewGuid().ToString("N"),
+                Username = "j1rjacob",
+                Password = "qwerty123",
                 Name = "Junar A. Jacob",
-                Email = "junarjacob@yahoo.com", 
-                RoleId = "1",
-                IsDelete = false,
-                IsLock = true,
-                CreatedBy = "1",
-                DateCreated = DateTime.Now,
-                EditedBy = "1",
-                DateEdited = DateTime.Now,
-                LockCount = 1,
-                Remark = "none",
-                IsLogin = false,
+                Role = (int)UserLevel.Administrator,
                 IsActive = true
             };
 
             //Act
             var createUser = _userInfo.Create(new SmartDB(), ref user);
             bool flag = createUser.Code == ErrorEnum.NoError;
+
+            //Assert
+            Assert.IsTrue(flag);
+        }
+
+        [Test]
+        public void REPORT_USERINFO_UPD_RETURN_TRUE()
+        {
+            //Arrange
+            TMF.Core.Model.UserInfo user1 = new TMF.Core.Model.UserInfo()
+            {
+                Id = "5f43cb949fe94af8aae1e277492cea1b",
+                Username = "j1rjacob",
+                Password = "qwerty123",
+                Name = "Junar Jacob",
+                Role = (int)UserLevel.Administrator,
+                IsActive = true
+            };
+
+            //Act
+            var updateUser = _userInfo.Update(new SmartDB(), user1);
+            bool flag = updateUser.Code == ErrorEnum.NoError;
+
+            //Assert
+            Assert.IsTrue(flag);
+        }
+
+        [Test]
+        public void REPORT_USERINFO_DEL_RETURN_TRUE()
+        {
+            //Act
+            var updateUser = _userInfo.Delete(new SmartDB(), "5f43cb949fe94af8aae1e277492cea1b");
+            bool flag = updateUser.Code == ErrorEnum.NoError;
+
+            //Assert
+            Assert.IsTrue(flag);
+        }
+        [Test]
+        public void REPORT_USERINFO_DEL_RETURN_LST_Equal()
+        {
+            //Act
+            var getUserList = _userInfo.GetUserList(new SmartDB());
+            bool flag = getUserList.Code == ErrorEnum.NoError;
+
+            //Assert
+            Assert.IsTrue(flag);
+        }
+        [Test]
+        public void REPORT_USERINFO_USERNAMEPWD_EQUAL()
+        {
+            //Act
+            var getUserList = _userInfo.GetUserByUsernamePassword(new SmartDB(), "j1rjacob", "qwerty123");
+            bool flag = getUserList.Code == ErrorEnum.NoError;
+
+            //Assert
+            Assert.IsTrue(flag);
+        }
+        [Test]
+        public void REPORT_USERINFO_NAME_EQUAL()
+        {
+            //Act
+            var getUserList = _userInfo.GetUserByName(new SmartDB(), "Junar A. Jacob");
+            bool flag = getUserList.Code == ErrorEnum.NoError;
 
             //Assert
             Assert.IsTrue(flag);

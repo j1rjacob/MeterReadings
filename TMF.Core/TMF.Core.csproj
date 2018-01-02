@@ -51,6 +51,7 @@
     <Compile Include="Model\ModelInfo.cs" />
     <Compile Include="Model\ReturnInfo.cs" />
     <Compile Include="Model\UserInfo.cs" />
+    <Compile Include="Model\UserLevel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SmartDB.cs" />
     <Compile Include="SqlHelper.cs" />

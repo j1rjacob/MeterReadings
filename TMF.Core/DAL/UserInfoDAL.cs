@@ -83,21 +83,11 @@ namespace TMF.Core.DAL
             try
             {
                 info = new UserInfo();
-                info.CreatedBy = CastDBNull.To<string>(rdr["CreatedBy"], "");
-                info.DateCreated = CastDBNull.To<DateTime>(rdr["DateCreated"], DateTime.Today);
-                info.DateEdited = CastDBNull.To<DateTime>(rdr["DateEdited"], DateTime.Today);
                 info.Id = CastDBNull.To<string>(rdr["Id"], "");
-                info.IsDelete = CastDBNull.To<bool>(rdr["IsDelete"], false);
-                info.IsLock = CastDBNull.To<bool>(rdr["IsLock"], false);
-                info.LockCount = CastDBNull.To<int>(rdr["LockCount"], 1);
-                info.EditedBy = CastDBNull.To<string>(rdr["EditedBy"], "admin");
-                info.Remark = CastDBNull.To<string>(rdr["Remark"], "");
-                info.UserId = CastDBNull.To<string>(rdr["UserId"], "");
+                info.Username = CastDBNull.To<string>(rdr["Username"], "");
                 info.Password = CastDBNull.To<string>(rdr["Password"], "");
                 info.Name = CastDBNull.To<string>(rdr["Name"], "");
-                info.RoleId = CastDBNull.To<string>(rdr["RoleId"], "");
-                info.Email = CastDBNull.To<string>(rdr["Email"], "");
-                info.IsLogin = CastDBNull.To<bool>(rdr["IsLogin"], false);
+                info.Role = CastDBNull.To<int>(rdr["Role"], 2);
                 info.IsActive = CastDBNull.To<bool>(rdr["IsActive"], false);
             }
             catch (Exception ex)
@@ -111,21 +101,11 @@ namespace TMF.Core.DAL
             SqlParameter[] insertParameters = this.GetInsertParameters(dbInstance.Connection.ConnectionString);
             string cmdText = "REPORT USERINFO_INS";
             insertParameters[0].Value = info.Id;
-            insertParameters[1].Value = info.UserId;
+            insertParameters[1].Value = info.Username;
             insertParameters[2].Value = info.Password;
             insertParameters[3].Value = info.Name;
-            insertParameters[4].Value = info.Email;
-            insertParameters[5].Value = info.RoleId;
-            insertParameters[6].Value = info.IsDelete;
-            insertParameters[7].Value = info.IsLock;
-            insertParameters[8].Value = info.CreatedBy;
-            insertParameters[9].Value = info.DateCreated;
-            insertParameters[10].Value = info.EditedBy;
-            insertParameters[11].Value = info.DateEdited;
-            insertParameters[12].Value = info.LockCount;
-            insertParameters[13].Value = info.Remark;
-            insertParameters[14].Value = info.IsLogin;
-            insertParameters[15].Value = info.IsActive;
+            insertParameters[4].Value = info.Role;
+            insertParameters[5].Value = info.IsActive;
             IInfo result;
             //try
             //{
@@ -181,45 +161,44 @@ namespace TMF.Core.DAL
             SqlParameter[] updateParameters = this.GetUpdateParameters(dbInstance.Connection.ConnectionString);
             string cmdText = "REPORT USERINFO_UPD";
             updateParameters[0].Value = info.Id;
-            updateParameters[1].Value = info.UserId;
+            updateParameters[1].Value = info.Username;
             updateParameters[2].Value = info.Password;
             updateParameters[3].Value = info.Name;
-            updateParameters[4].Value = info.RoleId;
-            updateParameters[5].Value = info.Email;
-            updateParameters[6].Value = info.IsDelete;
-            updateParameters[7].Value = info.IsLock;
-            updateParameters[8].Value = info.CreatedBy;
-            updateParameters[9].Value = info.DateCreated;
-            updateParameters[10].Value = info.EditedBy;
-            updateParameters[11].Value = info.DateEdited;
-            updateParameters[12].Value = info.LockCount;
-            updateParameters[13].Value = info.Remark;
-            updateParameters[14].Value = info.IsLogin;
-            updateParameters[15].Value = info.IsActive;
+            updateParameters[4].Value = info.Role;
+            updateParameters[5].Value = info.IsActive;
             IInfo result;
-            try
-            {
-                bool transactionControl = dbInstance.TransactionControl;
-                if (transactionControl)
-                {
-                    rowsAffected = SqlHelper.ExecuteNonQuery(dbInstance.Transaction, CommandType.StoredProcedure, cmdText, updateParameters);
-                }
-                else
-                {
-                    rowsAffected = SqlHelper.ExecuteNonQuery(dbInstance.Connection.ConnectionString, CommandType.StoredProcedure, cmdText, updateParameters);
-                }
-            }
-            catch (Exception ex)
-            {
-                bool flag2 = ex.Message.Contains("unique constraint");
-                if (flag2)
-                {
-                    result = new ReturnInfo(ErrorEnum.UniqueConstraint, string.Format("User {0} already exist in the system", info.Name));
-                    return result;
-                }
-                result = new ReturnInfo(ErrorEnum.DataException, ex.Message);
-                return result;
-            }
+            //try
+            //{
+            //    bool transactionControl = dbInstance.TransactionControl;
+            //    if (transactionControl)
+            //    {
+            //        rowsAffected = SqlHelper.ExecuteNonQuery(dbInstance.Transaction, CommandType.StoredProcedure, cmdText, updateParameters);
+            //    }
+            //    else
+            //    {
+            rowsAffected = SqlHelper.ExecuteNonQuery(dbInstance.Connection.ConnectionString, CommandType.StoredProcedure, cmdText, updateParameters);
+                    //SqlDataReader sqlDataReader = SqlHelper.ExecuteReader(dbInstance.Connection.ConnectionString, CommandType.StoredProcedure, cmdText, updateParameters);
+                    //bool hasRows2 = sqlDataReader.HasRows;
+                    //if (hasRows2)
+                    //{
+                    //    result = new ReturnInfo(ErrorEnum.TransactionError, "Update User failed");
+                    //    return result;
+                    //}
+            
+                    //sqlDataReader.Close();
+            //    }
+            //}
+            //catch (Exception ex)
+            //{
+            //    bool flag2 = ex.Message.Contains("unique constraint");
+            //    if (flag2)
+            //    {
+            //        result = new ReturnInfo(ErrorEnum.UniqueConstraint, string.Format("User {0} already exist in the system", info.Name));
+            //        return result;
+            //    }
+            //    result = new ReturnInfo(ErrorEnum.DataException, ex.Message);
+            //    return result;
+            //}
             result = new ReturnInfo(ErrorEnum.NoError, "", rowsAffected);
             return result;
         }
@@ -252,13 +231,14 @@ namespace TMF.Core.DAL
             result = new ReturnInfo(ErrorEnum.NoError, "", rowsAffected);
             return result;
         }
-        public IInfo Delete(SmartDB dbInstance, long Id)
+
+        public IInfo Delete(SmartDB dbInstance, string Id)
         {
             int rowsAffected = 0;
             string cmdText = "REPORT USERINFO_DEL";
             SqlParameter[] array = new SqlParameter[]
             {
-                new SqlParameter("@ID", SqlDbType.BigInt)
+                new SqlParameter("@ID", SqlDbType.NVarChar)
             };
             array[0].Value = Id;
             IInfo result;
@@ -288,6 +268,7 @@ namespace TMF.Core.DAL
             result = new ReturnInfo(ErrorEnum.NoError, "", rowsAffected);
             return result;
         }
+
         public IInfo Remove(SmartDB dbInstance, long Id)
         {
             int rowsAffected = 0;
@@ -427,44 +408,106 @@ namespace TMF.Core.DAL
             return result;
         }
 
-        public IInfo GetRecords(SmartDB dbInstance, out List<UserInfo> list)
+        //public IInfo GetRecords(SmartDB dbInstance, out List<UserInfo> list)
+        //{
+        //    list = new List<UserInfo>();
+        //    IInfo result;
+        //    try
+        //    {
+        //        bool transactionControl = dbInstance.TransactionControl;
+        //        if (transactionControl)
+        //        {
+        //            using (SqlDataReader sqlDataReader = SqlHelper.ExecuteReader(dbInstance.Transaction, CommandType.StoredProcedure, "REPORT USERINFO_LST", new SqlParameter[0]))
+        //            {
+        //                while (sqlDataReader.Read())
+        //                {
+        //                    UserInfo item;
+        //                    this.SetInfo(out item, sqlDataReader);
+        //                    list.Add(item);
+        //                }
+        //            }
+        //        }
+        //        else
+        //        {
+        //            using (SqlDataReader sqlDataReader2 = SqlHelper.ExecuteReader(dbInstance.Connection.ConnectionString, CommandType.StoredProcedure, "REPORT USERINFO_LST", new SqlParameter[0]))
+        //            {
+        //                while (sqlDataReader2.Read())
+        //                {
+        //                    UserInfo item2;
+        //                    this.SetInfo(out item2, sqlDataReader2);
+        //                    list.Add(item2);
+        //                }
+        //            }
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        result = new ReturnInfo(ErrorEnum.DataException, ex.Message);
+        //        return result;
+        //    }
+        //    result = new ReturnInfo();
+        //    return result;
+        //}
+        public IInfo GetRecords(SmartDB dbInstance, string cmdText, SqlParameter[] parms)
         {
-            list = new List<UserInfo>();
+            var list = new List<UserInfo>();
             IInfo result;
             try
             {
                 bool transactionControl = dbInstance.TransactionControl;
+                SqlDataReader sqlDataReader;
                 if (transactionControl)
                 {
-                    using (SqlDataReader sqlDataReader = SqlHelper.ExecuteReader(dbInstance.Transaction, CommandType.StoredProcedure, "REPORT USERINFO_LST", new SqlParameter[0]))
+                    bool flag = parms == null;
+                    if (flag)
                     {
-                        while (sqlDataReader.Read())
-                        {
-                            UserInfo item;
-                            this.SetInfo(out item, sqlDataReader);
-                            list.Add(item);
-                        }
+                        sqlDataReader = SqlHelper.ExecuteReader(dbInstance.Transaction, CommandType.StoredProcedure, cmdText, Array.Empty<SqlParameter>());
+                    }
+                    else
+                    {
+                        sqlDataReader = SqlHelper.ExecuteReader(dbInstance.Transaction, CommandType.StoredProcedure, cmdText, parms);
                     }
                 }
                 else
                 {
-                    using (SqlDataReader sqlDataReader2 = SqlHelper.ExecuteReader(dbInstance.Connection.ConnectionString, CommandType.StoredProcedure, "REPORT USERINFO_LST", new SqlParameter[0]))
+                    bool flag2 = parms == null;
+                    if (flag2)
                     {
-                        while (sqlDataReader2.Read())
-                        {
-                            UserInfo item2;
-                            this.SetInfo(out item2, sqlDataReader2);
-                            list.Add(item2);
-                        }
+                        sqlDataReader = SqlHelper.ExecuteReader(SqlHelper.MyConnectionString, CommandType.StoredProcedure, cmdText, Array.Empty<SqlParameter>());
                     }
+                    else
+                    {
+                        sqlDataReader = SqlHelper.ExecuteReader(SqlHelper.MyConnectionString, CommandType.StoredProcedure, cmdText, parms);
+                    }
+                }
+                bool hasRows = sqlDataReader.HasRows;
+                if (hasRows)
+                {
+                    while (sqlDataReader.Read())
+                    {
+                        Model.UserInfo item;
+                        this.SetInfo(out item, sqlDataReader);
+                        list.Add(item);
+                    }
+                    result = new ReturnInfo
+                    {
+                        BizObject = list,
+                        Code = ErrorEnum.NoError
+                    };
+                }
+                else
+                {
+                    result = new ReturnInfo
+                    {
+                        Message = "No records found",
+                        Code = ErrorEnum.NoRecord
+                    };
                 }
             }
             catch (Exception ex)
             {
                 result = new ReturnInfo(ErrorEnum.DataException, ex.Message);
-                return result;
             }
-            result = new ReturnInfo();
             return result;
         }
     }
