@@ -66,7 +66,6 @@ namespace TMF.Core.DAL
             }
             return array;
         }
-
         private SqlParameter[] GetUpdateParameters(string connectionString)
         {
             SqlParameter[] array = SqlHelper.GetCachedParameters("REPORT USERINFO_UPD");
@@ -77,7 +76,6 @@ namespace TMF.Core.DAL
             }
             return array;
         }
-
         protected void SetInfo(out UserInfo info, SqlDataReader rdr)
         {
             try
@@ -87,7 +85,7 @@ namespace TMF.Core.DAL
                 info.Username = CastDBNull.To<string>(rdr["Username"], "");
                 info.Password = CastDBNull.To<string>(rdr["Password"], "");
                 info.Name = CastDBNull.To<string>(rdr["Name"], "");
-                info.Role = CastDBNull.To<int>(rdr["Role"], 2);
+                info.Role = CastDBNull.To<string>(rdr["Role"], "");
                 info.IsActive = CastDBNull.To<bool>(rdr["IsActive"], false);
             }
             catch (Exception ex)
@@ -95,7 +93,6 @@ namespace TMF.Core.DAL
                 throw ex;
             }
         }
-
         public IInfo Insert(SmartDB dbInstance, ref UserInfo info)
         {
             SqlParameter[] insertParameters = this.GetInsertParameters(dbInstance.Connection.ConnectionString);
@@ -107,26 +104,26 @@ namespace TMF.Core.DAL
             insertParameters[4].Value = info.Role;
             insertParameters[5].Value = info.IsActive;
             IInfo result;
-            //try
-            //{
-            //    bool transactionControl = dbInstance.TransactionControl;
-            //    if (transactionControl)
-            //    {
-            //        SqlDataReader sqlDataReader = SqlHelper.ExecuteReader(dbInstance.Transaction, CommandType.StoredProcedure, cmdText, insertParameters);
-            //        bool hasRows = sqlDataReader.HasRows;
-            //        if (!hasRows)
-            //        {
-            //            result = new ReturnInfo(ErrorEnum.TransactionError, "Insert User failed");
-            //            return result;
-            //        }
-            //        sqlDataReader.Read();
-            //        string id = Convert.ToString(sqlDataReader[0]);
-            //        info.Id = id;
-            //        sqlDataReader.Close();
-            //    }
-            //    else
-            //    {
-                    SqlDataReader sqlDataReader = SqlHelper.ExecuteReader(dbInstance.Connection.ConnectionString, CommandType.StoredProcedure, cmdText, insertParameters);
+            try
+            {
+                //    bool transactionControl = dbInstance.TransactionControl;
+                //    if (transactionControl)
+                //    {
+                //        SqlDataReader sqlDataReader = SqlHelper.ExecuteReader(dbInstance.Transaction, CommandType.StoredProcedure, cmdText, insertParameters);
+                //        bool hasRows = sqlDataReader.HasRows;
+                //        if (!hasRows)
+                //        {
+                //            result = new ReturnInfo(ErrorEnum.TransactionError, "Insert User failed");
+                //            return result;
+                //        }
+                //        sqlDataReader.Read();
+                //        string id = Convert.ToString(sqlDataReader[0]);
+                //        info.Id = id;
+                //        sqlDataReader.Close();
+                //    }
+                //    else
+                //    {
+                SqlDataReader sqlDataReader = SqlHelper.ExecuteReader(dbInstance.Connection.ConnectionString, CommandType.StoredProcedure, cmdText, insertParameters);
                     bool hasRows2 = sqlDataReader.HasRows;
                     if (hasRows2)
                     {
@@ -137,20 +134,20 @@ namespace TMF.Core.DAL
                     //string id = Convert.ToString(sqlDataReader[0]);
                     //info.Id = id;
                     sqlDataReader.Close();
-            //    }
-            //}
-            //catch (Exception ex)
-            //{
-            //    Console.WriteLine(ex.ToString());
-            //    bool flag2 = ex.Message.Contains("PRIMARY KEY constraint");
-            //    if (flag2)
-            //    {
-            //        result = new ReturnInfo(ErrorEnum.UniqueConstraint, string.Format("User {0} already exist in the system", info.Name));
-            //        return result;
-            //    }
-                //result = new ReturnInfo(ErrorEnum.DataException, ex.Message);
-                //return result;
-            //}
+                //    }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+                bool flag2 = ex.Message.Contains("PRIMARY KEY constraint");
+                if (flag2)
+                {
+                    result = new ReturnInfo(ErrorEnum.UniqueConstraint, string.Format("User {0} already exist in the system", info.Name));
+                    return result;
+                }
+                result = new ReturnInfo(ErrorEnum.DataException, ex.Message);
+                return result;
+            }
             result = new ReturnInfo(ErrorEnum.NoError, "", 1);
             return result;
         }
@@ -357,57 +354,50 @@ namespace TMF.Core.DAL
             return result;
         }
 
-        public IInfo GetRecord(SmartDB dbInstance, long Id, out UserInfo info)
+        public IInfo GetRecord(SmartDB dbInstance, string query,  SqlParameter[] array)
         {
-            info = null;
-            string cmdText = "REPORT USERINFO_GID";
-            SqlParameter[] array = new SqlParameter[]
-            {
-                new SqlParameter("@ID", SqlDbType.BigInt)
-            };
-            array[0].Value = Id;
+            //string sQL_GET = SQL_GET_USER_ID;
+            //SqlParameter[] array = new SqlParameter[]
+            //{
+            //    new SqlParameter("@Id", SqlDbType.NVarChar)
+            //};
+            //array[0].Value = Id;
+            UserInfo bizObject = null;
             IInfo result;
             try
             {
                 bool transactionControl = dbInstance.TransactionControl;
+                SqlDataReader sqlDataReader;
                 if (transactionControl)
                 {
-                    using (SqlDataReader sqlDataReader = SqlHelper.ExecuteReader(dbInstance.Transaction, CommandType.StoredProcedure, cmdText, array))
-                    {
-                        bool hasRows = sqlDataReader.HasRows;
-                        if (!hasRows)
-                        {
-                            result = new ReturnInfo(ErrorEnum.NoRecord, string.Format("No record found for ID: {0}", Id));
-                            return result;
-                        }
-                        sqlDataReader.Read();
-                        this.SetInfo(out info, sqlDataReader);
-                    }
+                    sqlDataReader = SqlHelper.ExecuteReader(dbInstance.Transaction, CommandType.StoredProcedure, query, array);
                 }
                 else
                 {
-                    using (SqlDataReader sqlDataReader2 = SqlHelper.ExecuteReader(dbInstance.Connection.ConnectionString, CommandType.StoredProcedure, cmdText, array))
+                    sqlDataReader = SqlHelper.ExecuteReader(SqlHelper.MyConnectionString, CommandType.StoredProcedure, query, array);
+                }
+                bool hasRows = sqlDataReader.HasRows;
+                if (hasRows)
+                {
+                    sqlDataReader.Read();
+                    this.SetInfo(out bizObject, sqlDataReader);
+                    result = new ReturnInfo
                     {
-                        bool hasRows2 = sqlDataReader2.HasRows;
-                        if (!hasRows2)
-                        {
-                            result = new ReturnInfo(ErrorEnum.NoRecord, string.Format("No record found for ID: {0}", Id));
-                            return result;
-                        }
-                        sqlDataReader2.Read();
-                        this.SetInfo(out info, sqlDataReader2);
-                    }
+                        BizObject = bizObject,
+                        Code = ErrorEnum.NoError
+                    };
+                }
+                else
+                {
+                    result = new ReturnInfo(ErrorEnum.NoRecord, "No record found.");
                 }
             }
             catch (Exception ex)
             {
                 result = new ReturnInfo(ErrorEnum.DataException, ex.Message);
-                return result;
             }
-            result = new ReturnInfo();
             return result;
         }
-
         //public IInfo GetRecords(SmartDB dbInstance, out List<UserInfo> list)
         //{
         //    list = new List<UserInfo>();

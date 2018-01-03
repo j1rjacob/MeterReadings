@@ -554,14 +554,6 @@ namespace MeterReports
         }
         public void GoPrevious()
         {
-            //if (_mintCurrentPage == _mintPageCount)
-            //    _mintCurrentPage = _mintPageCount - 1;
-
-            //_mintCurrentPage--;
-
-            //if (_mintCurrentPage < 1)
-            //    _mintCurrentPage = 1;
-
             if (_mintCurrentPage == 1)
                 _mintCurrentPage = 1;
             else
@@ -571,19 +563,11 @@ namespace MeterReports
         }
         public void GoNext()
         {
-            //_mintCurrentPage++;
-
-            //if (_mintCurrentPage > (_mintPageCount - 1))
-            //    _mintCurrentPage = _mintPageCount - 1;
-
             if (_mintCurrentPage == _mintPageCount)
                 _mintCurrentPage = _mintPageCount;
             else
                 _mintCurrentPage++;
-
-            //if (_mintCurrentPage > 1)
-            //    _mintCurrentPage = 1;
-
+            
             LoadPage();
         }
         public void GoLast()

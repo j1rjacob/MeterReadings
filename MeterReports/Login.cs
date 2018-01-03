@@ -58,6 +58,7 @@ namespace MeterReports
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.tabPage4 = new System.Windows.Forms.TabPage();
+            this.ButtonConnect = new System.Windows.Forms.Button();
             this.TextBoxDBPassword = new System.Windows.Forms.TextBox();
             this.TextBoxDBUsername = new System.Windows.Forms.TextBox();
             this.TextBoxInitialCatalog = new System.Windows.Forms.TextBox();
@@ -72,7 +73,6 @@ namespace MeterReports
             this.TextBoxChangeUsername = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
-            this.ButtonConnect = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.errorProviderLogin)).BeginInit();
             this.tabControl2.SuspendLayout();
             this.tabPage3.SuspendLayout();
@@ -133,6 +133,7 @@ namespace MeterReports
             this.TextBoxPassword.PasswordChar = '*';
             this.TextBoxPassword.Size = new System.Drawing.Size(360, 27);
             this.TextBoxPassword.TabIndex = 1;
+            this.TextBoxPassword.Text = "Password123!";
             this.TextBoxPassword.Validating += new System.ComponentModel.CancelEventHandler(this.TextBoxPassword_Validating);
             this.TextBoxPassword.Validated += new System.EventHandler(this.TextBoxPassword_Validated);
             // 
@@ -143,6 +144,7 @@ namespace MeterReports
             this.TextBoxUsername.Name = "TextBoxUsername";
             this.TextBoxUsername.Size = new System.Drawing.Size(360, 27);
             this.TextBoxUsername.TabIndex = 0;
+            this.TextBoxUsername.Text = "nobolos";
             this.TextBoxUsername.Validating += new System.ComponentModel.CancelEventHandler(this.TextBoxUsername_Validating);
             this.TextBoxUsername.Validated += new System.EventHandler(this.TextBoxUsername_Validated);
             // 
@@ -184,6 +186,21 @@ namespace MeterReports
             this.tabPage4.TabIndex = 1;
             this.tabPage4.Text = "Connection Manager";
             this.tabPage4.UseVisualStyleBackColor = true;
+            // 
+            // ButtonConnect
+            // 
+            this.ButtonConnect.AutoSize = true;
+            this.ButtonConnect.BackColor = System.Drawing.Color.Red;
+            this.ButtonConnect.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("ButtonConnect.BackgroundImage")));
+            this.ButtonConnect.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.ButtonConnect.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ButtonConnect.Location = new System.Drawing.Point(64, 256);
+            this.ButtonConnect.Name = "ButtonConnect";
+            this.ButtonConnect.Size = new System.Drawing.Size(360, 56);
+            this.ButtonConnect.TabIndex = 39;
+            this.ButtonConnect.Text = "CONNECT";
+            this.ButtonConnect.UseVisualStyleBackColor = false;
+            this.ButtonConnect.Click += new System.EventHandler(this.ButtonConnect_Click);
             // 
             // TextBoxDBPassword
             // 
@@ -332,21 +349,6 @@ namespace MeterReports
             this.label8.Size = new System.Drawing.Size(111, 22);
             this.label8.TabIndex = 21;
             this.label8.Text = "USERNAME";
-            // 
-            // ButtonConnect
-            // 
-            this.ButtonConnect.AutoSize = true;
-            this.ButtonConnect.BackColor = System.Drawing.Color.Red;
-            this.ButtonConnect.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("ButtonConnect.BackgroundImage")));
-            this.ButtonConnect.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.ButtonConnect.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ButtonConnect.Location = new System.Drawing.Point(64, 256);
-            this.ButtonConnect.Name = "ButtonConnect";
-            this.ButtonConnect.Size = new System.Drawing.Size(360, 56);
-            this.ButtonConnect.TabIndex = 39;
-            this.ButtonConnect.Text = "CONNECT";
-            this.ButtonConnect.UseVisualStyleBackColor = false;
-            this.ButtonConnect.Click += new System.EventHandler(this.ButtonConnect_Click);
             // 
             // Login
             // 

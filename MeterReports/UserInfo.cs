@@ -2,7 +2,6 @@
 using System.Security.Cryptography;
 using System.Windows.Forms;
 using TMF.Core;
-using TMF.Core.Model;
 
 namespace MeterReports
 {
@@ -25,7 +24,7 @@ namespace MeterReports
                 Username = "j1rjacob",
                 Password = "qwerty123",
                 Name = "Junar A. Pakuna",
-                Role = (int)UserLevel.Administrator, 
+                Role = "Administrator", 
                 IsActive = true
             };
             
@@ -43,7 +42,7 @@ namespace MeterReports
                 Username = "nobolos",
                 Password = "qwerty123",
                 Name = "Junar A. Pakuna",
-                Role = (int)UserLevel.Administrator,
+                Role = "Administrator",
                 IsActive = true
             };
 

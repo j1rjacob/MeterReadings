@@ -48,16 +48,13 @@
             this.ComboBoxRole = new System.Windows.Forms.ComboBox();
             this.label5 = new System.Windows.Forms.Label();
             this.ComboBoxStatus = new System.Windows.Forms.ComboBox();
-            this.ButtonLock = new System.Windows.Forms.Button();
-            this.ButtonUnlock = new System.Windows.Forms.Button();
             this.errorProviderUser = new System.Windows.Forms.ErrorProvider(this.components);
             this.ColId = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColUsername = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColPassword = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColRole = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColLocked = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColLock = new System.Windows.Forms.DataGridViewButtonColumn();
-            this.ColUnlock = new System.Windows.Forms.DataGridViewButtonColumn();
             ((System.ComponentModel.ISupportInitialize)(this.DataGridViewUser)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProviderUser)).BeginInit();
             this.SuspendLayout();
@@ -124,7 +121,7 @@
             this.TextBoxPassword.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TextBoxPassword.Location = new System.Drawing.Point(163, 136);
             this.TextBoxPassword.Name = "TextBoxPassword";
-            this.TextBoxPassword.PasswordChar = '$';
+            this.TextBoxPassword.PasswordChar = '*';
             this.TextBoxPassword.Size = new System.Drawing.Size(421, 27);
             this.TextBoxPassword.TabIndex = 2;
             // 
@@ -146,18 +143,15 @@
             this.ColId,
             this.ColName,
             this.ColUsername,
+            this.ColPassword,
             this.ColRole,
-            this.ColLocked,
-            this.ColLock,
-            this.ColUnlock});
+            this.ColLocked});
             this.DataGridViewUser.Location = new System.Drawing.Point(17, 300);
             this.DataGridViewUser.Name = "DataGridViewUser";
             this.DataGridViewUser.ReadOnly = true;
             this.DataGridViewUser.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.DataGridViewUser.Size = new System.Drawing.Size(647, 150);
             this.DataGridViewUser.TabIndex = 6;
-            this.DataGridViewUser.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DataGridViewUser_CellContentClick);
-            this.DataGridViewUser.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.DataGridViewUser_CellFormatting);
             this.DataGridViewUser.SelectionChanged += new System.EventHandler(this.DataGridViewUser_SelectionChanged);
             // 
             // ButtonSearch
@@ -256,13 +250,12 @@
             this.ComboBoxRole.Name = "ComboBoxRole";
             this.ComboBoxRole.Size = new System.Drawing.Size(421, 28);
             this.ComboBoxRole.TabIndex = 3;
-            this.ComboBoxRole.MouseClick += new System.Windows.Forms.MouseEventHandler(this.ComboBoxRole_MouseClick);
             // 
             // label5
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(736, 112);
+            this.label5.Location = new System.Drawing.Point(608, 112);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(83, 22);
             this.label5.TabIndex = 2;
@@ -273,43 +266,11 @@
             // 
             this.ComboBoxStatus.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ComboBoxStatus.FormattingEnabled = true;
-            this.ComboBoxStatus.Location = new System.Drawing.Point(736, 144);
+            this.ComboBoxStatus.Location = new System.Drawing.Point(608, 144);
             this.ComboBoxStatus.Name = "ComboBoxStatus";
             this.ComboBoxStatus.Size = new System.Drawing.Size(216, 28);
             this.ComboBoxStatus.TabIndex = 9;
             this.ComboBoxStatus.Visible = false;
-            // 
-            // ButtonLock
-            // 
-            this.ButtonLock.AutoSize = true;
-            this.ButtonLock.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("ButtonLock.BackgroundImage")));
-            this.ButtonLock.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.ButtonLock.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ButtonLock.Location = new System.Drawing.Point(744, 56);
-            this.ButtonLock.Name = "ButtonLock";
-            this.ButtonLock.Size = new System.Drawing.Size(133, 56);
-            this.ButtonLock.TabIndex = 7;
-            this.ButtonLock.Text = "LOCK";
-            this.ButtonLock.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.ButtonLock.UseVisualStyleBackColor = true;
-            this.ButtonLock.Visible = false;
-            this.ButtonLock.Click += new System.EventHandler(this.ButtonLock_Click);
-            // 
-            // ButtonUnlock
-            // 
-            this.ButtonUnlock.AutoSize = true;
-            this.ButtonUnlock.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("ButtonUnlock.BackgroundImage")));
-            this.ButtonUnlock.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.ButtonUnlock.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ButtonUnlock.Location = new System.Drawing.Point(672, 176);
-            this.ButtonUnlock.Name = "ButtonUnlock";
-            this.ButtonUnlock.Size = new System.Drawing.Size(133, 56);
-            this.ButtonUnlock.TabIndex = 7;
-            this.ButtonUnlock.Text = "UNLOCK";
-            this.ButtonUnlock.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.ButtonUnlock.UseVisualStyleBackColor = true;
-            this.ButtonUnlock.Visible = false;
-            this.ButtonUnlock.Click += new System.EventHandler(this.ButtonUnlock_Click);
             // 
             // errorProviderUser
             // 
@@ -325,17 +286,24 @@
             // 
             // ColName
             // 
-            this.ColName.DataPropertyName = "FullName";
+            this.ColName.DataPropertyName = "Name";
             this.ColName.HeaderText = "Name";
             this.ColName.Name = "ColName";
             this.ColName.ReadOnly = true;
             // 
             // ColUsername
             // 
-            this.ColUsername.DataPropertyName = "UserName";
+            this.ColUsername.DataPropertyName = "Username";
             this.ColUsername.HeaderText = "Username";
             this.ColUsername.Name = "ColUsername";
             this.ColUsername.ReadOnly = true;
+            // 
+            // ColPassword
+            // 
+            this.ColPassword.DataPropertyName = "Password";
+            this.ColPassword.HeaderText = "Password";
+            this.ColPassword.Name = "ColPassword";
+            this.ColPassword.ReadOnly = true;
             // 
             // ColRole
             // 
@@ -346,38 +314,20 @@
             // 
             // ColLocked
             // 
-            this.ColLocked.DataPropertyName = "Locked";
+            this.ColLocked.DataPropertyName = "IsActive";
             this.ColLocked.HeaderText = "Online";
             this.ColLocked.Name = "ColLocked";
             this.ColLocked.ReadOnly = true;
-            // 
-            // ColLock
-            // 
-            this.ColLock.HeaderText = "";
-            this.ColLock.Name = "ColLock";
-            this.ColLock.ReadOnly = true;
-            this.ColLock.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.ColLock.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            // 
-            // ColUnlock
-            // 
-            this.ColUnlock.HeaderText = "";
-            this.ColUnlock.Name = "ColUnlock";
-            this.ColUnlock.ReadOnly = true;
-            this.ColUnlock.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.ColUnlock.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             // 
             // User
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(743, 461);
+            this.ClientSize = new System.Drawing.Size(738, 461);
             this.Controls.Add(this.ComboBoxStatus);
             this.Controls.Add(this.ComboBoxRole);
             this.Controls.Add(this.LabelShow);
-            this.Controls.Add(this.ButtonUnlock);
             this.Controls.Add(this.ButtonDelete);
-            this.Controls.Add(this.ButtonLock);
             this.Controls.Add(this.ButtonSave);
             this.Controls.Add(this.ButtonEdit);
             this.Controls.Add(this.ButtonNew);
@@ -427,15 +377,12 @@
         private System.Windows.Forms.ComboBox ComboBoxRole;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.ComboBox ComboBoxStatus;
-        private System.Windows.Forms.Button ButtonLock;
-        private System.Windows.Forms.Button ButtonUnlock;
         private System.Windows.Forms.ErrorProvider errorProviderUser;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColId;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColName;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColUsername;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColPassword;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColRole;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColLocked;
-        private System.Windows.Forms.DataGridViewButtonColumn ColLock;
-        private System.Windows.Forms.DataGridViewButtonColumn ColUnlock;
     }
 }

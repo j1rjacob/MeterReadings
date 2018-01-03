@@ -93,7 +93,7 @@ namespace MeterReports.Test
         public void REPORT_USERINFO_NAME_EQUAL()
         {
             //Act
-            var getUserList = _userInfo.GetUserByName(new SmartDB(), "Junar A. Jacob");
+            var getUserList = _userInfo.GetUsersByName(new SmartDB(), "Junar A. Jacob");
             bool flag = getUserList.Code == ErrorEnum.NoError;
 
             //Assert

@@ -10,19 +10,15 @@ using TMF.Reports.Model;
 
 namespace MeterReports
 {
-    public enum UserStatus
-    {
-        Unlocked = 0,
-        Locked = 1
-        
-    }
+
     public partial class User : Form
     {
         private CustomUserStore _userStore;
         private UserManager<CustomUser, int> _userManager;
         private readonly TMF.Reports.BLL.User _user;
         private readonly CustomUser _currentUser;
-        private int _userId;
+        private readonly UserInfoBLL _userInfo;
+        private string _userId;
         private bool _save;
         public User(CustomUser currentUser)
         {
@@ -30,25 +26,25 @@ namespace MeterReports
             _userStore = new CustomUserStore(new CustomUserDbContext());
             _userManager = new UserManager<CustomUser, int>(_userStore);
             _user = new TMF.Reports.BLL.User();
+            _userInfo = new UserInfoBLL();
             _currentUser = currentUser;
-            _userId = 0;
+            _userId = "";
             _save = true;
         }
         private void User_Load(object sender, EventArgs e)
         {
             ResetControls();
-            GetStatus();
+            GetRoles();
         }
         private void ButtonDelete_Click(object sender, EventArgs e)
         {
             if (!string.IsNullOrWhiteSpace(TextBoxName.Text) &&
                 _currentUser.Role == "Administrator")
-            {   
-                var user = _userManager.FindById(_userId);
+            {
+                var updateUser = _userInfo.Delete(new SmartDB(), _userId);
+                bool flag = updateUser.Code == ErrorEnum.NoError;
 
-                var flag = _userManager.Delete(user);
-
-                if (flag.Succeeded)
+                if (flag)
                 {
                     MessageBox.Show("User Deleted");
                     ResetControls();
@@ -75,8 +71,7 @@ namespace MeterReports
             TextBoxName.Text = "";
             TextBoxUsername.Text = "";
             TextBoxPassword.Text = "";
-            ComboBoxRole.Enabled = true;
-            _userId = 0;
+            _userId = "";
             TextBoxName.Focus();
         }
         private void ButtonEdit_Click(object sender, EventArgs e)
@@ -89,6 +84,7 @@ namespace MeterReports
             ButtonEdit.Enabled = true;
             ButtonSave.Enabled = true;
             ButtonDelete.Enabled = false;
+            TextBoxPassword.Clear();
             _save = false;
             TextBoxName.Focus();
         }
@@ -103,45 +99,32 @@ namespace MeterReports
         {
             BindUserWithDataGrid();
         }
-        private void ButtonLock_Click(object sender, EventArgs e)
-        {
-            PerformLock();
-        }
-        
-        private void ButtonUnlock_Click(object sender, EventArgs e)
-        {
-            PerformUnlock();
-        }
 
-        
-
-        private void ComboBoxRole_MouseClick(object sender, MouseEventArgs e)
-        {
-            GetRoles();
-        }
         private void DataGridViewUser_SelectionChanged(object sender, EventArgs e)
         {
             LabelShow.Text = $"Showing {DataGridViewUser.CurrentRow.Index + 1} index of {DataGridViewUser.RowCount} records";
 
-            int userId;
+            string userId;
             try
             {
-                userId = (int)DataGridViewUser.CurrentRow.Cells[0].Value;
+                userId = (string)DataGridViewUser.CurrentRow.Cells[0].Value;
             }
             catch (Exception)
             {
                 return;
             }
-            ReturnInfo getUser = _user.GetUserById(new SmartDB(), userId);
-            bool flag = getUser.Code == ErrorEnum.NoError;
-            TMF.Reports.Model.User user = (TMF.Reports.Model.User)getUser.BizObject;
 
             try
             {
-                if (user.Id == 0 ? false : true)
+                ReturnInfo getUser = _userInfo.GetUserById(new SmartDB(), userId);
+                bool flag = getUser.Code == ErrorEnum.NoError;
+                var user = (TMF.Core.Model.UserInfo)getUser.BizObject;
+
+                if (user.Id == "" ? false : true)
                 {
-                    TextBoxName.Text = user.FullName;
-                    TextBoxUsername.Text = user.UserName;
+                    TextBoxName.Text = user.Name;
+                    TextBoxUsername.Text = user.Username;
+                    TextBoxPassword.Text = user.Password;
                     ComboBoxRole.Text = user.Role;
                     _userId = user.Id;
                     ButtonEdit.Enabled = true;
@@ -153,136 +136,76 @@ namespace MeterReports
                 return;
             }
         }
-        private void DataGridViewUser_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
-        {
-            DataGridViewUser.Rows[e.RowIndex].Cells[5].Value = "Lock";
-            DataGridViewUser.Rows[e.RowIndex].Cells[6].Value = "UnLock";
-        }
-        private void DataGridViewUser_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-            //var senderGrid = (DataGridView)sender;
-
-            //if (senderGrid.Columns[e.ColumnIndex] is DataGridViewButtonColumn &&
-            //    e.RowIndex >= 0)
-            //{
-            //    PerformLock();
-            //}
-            //if (senderGrid.Columns[e.ColumnIndex] is DataGridViewButtonColumn &&
-            //    e.RowIndex >= 0)
-            //{
-            //    PerformUnlock();
-            //}
-
-            DataGridViewButtonCell cell = (DataGridViewButtonCell)DataGridViewUser
-                                          .Rows[e.RowIndex].Cells[e.ColumnIndex];
-            string selectedCell = cell.Value.ToString();
-
-            if (selectedCell == "Lock")
-            {
-                PerformLock();
-            }
-            if (selectedCell == "UnLock")
-            {
-                PerformUnlock();
-            }
-        }
 
         #region PriveteMethod
-        private void PerformLock()
-        {
-            if (!string.IsNullOrWhiteSpace(TextBoxName.Text) &&
-                _currentUser.Role == "Administrator")
-            {
-                var user = _userManager.FindById(_userId);
-
-                user.Locked = 1;
-
-                var flag = _userManager.Update(user);
-
-                if (flag.Succeeded)
-                {
-                    MessageBox.Show("User Locked");
-                    ResetControls();
-                }
-                else
-                {
-                    MessageBox.Show("User is not locked!");
-                }
-            }
-            else
-            {
-                MessageBox.Show("No User to edit.");
-            }
-        }
-        private void PerformUnlock()
-        {
-            if (!string.IsNullOrWhiteSpace(TextBoxName.Text) &&
-                _currentUser.Role == "Administrator")
-            {
-                var user = _userManager.FindById(_userId);
-
-                user.Locked = 0;
-
-                var flag = _userManager.Update(user);
-
-                if (flag.Succeeded)
-                {
-                    MessageBox.Show("User Unlocked");
-                    ResetControls();
-                }
-                else
-                {
-                    MessageBox.Show("User is not unlocked!");
-                }
-            }
-            else
-                MessageBox.Show("No User to unlocked.");
-        }
         private void SaveUser()
         {
-            if (!string.IsNullOrWhiteSpace(TextBoxName.Text) &&
-                _currentUser.Role == "Administrator")
+            ReturnInfo checkUser = _userInfo.GetUserByUsername(new SmartDB(), TextBoxUsername.Text);
+            
+            if (checkUser.Code == ErrorEnum.NoRecord || 
+                checkUser.Code == ErrorEnum.NoError)
             {
-                CustomUser user = new CustomUser
+                if (!string.IsNullOrWhiteSpace(TextBoxName.Text) &&
+                                _currentUser.Role == "Administrator")
                 {
-                    FullName = TextBoxName.Text,
-                    UserName = TextBoxUsername.Text,
-                    Role = ComboBoxRole.Text,
-                    Locked = (int)(UserStatus)Enum.Parse(typeof(UserStatus), ComboBoxStatus.Text)
-            };
+                    TMF.Core.Model.UserInfo user = new TMF.Core.Model.UserInfo()
+                    {
+                        Id = Guid.NewGuid().ToString("N"),
+                        Username = TextBoxUsername.Text,
+                        Password = TextBoxPassword.Text,
+                        Name = TextBoxName.Text,
+                        Role = ComboBoxRole.Text,
+                        IsActive = false
+                    };
 
-                var createUser = _userManager.Create(user, TextBoxPassword.Text);
-                
-                if (createUser.Succeeded)
-                {
-                    MessageBox.Show("User Created");
-                    ResetControls();
-                    BindUserWithDataGrid();
+                    var createUser = _userInfo.Create(new SmartDB(), ref user);
+                    bool flag = createUser.Code == ErrorEnum.NoError;
+                    
+                    if (createUser.Code == ErrorEnum.UniqueConstraint)
+                    {
+                        MessageBox.Show("Username Duplicate");
+                        return;
+                    }
+                    if (flag)
+                    {
+                        MessageBox.Show("User Created");
+                        ResetControls();
+                        BindUserWithDataGrid();
+                    }
+                    else
+                    {
+                        MessageBox.Show("User not created");
+                    }
                 }
                 else
-                {
-                    MessageBox.Show("User not created");
-                }
+                    MessageBox.Show("No User to save or Contact Admin.");
             }
-            else
-                MessageBox.Show("No User to save or Contact Admin.");
         }
         private void EditUser()
         {
             if (!string.IsNullOrWhiteSpace(TextBoxName.Text) &&
                 _currentUser.Role == "Administrator")
             {   //Todo EditedBy
-                var user = _userManager.FindById(_userId);
+                TMF.Core.Model.UserInfo user = new TMF.Core.Model.UserInfo()
+                {
+                    Id = _userId,
+                    Username = TextBoxUsername.Text,
+                    Password = TextBoxPassword.Text,
+                    Name = TextBoxName.Text,
+                    Role = ComboBoxRole.Text,
+                    IsActive = true
+                };
 
-                user.FullName = TextBoxName.Text;
-                user.UserName = TextBoxUsername.Text;
-                user.PasswordHash = _userManager.PasswordHasher.HashPassword(TextBoxPassword.Text);
-                user.Role = ComboBoxRole.Text;
-                user.Locked = (int)(UserStatus)Enum.Parse(typeof(UserStatus), ComboBoxStatus.Text);
+                var updateUser = _userInfo.Update(new SmartDB(), user);
+                bool flag = updateUser.Code == ErrorEnum.NoError;
 
-                var flag = _userManager.Update(user);
-                
-                if (flag.Succeeded)
+                if (updateUser.Message == "Password is required")
+                {
+                    MessageBox.Show("Password is required or Press Esc");
+                    return;
+                }
+
+                if (flag)
                 {
                     MessageBox.Show("User Updated");
                     ResetControls();
@@ -300,15 +223,9 @@ namespace MeterReports
         private void GetRoles()
         {
             ComboBoxRole.Items.Clear();
-            ComboBoxRole.Items.Add("Administrator");
-            ComboBoxRole.Items.Add("Encoder");
+            ComboBoxRole.DataSource = Enum.GetValues(typeof(UserLevel));
         }
 
-        private void GetStatus()
-        {
-            ComboBoxStatus.Items.Clear();
-            ComboBoxStatus.DataSource = Enum.GetValues(typeof(UserStatus));
-        }
         private void ResetControls()
         {
             TextBoxName.Enabled = false;
@@ -319,7 +236,7 @@ namespace MeterReports
             TextBoxName.Text = "";
             TextBoxUsername.Text = "";
             TextBoxPassword.Text = "";
-            ComboBoxRole.Items.Clear();
+            ComboBoxRole.Text = "";
             ButtonNew.Enabled = true;
             ButtonEdit.Enabled = false;
             ButtonSave.Enabled = false;
@@ -336,15 +253,15 @@ namespace MeterReports
             }
             return base.ProcessCmdKey(ref msg, keyData);
         }
-        
+
         private void BindUserWithDataGrid()
         {   //TODO: Refactor this for reuse. 
             try
             {
-                ReturnInfo getUserList = _user.GetUserByUserName(new SmartDB(), TextBoxSearch.Text);
-                
-                List<TMF.Reports.Model.User> user = (List<TMF.Reports.Model.User>)getUserList.BizObject;
-                var bindingList = new BindingList<TMF.Reports.Model.User>(user);
+                ReturnInfo getUserList = _userInfo.GetUsersByName(new SmartDB(), TextBoxSearch.Text);
+
+                List<TMF.Core.Model.UserInfo> user = (List<TMF.Core.Model.UserInfo>)getUserList.BizObject;
+                var bindingList = new BindingList<TMF.Core.Model.UserInfo>(user);
                 var source = new BindingSource(bindingList, null);
                 DataGridViewUser.AutoGenerateColumns = false;
                 DataGridViewUser.DataSource = source;

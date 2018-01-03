@@ -9,7 +9,7 @@ namespace TMF.Core.Model
         public string Username { get; set; }
         public string Password { get; set; }
         public string Name { get; set; }
-        public int Role { get; set; }    
+        public string Role { get; set; }    
         public bool IsActive { get; set; }
 
         public UserInfo()
@@ -18,15 +18,17 @@ namespace TMF.Core.Model
             Username = "";
             Password = null;
             Name = "";
+            Role = "";
             IsActive = false;
         }
 
-        public UserInfo(string id, string username, string name, string password, bool isActive)
+        public UserInfo(string id, string username, string name, string password, string role, bool isActive)
         {
             Id = id;
             Username = username;
             Password = password;
             Name = name;
+            Role = role;
             IsActive = isActive;
         }
 
@@ -45,6 +47,9 @@ namespace TMF.Core.Model
                     break;
                 case "name":
                    Name = ((value == null) ? "" : value.ToString());
+                    break;
+                case "role":
+                   Role = ((value == null) ? "" : value.ToString());
                     break;
                 case "isactive":
                     IsActive = (value != null && Convert.ToBoolean(value)); 
@@ -70,6 +75,9 @@ namespace TMF.Core.Model
                     break;
                 case "name":
                     return Name;
+                    break;
+                case "role":
+                    return Role;
                     break;
                 case "isactive":
                     return IsActive;

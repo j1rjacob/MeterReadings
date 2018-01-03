@@ -9,12 +9,10 @@ namespace TMF.Core
     public class UserInfoBLL : BusinessBase
     {
         private static readonly UserInfoDAL dal = new UserInfoDAL();
-        
         public IInfo CheckRight()
         {
             return new ReturnInfo(ErrorEnum.NoError, "");
         }
-
         public ReturnInfo Create(SmartDB dbInstance, ref UserInfo info)
         {
             bool flag = info.Username.Trim().Length < 5;
@@ -54,7 +52,6 @@ namespace TMF.Core
             }
             return result;
         }
-
         public ReturnInfo Update(SmartDB dbInstance, UserInfo info)
         {
             bool flag = string.IsNullOrEmpty(info.Username);
@@ -102,7 +99,6 @@ namespace TMF.Core
             }
             return result;
         }
-
         public ReturnInfo UpdateLoginStatus(SmartDB dbInstance, string username, bool isActive)
         {
             bool flag = string.IsNullOrEmpty(username);
@@ -126,7 +122,6 @@ namespace TMF.Core
             }
             return result;
         }
-
         public ReturnInfo Delete(SmartDB dbInstance, string Id)
         {
             bool flag = Id == "";
@@ -142,7 +137,6 @@ namespace TMF.Core
             }
             return result;
         }
-
         public ReturnInfo Remove(SmartDB dbInstance, long Id)
         {
             bool flag = Id <= 0L;
@@ -158,7 +152,6 @@ namespace TMF.Core
             }
             return result;
         }
-
         public ReturnInfo GetUserByUserId(SmartDB dbInstance, string UserId, out UserInfo info)
         {
             bool flag = string.IsNullOrEmpty(UserId);
@@ -183,21 +176,22 @@ namespace TMF.Core
             }
             return result;
         }
-
-        public ReturnInfo GetUserById(SmartDB dbInstance, long Id, out UserInfo info)
+        public ReturnInfo GetUserById(SmartDB dbInstance, string Id)
         {
-            IInfo record = UserInfoBLL.dal.GetRecord(dbInstance, Id, out info);
-            bool flag = record.Code > ErrorEnum.NoError;
-            ReturnInfo result;
-            if (flag)
+            string sQL_GET = "REPORT USERINFO_GET_USER_ID";
+            SqlParameter[] array = new SqlParameter[]
             {
-                result = new ReturnInfo(record.Code, record.Message);
-            }
-            else
+                new SqlParameter("@Id", SqlDbType.NVarChar)
+            };
+            array[0].Value = Id;
+            IInfo record = UserInfoBLL.dal.GetRecord(dbInstance, sQL_GET, array);
+            return new ReturnInfo
             {
-                result = new ReturnInfo();
-            }
-            return result;
+                BizObject = ((record.Code == ErrorEnum.NoError) ? record.BizObject : null),
+                Code = record.Code,
+                Message = record.Message,
+                RowsAffected = record.RowsAffected
+            };
         }
         public ReturnInfo GetUserByUsernamePassword(SmartDB dbInstance, string username, string password)
         {
@@ -217,7 +211,8 @@ namespace TMF.Core
                 BizObject = ((records.Code == ErrorEnum.NoError) ? records.BizObject : new List<Model.UserInfo>())
             };
         }
-        public ReturnInfo GetUserByName(SmartDB dbInstance, string name)
+
+        public ReturnInfo GetUsersByName(SmartDB dbInstance, string name)
         {
             string cmdText = "[REPORT USERINFO_NAME]";
             SqlParameter[] array = new SqlParameter[]
@@ -231,6 +226,23 @@ namespace TMF.Core
                 Code = records.Code,
                 Message = records.Message,
                 BizObject = ((records.Code == ErrorEnum.NoError) ? records.BizObject : new List<UserInfo>())
+            };
+        }
+        public ReturnInfo GetUserByUsername(SmartDB dbInstance, string username)
+        {
+            string sQL_GET = "REPORT USERINFO_USERNAME";
+            SqlParameter[] array = new SqlParameter[]
+            {
+                new SqlParameter("@Username", SqlDbType.NVarChar)
+            };
+            array[0].Value = username;
+            IInfo record = UserInfoBLL.dal.GetRecord(dbInstance, sQL_GET, array);
+            return new ReturnInfo
+            {
+                BizObject = ((record.Code == ErrorEnum.NoError) ? record.BizObject : null),
+                Code = record.Code,
+                Message = record.Message,
+                RowsAffected = record.RowsAffected
             };
         }
         public ReturnInfo GetUserList(SmartDB dbInstance)

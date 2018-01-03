@@ -302,9 +302,6 @@ namespace MeterReports
             ButtonDelete.Enabled = false;
             _save = true;
             Task.Factory.StartNew(() => BindMeterReadingWithDataGrid());
-            //BindMeterReadingWithDataGrid();
-            //BindMeterReadingLatestWithDataGrid();
-            //ButtonSearch.PerformClick();
         }
         protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
         {
