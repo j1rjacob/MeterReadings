@@ -38,7 +38,6 @@ namespace MeterReports
         private Label label7;
         private Label label8;
         private Button ButtonConnect;
-        
         private readonly UserInfoBLL _userInfo;
         private string _currentUsername;
         public Login(string Username)

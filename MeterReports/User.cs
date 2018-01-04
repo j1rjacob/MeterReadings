@@ -218,7 +218,6 @@ namespace MeterReports
             ComboBoxRole.Items.Clear();
             ComboBoxRole.DataSource = Enum.GetValues(typeof(UserLevel));
         }
-
         private void ResetControls()
         {
             TextBoxName.Enabled = false;
