@@ -203,7 +203,7 @@ namespace MeterReports
                     BrokenPipeAlr = Convert.ToInt32(TextBoxBrokenPipeAlr.Text),
                     EmptyPipeAlr = Convert.ToInt32(TextBoxEmptyPipeAlr.Text),
                     SpecificErr = Convert.ToInt32(TextBoxSpecificErr.Text),
-                    CreatedBy = _currentUser.Id.ToString(),
+                    CreatedBy = _currentUser.Id,
                     DocDate = DateTime.Now,
                     Show = 1,
                     LockCount = 0

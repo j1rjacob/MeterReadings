@@ -140,13 +140,10 @@ namespace MeterReports
         private void ButtonReplace_Click(object sender, EventArgs e)
         {
             ProgressBarImportStatus.Maximum = _max = _duplicateCSVFile.Count;
-            ImportDuplicatedMeterSerialNumber();
+            //ImportDuplicatedMeterSerialNumber();
         }
 
-        private void ImportDuplicatedMeterSerialNumber()
-        {
-            throw new NotImplementedException();
-        }
+        
 
         private void ImportMeterSerialNumber()
         {
