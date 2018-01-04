@@ -1,31 +1,24 @@
-﻿using Microsoft.AspNet.Identity;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Windows.Forms;
 using TMF.Core;
 using TMF.Core.Model;
-using TMF.Reports.BLL;
-using TMF.Reports.Model;
 
 namespace MeterReports
 {
 
     public partial class User : Form
     {
-        private CustomUserStore _userStore;
-        private UserManager<CustomUser, int> _userManager;
-        private readonly TMF.Reports.BLL.User _user;
-        private readonly CustomUser _currentUser;
+       
         private readonly UserInfoBLL _userInfo;
+        private readonly TMF.Core.Model.UserInfo _currentUser;
         private string _userId;
         private bool _save;
-        public User(CustomUser currentUser)
+        public User(TMF.Core.Model.UserInfo currentUser)
         {
             InitializeComponent();
-            _userStore = new CustomUserStore(new CustomUserDbContext());
-            _userManager = new UserManager<CustomUser, int>(_userStore);
-            _user = new TMF.Reports.BLL.User();
+            
             _userInfo = new UserInfoBLL();
             _currentUser = currentUser;
             _userId = "";
@@ -157,7 +150,7 @@ namespace MeterReports
                         Role = ComboBoxRole.Text,
                         IsActive = false
                     };
-
+                    MessageBox.Show(_currentUser.Role);
                     var createUser = _userInfo.Create(new SmartDB(), ref user);
                     bool flag = createUser.Code == ErrorEnum.NoError;
                     
@@ -253,7 +246,6 @@ namespace MeterReports
             }
             return base.ProcessCmdKey(ref msg, keyData);
         }
-
         private void BindUserWithDataGrid()
         {   //TODO: Refactor this for reuse. 
             try

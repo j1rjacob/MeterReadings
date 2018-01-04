@@ -2,7 +2,6 @@
 using NUnit.Framework.Internal;
 using System;
 using TMF.Core;
-using TMF.Core.Model;
 
 namespace MeterReports.Test
 {
@@ -25,7 +24,7 @@ namespace MeterReports.Test
                 Username = "j1rjacob",
                 Password = "qwerty123",
                 Name = "Junar A. Jacob",
-                Role = (int)UserLevel.Administrator,
+                Role = "Administrator",
                 IsActive = true
             };
 
@@ -47,7 +46,7 @@ namespace MeterReports.Test
                 Username = "j1rjacob",
                 Password = "qwerty123",
                 Name = "Junar Jacob",
-                Role = (int)UserLevel.Administrator,
+                Role = "Administrator",
                 IsActive = true
             };
 

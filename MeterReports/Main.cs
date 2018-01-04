@@ -1,22 +1,15 @@
-﻿using Microsoft.AspNet.Identity;
-using System;
+﻿using System;
 using System.Windows.Forms;
-using TMF.Reports.BLL;
-using TMF.Reports.Model;
 
 namespace MeterReports
 {
     public partial class Main : Form
     {
-        private readonly CustomUser _currentUser;
-        private CustomUserStore _userStore;
-        private UserManager<CustomUser, int> _userManager;
-        public Main(CustomUser currentUser)
+        private readonly TMF.Core.Model.UserInfo _currentUser;
+        public Main(TMF.Core.Model.UserInfo currentUser)
         {
             InitializeComponent();
             _currentUser = currentUser;
-            _userStore = new CustomUserStore(new CustomUserDbContext());
-            _userManager = new UserManager<CustomUser, int>(_userStore);
         }
 
         private bool OpenForms<T>()
@@ -73,21 +66,17 @@ namespace MeterReports
 
         private void Main_Load(object sender, EventArgs e)
         {
-            logoutToolStripMenuItem.Text = $"Logout {_currentUser.UserName}";
+            logoutToolStripMenuItem.Text = $"Logout {_currentUser.Username}";
         }
 
         private void logoutToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            var user = _userManager.FindById(_currentUser.Id);
-            user.Locked = 0;
-            _userManager.Update(user);
-
             foreach (Form c in this.MdiChildren)
             {
                 c.Close();
             }
 
-            var l = new Login();
+            var l = new Login(_currentUser.Username);
             l.Show();
             this.Hide();
         }

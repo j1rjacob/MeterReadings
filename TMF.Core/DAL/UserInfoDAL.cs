@@ -151,7 +151,6 @@ namespace TMF.Core.DAL
             result = new ReturnInfo(ErrorEnum.NoError, "", 1);
             return result;
         }
-
         public IInfo Update(SmartDB dbInstance, UserInfo info)
         {
             int rowsAffected = 0;
@@ -199,14 +198,13 @@ namespace TMF.Core.DAL
             result = new ReturnInfo(ErrorEnum.NoError, "", rowsAffected);
             return result;
         }
-
         public IInfo UpdateLoginStatus(SmartDB dbInstance, string userId, bool isLogin)
         {
             int rowsAffected = 0;
             SqlParameter[] parameters = SqlHelper.GetParameters(dbInstance.Connection.ConnectionString, "REPORT USERINFO_ISLOGIN_UPD");
             string cmdText = "REPORT USERINFO_ISLOGIN_UPD";
-            parameters[0].Value = isLogin;
-            parameters[1].Value = userId;
+            parameters[0].Value = userId;
+            parameters[1].Value = isLogin;
             IInfo result;
             try
             {
@@ -228,7 +226,6 @@ namespace TMF.Core.DAL
             result = new ReturnInfo(ErrorEnum.NoError, "", rowsAffected);
             return result;
         }
-
         public IInfo Delete(SmartDB dbInstance, string Id)
         {
             int rowsAffected = 0;
@@ -265,7 +262,6 @@ namespace TMF.Core.DAL
             result = new ReturnInfo(ErrorEnum.NoError, "", rowsAffected);
             return result;
         }
-
         public IInfo Remove(SmartDB dbInstance, long Id)
         {
             int rowsAffected = 0;
@@ -302,7 +298,6 @@ namespace TMF.Core.DAL
             result = new ReturnInfo(ErrorEnum.NoError, "", rowsAffected);
             return result;
         }
-
         public IInfo GetRecord(SmartDB dbInstance, string userId, out UserInfo info)
         {
             info = null;
@@ -353,7 +348,6 @@ namespace TMF.Core.DAL
             result = new ReturnInfo();
             return result;
         }
-
         public IInfo GetRecord(SmartDB dbInstance, string query,  SqlParameter[] array)
         {
             //string sQL_GET = SQL_GET_USER_ID;

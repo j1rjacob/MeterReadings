@@ -11,11 +11,11 @@ namespace MeterReports
     public partial class Citi : Form
     {
         private readonly TMF.Reports.BLL.City _city;
-        private readonly CustomUser _currentUser;
+        private readonly TMF.Core.Model.UserInfo _currentUser;
         private bool _save;
         private string _cityId;
         private int _rowCount;
-        public Citi(CustomUser currentUser)
+        public Citi(TMF.Core.Model.UserInfo currentUser)
         {
             InitializeComponent();
             _city = new TMF.Reports.BLL.City();

@@ -4,7 +4,6 @@ using System.ComponentModel;
 using System.Windows.Forms;
 using TMF.Core;
 using TMF.Core.Model;
-using TMF.Reports.Model;
 
 namespace MeterReports
 {
@@ -22,14 +21,14 @@ namespace MeterReports
         private Label label2;
 
         private readonly TMF.Reports.BLL.MeterSize _meterSize;
-        private readonly CustomUser _currentUser;
+        private readonly TMF.Core.Model.UserInfo _currentUser;
         private bool _save;
         private DataGridViewTextBoxColumn ColId;
         private DataGridViewTextBoxColumn ColDescription;
         private ErrorProvider errorProviderMeterSize;
         private IContainer components;
         private int _meterSizeId;
-        public MeterSize(CustomUser currentUser)
+        public MeterSize(TMF.Core.Model.UserInfo currentUser)
         {
             InitializeComponent();
             _meterSize = new TMF.Reports.BLL.MeterSize();

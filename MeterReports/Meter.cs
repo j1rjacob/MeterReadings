@@ -8,7 +8,6 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using TMF.Core;
 using TMF.Core.Model;
-using TMF.Reports.Model;
 using TMF.Reports.UTIL;
 
 namespace MeterReports
@@ -21,10 +20,10 @@ namespace MeterReports
         private readonly TMF.Reports.BLL.MeterProtocol _meterProtocol;
         private readonly TMF.Reports.BLL.DMZ _dmz;
         private readonly TMF.Reports.BLL.City _city;
-        private readonly CustomUser _currentUser;
+        private readonly TMF.Core.Model.UserInfo _currentUser;
         private bool _save;
         private string _meterSerialNumber;
-        public Meter(CustomUser currentUser)
+        public Meter(TMF.Core.Model.UserInfo currentUser)
         {
             InitializeComponent();
             _currentUser = currentUser;

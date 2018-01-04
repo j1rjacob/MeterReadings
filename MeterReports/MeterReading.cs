@@ -9,24 +9,22 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using TMF.Core;
 using TMF.Core.Model;
-using TMF.Reports.Model;
 
 namespace MeterReports
 {
     public partial class MeterReading : Form
     {
         private readonly TMF.Reports.BLL.MeterReading _meterReading;
-        private readonly CustomUser _currentUser;
+        private readonly TMF.Core.Model.UserInfo _currentUser;
         private bool _save;
         private string _meterReadingId;
 
 
-        public MeterReading(CustomUser currentUser)
+        public MeterReading(TMF.Core.Model.UserInfo currentUser)
         {
             InitializeComponent();
             _meterReading = new TMF.Reports.BLL.MeterReading();
             _currentUser = currentUser;
-            _currentUser = new CustomUser();
             _save = true;
             _meterReadingId = "";
         }

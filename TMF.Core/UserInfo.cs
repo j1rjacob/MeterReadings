@@ -91,7 +91,7 @@ namespace TMF.Core
                             else
                             {
                                 IInfo info2 = UserInfoBLL.dal.Update(dbInstance, info);
-                                result = new ReturnInfo(info2.Code, info2.Message, info2.RowsAffected);
+                            result = new ReturnInfo(info2.Code, info2.Message, info2.RowsAffected);
                             }
                         }
                     }
@@ -203,7 +203,7 @@ namespace TMF.Core
             };
             array[0].Value = username;
             array[1].Value = password;
-            IInfo records = UserInfoBLL.dal.GetRecords(dbInstance, cmdText, array);
+            IInfo records = UserInfoBLL.dal.GetRecord(dbInstance, cmdText, array);
             return new ReturnInfo
             {
                 Code = records.Code,
@@ -211,7 +211,6 @@ namespace TMF.Core
                 BizObject = ((records.Code == ErrorEnum.NoError) ? records.BizObject : new List<Model.UserInfo>())
             };
         }
-
         public ReturnInfo GetUsersByName(SmartDB dbInstance, string name)
         {
             string cmdText = "[REPORT USERINFO_NAME]";

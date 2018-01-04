@@ -4,7 +4,6 @@ using System.ComponentModel;
 using System.Windows.Forms;
 using TMF.Core;
 using TMF.Core.Model;
-using TMF.Reports.Model;
 
 namespace MeterReports
 {
@@ -35,9 +34,9 @@ namespace MeterReports
         private DataGridViewTextBoxColumn ColTotMeter;
         private ErrorProvider errorProviderDMZ;
         private IContainer components;
-        private readonly CustomUser _currentUser;
+        private readonly TMF.Core.Model.UserInfo _currentUser;
         private int _rowCount;
-        public DMZ(CustomUser currentUser)
+        public DMZ(TMF.Core.Model.UserInfo currentUser)
         {
             InitializeComponent();
             _dmz = new TMF.Reports.BLL.DMZ();
@@ -425,8 +424,8 @@ namespace MeterReports
                 {   //TODO User id for CreatedBy
                     Description = TextBoxDescription.Text,
                     CityId = ComboBoxCity.Text,
-                    TotalNumberOfMeters = Convert.ToInt32(TextBoxTotalMeters.Text),
-                    CreatedBy = _currentUser.Id.ToString(),
+                    //TotalNumberOfMeters = Convert.ToInt32(TextBoxTotalMeters.Text),
+                    CreatedBy = _currentUser.Id,
                     DocDate = DateTime.Now,
                     Show = 1,
                     LockCount = 0

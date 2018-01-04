@@ -4,17 +4,16 @@ using System.ComponentModel;
 using System.Windows.Forms;
 using TMF.Core;
 using TMF.Core.Model;
-using TMF.Reports.Model;
 
 namespace MeterReports
 {
     public partial class MeterProtocol : Form
     {
         private readonly TMF.Reports.BLL.MeterProtocol _meterProtocol;
-        private readonly CustomUser _currentUser;
+        private readonly TMF.Core.Model.UserInfo _currentUser;
         private bool _save;
         private int _meterProtocolId;
-        public MeterProtocol(CustomUser currentUser)
+        public MeterProtocol(TMF.Core.Model.UserInfo currentUser)
         {
             InitializeComponent();
             _meterProtocol = new TMF.Reports.BLL.MeterProtocol();

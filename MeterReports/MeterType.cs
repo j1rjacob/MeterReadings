@@ -4,17 +4,16 @@ using System.ComponentModel;
 using System.Windows.Forms;
 using TMF.Core;
 using TMF.Core.Model;
-using TMF.Reports.Model;
 
 namespace MeterReports
 {
     public partial class MeterType : Form
     {
         private readonly TMF.Reports.BLL.MeterType _meterType;
-        private readonly CustomUser _currentUser;
+        private readonly TMF.Core.Model.UserInfo _currentUser;
         private bool _save;
         private int _meterTypeId;
-        public MeterType(CustomUser currentUser)
+        public MeterType(TMF.Core.Model.UserInfo currentUser)
         {
             InitializeComponent();
             _meterType = new TMF.Reports.BLL.MeterType();

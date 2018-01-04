@@ -1,11 +1,11 @@
-﻿using Microsoft.AspNet.Identity;
-using System;
+﻿using System;
 using System.Configuration;
 using System.Data.SqlClient;
 using System.Drawing;
 using System.Windows.Forms;
+using TMF.Core;
+using TMF.Core.Model;
 using TMF.Reports.BLL;
-using TMF.Reports.Model;
 using TMF.Reports.UTIL;
 
 namespace MeterReports
@@ -38,12 +38,14 @@ namespace MeterReports
         private Label label7;
         private Label label8;
         private Button ButtonConnect;
-        private UserManager<CustomUser, int> _userManager;
-        public Login()
+        
+        private readonly UserInfoBLL _userInfo;
+        private string _currentUsername;
+        public Login(string Username)
         {
             InitializeComponent();
-            _userStore = new CustomUserStore(new CustomUserDbContext());
-            _userManager = new UserManager<CustomUser, int>(_userStore);
+            _userInfo = new UserInfoBLL();
+            _currentUsername = Username ?? "j1rjacob";
         }
         private void InitializeComponent()
         {
@@ -372,24 +374,40 @@ namespace MeterReports
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
             this.ResumeLayout(false);
-
         }
         private void ButtonLogin_Click_1(object sender, EventArgs e)
-        {
-            //j1rjacob, Password123!
+        {   
             if (this.ValidateChildren(ValidationConstraints.Enabled))
             {
-                var user = _userManager.FindByName(TextBoxUsername.Text.Trim());
-                if (_userManager.CheckPassword(user, TextBoxPassword.Text.Trim())
-                    && user.Locked != 1)
+                try
                 {
-                    var f = new Main(user);
-                    f.Show();
-                    user.Locked = 1;
-                    _userManager.Update(user);
-                    this.Hide();
+                    ReturnInfo checkUser = _userInfo.GetUserByUsernamePassword(new SmartDB(), TextBoxUsername.Text, TextBoxPassword.Text);
+                    var _currentUser = (TMF.Core.Model.UserInfo)checkUser.BizObject;
+
+                    if (_currentUser.IsActive == true)
+                    {
+                        MessageBox.Show("User is currently login");
+                    }
+                    else
+                    {
+                        if (checkUser.Code == ErrorEnum.NoError)
+                        {
+                            var updateUser = _userInfo.UpdateLoginStatus(new SmartDB(), _currentUser.Username, true);
+
+                            if (updateUser.Code == ErrorEnum.NoError)
+                            {
+                                var f = new Main(_currentUser);
+                                f.Show();
+                                this.Hide();
+                            }
+                        }
+                        else
+                        {
+                            MessageBox.Show("Username or Password not match.");
+                        }
+                    }
                 }
-                else
+                catch (Exception)
                 {
                     MessageBox.Show("Username or Password not match.");
                 }
@@ -398,11 +416,6 @@ namespace MeterReports
             {
                 MessageBox.Show("There are invalid controls on the form.");
             }
-        }
-        private void ButtonCancel_Click(object sender, EventArgs e)
-        {
-            TextBoxUsername.Text = "";
-            TextBoxPassword.Text = "";
         }
         protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
         {
@@ -421,8 +434,17 @@ namespace MeterReports
         }
         protected override void OnClosed(EventArgs e)
         {
-            base.OnClosed(e);
-            Application.Exit();
+            var updateUser = _userInfo.UpdateLoginStatus(new SmartDB(), _currentUsername, false);
+
+            if (updateUser.Code == ErrorEnum.NoError)
+            {
+                base.OnClosed(e);
+                Application.Exit();
+            }
+            else
+            {
+                return;
+            }
         }
         private void TextBoxUsername_Validating(object sender, System.ComponentModel.CancelEventArgs e)
         {
@@ -461,21 +483,43 @@ namespace MeterReports
             if (!string.IsNullOrWhiteSpace(TextBoxChangeUsername.Text) &&
                 !string.IsNullOrWhiteSpace(TextBoxChangePassword.Text))
             {   //Todo EditedBy
-                var user = _userManager.FindByName(TextBoxChangeUsername.Text);
-                
-                user.UserName = TextBoxChangeUsername.Text;
-                user.PasswordHash = _userManager.PasswordHasher.HashPassword(TextBoxChangePassword.Text);
-                
-                var flag = _userManager.Update(user);
-
-                if (flag.Succeeded)
+                ReturnInfo checkUser = _userInfo.GetUserByUsername(new SmartDB(), TextBoxChangeUsername.Text);
+                var orig = (TMF.Core.Model.UserInfo)checkUser.BizObject;
+                if (checkUser.Code == ErrorEnum.NoError)
                 {
-                    MessageBox.Show("Password was changed");
+                    var user = new TMF.Core.Model.UserInfo()
+                    {
+                        Id = orig.Id,
+                        Username = TextBoxChangeUsername.Text,
+                        Password = TextBoxChangePassword.Text,
+                        Name = orig.Name,
+                        Role = orig.Role,
+                        IsActive = orig.IsActive
+                    };
+
+                    var updateUser = _userInfo.Update(new SmartDB(), user);
+                    bool flag = updateUser.Code == ErrorEnum.NoError;
+
+                    if (updateUser.Message == "Password is required")
+                    {
+                        MessageBox.Show("Password is required or Press Esc");
+                        return;
+                    }
+
+                    if (flag)
+                    {
+                        MessageBox.Show("User Updated");
+                    }
+                    else
+                    {
+                        MessageBox.Show("User is not updated!");
+                    }
                 }
                 else
                 {
-                    MessageBox.Show("User is not updated!");
+                    MessageBox.Show("User not found!");
                 }
+
             }
             else
             {

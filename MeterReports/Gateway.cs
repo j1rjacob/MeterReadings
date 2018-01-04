@@ -68,8 +68,8 @@ namespace MeterReports
         private DataGridViewTextBoxColumn ColCity;
         private ErrorProvider errorProviderGateway;
         private IContainer components;
-        private readonly CustomUser _currentUser;
-        public Gateway(CustomUser currentUser)
+        private readonly TMF.Core.Model.UserInfo _currentUser;
+        public Gateway(TMF.Core.Model.UserInfo currentUser)
         {
             InitializeComponent();
             _gateway = new TMF.Reports.BLL.Gateway();
