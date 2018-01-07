@@ -45,6 +45,10 @@
     <Reference Include="Microsoft.AspNet.Identity.EntityFramework, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.Identity.EntityFramework.2.2.1\lib\net45\Microsoft.AspNet.Identity.EntityFramework.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.SqlServer.ConnectionInfo, Version=12.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL" />
+    <Reference Include="Microsoft.SqlServer.Management.Sdk.Sfc, Version=12.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL" />
+    <Reference Include="Microsoft.SqlServer.Smo, Version=12.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL" />
+    <Reference Include="Microsoft.SqlServer.SmoExtended, Version=12.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL" />
     <Reference Include="Microsoft.VisualBasic" />
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
@@ -66,6 +70,12 @@
     </Compile>
     <Compile Include="Citi.Designer.cs">
       <DependentUpon>Citi.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DbaseUtil.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DbaseUtil.Designer.cs">
+      <DependentUpon>DbaseUtil.cs</DependentUpon>
     </Compile>
     <Compile Include="DMZ.cs">
       <SubType>Form</SubType>
@@ -128,6 +138,9 @@
     </Compile>
     <EmbeddedResource Include="Citi.resx">
       <DependentUpon>Citi.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DbaseUtil.resx">
+      <DependentUpon>DbaseUtil.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="DMZ.resx">
       <DependentUpon>DMZ.cs</DependentUpon>
@@ -208,6 +221,9 @@
     <Content Include="Images\cancel.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Resource Include="Images\restore.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
     <Resource Include="Images\gateway.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
@@ -221,6 +237,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Images\export.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\backup.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
     <Content Include="Images\edit.png">
