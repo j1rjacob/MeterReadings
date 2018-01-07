@@ -25,6 +25,8 @@ namespace MeterReports.Test
                 Password = "qwerty123",
                 Name = "Junar A. Jacob",
                 Role = "Administrator",
+                SecurityQuestion = "Favorite Dog?",
+                SecurityAnswer = "Askal",
                 IsActive = true
             };
 
@@ -97,6 +99,19 @@ namespace MeterReports.Test
 
             //Assert
             Assert.IsTrue(flag);
+        }
+        [Test]
+        public void REPORT_USERINFO_USERNAME_EQUAL()
+        {
+            //Act
+            var checkUser = _userInfo.GetUserByUsername(new SmartDB(), "j1rjacob");
+            var orig = (TMF.Core.Model.UserInfo)checkUser.BizObject;
+
+            //var getUserList = _userInfo.GetUsersByName(new SmartDB(), "Junar A. Jacob");
+            //bool flag = checkUser.Code == ErrorEnum.NoError;
+
+            //Assert
+            Assert.AreEqual(orig.SecurityAnswer,"Askal");
         }
     }
 }

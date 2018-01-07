@@ -10,6 +10,8 @@ namespace TMF.Core.Model
         public string Password { get; set; }
         public string Name { get; set; }
         public string Role { get; set; }    
+        public string SecurityQuestion { get; set; }    
+        public string SecurityAnswer { get; set; }    
         public bool IsActive { get; set; }
 
         public UserInfo()
@@ -19,16 +21,22 @@ namespace TMF.Core.Model
             Password = null;
             Name = "";
             Role = "";
+            SecurityQuestion = "";
+            SecurityAnswer = "";
             IsActive = false;
         }
 
-        public UserInfo(string id, string username, string name, string password, string role, bool isActive)
+        public UserInfo(string id, string username, string name, string password, 
+                        string role, string securityQuestion, string securityAnswer, 
+                        bool isActive)
         {
             Id = id;
             Username = username;
             Password = password;
             Name = name;
             Role = role;
+            SecurityQuestion = securityQuestion;
+            SecurityAnswer = securityAnswer;
             IsActive = isActive;
         }
 
@@ -50,6 +58,12 @@ namespace TMF.Core.Model
                     break;
                 case "role":
                    Role = ((value == null) ? "" : value.ToString());
+                    break;
+                case "securityquestion":
+                   SecurityQuestion = ((value == null) ? "" : value.ToString());
+                    break;
+                case "securityanswer":
+                   SecurityAnswer = ((value == null) ? "" : value.ToString());
                     break;
                 case "isactive":
                     IsActive = (value != null && Convert.ToBoolean(value)); 
@@ -78,6 +92,12 @@ namespace TMF.Core.Model
                     break;
                 case "role":
                     return Role;
+                    break;
+                case "securityquestion":
+                    return SecurityQuestion;
+                    break;
+                case "securityanswer":
+                    return SecurityAnswer;
                     break;
                 case "isactive":
                     return IsActive;

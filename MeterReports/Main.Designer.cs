@@ -28,25 +28,37 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode("User");
-            System.Windows.Forms.TreeNode treeNode2 = new System.Windows.Forms.TreeNode("Gateway");
-            System.Windows.Forms.TreeNode treeNode3 = new System.Windows.Forms.TreeNode("Meter");
-            System.Windows.Forms.TreeNode treeNode4 = new System.Windows.Forms.TreeNode("Meter Type");
-            System.Windows.Forms.TreeNode treeNode5 = new System.Windows.Forms.TreeNode("Meter Protocol");
-            System.Windows.Forms.TreeNode treeNode6 = new System.Windows.Forms.TreeNode("Meter Size");
-            System.Windows.Forms.TreeNode treeNode7 = new System.Windows.Forms.TreeNode("City");
-            System.Windows.Forms.TreeNode treeNode8 = new System.Windows.Forms.TreeNode("DMZ");
-            System.Windows.Forms.TreeNode treeNode9 = new System.Windows.Forms.TreeNode("Meter Reading");
-            System.Windows.Forms.TreeNode treeNode10 = new System.Windows.Forms.TreeNode("System Management", new System.Windows.Forms.TreeNode[] {
-            treeNode1,
-            treeNode2,
-            treeNode3,
-            treeNode4,
-            treeNode5,
-            treeNode6,
-            treeNode7,
-            treeNode8,
-            treeNode9});
+            this.components = new System.ComponentModel.Container();
+            System.Windows.Forms.TreeNode treeNode11 = new System.Windows.Forms.TreeNode("User");
+            System.Windows.Forms.TreeNode treeNode12 = new System.Windows.Forms.TreeNode("Gateway");
+            System.Windows.Forms.TreeNode treeNode13 = new System.Windows.Forms.TreeNode("Meter");
+            System.Windows.Forms.TreeNode treeNode14 = new System.Windows.Forms.TreeNode("Meter Type");
+            System.Windows.Forms.TreeNode treeNode15 = new System.Windows.Forms.TreeNode("Meter Protocol");
+            System.Windows.Forms.TreeNode treeNode16 = new System.Windows.Forms.TreeNode("Meter Size");
+            System.Windows.Forms.TreeNode treeNode17 = new System.Windows.Forms.TreeNode("City");
+            System.Windows.Forms.TreeNode treeNode35 = new System.Windows.Forms.TreeNode("DMZ");
+            System.Windows.Forms.TreeNode treeNode36 = new System.Windows.Forms.TreeNode("Meter Reading");
+            System.Windows.Forms.TreeNode treeNode37 = new System.Windows.Forms.TreeNode("System Management", new System.Windows.Forms.TreeNode[] {
+            treeNode11,
+            treeNode12,
+            treeNode13,
+            treeNode14,
+            treeNode15,
+            treeNode16,
+            treeNode17,
+            treeNode35,
+            treeNode36});
+            System.Windows.Forms.TreeNode treeNode38 = new System.Windows.Forms.TreeNode("Meter 1", 2, 2);
+            System.Windows.Forms.TreeNode treeNode39 = new System.Windows.Forms.TreeNode("Meter 2", 2, 2);
+            System.Windows.Forms.TreeNode treeNode40 = new System.Windows.Forms.TreeNode("Gateway 1", 1, 1, new System.Windows.Forms.TreeNode[] {
+            treeNode38,
+            treeNode39});
+            System.Windows.Forms.TreeNode treeNode41 = new System.Windows.Forms.TreeNode("Gateway 2", 1, 1);
+            System.Windows.Forms.TreeNode treeNode42 = new System.Windows.Forms.TreeNode("Riyadh", new System.Windows.Forms.TreeNode[] {
+            treeNode40,
+            treeNode41});
+            System.Windows.Forms.TreeNode treeNode43 = new System.Windows.Forms.TreeNode("Dammam");
+            System.Windows.Forms.TreeNode treeNode44 = new System.Windows.Forms.TreeNode("Jeddah");
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Main));
             this.treeViewMain = new System.Windows.Forms.TreeView();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
@@ -54,10 +66,6 @@
             this.newToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.logoutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.editToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.gotoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.gotoFilesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.gotoAllToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.fileManagementToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.userToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.gatewayToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -68,6 +76,11 @@
             this.cityToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.dMZToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.meterReadingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.treeView1 = new System.Windows.Forms.TreeView();
+            this.imageListMain = new System.Windows.Forms.ImageList(this.components);
+            this.databaseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.backupToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.restoreToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -76,37 +89,39 @@
             this.treeViewMain.Dock = System.Windows.Forms.DockStyle.Left;
             this.treeViewMain.Location = new System.Drawing.Point(0, 24);
             this.treeViewMain.Name = "treeViewMain";
-            treeNode1.Name = "Node1";
-            treeNode1.Text = "User";
-            treeNode2.Name = "Node2";
-            treeNode2.Text = "Gateway";
-            treeNode3.Name = "Node0";
-            treeNode3.Text = "Meter";
-            treeNode4.Name = "Node1";
-            treeNode4.Text = "Meter Type";
-            treeNode5.Name = "Node0";
-            treeNode5.Text = "Meter Protocol";
-            treeNode6.Name = "Node3";
-            treeNode6.Text = "Meter Size";
-            treeNode7.Name = "Node1";
-            treeNode7.Text = "City";
-            treeNode8.Name = "Node2";
-            treeNode8.Text = "DMZ";
-            treeNode9.Name = "Node0";
-            treeNode9.Text = "Meter Reading";
-            treeNode10.Name = "Node0";
-            treeNode10.Text = "System Management";
+            treeNode11.Name = "Node1";
+            treeNode11.Text = "User";
+            treeNode12.Name = "Node2";
+            treeNode12.Text = "Gateway";
+            treeNode13.Name = "Node0";
+            treeNode13.Text = "Meter";
+            treeNode14.Name = "Node1";
+            treeNode14.Text = "Meter Type";
+            treeNode15.Name = "Node0";
+            treeNode15.Text = "Meter Protocol";
+            treeNode16.Name = "Node3";
+            treeNode16.Text = "Meter Size";
+            treeNode17.Name = "Node1";
+            treeNode17.Text = "City";
+            treeNode35.Name = "Node2";
+            treeNode35.Text = "DMZ";
+            treeNode36.Name = "Node0";
+            treeNode36.Text = "Meter Reading";
+            treeNode37.Name = "Node0";
+            treeNode37.Text = "System Management";
             this.treeViewMain.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode10});
-            this.treeViewMain.Size = new System.Drawing.Size(136, 442);
+            treeNode37});
+            this.treeViewMain.Size = new System.Drawing.Size(168, 442);
             this.treeViewMain.TabIndex = 1;
+            this.treeViewMain.Visible = false;
+            this.treeViewMain.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.treeViewMain_AfterSelect);
             this.treeViewMain.DoubleClick += new System.EventHandler(this.treeViewMain_DoubleClick);
             // 
             // menuStrip1
             // 
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.fileToolStripMenuItem,
-            this.editToolStripMenuItem,
+            this.databaseToolStripMenuItem,
             this.fileManagementToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
@@ -142,35 +157,6 @@
             this.logoutToolStripMenuItem.Size = new System.Drawing.Size(112, 22);
             this.logoutToolStripMenuItem.Text = "Logout";
             this.logoutToolStripMenuItem.Click += new System.EventHandler(this.logoutToolStripMenuItem_Click);
-            // 
-            // editToolStripMenuItem
-            // 
-            this.editToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.gotoToolStripMenuItem});
-            this.editToolStripMenuItem.Name = "editToolStripMenuItem";
-            this.editToolStripMenuItem.Size = new System.Drawing.Size(39, 20);
-            this.editToolStripMenuItem.Text = "Edit";
-            // 
-            // gotoToolStripMenuItem
-            // 
-            this.gotoToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.gotoFilesToolStripMenuItem,
-            this.gotoAllToolStripMenuItem});
-            this.gotoToolStripMenuItem.Name = "gotoToolStripMenuItem";
-            this.gotoToolStripMenuItem.Size = new System.Drawing.Size(100, 22);
-            this.gotoToolStripMenuItem.Text = "Goto";
-            // 
-            // gotoFilesToolStripMenuItem
-            // 
-            this.gotoFilesToolStripMenuItem.Name = "gotoFilesToolStripMenuItem";
-            this.gotoFilesToolStripMenuItem.Size = new System.Drawing.Size(126, 22);
-            this.gotoFilesToolStripMenuItem.Text = "Goto Files";
-            // 
-            // gotoAllToolStripMenuItem
-            // 
-            this.gotoAllToolStripMenuItem.Name = "gotoAllToolStripMenuItem";
-            this.gotoAllToolStripMenuItem.Size = new System.Drawing.Size(126, 22);
-            this.gotoAllToolStripMenuItem.Text = "Goto All";
             // 
             // fileManagementToolStripMenuItem
             // 
@@ -251,11 +237,78 @@
             this.meterReadingToolStripMenuItem.Text = "Meter Reading";
             this.meterReadingToolStripMenuItem.Click += new System.EventHandler(this.meterReadingToolStripMenuItem_Click);
             // 
+            // treeView1
+            // 
+            this.treeView1.Dock = System.Windows.Forms.DockStyle.Left;
+            this.treeView1.ImageIndex = 0;
+            this.treeView1.ImageList = this.imageListMain;
+            this.treeView1.Location = new System.Drawing.Point(168, 24);
+            this.treeView1.Name = "treeView1";
+            treeNode38.ImageIndex = 2;
+            treeNode38.Name = "NodeMeter1";
+            treeNode38.SelectedImageIndex = 2;
+            treeNode38.Text = "Meter 1";
+            treeNode39.ImageIndex = 2;
+            treeNode39.Name = "NodeMeter2";
+            treeNode39.SelectedImageIndex = 2;
+            treeNode39.Text = "Meter 2";
+            treeNode40.ImageIndex = 1;
+            treeNode40.Name = "NodeGateway1";
+            treeNode40.SelectedImageIndex = 1;
+            treeNode40.Text = "Gateway 1";
+            treeNode41.ImageIndex = 1;
+            treeNode41.Name = "NodeGateway2";
+            treeNode41.SelectedImageIndex = 1;
+            treeNode41.Text = "Gateway 2";
+            treeNode42.Name = "NodeRiyadh";
+            treeNode42.Text = "Riyadh";
+            treeNode43.Name = "NodeDammam";
+            treeNode43.Text = "Dammam";
+            treeNode44.Name = "NodeJeddah";
+            treeNode44.Text = "Jeddah";
+            this.treeView1.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
+            treeNode42,
+            treeNode43,
+            treeNode44});
+            this.treeView1.SelectedImageIndex = 0;
+            this.treeView1.Size = new System.Drawing.Size(168, 442);
+            this.treeView1.TabIndex = 5;
+            // 
+            // imageListMain
+            // 
+            this.imageListMain.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageListMain.ImageStream")));
+            this.imageListMain.TransparentColor = System.Drawing.Color.Transparent;
+            this.imageListMain.Images.SetKeyName(0, "region.png");
+            this.imageListMain.Images.SetKeyName(1, "gateway.png");
+            this.imageListMain.Images.SetKeyName(2, "energymeter.png");
+            // 
+            // databaseToolStripMenuItem
+            // 
+            this.databaseToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.backupToolStripMenuItem,
+            this.restoreToolStripMenuItem});
+            this.databaseToolStripMenuItem.Name = "databaseToolStripMenuItem";
+            this.databaseToolStripMenuItem.Size = new System.Drawing.Size(67, 20);
+            this.databaseToolStripMenuItem.Text = "Database";
+            // 
+            // backupToolStripMenuItem
+            // 
+            this.backupToolStripMenuItem.Name = "backupToolStripMenuItem";
+            this.backupToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.backupToolStripMenuItem.Text = "Backup";
+            // 
+            // restoreToolStripMenuItem
+            // 
+            this.restoreToolStripMenuItem.Name = "restoreToolStripMenuItem";
+            this.restoreToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.restoreToolStripMenuItem.Text = "Restore";
+            // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(685, 466);
+            this.Controls.Add(this.treeView1);
             this.Controls.Add(this.treeViewMain);
             this.Controls.Add(this.menuStrip1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -280,10 +333,6 @@
         private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem newToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem openToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem editToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem gotoToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem gotoFilesToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem gotoAllToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem fileManagementToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem userToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem gatewayToolStripMenuItem;
@@ -295,5 +344,10 @@
         private System.Windows.Forms.ToolStripMenuItem meterProtocolToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem meterSizeToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem cityToolStripMenuItem;
+        private System.Windows.Forms.TreeView treeView1;
+        private System.Windows.Forms.ImageList imageListMain;
+        private System.Windows.Forms.ToolStripMenuItem databaseToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem backupToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem restoreToolStripMenuItem;
     }
 }

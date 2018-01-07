@@ -86,6 +86,8 @@ namespace TMF.Core.DAL
                 info.Password = CastDBNull.To<string>(rdr["Password"], "");
                 info.Name = CastDBNull.To<string>(rdr["Name"], "");
                 info.Role = CastDBNull.To<string>(rdr["Role"], "");
+                info.SecurityQuestion = CastDBNull.To<string>(rdr["SecurityQuestion"], "");
+                info.SecurityAnswer = CastDBNull.To<string>(rdr["SecurityAnswer"], "");
                 info.IsActive = CastDBNull.To<bool>(rdr["IsActive"], false);
             }
             catch (Exception ex)
@@ -102,7 +104,9 @@ namespace TMF.Core.DAL
             insertParameters[2].Value = info.Password;
             insertParameters[3].Value = info.Name;
             insertParameters[4].Value = info.Role;
-            insertParameters[5].Value = info.IsActive;
+            insertParameters[5].Value = info.SecurityQuestion;
+            insertParameters[6].Value = info.SecurityAnswer;
+            insertParameters[7].Value = info.IsActive;
             IInfo result;
             try
             {

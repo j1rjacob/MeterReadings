@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.VisualBasic;
+using System;
 using System.Configuration;
 using System.Data.SqlClient;
 using System.Drawing;
@@ -486,6 +487,10 @@ namespace MeterReports
                 var orig = (TMF.Core.Model.UserInfo)checkUser.BizObject;
                 if (checkUser.Code == ErrorEnum.NoError)
                 {
+                    var security = Interaction
+                        .InputBox(orig.SecurityQuestion, 
+                        "Security Question", "", -1, -1);
+
                     var user = new TMF.Core.Model.UserInfo()
                     {
                         Id = orig.Id,
@@ -493,32 +498,34 @@ namespace MeterReports
                         Password = TextBoxChangePassword.Text,
                         Name = orig.Name,
                         Role = orig.Role,
+                        SecurityQuestion = orig.SecurityQuestion,
+                        SecurityAnswer = orig.SecurityAnswer,
                         IsActive = orig.IsActive
                     };
-
-                    var updateUser = _userInfo.Update(new SmartDB(), user);
-                    bool flag = updateUser.Code == ErrorEnum.NoError;
-
-                    if (updateUser.Message == "Password is required")
+                    if (security == orig.SecurityAnswer)
                     {
-                        MessageBox.Show("Password is required or Press Esc");
-                        return;
-                    }
+                        var updateUser = _userInfo.Update(new SmartDB(), user);
+                        bool flag = updateUser.Code == ErrorEnum.NoError;
 
-                    if (flag)
-                    {
-                        MessageBox.Show("User Updated");
-                    }
-                    else
-                    {
-                        MessageBox.Show("User is not updated!");
+                        if (updateUser.Message == "Password is required")
+                        {
+                            MessageBox.Show("Password is required or Press Esc");
+                            return;
+                        }
+                        if (flag)
+                        {
+                            MessageBox.Show("User Updated");
+                        }
+                        else
+                        {
+                            MessageBox.Show("User is not updated!");
+                        }
                     }
                 }
                 else
                 {
                     MessageBox.Show("User not found!");
                 }
-
             }
             else
             {

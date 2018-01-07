@@ -171,5 +171,15 @@ namespace MeterReports
                 m.Show();
             }
         }
+
+        private void treeViewMain_AfterSelect(object sender, TreeViewEventArgs e)
+        {
+
+        }
+
+        private void editToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
