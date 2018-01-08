@@ -181,5 +181,25 @@ namespace MeterReports
         {
 
         }
+
+        private void restoreToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var r = new DbaseUtil(1);
+            if (!OpenForms<DbaseUtil>())
+            {
+                r.MdiParent = this;
+                r.Show();
+            }
+        }
+
+        private void backupToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var b = new DbaseUtil(0);
+            if (!OpenForms<DbaseUtil>())
+            {
+                b.MdiParent = this;
+                b.Show();
+            }
+        }
     }
 }

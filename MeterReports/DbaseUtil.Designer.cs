@@ -31,18 +31,20 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DbaseUtil));
             this.TabControlDBaseUtil = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.lblPercent = new System.Windows.Forms.Label();
+            this.lblStatus = new System.Windows.Forms.Label();
             this.ProgressBarDBUtil = new System.Windows.Forms.ProgressBar();
             this.ComboBoxDBBackup = new System.Windows.Forms.ComboBox();
             this.ButtonDBBackup = new System.Windows.Forms.Button();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.ButtonGetPath = new System.Windows.Forms.Button();
+            this.LabelDBRestorePercent = new System.Windows.Forms.Label();
+            this.LabelDBRestoreStatus = new System.Windows.Forms.Label();
             this.TextBoxDBRestore = new System.Windows.Forms.TextBox();
             this.ProgressBarDBRestore = new System.Windows.Forms.ProgressBar();
             this.ButtonDBRestore = new System.Windows.Forms.Button();
             this.SaveFileDialogBackup = new System.Windows.Forms.SaveFileDialog();
-            this.lblStatus = new System.Windows.Forms.Label();
-            this.lblPercent = new System.Windows.Forms.Label();
-            this.LabelDBRestorePercent = new System.Windows.Forms.Label();
-            this.LabelDBRestoreStatus = new System.Windows.Forms.Label();
+            this.OpenFileDialogDBRestore = new System.Windows.Forms.OpenFileDialog();
             this.TabControlDBaseUtil.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -74,6 +76,26 @@
             this.tabPage1.Text = "Backup";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
+            // lblPercent
+            // 
+            this.lblPercent.AutoSize = true;
+            this.lblPercent.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblPercent.Location = new System.Drawing.Point(11, 118);
+            this.lblPercent.Name = "lblPercent";
+            this.lblPercent.Size = new System.Drawing.Size(26, 22);
+            this.lblPercent.TabIndex = 39;
+            this.lblPercent.Text = "%";
+            // 
+            // lblStatus
+            // 
+            this.lblStatus.AutoSize = true;
+            this.lblStatus.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblStatus.Location = new System.Drawing.Point(8, 88);
+            this.lblStatus.Name = "lblStatus";
+            this.lblStatus.Size = new System.Drawing.Size(61, 22);
+            this.lblStatus.TabIndex = 38;
+            this.lblStatus.Text = "Status";
+            // 
             // ProgressBarDBUtil
             // 
             this.ProgressBarDBUtil.Location = new System.Drawing.Point(8, 144);
@@ -83,6 +105,7 @@
             // 
             // ComboBoxDBBackup
             // 
+            this.ComboBoxDBBackup.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.ComboBoxDBBackup.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ComboBoxDBBackup.FormattingEnabled = true;
             this.ComboBoxDBBackup.Location = new System.Drawing.Point(8, 32);
@@ -108,6 +131,7 @@
             // 
             // tabPage2
             // 
+            this.tabPage2.Controls.Add(this.ButtonGetPath);
             this.tabPage2.Controls.Add(this.LabelDBRestorePercent);
             this.tabPage2.Controls.Add(this.LabelDBRestoreStatus);
             this.tabPage2.Controls.Add(this.TextBoxDBRestore);
@@ -116,25 +140,54 @@
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(564, 143);
+            this.tabPage2.Size = new System.Drawing.Size(813, 180);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Restore";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
+            // ButtonGetPath
+            // 
+            this.ButtonGetPath.Location = new System.Drawing.Point(600, 32);
+            this.ButtonGetPath.Name = "ButtonGetPath";
+            this.ButtonGetPath.Size = new System.Drawing.Size(48, 27);
+            this.ButtonGetPath.TabIndex = 42;
+            this.ButtonGetPath.Text = ". . .";
+            this.ButtonGetPath.UseVisualStyleBackColor = true;
+            this.ButtonGetPath.Click += new System.EventHandler(this.ButtonGetPath_Click);
+            // 
+            // LabelDBRestorePercent
+            // 
+            this.LabelDBRestorePercent.AutoSize = true;
+            this.LabelDBRestorePercent.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LabelDBRestorePercent.Location = new System.Drawing.Point(8, 104);
+            this.LabelDBRestorePercent.Name = "LabelDBRestorePercent";
+            this.LabelDBRestorePercent.Size = new System.Drawing.Size(26, 22);
+            this.LabelDBRestorePercent.TabIndex = 41;
+            this.LabelDBRestorePercent.Text = "%";
+            // 
+            // LabelDBRestoreStatus
+            // 
+            this.LabelDBRestoreStatus.AutoSize = true;
+            this.LabelDBRestoreStatus.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LabelDBRestoreStatus.Location = new System.Drawing.Point(8, 80);
+            this.LabelDBRestoreStatus.Name = "LabelDBRestoreStatus";
+            this.LabelDBRestoreStatus.Size = new System.Drawing.Size(61, 22);
+            this.LabelDBRestoreStatus.TabIndex = 40;
+            this.LabelDBRestoreStatus.Text = "Status";
+            // 
             // TextBoxDBRestore
             // 
-            this.TextBoxDBRestore.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.TextBoxDBRestore.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TextBoxDBRestore.Location = new System.Drawing.Point(8, 32);
             this.TextBoxDBRestore.Name = "TextBoxDBRestore";
-            this.TextBoxDBRestore.Size = new System.Drawing.Size(384, 27);
+            this.TextBoxDBRestore.Size = new System.Drawing.Size(584, 27);
             this.TextBoxDBRestore.TabIndex = 39;
             // 
             // ProgressBarDBRestore
             // 
-            this.ProgressBarDBRestore.Location = new System.Drawing.Point(8, 96);
+            this.ProgressBarDBRestore.Location = new System.Drawing.Point(8, 136);
             this.ProgressBarDBRestore.Name = "ProgressBarDBRestore";
-            this.ProgressBarDBRestore.Size = new System.Drawing.Size(552, 23);
+            this.ProgressBarDBRestore.Size = new System.Drawing.Size(800, 23);
             this.ProgressBarDBRestore.TabIndex = 38;
             // 
             // ButtonDBRestore
@@ -143,7 +196,7 @@
             this.ButtonDBRestore.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("ButtonDBRestore.BackgroundImage")));
             this.ButtonDBRestore.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.ButtonDBRestore.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ButtonDBRestore.Location = new System.Drawing.Point(408, 32);
+            this.ButtonDBRestore.Location = new System.Drawing.Point(656, 24);
             this.ButtonDBRestore.Name = "ButtonDBRestore";
             this.ButtonDBRestore.Size = new System.Drawing.Size(151, 56);
             this.ButtonDBRestore.TabIndex = 36;
@@ -157,45 +210,9 @@
             this.SaveFileDialogBackup.FileName = "TMFBackup";
             this.SaveFileDialogBackup.Filter = "BAK |*.bak";
             // 
-            // lblStatus
+            // OpenFileDialogDBRestore
             // 
-            this.lblStatus.AutoSize = true;
-            this.lblStatus.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblStatus.Location = new System.Drawing.Point(8, 88);
-            this.lblStatus.Name = "lblStatus";
-            this.lblStatus.Size = new System.Drawing.Size(61, 22);
-            this.lblStatus.TabIndex = 38;
-            this.lblStatus.Text = "Status";
-            // 
-            // lblPercent
-            // 
-            this.lblPercent.AutoSize = true;
-            this.lblPercent.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblPercent.Location = new System.Drawing.Point(11, 118);
-            this.lblPercent.Name = "lblPercent";
-            this.lblPercent.Size = new System.Drawing.Size(26, 22);
-            this.lblPercent.TabIndex = 39;
-            this.lblPercent.Text = "%";
-            // 
-            // LabelDBRestorePercent
-            // 
-            this.LabelDBRestorePercent.AutoSize = true;
-            this.LabelDBRestorePercent.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LabelDBRestorePercent.Location = new System.Drawing.Point(120, 66);
-            this.LabelDBRestorePercent.Name = "LabelDBRestorePercent";
-            this.LabelDBRestorePercent.Size = new System.Drawing.Size(26, 22);
-            this.LabelDBRestorePercent.TabIndex = 41;
-            this.LabelDBRestorePercent.Text = "%";
-            // 
-            // LabelDBRestoreStatus
-            // 
-            this.LabelDBRestoreStatus.AutoSize = true;
-            this.LabelDBRestoreStatus.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LabelDBRestoreStatus.Location = new System.Drawing.Point(8, 66);
-            this.LabelDBRestoreStatus.Name = "LabelDBRestoreStatus";
-            this.LabelDBRestoreStatus.Size = new System.Drawing.Size(61, 22);
-            this.LabelDBRestoreStatus.TabIndex = 40;
-            this.LabelDBRestoreStatus.Text = "Status";
+            this.OpenFileDialogDBRestore.FileName = "openFileDialog1";
             // 
             // DbaseUtil
             // 
@@ -235,5 +252,7 @@
         private System.Windows.Forms.Label lblPercent;
         private System.Windows.Forms.Label LabelDBRestorePercent;
         private System.Windows.Forms.Label LabelDBRestoreStatus;
+        private System.Windows.Forms.OpenFileDialog OpenFileDialogDBRestore;
+        private System.Windows.Forms.Button ButtonGetPath;
     }
 }

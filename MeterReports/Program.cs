@@ -13,8 +13,7 @@ namespace MeterReports
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            //Application.Run(new Login("j1rjacob"));
-            Application.Run(new DbaseUtil());
+            Application.Run(new Login("j1rjacob"));
         }
     }
 }

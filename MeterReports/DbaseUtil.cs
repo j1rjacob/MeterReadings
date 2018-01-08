@@ -15,24 +15,24 @@ namespace MeterReports
         private string _password;
         private string _database;
 
-
-        public DbaseUtil()
-        {
-            InitializeComponent();
-        }
-
-        private void ButtonDBBackup_Click(object sender, EventArgs e)
+        public DbaseUtil(int tabIndex)
         {
             GetConnConfig();
+            InitializeComponent();
+            TabControlDBaseUtil.SelectedIndex = tabIndex;
+        }
+        private void ButtonGetPath_Click(object sender, EventArgs e)
+        {
+            GetFilePath();
+        }
+        private void ButtonDBBackup_Click(object sender, EventArgs e)
+        {
             CreateBackup();
         }
 
         private void GetConnConfig()
         {
-            //string connectString = ConfigurationManager.ConnectionStrings["ConnectionString"].ToString();
             SqlConnectionStringBuilder builder = new SqlConnectionStringBuilder(new SmartDB().Connection.ConnectionString);
-            // Retrieve the DataSource property.    
-            //string IPAddress = builder.DataSource;
             _servername = builder.DataSource;
             _username = builder.UserID;
             _password = builder.Password;
@@ -44,14 +44,22 @@ namespace MeterReports
             RestoreBackup();
         }
 
+        private void GetFilePath()
+        {
+            if (OpenFileDialogDBRestore.ShowDialog() == DialogResult.OK)
+            {
+                TextBoxDBRestore.Text = OpenFileDialogDBRestore.FileName;
+            }
+        }
+
         private void RestoreBackup()
         {
             ProgressBarDBRestore.Value = 0;
             try
             {
-                Server dbServer = new Server(new ServerConnection("AMTVICTORICURM\\SQLEXPRESS", "sa", "tmf101010"));
-                Restore dbRestore = new Restore() { Database = "TMF_Meter_Readings", Action = RestoreActionType.Database, ReplaceDatabase = true, NoRecovery = false };
-                dbRestore.Devices.AddDevice(@"C:\Data\TMF.bak", DeviceType.File);
+                Server dbServer = new Server(new ServerConnection(_servername, _username, _password));
+                Restore dbRestore = new Restore() { Database = _database, Action = RestoreActionType.Database, ReplaceDatabase = true, NoRecovery = false };
+                dbRestore.Devices.AddDevice(TextBoxDBRestore.Text, DeviceType.File);
                 dbRestore.PercentComplete += DbRestore_PercentComplete;
                 dbRestore.Complete += DbRestore_Complete;
                 dbRestore.SqlRestoreAsync(dbServer);
@@ -80,9 +88,9 @@ namespace MeterReports
                 ProgressBarDBRestore.Value = e.Percent;
                 ProgressBarDBRestore.Update();
             });
-            lblPercent.Invoke((MethodInvoker)delegate
+            LabelDBRestorePercent.Invoke((MethodInvoker)delegate
             {
-                lblPercent.Text = $"{e.Percent}";
+                LabelDBRestorePercent.Text = $"{e.Percent}";
             });
         }
 
