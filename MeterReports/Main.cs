@@ -201,5 +201,25 @@ namespace MeterReports
                 b.Show();
             }
         }
+
+        private void waterConsumptionToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var wc = new FormWaterConsumption();
+            if (!OpenForms<FormWaterConsumption>())
+            {
+                wc.MdiParent = this;
+                wc.Show();
+            }
+        }
+
+        private void meterReadingsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var rmr = new ReportMeterReading();
+            if (!OpenForms<FormWaterConsumption>())
+            {
+                rmr.MdiParent = this;
+                rmr.Show();
+            }
+        }
     }
 }

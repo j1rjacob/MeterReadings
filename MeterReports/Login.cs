@@ -135,7 +135,7 @@ namespace MeterReports
             this.TextBoxPassword.PasswordChar = '*';
             this.TextBoxPassword.Size = new System.Drawing.Size(360, 27);
             this.TextBoxPassword.TabIndex = 1;
-            this.TextBoxPassword.Text = "Password123!";
+            this.TextBoxPassword.Text = "ajffjnrx";
             this.TextBoxPassword.Validating += new System.ComponentModel.CancelEventHandler(this.TextBoxPassword_Validating);
             this.TextBoxPassword.Validated += new System.EventHandler(this.TextBoxPassword_Validated);
             // 
@@ -146,7 +146,7 @@ namespace MeterReports
             this.TextBoxUsername.Name = "TextBoxUsername";
             this.TextBoxUsername.Size = new System.Drawing.Size(360, 27);
             this.TextBoxUsername.TabIndex = 0;
-            this.TextBoxUsername.Text = "nobolos";
+            this.TextBoxUsername.Text = "j1rjacob";
             this.TextBoxUsername.Validating += new System.ComponentModel.CancelEventHandler(this.TextBoxUsername_Validating);
             this.TextBoxUsername.Validated += new System.EventHandler(this.TextBoxUsername_Validated);
             // 
@@ -374,6 +374,7 @@ namespace MeterReports
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
             this.ResumeLayout(false);
+
         }
         private void ButtonLogin_Click_1(object sender, EventArgs e)
         {   
