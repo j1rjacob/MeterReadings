@@ -99,6 +99,7 @@
     <Compile Include="UTIL\ConnectionStringManager.cs" />
     <Compile Include="UTIL\CSVDuplicate.cs" />
     <Compile Include="UTIL\FetchTable.cs" />
+    <Compile Include="UTIL\GenUtil.cs" />
     <Compile Include="UTIL\MacDuplicate.cs" />
     <Compile Include="UTIL\MACDuplicateInCSV.cs" />
     <Compile Include="UTIL\MakeTable.cs" />

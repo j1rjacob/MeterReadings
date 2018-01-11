@@ -150,7 +150,7 @@ namespace MeterReports
                         Role = ComboBoxRole.Text,
                         IsActive = false
                     };
-                    MessageBox.Show(_currentUser.Role);
+                   
                     var createUser = _userInfo.Create(new SmartDB(), ref user);
                     bool flag = createUser.Code == ErrorEnum.NoError;
                     

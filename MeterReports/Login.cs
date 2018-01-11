@@ -501,7 +501,7 @@ namespace MeterReports
                         Role = orig.Role,
                         SecurityQuestion = orig.SecurityQuestion,
                         SecurityAnswer = orig.SecurityAnswer,
-                        IsActive = orig.IsActive
+                        IsActive = false
                     };
                     if (security == orig.SecurityAnswer)
                     {
