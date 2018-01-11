@@ -11,11 +11,13 @@ namespace MeterReports
     {
         private readonly TMF.Core.Model.UserInfo _currentUser;
         private readonly TMF.Reports.BLL.City _city;
+        private readonly TMF.Reports.BLL.Gateway _gateway;
         public Main(TMF.Core.Model.UserInfo currentUser)
         {
             InitializeComponent();
             _currentUser = currentUser;
             _city = new TMF.Reports.BLL.City();
+            _gateway = new TMF.Reports.BLL.Gateway();
             GetCities();
         }
 
@@ -232,17 +234,23 @@ namespace MeterReports
         private void GetCities()
         {
             ReturnInfo getCityList = _city.GetCityByDescription(new SmartDB(), "");
-
             var city = (List<TMF.Reports.Model.City>)getCityList.BizObject;
-            //var bindingList = new BindingList<City>(city);
-            //var source = new BindingSource(bindingList, null);
+
+            ReturnInfo getGatewayList = _gateway.GetGatewayBySimCard(new SmartDB(), "");
+            List<TMF.Reports.Model.Gateway> gateway = (List<TMF.Reports.Model.Gateway>)getGatewayList.BizObject;
+            
             foreach (var c in city)
             {
                 var str = c.Description.UppercaseFirst();
                 TreeNode treeNode = new TreeNode(str);
+                foreach (var g in gateway)
+                {
+                    treeNode.Nodes.Add(g.MacAddress);
+                }
                 TreeViewMeters.Nodes.Add(treeNode);
             }
-            TreeViewMeters.Visible = true;
+            TreeViewMeters.EndUpdate();
+            //TreeViewMeters.Visible = true;
         }
     }
 }

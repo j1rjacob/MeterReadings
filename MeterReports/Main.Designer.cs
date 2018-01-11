@@ -106,7 +106,6 @@
             treeNode10});
             this.treeViewMain.Size = new System.Drawing.Size(168, 442);
             this.treeViewMain.TabIndex = 1;
-            this.treeViewMain.Visible = false;
             this.treeViewMain.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.treeViewMain_AfterSelect);
             this.treeViewMain.DoubleClick += new System.EventHandler(this.treeViewMain_DoubleClick);
             // 
