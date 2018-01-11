@@ -11,10 +11,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TMF.Reports", "TMF.Reports\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MeterReports.Test", "MeterReports.Test\MeterReports.Test.csproj", "{4DEFEEE7-E3EE-4C78-99AE-FC5EE0B5D931}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MeterReport", "MeterReport\MeterReport.csproj", "{AE8FA861-8BBA-44FE-9E6C-C548498EEE0B}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WpfMeterReport", "WpfMeterReport\WpfMeterReport.csproj", "{96A3A651-AFF0-4202-A997-9D6AB6C8AFB6}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -37,14 +33,6 @@ Global
 		{4DEFEEE7-E3EE-4C78-99AE-FC5EE0B5D931}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4DEFEEE7-E3EE-4C78-99AE-FC5EE0B5D931}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4DEFEEE7-E3EE-4C78-99AE-FC5EE0B5D931}.Release|Any CPU.Build.0 = Release|Any CPU
-		{AE8FA861-8BBA-44FE-9E6C-C548498EEE0B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{AE8FA861-8BBA-44FE-9E6C-C548498EEE0B}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{AE8FA861-8BBA-44FE-9E6C-C548498EEE0B}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{AE8FA861-8BBA-44FE-9E6C-C548498EEE0B}.Release|Any CPU.Build.0 = Release|Any CPU
-		{96A3A651-AFF0-4202-A997-9D6AB6C8AFB6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{96A3A651-AFF0-4202-A997-9D6AB6C8AFB6}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{96A3A651-AFF0-4202-A997-9D6AB6C8AFB6}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{96A3A651-AFF0-4202-A997-9D6AB6C8AFB6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
