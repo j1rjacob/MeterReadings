@@ -48,17 +48,6 @@
             treeNode7,
             treeNode8,
             treeNode9});
-            System.Windows.Forms.TreeNode treeNode11 = new System.Windows.Forms.TreeNode("Meter 1", 2, 2);
-            System.Windows.Forms.TreeNode treeNode12 = new System.Windows.Forms.TreeNode("Meter 2", 2, 2);
-            System.Windows.Forms.TreeNode treeNode13 = new System.Windows.Forms.TreeNode("Gateway 1", 1, 1, new System.Windows.Forms.TreeNode[] {
-            treeNode11,
-            treeNode12});
-            System.Windows.Forms.TreeNode treeNode14 = new System.Windows.Forms.TreeNode("Gateway 2", 1, 1);
-            System.Windows.Forms.TreeNode treeNode15 = new System.Windows.Forms.TreeNode("Riyadh", new System.Windows.Forms.TreeNode[] {
-            treeNode13,
-            treeNode14});
-            System.Windows.Forms.TreeNode treeNode16 = new System.Windows.Forms.TreeNode("Dammam");
-            System.Windows.Forms.TreeNode treeNode17 = new System.Windows.Forms.TreeNode("Jeddah");
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Main));
             this.treeViewMain = new System.Windows.Forms.TreeView();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
@@ -83,7 +72,7 @@
             this.meterReadingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.reportsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.meterReadingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.treeView1 = new System.Windows.Forms.TreeView();
+            this.TreeViewMeters = new System.Windows.Forms.TreeView();
             this.imageListMain = new System.Windows.Forms.ImageList(this.components);
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -117,6 +106,7 @@
             treeNode10});
             this.treeViewMain.Size = new System.Drawing.Size(168, 442);
             this.treeViewMain.TabIndex = 1;
+            this.treeViewMain.Visible = false;
             this.treeViewMain.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.treeViewMain_AfterSelect);
             this.treeViewMain.DoubleClick += new System.EventHandler(this.treeViewMain_DoubleClick);
             // 
@@ -190,14 +180,14 @@
             // backupToolStripMenuItem
             // 
             this.backupToolStripMenuItem.Name = "backupToolStripMenuItem";
-            this.backupToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.backupToolStripMenuItem.Size = new System.Drawing.Size(113, 22);
             this.backupToolStripMenuItem.Text = "Backup";
             this.backupToolStripMenuItem.Click += new System.EventHandler(this.backupToolStripMenuItem_Click);
             // 
             // restoreToolStripMenuItem
             // 
             this.restoreToolStripMenuItem.Name = "restoreToolStripMenuItem";
-            this.restoreToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.restoreToolStripMenuItem.Size = new System.Drawing.Size(113, 22);
             this.restoreToolStripMenuItem.Text = "Restore";
             this.restoreToolStripMenuItem.Click += new System.EventHandler(this.restoreToolStripMenuItem_Click);
             // 
@@ -295,43 +285,17 @@
             this.meterReadingsToolStripMenuItem.Text = "Meter Readings";
             this.meterReadingsToolStripMenuItem.Click += new System.EventHandler(this.meterReadingsToolStripMenuItem_Click);
             // 
-            // treeView1
+            // TreeViewMeters
             // 
-            this.treeView1.Dock = System.Windows.Forms.DockStyle.Left;
-            this.treeView1.ImageIndex = 0;
-            this.treeView1.ImageList = this.imageListMain;
-            this.treeView1.Location = new System.Drawing.Point(168, 24);
-            this.treeView1.Name = "treeView1";
-            treeNode11.ImageIndex = 2;
-            treeNode11.Name = "NodeMeter1";
-            treeNode11.SelectedImageIndex = 2;
-            treeNode11.Text = "Meter 1";
-            treeNode12.ImageIndex = 2;
-            treeNode12.Name = "NodeMeter2";
-            treeNode12.SelectedImageIndex = 2;
-            treeNode12.Text = "Meter 2";
-            treeNode13.ImageIndex = 1;
-            treeNode13.Name = "NodeGateway1";
-            treeNode13.SelectedImageIndex = 1;
-            treeNode13.Text = "Gateway 1";
-            treeNode14.ImageIndex = 1;
-            treeNode14.Name = "NodeGateway2";
-            treeNode14.SelectedImageIndex = 1;
-            treeNode14.Text = "Gateway 2";
-            treeNode15.Name = "NodeRiyadh";
-            treeNode15.Text = "Riyadh";
-            treeNode16.Name = "NodeDammam";
-            treeNode16.Text = "Dammam";
-            treeNode17.Name = "NodeJeddah";
-            treeNode17.Text = "Jeddah";
-            this.treeView1.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode15,
-            treeNode16,
-            treeNode17});
-            this.treeView1.SelectedImageIndex = 0;
-            this.treeView1.Size = new System.Drawing.Size(168, 442);
-            this.treeView1.TabIndex = 5;
-            this.treeView1.Visible = false;
+            this.TreeViewMeters.Dock = System.Windows.Forms.DockStyle.Left;
+            this.TreeViewMeters.ImageIndex = 0;
+            this.TreeViewMeters.ImageList = this.imageListMain;
+            this.TreeViewMeters.Location = new System.Drawing.Point(168, 24);
+            this.TreeViewMeters.Name = "TreeViewMeters";
+            this.TreeViewMeters.SelectedImageIndex = 0;
+            this.TreeViewMeters.Size = new System.Drawing.Size(168, 442);
+            this.TreeViewMeters.TabIndex = 5;
+            this.TreeViewMeters.Visible = false;
             // 
             // imageListMain
             // 
@@ -346,7 +310,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(685, 466);
-            this.Controls.Add(this.treeView1);
+            this.Controls.Add(this.TreeViewMeters);
             this.Controls.Add(this.treeViewMain);
             this.Controls.Add(this.menuStrip1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -382,7 +346,7 @@
         private System.Windows.Forms.ToolStripMenuItem meterProtocolToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem meterSizeToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem cityToolStripMenuItem;
-        private System.Windows.Forms.TreeView treeView1;
+        private System.Windows.Forms.TreeView TreeViewMeters;
         private System.Windows.Forms.ImageList imageListMain;
         private System.Windows.Forms.ToolStripMenuItem databaseToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem backupToolStripMenuItem;

@@ -1,15 +1,22 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Windows.Forms;
+using TMF.Core;
+using TMF.Core.Model;
+using TMF.Reports.UTIL;
 
 namespace MeterReports
 {
     public partial class Main : Form
     {
         private readonly TMF.Core.Model.UserInfo _currentUser;
+        private readonly TMF.Reports.BLL.City _city;
         public Main(TMF.Core.Model.UserInfo currentUser)
         {
             InitializeComponent();
             _currentUser = currentUser;
+            _city = new TMF.Reports.BLL.City();
+            GetCities();
         }
 
         private bool OpenForms<T>()
@@ -220,6 +227,22 @@ namespace MeterReports
                 rmr.MdiParent = this;
                 rmr.Show();
             }
+        }
+        
+        private void GetCities()
+        {
+            ReturnInfo getCityList = _city.GetCityByDescription(new SmartDB(), "");
+
+            var city = (List<TMF.Reports.Model.City>)getCityList.BizObject;
+            //var bindingList = new BindingList<City>(city);
+            //var source = new BindingSource(bindingList, null);
+            foreach (var c in city)
+            {
+                var str = c.Description.UppercaseFirst();
+                TreeNode treeNode = new TreeNode(str);
+                TreeViewMeters.Nodes.Add(treeNode);
+            }
+            TreeViewMeters.Visible = true;
         }
     }
 }

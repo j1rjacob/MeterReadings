@@ -380,8 +380,8 @@ namespace MeterReports
         {   
             if (this.ValidateChildren(ValidationConstraints.Enabled))
             {
-                try
-                {
+                //try
+                //{
                     ReturnInfo checkUser = _userInfo.GetUserByUsernamePassword(new SmartDB(), TextBoxUsername.Text, TextBoxPassword.Text);
                     var _currentUser = (TMF.Core.Model.UserInfo)checkUser.BizObject;
 
@@ -407,11 +407,11 @@ namespace MeterReports
                             MessageBox.Show("Username or Password not match.");
                         }
                     }
-                }
-                catch (Exception)
-                {
-                    MessageBox.Show("Username or Password not match.");
-                }
+                //}
+                //catch (Exception)
+                //{
+                //    MessageBox.Show("Username or Password not match.");
+                //}
             }
             else
             {
