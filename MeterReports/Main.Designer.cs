@@ -337,6 +337,7 @@
             this.TreeViewMeters.SelectedImageIndex = 0;
             this.TreeViewMeters.Size = new System.Drawing.Size(180, 442);
             this.TreeViewMeters.TabIndex = 5;
+            this.TreeViewMeters.DoubleClick += new System.EventHandler(this.TreeViewMeters_DoubleClick);
             // 
             // imageListMain
             // 
@@ -345,6 +346,7 @@
             this.imageListMain.Images.SetKeyName(0, "region.png");
             this.imageListMain.Images.SetKeyName(1, "gateway.png");
             this.imageListMain.Images.SetKeyName(2, "energymeter.png");
+            this.imageListMain.Images.SetKeyName(3, "info.png");
             // 
             // Main
             // 

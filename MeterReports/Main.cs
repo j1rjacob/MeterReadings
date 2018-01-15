@@ -269,23 +269,8 @@ namespace MeterReports
                     .Add(um.MacAddress, um.MacAddress, 1, 1);
             }
 
-            //foreach (var g in gateway)
-            //{
-            //    ReturnInfo getCity = _city.GetCityById(new SmartDB(), g.CityId);
-            //    var citi = (TMF.Reports.Model.City)getCity.BizObject;
-
-            //    var node = TreeViewMeters.Nodes.Find(citi.Description, true);
-
-            //    TreeViewMeters.Nodes[node[0].Text]
-            //        .Nodes
-            //        .Add(g.MacAddress,g.MacAddress, 1, 1);
-            //}
-
             foreach (var m in meter)
             {
-                //ReturnInfo getCity = _city.GetCityById(new SmartDB(), m.CityId);
-                //TMF.Reports.Model.City citi = (TMF.Reports.Model.City)getCity.BizObject;
-
                 string description = (from c in city
                                       where c.Id == m.CityId
                                       select c.Description).First();
@@ -293,22 +278,32 @@ namespace MeterReports
 
                 var node1 = TreeViewMeters.Nodes.Find(description, true);
 
-                //ReturnInfo getMeter = _meter.GetMeterById(new SmartDB(), m.SerialNumber);
-                //TMF.Reports.Model.Meter gm = (TMF.Reports.Model.Meter)getMeter.BizObject;
-
                 string macAddress = (from n in meter
                                      where n.SerialNumber == m.SerialNumber
                                      select n.MacAddress).First();
 
                 var node2 = TreeViewMeters.Nodes.Find(macAddress, true);
-
+                
                 TreeViewMeters.Nodes[node1[0].Text]
                     .Nodes[node2[0].Text]
-                    .Nodes
-                    .Add(m.SerialNumber, m.SerialNumber, 2, 2);
+                    
+                    .Nodes.AddRange(
+                        new TreeNode[] { new TreeNode(m.SerialNumber, 2, 2, 
+                        new TreeNode[]
+                        {
+                            new TreeNode("Info",3,3),
+                            new TreeNode("Reading",3,3),
+                            new TreeNode("GPS", 3, 3)
+                        })
+                        });
             }
-
             TreeViewMeters.EndUpdate();
+        }
+
+        private void TreeViewMeters_DoubleClick(object sender, EventArgs e)
+        {
+            TreeNode node = TreeViewMeters.SelectedNode;
+            MessageBox.Show($"{node.Parent.Text} {node.Text}");
         }
     }
 }

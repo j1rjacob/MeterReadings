@@ -231,6 +231,12 @@
     <EmbeddedResource Include="ReportMeterReading.resx">
       <DependentUpon>ReportMeterReading.cs</DependentUpon>
     </EmbeddedResource>
+    <Resource Include="Images\error.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\info.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
     <Content Include="TopMeters.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>TopMeters.cs</LastGenOutput>
