@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Windows.Forms;
 using TMF.Core;
 using TMF.Core.Model;
-using TMF.Reports.UTIL;
 
 namespace MeterReports
 {
@@ -12,12 +12,14 @@ namespace MeterReports
         private readonly TMF.Core.Model.UserInfo _currentUser;
         private readonly TMF.Reports.BLL.City _city;
         private readonly TMF.Reports.BLL.Gateway _gateway;
+        private readonly TMF.Reports.BLL.Meter _meter;
         public Main(TMF.Core.Model.UserInfo currentUser)
         {
             InitializeComponent();
             _currentUser = currentUser;
             _city = new TMF.Reports.BLL.City();
             _gateway = new TMF.Reports.BLL.Gateway();
+            _meter = new TMF.Reports.BLL.Meter();
             GetCities();
         }
 
@@ -238,19 +240,75 @@ namespace MeterReports
 
             ReturnInfo getGatewayList = _gateway.GetGatewayBySimCard(new SmartDB(), "");
             List<TMF.Reports.Model.Gateway> gateway = (List<TMF.Reports.Model.Gateway>)getGatewayList.BizObject;
+
+            ReturnInfo getMeterList = _meter.GetMeterBySerialNumber(new SmartDB(), "");
+            List<TMF.Reports.Model.Meter> meter = (List<TMF.Reports.Model.Meter>)getMeterList.BizObject;
+
+            TreeViewMeters.Nodes.Clear();
             
+
             foreach (var c in city)
             {
-                var str = c.Description.UppercaseFirst();
-                TreeNode treeNode = new TreeNode(str);
-                foreach (var g in gateway)
-                {
-                    treeNode.Nodes.Add(g.MacAddress);
-                }
-                TreeViewMeters.Nodes.Add(treeNode);
+                var str = c.Description;
+                TreeViewMeters.Nodes.Add(str, str, 0, 0);
             }
+
+            var uniqueMacs = meter.GroupBy(x => new { x.CityId, x.MacAddress } )
+                         .Select(g => g.First());
+            
+            foreach (var um in uniqueMacs)
+            {
+                string description = (from c in city
+                    where c.Id == um.CityId
+                    select c.Description).First();
+
+                var node = TreeViewMeters.Nodes.Find(description, true);
+
+                TreeViewMeters.Nodes[node[0].Text]
+                    .Nodes
+                    .Add(um.MacAddress, um.MacAddress, 1, 1);
+            }
+
+            //foreach (var g in gateway)
+            //{
+            //    ReturnInfo getCity = _city.GetCityById(new SmartDB(), g.CityId);
+            //    var citi = (TMF.Reports.Model.City)getCity.BizObject;
+
+            //    var node = TreeViewMeters.Nodes.Find(citi.Description, true);
+
+            //    TreeViewMeters.Nodes[node[0].Text]
+            //        .Nodes
+            //        .Add(g.MacAddress,g.MacAddress, 1, 1);
+            //}
+
+            foreach (var m in meter)
+            {
+                //ReturnInfo getCity = _city.GetCityById(new SmartDB(), m.CityId);
+                //TMF.Reports.Model.City citi = (TMF.Reports.Model.City)getCity.BizObject;
+
+                string description = (from c in city
+                                      where c.Id == m.CityId
+                                      select c.Description).First();
+
+
+                var node1 = TreeViewMeters.Nodes.Find(description, true);
+
+                //ReturnInfo getMeter = _meter.GetMeterById(new SmartDB(), m.SerialNumber);
+                //TMF.Reports.Model.Meter gm = (TMF.Reports.Model.Meter)getMeter.BizObject;
+
+                string macAddress = (from n in meter
+                                     where n.SerialNumber == m.SerialNumber
+                                     select n.MacAddress).First();
+
+                var node2 = TreeViewMeters.Nodes.Find(macAddress, true);
+
+                TreeViewMeters.Nodes[node1[0].Text]
+                    .Nodes[node2[0].Text]
+                    .Nodes
+                    .Add(m.SerialNumber, m.SerialNumber, 2, 2);
+            }
+
             TreeViewMeters.EndUpdate();
-            //TreeViewMeters.Visible = true;
         }
     }
 }

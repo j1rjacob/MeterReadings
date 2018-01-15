@@ -35,6 +35,7 @@ namespace TMF.Reports.DAL
                 info.MeterProtocolId = CastDBNull.To<string>(reader["MeterProtocolId"], "");
                 info.DMZId = CastDBNull.To<string>(reader["DMZId"], "");
                 info.CityId = CastDBNull.To<string>(reader["CityId"], "");
+                info.MacAddress = CastDBNull.To<string>(reader["MacAddress"], "");
                 info.CreatedBy = CastDBNull.To<string>(reader["Createdby"], "");
                 info.EditedBy = CastDBNull.To<string>(reader["Editedby"], "");
                 info.DocDate = CastDBNull.To<DateTime>(reader["DocDate"], DateTime.Now);
@@ -168,6 +169,11 @@ namespace TMF.Reports.DAL
             };
             array[0].Value = serialnumber;
             return this.GetRecords(dbInstance, cmdText, array);
+        }
+        public IInfo MeterSyncMeterReading(SmartDB dbInstance)
+        {
+            string cmdText = "[REPORT METER_SYNCSERIALNUMBER_METERREADING]";
+            return this.GetRecords(dbInstance, cmdText, null);
         }
     }
 }

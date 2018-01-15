@@ -72,6 +72,9 @@ namespace MeterReports
             ComboBoxCity.Items.Clear();
             _meterSerialNumber = "";
             TextBoxSerialNumber.Focus();
+            //Check Serial Number if exist then edit
+            //reset
+            //edit
         }
         private void ButtonEdit_Click(object sender, EventArgs e)
         {
@@ -92,12 +95,14 @@ namespace MeterReports
             ButtonSave.Enabled = true;
             ButtonDelete.Enabled = false;
             _save = false;
-            TextBoxSerialNumber.Focus();
+            TextBoxX.Focus();
         }
         private void ButtonSave_Click(object sender, EventArgs e)
         {
             if (_save)
+            {
                 SaveMeter();
+            }
             else
                 EditMeter();
         }
@@ -198,6 +203,16 @@ namespace MeterReports
         {
             GetCities();
         }
+        private void TextBoxSerialNumber_Leave(object sender, EventArgs e)
+        {
+            ButtonSearch.PerformClick();
+            ReturnInfo getMeter = _meter.GetMeterBySerialNumber(new SmartDB(), TextBoxSerialNumber.Text);
+            bool flag = getMeter.Code == ErrorEnum.NoError;
+            if (flag)
+            {
+                ButtonEdit.PerformClick();
+            }
+        }
         #region PriveteMethod
         private void SaveMeter()
         {
@@ -272,8 +287,8 @@ namespace MeterReports
                 if (flag)
                 {
                     MessageBox.Show("Meter Updated");
-                    ResetControls();
                     BindMeterWithDataGrid();
+                    ResetControls();
                 }
                 else
                 {
@@ -522,7 +537,7 @@ namespace MeterReports
                 cmd = new SqlCommand("REPORT METER_PAGING", conn);
                 cmd.Parameters.Add(new SqlParameter("@PageNumber", intSkip));
                 cmd.Parameters.Add(new SqlParameter("@RowspPage", _mintPageSize));
-                cmd.Parameters.Add(new SqlParameter("@Query", TextBoxSearch.Text));
+                cmd.Parameters.Add(new SqlParameter("@Query", string.IsNullOrWhiteSpace(TextBoxSearch.Text) ? TextBoxSerialNumber.Text : TextBoxSearch.Text));
                 cmd.CommandType = CommandType.StoredProcedure;
                 da.SelectCommand = cmd;
                 da.Fill(dt);

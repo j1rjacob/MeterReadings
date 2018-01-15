@@ -18,6 +18,7 @@ namespace TMF.Reports.Model
         public string MeterProtocolId { get; set; }
         public string DMZId { get; set; }
         public string CityId { get; set; }
+        public string MacAddress { get; set; }
         public string CreatedBy { get; set; }
         public string EditedBy { get; set; }
         public DateTime DocDate { get; set; }
@@ -33,8 +34,8 @@ namespace TMF.Reports.Model
         public Meter(string SerialNumber, decimal X, decimal Y, string Status,
                      string HCN, DateTime InstallationDate, DateTime MaintenanceDate,
                      string MeterTypeId, string MeterSizeId, string MeterProtocolId,
-                     string DMZId, string CityId, string CreatedBy, string EditedBy,
-                     DateTime DocDate, int Show, int LockCount)
+                     string DMZId, string CityId, string MacAddress, string CreatedBy,
+                     string EditedBy, DateTime DocDate, int Show, int LockCount)
         {
             this.SerialNumber = SerialNumber;
             this.X = X;
@@ -48,6 +49,7 @@ namespace TMF.Reports.Model
             this.MeterProtocolId = MeterProtocolId;
             this.DMZId = DMZId;
             this.CityId = CityId;
+            this.MacAddress = MacAddress;
             this.CreatedBy = CreatedBy;
             this.EditedBy = EditedBy;
             this.DocDate = DocDate;
@@ -96,6 +98,9 @@ namespace TMF.Reports.Model
                     break;
                 case "cityid":
                     return this.CityId;
+                    break;
+                case "macaddress":
+                    return this.MacAddress;
                     break;
                 case "createdby":
                     return this.CreatedBy;
@@ -156,6 +161,9 @@ namespace TMF.Reports.Model
                     break;
                 case "cityid":
                     this.CityId = CastDBNull.To<string>(value, "");
+                    break;
+                case "macaddress":
+                    this.MacAddress = CastDBNull.To<string>(value, "");
                     break;
                 case "createdby":
                     this.CreatedBy = CastDBNull.To<string>(value, "");

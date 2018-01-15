@@ -28,13 +28,27 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.CrystalReportViewer = new CrystalDecisions.Windows.Forms.CrystalReportViewer();
             this.SuspendLayout();
+            // 
+            // CrystalReportViewer
+            // 
+            this.CrystalReportViewer.ActiveViewIndex = -1;
+            this.CrystalReportViewer.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.CrystalReportViewer.Cursor = System.Windows.Forms.Cursors.Default;
+            this.CrystalReportViewer.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.CrystalReportViewer.Location = new System.Drawing.Point(0, 0);
+            this.CrystalReportViewer.Name = "CrystalReportViewer";
+            this.CrystalReportViewer.Size = new System.Drawing.Size(897, 490);
+            this.CrystalReportViewer.TabIndex = 0;
+            this.CrystalReportViewer.ToolPanelView = CrystalDecisions.Windows.Forms.ToolPanelViewType.None;
             // 
             // ReportMeterReading
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(897, 490);
+            this.Controls.Add(this.CrystalReportViewer);
             this.Name = "ReportMeterReading";
             this.Text = "ReportMeterReading";
             this.ResumeLayout(false);
@@ -42,5 +56,7 @@
         }
 
         #endregion
+
+        private CrystalDecisions.Windows.Forms.CrystalReportViewer CrystalReportViewer;
     }
 }

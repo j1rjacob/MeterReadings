@@ -750,7 +750,7 @@ namespace MeterReports
             {
                 MessageBox.Show("Import was not successful");
             }
-            
+
             ResetControls();
         }
         private void ComboBoxDMZ_MouseClick(object sender, MouseEventArgs e)
@@ -773,16 +773,17 @@ namespace MeterReports
                 bool flag = getGateway.Code == ErrorEnum.NoError;
                 TMF.Reports.Model.Gateway gateway = (TMF.Reports.Model.Gateway)getGateway.BizObject;
 
-                
+
                 ReturnInfo getDMZ = _dmz.GetDMZById(new SmartDB(), Convert.ToInt32(gateway.DMZId));
                 TMF.Reports.Model.DMZ dmz = (TMF.Reports.Model.DMZ)getDMZ.BizObject;
 
                 ReturnInfo getCity = _city.GetCityById(new SmartDB(), gateway.CityId.Trim());
                 TMF.Reports.Model.City city = (TMF.Reports.Model.City)getCity.BizObject;
-               
 
                 if (!string.IsNullOrEmpty(gateway.MacAddress))
                 {
+                    ButtonEdit.Enabled = true;
+                    ButtonDelete.Enabled = true;
                     TextBoxMac.Text = gateway.MacAddress;
                     TextBoxX.Text = gateway.X.ToString();
                     TextBoxY.Text = gateway.Y.ToString();
@@ -793,9 +794,7 @@ namespace MeterReports
                     TextBoxIPAddress.Text = gateway.IPAddress;
                     ComboBoxDMZ.Text = dmz.Description;
                     ComboBoxCity.Text = city.Description;
-                    _gatewayMac = gateway.MacAddress;
-                    ButtonEdit.Enabled = true;
-                    ButtonDelete.Enabled = true;
+                    //_gatewayMac = gateway.MacAddress;
                 }
             }
             catch (Exception)
@@ -848,11 +847,11 @@ namespace MeterReports
         {
             if (!string.IsNullOrWhiteSpace(TextBoxDescription.Text))
             {   //Todo EditedBy
-                var lockcount = GetLockCount(_gatewayMac);
+                var lockcount = GetLockCount(TextBoxMac.Text);
 
                 TMF.Reports.Model.Gateway gateway = new TMF.Reports.Model.Gateway()
                 {
-                    MacAddress = _gatewayMac,
+                    MacAddress = TextBoxMac.Text,
                     SimCard = TextBoxSimCard.Text,
                     X = Convert.ToDecimal(TextBoxX.Text),
                     Y = Convert.ToDecimal(TextBoxY.Text),
@@ -972,54 +971,54 @@ namespace MeterReports
             {
                 return;
             }
-}
+        }
         #endregion
         private void ExportGateways(SaveFileDialog sfdGateway)
         {
             StreamWriter sr;
             string line = "";
             StringBuilder fileContents = new StringBuilder();
-            
+
             fileContents.Append("MacAddress, SimCard, X, Y, Description, InstallationDate, " +
                                 "MaintenanceDate, Status, IPAddress, DMZId, CityId, " +
                                 "Createdby, Editedby, DocDate, Show, LockCount\r\n");
             //if (saveFileDialogGateway.ShowDialog() == DialogResult.OK)
             //{
-                sr = new StreamWriter(sfdGateway.FileName, false);
-                try
+            sr = new StreamWriter(sfdGateway.FileName, false);
+            try
+            {
+                ReturnInfo getGatewayList = _gateway.GetGatewayBySimCard(new SmartDB(), TextBoxSearch.Text);
+                List<TMF.Reports.Model.Gateway> gateways = (List<TMF.Reports.Model.Gateway>)getGatewayList.BizObject;
+
+                foreach (var gw in gateways)
                 {
-                    ReturnInfo getGatewayList = _gateway.GetGatewayBySimCard(new SmartDB(), TextBoxSearch.Text);
-                    List<TMF.Reports.Model.Gateway> gateways = (List<TMF.Reports.Model.Gateway>)getGatewayList.BizObject;
-                    
-                    foreach (var gw in gateways)
-                    {
-                        line = gw.MacAddress + ",";
-                        line += gw.SimCard + ",";
-                        line += gw.X + ",";
-                        line += gw.Y + ",";
-                        line += gw.Description + ",";
-                        line += gw.InstallationDate + ",";
-                        line += gw.MaintenanceDate + ",";
-                        line += gw.Status + ",";
-                        line += gw.IPAddress + ",";
-                        line += gw.DMZId + ",";
-                        line += gw.CityId + ",";
-                        line += gw.CreatedBy + ",";
-                        line += gw.EditedBy + ",";
-                        line += gw.DocDate + ",";
-                        line += gw.Show + ",";
-                        line += gw.LockCount + "\r\n";
-                        fileContents.Append(line);
-                    }
-                    sr.Write(fileContents);
-                    sr.Flush();
-                    sr.Close();
+                    line = gw.MacAddress + ",";
+                    line += gw.SimCard + ",";
+                    line += gw.X + ",";
+                    line += gw.Y + ",";
+                    line += gw.Description + ",";
+                    line += gw.InstallationDate + ",";
+                    line += gw.MaintenanceDate + ",";
+                    line += gw.Status + ",";
+                    line += gw.IPAddress + ",";
+                    line += gw.DMZId + ",";
+                    line += gw.CityId + ",";
+                    line += gw.CreatedBy + ",";
+                    line += gw.EditedBy + ",";
+                    line += gw.DocDate + ",";
+                    line += gw.Show + ",";
+                    line += gw.LockCount + "\r\n";
+                    fileContents.Append(line);
+                }
+                sr.Write(fileContents);
+                sr.Flush();
+                sr.Close();
                 MessageBox.Show("Export Successful");
-                }
-                catch (Exception)
-                {
-                    MessageBox.Show("Error while exporting file!");
-                }
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Error while exporting file!");
+            }
             //}
         }
     }

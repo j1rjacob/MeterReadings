@@ -50,7 +50,7 @@ namespace MeterReports.Test
         {
             //Arrange
             //Act
-            ReturnInfo getMeter = _meter.GetMeterById(new SmartDB(), "10110148216");
+            ReturnInfo getMeter = _meter.GetMeterById(new SmartDB(), "10110111913");
             bool flag = getMeter.Code == ErrorEnum.NoError;
 
             //Assert

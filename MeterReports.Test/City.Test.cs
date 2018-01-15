@@ -40,7 +40,7 @@ namespace MeterReports.Test
         {
             //Arrange
             //Act
-            ReturnInfo getCity = _city.GetCityById(new SmartDB(), "9086b56203164748a61c6c485b55fe78");
+            ReturnInfo getCity = _city.GetCityById(new SmartDB(), "1a29dac39ece4856ad2c59880b1cacce");
             bool flag = getCity.Code == ErrorEnum.NoError;
 
             //Assert

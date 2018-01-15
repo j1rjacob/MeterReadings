@@ -11,9 +11,16 @@ namespace TMF.Reports.UTIL
         private static string _csvFilename;
         private static string _gw;
         private static int _final;
+        //private static BLL.Meter _meter;
+        public BulkMeter()
+        {
+            //_meter = new BLL.Meter();
+        }
         public static void Import(string[] ofdFilenames)
         {
             int count = 0;
+            //ReturnInfo getMeterList = _meter.GetMeterBySerialNumber(new SmartDB(), "");
+            //List<Model.Meter> meter = (List<Model.Meter>)getMeterList.BizObject;
 
             using (SqlConnection connection =
                 new SqlConnection(new SmartDB().Connection.ConnectionString))
@@ -23,44 +30,51 @@ namespace TMF.Reports.UTIL
                 foreach (var filename in ofdFilenames)
                 {
                     DataTable newMeter = MakeTable.Meter(filename);
+                    //bool flag = getMeterList.Code == ErrorEnum.NoError;
+
                     DataTable fetchMeter = FetchTable.GetMeter();
-                    
+
                     var fMeter = new HashSet<string>(fetchMeter.AsEnumerable()
                         .Select(x => x.Field<string>("SerialNumber")));
                     DataTable dtUniqueGateway = newMeter.AsEnumerable()
                         .Where(x => !fMeter.Contains(x.Field<string>("SerialNumber")))
                         .CopyToDataTable();
 
-                    using (SqlBulkCopy s = new SqlBulkCopy(connection))
-                    {
-                        s.DestinationTableName = "Meter";
-                        s.ColumnMappings.Add("SerialNumber", "SerialNumber");
-                        s.ColumnMappings.Add("X", "X");
-                        s.ColumnMappings.Add("Y", "Y");
-                        s.ColumnMappings.Add("Status", "Status");
-                        s.ColumnMappings.Add("HCN", "HCN");
-                        s.ColumnMappings.Add("InstallationDate", "InstallationDate");
-                        s.ColumnMappings.Add("MaintenanceDate", "MaintenanceDate");
-                        s.ColumnMappings.Add("MeterTypeId", "MeterTypeId");
-                        s.ColumnMappings.Add("MeterSizeId", "MeterSizeId");
-                        s.ColumnMappings.Add("MeterProtocolId", "MeterProtocolId");
-                        s.ColumnMappings.Add("DMZId", "DMZId");
-                        s.ColumnMappings.Add("CityId", "CityId");
-                        s.ColumnMappings.Add("Createdby", "Createdby");
-                        s.ColumnMappings.Add("Editedby", "Editedby");
-                        s.ColumnMappings.Add("DocDate", "DocDate");
-                        s.ColumnMappings.Add("Show", "Show");
-                        s.ColumnMappings.Add("LockCount", "LockCount");
-                        try
-                        {
-                            s.WriteToServer(dtUniqueGateway);
-                            Console.WriteLine($"Importing was successful.");
-                        }
-                        catch (Exception ex)
-                        {
-                            Console.WriteLine($"Contact Admin: {ex.Message}", "Import");
-                        }
-                    }
+                    InsertMeterBulkCopy(connection, dtUniqueGateway);
+                }
+            }
+        }
+
+        private static void InsertMeterBulkCopy(SqlConnection connection, DataTable dtUniqueGateway)
+        {
+            using (SqlBulkCopy s = new SqlBulkCopy(connection))
+            {
+                s.DestinationTableName = "Meter";
+                s.ColumnMappings.Add("SerialNumber", "SerialNumber");
+                s.ColumnMappings.Add("X", "X");
+                s.ColumnMappings.Add("Y", "Y");
+                s.ColumnMappings.Add("Status", "Status");
+                s.ColumnMappings.Add("HCN", "HCN");
+                s.ColumnMappings.Add("InstallationDate", "InstallationDate");
+                s.ColumnMappings.Add("MaintenanceDate", "MaintenanceDate");
+                s.ColumnMappings.Add("MeterTypeId", "MeterTypeId");
+                s.ColumnMappings.Add("MeterSizeId", "MeterSizeId");
+                s.ColumnMappings.Add("MeterProtocolId", "MeterProtocolId");
+                s.ColumnMappings.Add("DMZId", "DMZId");
+                s.ColumnMappings.Add("CityId", "CityId");
+                s.ColumnMappings.Add("Createdby", "Createdby");
+                s.ColumnMappings.Add("Editedby", "Editedby");
+                s.ColumnMappings.Add("DocDate", "DocDate");
+                s.ColumnMappings.Add("Show", "Show");
+                s.ColumnMappings.Add("LockCount", "LockCount");
+                try
+                {
+                    s.WriteToServer(dtUniqueGateway);
+                    Console.WriteLine($"Importing was successful.");
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine($"Contact Admin: {ex.Message}", "Import");
                 }
             }
         }

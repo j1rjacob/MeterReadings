@@ -12,6 +12,7 @@ namespace TMF.Reports.UTIL
     {
         private static BLL.GatewayLog _gatewayLog = new BLL.GatewayLog();
         private static BLL.Gateway _gateway = new BLL.Gateway();
+        private static BLL.Meter _meter = new BLL.Meter();
         private static string _csvFilename;
         private static string _gw;
         private static int _final;
@@ -55,6 +56,7 @@ namespace TMF.Reports.UTIL
                             s.ColumnMappings.Add("BrokenPipeAlr", "BrokenPipeAlr");
                             s.ColumnMappings.Add("EmptyPipeAlr", "EmptyPipeAlr");
                             s.ColumnMappings.Add("SpecificErr", "SpecificErr");
+                            s.ColumnMappings.Add("MacAddress", "MacAddress");
                             try
                             {
                                 s.WriteToServer(newMeterReading);
@@ -71,6 +73,10 @@ namespace TMF.Reports.UTIL
                                     Show = 1,
                                     LockCount = 0
                                 };
+
+                                //UPDATE METER
+                                _meter.GetMeterSyncMeterReading(new SmartDB());
+
                                 var createGatewayLog = _gatewayLog.Create(new SmartDB(), ref gatewayLog);
 
                                 if (!MacDuplicate.Get(ofdFilenames).Contains(_gw))

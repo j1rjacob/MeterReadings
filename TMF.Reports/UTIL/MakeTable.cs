@@ -3,6 +3,7 @@ using System.Data;
 using System.Globalization;
 using System.IO;
 using System.Linq;
+using System.Text.RegularExpressions;
 
 namespace TMF.Reports.UTIL
 {
@@ -10,6 +11,7 @@ namespace TMF.Reports.UTIL
     {
         public static DataTable RDS(string Filename)
         {
+            string _gw = Path.GetFileName(Path.GetDirectoryName(Filename));
             DataTable newMeterReading = new DataTable("MeterReading");
             
             DataColumn meterReadingId = new DataColumn();
@@ -77,6 +79,11 @@ namespace TMF.Reports.UTIL
             specificErr.DataType = Type.GetType("System.Int32");
             specificErr.ColumnName = "SpecificErr";
             newMeterReading.Columns.Add(specificErr);
+
+            DataColumn macAddress = new DataColumn();
+            macAddress.DataType = Type.GetType("System.String");
+            macAddress.ColumnName = "MacAddress";
+            newMeterReading.Columns.Add(macAddress);
             
             DataColumn[] keys = new DataColumn[1];
             keys[0] = meterReadingId;
@@ -120,6 +127,7 @@ namespace TMF.Reports.UTIL
                         row["BrokenPipeAlr"] = Convert.ToInt32(q.Broken_Pipe_Alr);
                         row["EmptyPipeAlr"] = Convert.ToInt32(q.Empty_Pipe_Alr);
                         row["SpecificErr"] = Convert.ToInt32(q.Specific_Alr);
+                        row["MacAddress"] = Regex.Replace(_gw, @"^(..)(..)(..)(..)(..)(..)$", "$1:$2:$3:$4:$5:$6");
                         newMeterReading.Rows.Add(row);
                     }
                 }
@@ -346,6 +354,11 @@ namespace TMF.Reports.UTIL
             cityId.ColumnName = "CityId";
             newMeter.Columns.Add(cityId);
 
+            DataColumn macAddress = new DataColumn();
+            macAddress.DataType = Type.GetType("System.String");
+            macAddress.ColumnName = "MacAddress";
+            newMeter.Columns.Add(macAddress);
+
             DataColumn createdBy = new DataColumn();
             createdBy.DataType = Type.GetType("System.String");
             createdBy.ColumnName = "CreatedBy";
@@ -420,6 +433,7 @@ namespace TMF.Reports.UTIL
                         row["MeterProtocolId"] = q.MeterProtocolId;
                         row["DMZId"] = Convert.ToInt32(q.DMZId);
                         row["CityId"] = q.CityId;
+                        row["MacAddress"] = "1C:BA:8C:98:F4:CB";
                         row["Createdby"] = q.Createdby;
                         row["Editedby"] = q.Editedby;
                         row["DocDate"] = Convert.ToDateTime(q.DocDate); 
