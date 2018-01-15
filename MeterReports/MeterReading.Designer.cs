@@ -832,10 +832,8 @@
         private System.Windows.Forms.Button ButtonSave;
         private System.Windows.Forms.Button ButtonEdit;
         private System.Windows.Forms.Button ButtonNew;
-        private System.Windows.Forms.Button ButtonSearch;
         private System.Windows.Forms.TextBox TextBoxReadingDate;
         private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.TextBox TextBoxSearch;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.TextBox TextBoxSerialNumber;
@@ -894,5 +892,7 @@
         private System.Windows.Forms.Button ButtonPrevious;
         private System.Windows.Forms.Button ButtonNext;
         private System.Windows.Forms.Button ButtonLast;
+        public System.Windows.Forms.Button ButtonSearch;
+        public System.Windows.Forms.TextBox TextBoxSearch;
     }
 }

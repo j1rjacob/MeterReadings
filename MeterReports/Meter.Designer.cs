@@ -705,19 +705,16 @@
         private System.Windows.Forms.Button ButtonSave;
         private System.Windows.Forms.Button ButtonEdit;
         private System.Windows.Forms.Button ButtonNew;
-        private System.Windows.Forms.Button ButtonSearch;
         private System.Windows.Forms.DataGridView DataGridViewMeter;
         private System.Windows.Forms.TextBox TextBoxX;
         private System.Windows.Forms.TextBox TextBoxHCN;
         private System.Windows.Forms.TextBox TextBoxY;
         private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.TextBox TextBoxSearch;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.TextBox TextBoxSerialNumber;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
@@ -748,5 +745,8 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn ColMeterProtocol;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColDMZ;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColCity;
+        public System.Windows.Forms.Button ButtonSearch;
+        public System.Windows.Forms.TextBox TextBoxSearch;
+        private System.Windows.Forms.TextBox TextBoxSerialNumber;
     }
 }

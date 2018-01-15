@@ -304,6 +304,45 @@ namespace MeterReports
         {
             TreeNode node = TreeViewMeters.SelectedNode;
             MessageBox.Show($"{node.Parent.Text} {node.Text}");
+
+
+            switch (node.Text)
+            {
+                case "Info":
+                    var m = new Meter(_currentUser);
+                    if (!OpenForms<Meter>())
+                    {
+                        m.MdiParent = this;
+                        m.Show();
+                        m.TextBoxSearch.Text = node.Parent.Text;
+                        m.ButtonSearch.PerformClick();
+                    }
+                    break;
+                case "Reading":
+                    var mr = new MeterReading(_currentUser);
+                    if (!OpenForms<MeterReading>())
+                    {
+                        mr.MdiParent = this;
+                        mr.Show();
+                        mr.TextBoxSearch.Text = node.Parent.Text;
+                        mr.ButtonSearch.PerformClick();
+                    }
+                    break;
+                case "GPS":
+                    //var m = new Meter(_currentUser);
+                    //if (!OpenForms<Meter>())
+                    //{
+                    //    m.MdiParent = this;
+                    //    m.Show();
+                    //    m.TextBoxSearch.Text = node.Parent.Text;
+                    //    m.ButtonSearch.PerformClick();
+                    //}
+                    break;
+                default:
+                    break;
+            }
+
+            
         }
     }
 }
