@@ -47,6 +47,8 @@
             this.sfMapGIS.UseMercatorProjection = false;
             this.sfMapGIS.ZoomLevel = 1D;
             this.sfMapGIS.ZoomToSelectedExtentWhenCtrlKeydown = false;
+            this.sfMapGIS.Paint += new System.Windows.Forms.PaintEventHandler(this.sfMapGIS_Paint);
+            this.sfMapGIS.MouseUp += new System.Windows.Forms.MouseEventHandler(this.sfMapGIS_MouseUp);
             // 
             // GPS
             // 

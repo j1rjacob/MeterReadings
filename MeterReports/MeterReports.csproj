@@ -324,6 +324,10 @@
       <Project>{c4aa963a-a0f5-412a-a5b1-5387cd565e6b}</Project>
       <Name>TMF.Core</Name>
     </ProjectReference>
+    <ProjectReference Include="..\TMF.Maps\TMF.Maps.csproj">
+      <Project>{2dc95f15-08e2-45b3-8983-e2c8c3a99503}</Project>
+      <Name>TMF.Maps</Name>
+    </ProjectReference>
     <ProjectReference Include="..\TMF.Reports\TMF.Reports.csproj">
       <Project>{ced8f3af-c81d-4006-b45d-0190874813bc}</Project>
       <Name>TMF.Reports</Name>

@@ -335,14 +335,12 @@ namespace MeterReports
                     }
                     break;
                 case "GPS":
-                    //var m = new Meter(_currentUser);
-                    //if (!OpenForms<Meter>())
-                    //{
-                    //    m.MdiParent = this;
-                    //    m.Show();
-                    //    m.TextBoxSearch.Text = node.Parent.Text;
-                    //    m.ButtonSearch.PerformClick();
-                    //}
+                    var g = new GPS();
+                    if (!OpenForms<GPS>())
+                    {
+                        g.MdiParent = this;
+                        g.Show();
+                    }
                     break;
                 default:
                     break;
