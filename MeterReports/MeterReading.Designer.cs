@@ -689,7 +689,7 @@
             this.DataGridViewMeterReading.Name = "DataGridViewMeterReading";
             this.DataGridViewMeterReading.ReadOnly = true;
             this.DataGridViewMeterReading.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.DataGridViewMeterReading.Size = new System.Drawing.Size(872, 448);
+            this.DataGridViewMeterReading.Size = new System.Drawing.Size(880, 448);
             this.DataGridViewMeterReading.TabIndex = 81;
             this.DataGridViewMeterReading.SelectionChanged += new System.EventHandler(this.DataGridViewMeterReading_SelectionChanged);
             // 
@@ -841,7 +841,6 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TabPage tabPage2;
-        private System.Windows.Forms.DataGridView DataGridViewMeterReading;
         private System.Windows.Forms.TextBox TextBoxLeakAlr;
         private System.Windows.Forms.TextBox TextBoxBackflowAlr;
         private System.Windows.Forms.TextBox TextBoxMagneticTmprAlr;
@@ -894,5 +893,6 @@
         private System.Windows.Forms.Button ButtonLast;
         public System.Windows.Forms.Button ButtonSearch;
         public System.Windows.Forms.TextBox TextBoxSearch;
+        public System.Windows.Forms.DataGridView DataGridViewMeterReading;
     }
 }

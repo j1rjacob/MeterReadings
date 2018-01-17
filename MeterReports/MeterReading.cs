@@ -19,7 +19,6 @@ namespace MeterReports
         private bool _save;
         private string _meterReadingId;
 
-
         public MeterReading(TMF.Core.Model.UserInfo currentUser)
         {
             InitializeComponent();
@@ -149,10 +148,11 @@ namespace MeterReports
             if (openFileDialogImport.ShowDialog() == DialogResult.OK)
             {
                 var f = new Import(openFileDialogImport.FileNames);
+                ((Main)this.MdiParent).GetCities();
                 f.ShowDialog();
             }
         }
-        private void DataGridViewMeterReading_SelectionChanged(object sender, EventArgs e)
+        public void DataGridViewMeterReading_SelectionChanged(object sender, EventArgs e)
         {
             try
             {
@@ -336,7 +336,8 @@ namespace MeterReports
         {   //TODO: Refactor this for reuse.
             try
             {
-                ReturnInfo getMeterReadingList = _meterReading.GetLatestMeterReadingRecord(new SmartDB(), TextBoxSerialNumber.Text);
+                var LatestSerial = string.IsNullOrWhiteSpace(TextBoxSerialNumber.Text) ? TextBoxSearch.Text : TextBoxSerialNumber.Text;
+                ReturnInfo getMeterReadingList = _meterReading.GetLatestMeterReadingRecord(new SmartDB(), LatestSerial);
               
                 List<TMF.Reports.Model.MeterReading> meterReading = (List<TMF.Reports.Model.MeterReading>)getMeterReadingList.BizObject;
                 var bindingList = new BindingList<TMF.Reports.Model.MeterReading>(meterReading);

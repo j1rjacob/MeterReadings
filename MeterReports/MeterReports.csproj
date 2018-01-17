@@ -37,6 +37,14 @@
     <Reference Include="CrystalDecisions.ReportSource, Version=13.0.3500.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
     <Reference Include="CrystalDecisions.Shared, Version=13.0.3500.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
     <Reference Include="CrystalDecisions.Windows.Forms, Version=13.0.3500.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="EGIS.Controls, Version=4.5.7.0, Culture=neutral, PublicKeyToken=05b98c869b5ffe6a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Resources\Map\Example8\Example8\EGIS.Controls.dll</HintPath>
+    </Reference>
+    <Reference Include="EGIS.ShapeFileLib, Version=4.5.7.0, Culture=neutral, PublicKeyToken=05b98c869b5ffe6a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Resources\Map\Example8\Example8\EGIS.ShapeFileLib.dll</HintPath>
+    </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.1.0\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
@@ -106,6 +114,12 @@
     </Compile>
     <Compile Include="GatewayLogs.cs">
       <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GPS.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GPS.Designer.cs">
+      <DependentUpon>GPS.cs</DependentUpon>
     </Compile>
     <Compile Include="Import.cs">
       <SubType>Form</SubType>
@@ -191,6 +205,9 @@
     <EmbeddedResource Include="GatewayLogs.resx">
       <DependentUpon>GatewayLogs.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="GPS.resx">
+      <DependentUpon>GPS.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Import.resx">
       <DependentUpon>Import.cs</DependentUpon>
     </EmbeddedResource>
@@ -237,6 +254,14 @@
     <Resource Include="Images\info.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
+    <Content Include="GISLib\EGIS.Controls.dll" />
+    <Content Include="GISLib\EGIS.ShapeFileLib.dll" />
+    <Content Include="GISLib\geomutil_lib.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="GISLib\geomutil_libx64.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="TopMeters.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>TopMeters.cs</LastGenOutput>
@@ -248,6 +273,36 @@
     <EmbeddedResource Include="WaterConsumption.resx">
       <DependentUpon>WaterConsumption.cs</DependentUpon>
     </EmbeddedResource>
+    <Content Include="Maps\ksa.dbf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Maps\ksa.prj">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Maps\ksa.qpj">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Maps\ksa.shp">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Maps\ksa.shx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Maps\Taif Meters EPSG4326.dbf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Maps\Taif Meters EPSG4326.prj">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Maps\Taif Meters EPSG4326.qpj">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Maps\Taif Meters EPSG4326.shp">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Maps\Taif Meters EPSG4326.shx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -356,6 +411,9 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{C0C07587-41A7-46C8-8FBD-3F9C8EBE2DDC}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Reports\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

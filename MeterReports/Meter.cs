@@ -289,6 +289,9 @@ namespace MeterReports
                     MessageBox.Show("Meter Updated");
                     BindMeterWithDataGrid();
                     ResetControls();
+
+                    ((Main)this.MdiParent).GetCities();
+
                 }
                 else
                 {

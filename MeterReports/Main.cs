@@ -13,6 +13,11 @@ namespace MeterReports
         private readonly TMF.Reports.BLL.City _city;
         private readonly TMF.Reports.BLL.Gateway _gateway;
         private readonly TMF.Reports.BLL.Meter _meter;
+
+        public Main()
+        {
+                
+        }
         public Main(TMF.Core.Model.UserInfo currentUser)
         {
             InitializeComponent();
@@ -20,7 +25,6 @@ namespace MeterReports
             _city = new TMF.Reports.BLL.City();
             _gateway = new TMF.Reports.BLL.Gateway();
             _meter = new TMF.Reports.BLL.Meter();
-            GetCities();
         }
 
         private bool OpenForms<T>()
@@ -78,6 +82,7 @@ namespace MeterReports
         private void Main_Load(object sender, EventArgs e)
         {
             logoutToolStripMenuItem.Text = $"Logout {_currentUser.Username}";
+            GetCities();
         }
 
         private void logoutToolStripMenuItem_Click(object sender, EventArgs e)
@@ -233,7 +238,7 @@ namespace MeterReports
             }
         }
         
-        private void GetCities()
+        public void GetCities()
         {
             ReturnInfo getCityList = _city.GetCityByDescription(new SmartDB(), "");
             var city = (List<TMF.Reports.Model.City>)getCityList.BizObject;
@@ -245,7 +250,6 @@ namespace MeterReports
             List<TMF.Reports.Model.Meter> meter = (List<TMF.Reports.Model.Meter>)getMeterList.BizObject;
 
             TreeViewMeters.Nodes.Clear();
-            
 
             foreach (var c in city)
             {
@@ -303,9 +307,7 @@ namespace MeterReports
         private void TreeViewMeters_DoubleClick(object sender, EventArgs e)
         {
             TreeNode node = TreeViewMeters.SelectedNode;
-            MessageBox.Show($"{node.Parent.Text} {node.Text}");
-
-
+            //MessageBox.Show($"{node.Parent.Text} {node.Text}");
             switch (node.Text)
             {
                 case "Info":
@@ -326,6 +328,10 @@ namespace MeterReports
                         mr.Show();
                         mr.TextBoxSearch.Text = node.Parent.Text;
                         mr.ButtonSearch.PerformClick();
+                        mr.DataGridViewMeterReading.FirstDisplayedScrollingRowIndex = mr.DataGridViewMeterReading.RowCount - 1;
+                        // select new row
+                        mr.DataGridViewMeterReading.Rows[mr.DataGridViewMeterReading.Rows.Count - 1].Selected = true;
+                        mr.DataGridViewMeterReading_SelectionChanged(this, new EventArgs());
                     }
                     break;
                 case "GPS":
@@ -341,8 +347,6 @@ namespace MeterReports
                 default:
                     break;
             }
-
-            
         }
     }
 }
