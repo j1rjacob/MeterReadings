@@ -58,6 +58,7 @@
             this.Controls.Add(this.sfMapGIS);
             this.Name = "GPS";
             this.Text = "GPS";
+            this.Load += new System.EventHandler(this.GPS_Load);
             this.ResumeLayout(false);
 
         }

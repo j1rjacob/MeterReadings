@@ -20,6 +20,8 @@ namespace MeterReports
         private List<GPSPacket> _gpsDataList = new List<GPSPacket>();
         GPSPacket _gpsPoint;
         KSAMetersRenderSettings _rs;
+        
+
         public GPS()
         {
             InitializeComponent();
@@ -134,7 +136,8 @@ namespace MeterReports
         }
         private void sfMapGIS_Paint(object sender, PaintEventArgs e)
         {
-            DrawMarker(e.Graphics, _marker.X, _marker.Y);
+            //DrawMarker(e.Graphics, _marker.X, _marker.Y);
+            DrawCurrentMarker(e.Graphics, _currentMarkerPosition.X, _currentMarkerPosition.Y);
         }
         private void DrawMarker(Graphics g, double locX, double locY)
         {
@@ -150,5 +153,67 @@ namespace MeterReports
             g.FillEllipse(Brushes.Yellow, pt.X, pt.Y, _markerWidth, _markerWidth);
             g.DrawEllipse(Pens.Red, pt.X, pt.Y, _markerWidth, _markerWidth);
         }
+
+        private void DrawCurrentMarker(Graphics g, double locX, double locY)
+        {
+            //convert the gis location to pixel coordinates
+            Point pt = sfMapGIS.GisPointToPixelCoord(locX, locY);
+
+            g.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.HighQuality;
+
+            //draw a marker centered at the gis location
+            //alternative is to draw an image/icon
+            g.DrawLine(Pens.Red, pt.X, pt.Y - _markerWidth, pt.X, pt.Y + _markerWidth);
+            g.DrawLine(Pens.Red, pt.X - _markerWidth, pt.Y, pt.X + _markerWidth, pt.Y);
+            pt.Offset(-_markerWidth / 2, -_markerWidth / 2);
+            g.FillEllipse(Brushes.Blue, pt.X, pt.Y, _markerWidth, _markerWidth);
+            g.DrawEllipse(Pens.Red, pt.X, pt.Y, _markerWidth, _markerWidth);
+        }
+        private void ProcessGPSData()
+        {
+            //gpsDataList = this.ProcessGPSDataFile(Application.StartupPath + "\\gpsdata.txt");
+            //if (gpsDataList.Count > 0)
+            //{
+            var x = 23.77568D;
+            var y = 40.68224D;
+                //_currentMarkerPosition = new EGIS.ShapeFileLib.PointD(gpsDataList[0].Longitude, gpsDataList[0].Latitude);
+                _currentMarkerPosition = new EGIS.ShapeFileLib.PointD(x, y);
+                sfMapGIS.CentrePoint2D = _currentMarkerPosition;
+            //}
+            currentPacketIndex = 0;
+        }
+        //private List<GPSPacket> gpsDataList = new List<GPSPacket>();
+        private int currentPacketIndex = 0;
+
+        private void GPS_Load(object sender, EventArgs e)
+        {
+            try
+            {
+                ProcessGPSData();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+                throw;
+            }
+        }
+
+        //private void packetTimer_Tick(object sender, EventArgs e)
+        //{
+        //    if (currentPacketIndex < gpsDataList.Count)
+        //    {
+        //        _currentMarkerPosition = new EGIS
+        //            .ShapeFileLib
+        //            .PointD(gpsDataList[currentPacketIndex].Longitude, 
+        //            gpsDataList[currentPacketIndex].Latitude);
+
+        //        currentPacketIndex++;
+        //        //if (this.miCenterMarker.Checked)
+        //        //{
+        //            sfMapGIS.CentrePoint2D = _currentMarkerPosition;
+        //        //}
+        //        sfMapGIS.Refresh();
+        //    }
+        //}
     }
 }
