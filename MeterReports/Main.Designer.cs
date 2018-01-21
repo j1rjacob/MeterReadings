@@ -52,8 +52,6 @@
             this.treeViewMain = new System.Windows.Forms.TreeView();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.newToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.openToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.findToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.logoutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.fileManagementToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -74,6 +72,9 @@
             this.databaseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.backupToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.restoreToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.settingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.cityToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.dMZToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.viewHelpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -124,6 +125,7 @@
             this.chartToolStripMenuItem,
             this.reportsToolStripMenuItem,
             this.databaseToolStripMenuItem,
+            this.settingsToolStripMenuItem,
             this.helpToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
@@ -134,25 +136,11 @@
             // fileToolStripMenuItem
             // 
             this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.newToolStripMenuItem,
-            this.openToolStripMenuItem,
             this.findToolStripMenuItem,
             this.logoutToolStripMenuItem});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
             this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
             this.fileToolStripMenuItem.Text = "File";
-            // 
-            // newToolStripMenuItem
-            // 
-            this.newToolStripMenuItem.Name = "newToolStripMenuItem";
-            this.newToolStripMenuItem.Size = new System.Drawing.Size(112, 22);
-            this.newToolStripMenuItem.Text = "New";
-            // 
-            // openToolStripMenuItem
-            // 
-            this.openToolStripMenuItem.Name = "openToolStripMenuItem";
-            this.openToolStripMenuItem.Size = new System.Drawing.Size(112, 22);
-            this.openToolStripMenuItem.Text = "Open";
             // 
             // findToolStripMenuItem
             // 
@@ -305,6 +293,27 @@
             this.restoreToolStripMenuItem.Text = "Restore";
             this.restoreToolStripMenuItem.Click += new System.EventHandler(this.restoreToolStripMenuItem_Click);
             // 
+            // settingsToolStripMenuItem
+            // 
+            this.settingsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.cityToolStripMenuItem1,
+            this.dMZToolStripMenuItem1});
+            this.settingsToolStripMenuItem.Name = "settingsToolStripMenuItem";
+            this.settingsToolStripMenuItem.Size = new System.Drawing.Size(61, 20);
+            this.settingsToolStripMenuItem.Text = "Settings";
+            // 
+            // cityToolStripMenuItem1
+            // 
+            this.cityToolStripMenuItem1.Name = "cityToolStripMenuItem1";
+            this.cityToolStripMenuItem1.Size = new System.Drawing.Size(100, 22);
+            this.cityToolStripMenuItem1.Text = "City";
+            // 
+            // dMZToolStripMenuItem1
+            // 
+            this.dMZToolStripMenuItem1.Name = "dMZToolStripMenuItem1";
+            this.dMZToolStripMenuItem1.Size = new System.Drawing.Size(100, 22);
+            this.dMZToolStripMenuItem1.Text = "DMZ";
+            // 
             // helpToolStripMenuItem
             // 
             this.helpToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -335,7 +344,7 @@
             this.TreeViewMeters.Location = new System.Drawing.Point(168, 24);
             this.TreeViewMeters.Name = "TreeViewMeters";
             this.TreeViewMeters.SelectedImageIndex = 0;
-            this.TreeViewMeters.Size = new System.Drawing.Size(180, 442);
+            this.TreeViewMeters.Size = new System.Drawing.Size(200, 442);
             this.TreeViewMeters.TabIndex = 5;
             this.TreeViewMeters.DoubleClick += new System.EventHandler(this.TreeViewMeters_DoubleClick);
             // 
@@ -376,8 +385,6 @@
         private System.Windows.Forms.TreeView treeViewMain;
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem newToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem openToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem fileManagementToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem userToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem gatewayToolStripMenuItem;
@@ -403,5 +410,8 @@
         private System.Windows.Forms.ToolStripMenuItem aboutToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem findToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem billingToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem settingsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem cityToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem dMZToolStripMenuItem1;
     }
 }

@@ -148,7 +148,7 @@ namespace MeterReports
             if (openFileDialogImport.ShowDialog() == DialogResult.OK)
             {
                 var f = new Import(openFileDialogImport.FileNames);
-                ((Main)this.MdiParent).GetCities();
+                ((Main)this.MdiParent).SetNodes();
                 f.ShowDialog();
             }
         }

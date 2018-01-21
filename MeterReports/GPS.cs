@@ -19,8 +19,7 @@ namespace MeterReports
         private const int _markerWidth = 10;
         private List<GPSPacket> _gpsDataList = new List<GPSPacket>();
         GPSPacket _gpsPoint;
-        KSAMetersRenderSettings _rs;
-        
+        KSAMetersRenderSettings _rs;        
 
         public GPS()
         {
@@ -44,7 +43,7 @@ namespace MeterReports
             _GPSCommPort.DataReceived += new SerialDataReceivedEventHandler(GPSDataReceivedHandler);
         }
         private void LoadMaps()
-        {
+        {   //TODO: Insert of map every DMZ must be dynamic
             string currentDIR = Application.StartupPath;
             //string roadsshapefile = currentDIR + "\\Taif OSM\\Taif Roads.shp";
             string roadsshapefile = currentDIR + "\\Maps\\ksa.shp";
@@ -169,6 +168,7 @@ namespace MeterReports
             g.FillEllipse(Brushes.Blue, pt.X, pt.Y, _markerWidth, _markerWidth);
             g.DrawEllipse(Pens.Red, pt.X, pt.Y, _markerWidth, _markerWidth);
         }
+
         private void ProcessGPSData()
         {
             //gpsDataList = this.ProcessGPSDataFile(Application.StartupPath + "\\gpsdata.txt");
@@ -196,24 +196,6 @@ namespace MeterReports
                 MessageBox.Show(ex.ToString());
                 throw;
             }
-        }
-
-        //private void packetTimer_Tick(object sender, EventArgs e)
-        //{
-        //    if (currentPacketIndex < gpsDataList.Count)
-        //    {
-        //        _currentMarkerPosition = new EGIS
-        //            .ShapeFileLib
-        //            .PointD(gpsDataList[currentPacketIndex].Longitude, 
-        //            gpsDataList[currentPacketIndex].Latitude);
-
-        //        currentPacketIndex++;
-        //        //if (this.miCenterMarker.Checked)
-        //        //{
-        //            sfMapGIS.CentrePoint2D = _currentMarkerPosition;
-        //        //}
-        //        sfMapGIS.Refresh();
-        //    }
-        //}
+        }        
     }
 }

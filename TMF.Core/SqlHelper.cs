@@ -102,7 +102,7 @@ namespace TMF.Core
                 sqlDataAdapter.Fill(dataSet);
                 sqlCommand.Parameters.Clear();
             }
-            catch (Exception var_4_3F)
+            catch (Exception ex)
             {
                 sqlConnection.Close();
                 throw;

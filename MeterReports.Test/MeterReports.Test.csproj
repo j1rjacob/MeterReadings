@@ -67,6 +67,7 @@
     <Compile Include="MeterSize.Test.cs" />
     <Compile Include="MeterType.Test.cs" />
     <Compile Include="MeterPaging.cs" />
+    <Compile Include="Nodes.Test.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UserInfo.cs" />
   </ItemGroup>

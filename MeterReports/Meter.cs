@@ -290,7 +290,7 @@ namespace MeterReports
                     BindMeterWithDataGrid();
                     ResetControls();
 
-                    ((Main)this.MdiParent).GetCities();
+                    ((Main)this.MdiParent).SetNodes();
 
                 }
                 else

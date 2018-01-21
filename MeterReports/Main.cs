@@ -13,10 +13,13 @@ namespace MeterReports
         private readonly TMF.Reports.BLL.City _city;
         private readonly TMF.Reports.BLL.Gateway _gateway;
         private readonly TMF.Reports.BLL.Meter _meter;
+        private TMF.Reports.BLL.NodeDTO _node;
+        private List<TMF.Reports.Model.NodeDTO> _nodeList;
+
 
         public Main()
         {
-                
+            
         }
         public Main(TMF.Core.Model.UserInfo currentUser)
         {
@@ -26,7 +29,6 @@ namespace MeterReports
             _gateway = new TMF.Reports.BLL.Gateway();
             _meter = new TMF.Reports.BLL.Meter();
         }
-
         private bool OpenForms<T>()
         {
             bool result=false;
@@ -78,13 +80,12 @@ namespace MeterReports
                     break;
             }
         }
-
         private void Main_Load(object sender, EventArgs e)
         {
             logoutToolStripMenuItem.Text = $"Logout {_currentUser.Username}";
-            GetCities();
+            //TODO: Make this Async
+            SetNodes();
         }
-
         private void logoutToolStripMenuItem_Click(object sender, EventArgs e)
         {
             foreach (Form c in this.MdiChildren)
@@ -96,13 +97,11 @@ namespace MeterReports
             l.Show();
             this.Hide();
         }
-
         protected override void OnClosed(EventArgs e)
         {
             base.OnClosed(e);
             logoutToolStripMenuItem.PerformClick();
         }
-
         private void userToolStripMenuItem_Click(object sender, EventArgs e)
         {
             var user = new User(_currentUser);
@@ -112,7 +111,6 @@ namespace MeterReports
                 user.Show();
             }
         }
-
         private void gatewayToolStripMenuItem_Click(object sender, EventArgs e)
         {
             var gw = new Gateway(_currentUser);
@@ -122,7 +120,6 @@ namespace MeterReports
                 gw.Show();
             }
         }
-
         private void meterToolStripMenuItem_Click(object sender, EventArgs e)
         {
             var m = new Meter(_currentUser);
@@ -132,7 +129,6 @@ namespace MeterReports
                 m.Show();
             }
         }
-
         private void meterTypeToolStripMenuItem_Click(object sender, EventArgs e)
         {
             var mt = new MeterType(_currentUser);
@@ -187,17 +183,14 @@ namespace MeterReports
                 m.Show();
             }
         }
-
         private void treeViewMain_AfterSelect(object sender, TreeViewEventArgs e)
         {
 
         }
-
         private void editToolStripMenuItem_Click(object sender, EventArgs e)
         {
 
         }
-
         private void restoreToolStripMenuItem_Click(object sender, EventArgs e)
         {
             var r = new DbaseUtil(1);
@@ -207,7 +200,6 @@ namespace MeterReports
                 r.Show();
             }
         }
-
         private void backupToolStripMenuItem_Click(object sender, EventArgs e)
         {
             var b = new DbaseUtil(0);
@@ -217,7 +209,6 @@ namespace MeterReports
                 b.Show();
             }
         }
-
         private void waterConsumptionToolStripMenuItem_Click(object sender, EventArgs e)
         {
             var wc = new FormWaterConsumption();
@@ -237,73 +228,6 @@ namespace MeterReports
                 rmr.Show();
             }
         }
-        
-        public void GetCities()
-        {
-            ReturnInfo getCityList = _city.GetCityByDescription(new SmartDB(), "");
-            var city = (List<TMF.Reports.Model.City>)getCityList.BizObject;
-
-            ReturnInfo getGatewayList = _gateway.GetGatewayBySimCard(new SmartDB(), "");
-            List<TMF.Reports.Model.Gateway> gateway = (List<TMF.Reports.Model.Gateway>)getGatewayList.BizObject;
-
-            ReturnInfo getMeterList = _meter.GetMeterBySerialNumber(new SmartDB(), "");
-            List<TMF.Reports.Model.Meter> meter = (List<TMF.Reports.Model.Meter>)getMeterList.BizObject;
-
-            TreeViewMeters.Nodes.Clear();
-
-            foreach (var c in city)
-            {
-                var str = c.Description;
-                TreeViewMeters.Nodes.Add(str, str, 0, 0);
-            }
-
-            var uniqueMacs = meter.GroupBy(x => new { x.CityId, x.MacAddress } )
-                         .Select(g => g.First());
-            
-            foreach (var um in uniqueMacs)
-            {
-                string description = (from c in city
-                    where c.Id == um.CityId
-                    select c.Description).First();
-
-                var node = TreeViewMeters.Nodes.Find(description, true);
-
-                TreeViewMeters.Nodes[node[0].Text]
-                    .Nodes
-                    .Add(um.MacAddress, um.MacAddress, 1, 1);
-            }
-
-            foreach (var m in meter)
-            {
-                string description = (from c in city
-                                      where c.Id == m.CityId
-                                      select c.Description).First();
-
-
-                var node1 = TreeViewMeters.Nodes.Find(description, true);
-
-                string macAddress = (from n in meter
-                                     where n.SerialNumber == m.SerialNumber
-                                     select n.MacAddress).First();
-
-                var node2 = TreeViewMeters.Nodes.Find(macAddress, true);
-                
-                TreeViewMeters.Nodes[node1[0].Text]
-                    .Nodes[node2[0].Text]
-                    
-                    .Nodes.AddRange(
-                        new TreeNode[] { new TreeNode(m.SerialNumber, 2, 2, 
-                        new TreeNode[]
-                        {
-                            new TreeNode("Info",3,3),
-                            new TreeNode("Reading",3,3),
-                            new TreeNode("GPS", 3, 3)
-                        })
-                        });
-            }
-            TreeViewMeters.EndUpdate();
-        }
-
         private void TreeViewMeters_DoubleClick(object sender, EventArgs e)
         {
             TreeNode node = TreeViewMeters.SelectedNode;
@@ -345,6 +269,157 @@ namespace MeterReports
                 default:
                     break;
             }
+        }
+        //public void GetCities()
+        //{
+        //    ReturnInfo getCityList = _city.GetCityByDescription(new SmartDB(), "");
+        //    var city = (List<TMF.Reports.Model.City>)getCityList.BizObject;
+
+        //    ReturnInfo getGatewayList = _gateway.GetGatewayBySimCard(new SmartDB(), "");
+        //    List<TMF.Reports.Model.Gateway> gateway = (List<TMF.Reports.Model.Gateway>)getGatewayList.BizObject;
+
+        //    ReturnInfo getMeterList = _meter.GetMeterBySerialNumber(new SmartDB(), "");
+        //    List<TMF.Reports.Model.Meter> meter = (List<TMF.Reports.Model.Meter>)getMeterList.BizObject;
+
+        //    TreeViewMeters.Nodes.Clear();
+
+        //    foreach (var c in city)
+        //    {
+        //        var str = c.Description;
+        //        TreeViewMeters.Nodes.Add(str, str, 0, 0);
+        //    }
+
+        //    var uniqueMacs = meter.GroupBy(x => new { x.CityId, x.MacAddress } )
+        //                 .Select(g => g.First());
+            
+        //    foreach (var um in uniqueMacs)
+        //    {
+        //        string description = (from c in city
+        //            where c.Id == um.CityId
+        //            select c.Description).First();
+
+        //        var node = TreeViewMeters.Nodes.Find(description, true);
+
+        //        TreeViewMeters.Nodes[node[0].Text]
+        //            .Nodes
+        //            .Add(um.MacAddress, um.MacAddress, 1, 1);
+        //    }
+
+        //    foreach (var m in meter)
+        //    {
+        //        string description = (from c in city
+        //                              where c.Id == m.CityId
+        //                              select c.Description).First();
+
+
+        //        var node1 = TreeViewMeters.Nodes.Find(description, true);
+
+        //        string macAddress = (from n in meter
+        //                             where n.SerialNumber == m.SerialNumber
+        //                             select n.MacAddress).First();
+
+        //        var node2 = TreeViewMeters.Nodes.Find(macAddress, true);
+                
+        //        TreeViewMeters.Nodes[node1[0].Text]
+        //            .Nodes[node2[0].Text]
+                    
+        //            .Nodes.AddRange(
+        //                new TreeNode[] { new TreeNode(m.SerialNumber, 2, 2, 
+        //                new TreeNode[]
+        //                {
+        //                    new TreeNode("Info",3,3),
+        //                    new TreeNode("Reading",3,3),
+        //                    new TreeNode("GPS", 3, 3)
+        //                })
+        //                });
+        //    }
+        //    TreeViewMeters.EndUpdate();
+        //}
+
+        public void SetNodes()
+        {
+            TreeViewMeters.Nodes.Clear();
+            _node = new TMF.Reports.BLL.NodeDTO();
+            ReturnInfo node = _node.GetNodes(new SmartDB());
+            _nodeList = (List<TMF.Reports.Model.NodeDTO>)node.BizObject;
+
+            //Cities
+            var cities = _nodeList.Select(x => x.City).Distinct().ToList();
+            foreach (var city in cities)
+            {
+                var cityName = city;
+                TreeViewMeters.Nodes.Add(cityName, cityName, 0, 0);
+            }
+
+            //DMZ
+            var dmzs = _nodeList.GroupBy(x => new {x.City, x.DMZ})
+                                .Select(g => g.First())
+                                .Where(d => d.DMZ != ""); 
+
+            foreach (var dmz in dmzs)
+            {
+                var city = TreeViewMeters.Nodes.Find(dmz.City, true);
+
+                TreeViewMeters.Nodes[city[0].Text]
+                    .Nodes
+                    .Add(dmz.DMZ, dmz.DMZ, 1, 1);
+            }
+
+            //MacAddress
+            var macs = _nodeList.GroupBy(x => new { x.City, x.DMZ, x.MacAddress })
+                .Select(g => g.First())
+                .Where(m => m.MacAddress != "" && m.DMZ != "");
+
+            foreach (var mac in macs)
+            {
+                var nodeCity = TreeViewMeters.Nodes.Find(mac.City, true);
+                var nodeDMZ = TreeViewMeters.Nodes.Find(mac.DMZ, true);
+
+                TreeViewMeters.Nodes[nodeCity[0].Text]
+                    .Nodes[nodeDMZ[0].Text]
+                    .Nodes
+                    .Add(mac.MacAddress, mac.MacAddress, 2, 2);
+
+            }
+
+            //Meters
+            var meters = _nodeList.GroupBy(x => new { x.City, x.DMZ, x.MacAddress, x.SerialNumber })
+                .Select(g => g.First())
+                .Where(m => m.MacAddress != "" && m.DMZ != "" && m.SerialNumber != "");
+
+            foreach (var meter in meters)
+            {
+                var nodeCity = TreeViewMeters.Nodes.Find(meter.City, true);
+                var nodeDMZ = TreeViewMeters.Nodes.Find(meter.DMZ, true);
+                var nodeMac = TreeViewMeters.Nodes.Find(meter.MacAddress, true);
+
+                TreeViewMeters.Nodes[nodeCity[0].Text]
+                    .Nodes[nodeDMZ[0].Text]
+                    .Nodes[nodeMac[0].Text]
+                    .Nodes.AddRange(
+                        new TreeNode[] { new TreeNode(meter.SerialNumber, 2, 2,
+                            new TreeNode[]
+                            {
+                                new TreeNode("Info",3,3),
+                                new TreeNode("Reading",3,3),
+                                new TreeNode("GPS", 3, 3)
+                            })
+                        });
+
+            }
+            _nodeList.Clear();
+        }
+        private void AddDMZ()
+        {
+            
+        }
+        private void AddMacAddresses()
+        {
+
+        }
+        private void AddSerialNumber()
+        {
+
         }
     }
 }
