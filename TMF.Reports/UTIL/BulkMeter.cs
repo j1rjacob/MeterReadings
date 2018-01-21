@@ -19,8 +19,6 @@ namespace TMF.Reports.UTIL
         public static void Import(string[] ofdFilenames)
         {
             int count = 0;
-            //ReturnInfo getMeterList = _meter.GetMeterBySerialNumber(new SmartDB(), "");
-            //List<Model.Meter> meter = (List<Model.Meter>)getMeterList.BizObject;
 
             using (SqlConnection connection =
                 new SqlConnection(new SmartDB().Connection.ConnectionString))
@@ -57,6 +55,7 @@ namespace TMF.Reports.UTIL
                 s.ColumnMappings.Add("HCN", "HCN");
                 s.ColumnMappings.Add("InstallationDate", "InstallationDate");
                 s.ColumnMappings.Add("MaintenanceDate", "MaintenanceDate");
+                s.ColumnMappings.Add("MacAddress", "MacAddress");
                 s.ColumnMappings.Add("MeterTypeId", "MeterTypeId");
                 s.ColumnMappings.Add("MeterSizeId", "MeterSizeId");
                 s.ColumnMappings.Add("MeterProtocolId", "MeterProtocolId");

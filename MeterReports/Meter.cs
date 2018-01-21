@@ -20,6 +20,7 @@ namespace MeterReports
         private readonly TMF.Reports.BLL.MeterProtocol _meterProtocol;
         private readonly TMF.Reports.BLL.DMZ _dmz;
         private readonly TMF.Reports.BLL.City _city;
+        private readonly TMF.Reports.BLL.Gateway _gateway;
         private readonly TMF.Core.Model.UserInfo _currentUser;
         private bool _save;
         private string _meterSerialNumber;
@@ -33,6 +34,7 @@ namespace MeterReports
             _meterProtocol = new TMF.Reports.BLL.MeterProtocol();
             _dmz = new TMF.Reports.BLL.DMZ();
             _city = new TMF.Reports.BLL.City();
+            _gateway = new TMF.Reports.BLL.Gateway();
 
             _save = true;
             _meterSerialNumber = "";
@@ -50,6 +52,7 @@ namespace MeterReports
             TextBoxHCN.Enabled = true;
             DateTimePickerInstallationDate.Enabled = true;
             DateTimePickerMaintenanceDate.Enabled = true;
+            ComboBoxMeterGateway.Enabled = true;
             ComboBoxMeterType.Enabled = true;
             ComboBoxMeterSize.Enabled = true;
             ComboBoxMeterProtocol.Enabled = true;
@@ -65,6 +68,7 @@ namespace MeterReports
             TextBoxHCN.Text = "";
             DateTimePickerInstallationDate.Text = "";
             DateTimePickerMaintenanceDate.Text = "";
+            ComboBoxMeterGateway.Items.Clear();
             ComboBoxMeterType.Items.Clear();
             ComboBoxMeterSize.Items.Clear();
             ComboBoxMeterProtocol.Items.Clear();
@@ -85,6 +89,7 @@ namespace MeterReports
             TextBoxHCN.Enabled = true;
             DateTimePickerInstallationDate.Enabled = true;
             DateTimePickerMaintenanceDate.Enabled = true;
+            ComboBoxMeterGateway.Enabled = true;
             ComboBoxMeterType.Enabled = true;
             ComboBoxMeterSize.Enabled = true;
             ComboBoxMeterProtocol.Enabled = true;
@@ -175,6 +180,7 @@ namespace MeterReports
                 ComboBoxMeterProtocol.Text = DataGridViewMeter.CurrentRow.Cells[9].Value.ToString();
                 ComboBoxDMZ.Text = DataGridViewMeter.CurrentRow.Cells[10].Value.ToString();
                 ComboBoxCity.Text = DataGridViewMeter.CurrentRow.Cells[11].Value.ToString();
+                ComboBoxMeterGateway.Text = DataGridViewMeter.CurrentRow.Cells[12].Value.ToString();
                 ButtonEdit.Enabled = true;
                 ButtonDelete.Enabled = true;
             }
@@ -182,6 +188,10 @@ namespace MeterReports
             {
                 return;
             }
+        }
+        private void ComboBoxGateway_MouseClick(object sender, MouseEventArgs e)
+        {
+            GetGateway();
         }
         private void ComboBoxMeterType_MouseClick(object sender, MouseEventArgs e)
         {
@@ -227,6 +237,7 @@ namespace MeterReports
                     HCN = TextBoxHCN.Text,
                     InstallationDate = DateTime.Now,
                     MaintenanceDate = DateTime.Now,
+                    MacAddress = ComboBoxMeterGateway.Text,
                     MeterTypeId = ComboBoxMeterType.Text,
                     MeterSizeId = ComboBoxMeterSize.Text,
                     MeterProtocolId = ComboBoxMeterProtocol.Text,
@@ -270,6 +281,7 @@ namespace MeterReports
                     HCN = TextBoxHCN.Text,
                     InstallationDate = DateTime.Now,
                     MaintenanceDate = DateTime.Now,
+                    MacAddress = ComboBoxMeterGateway.Text,
                     MeterTypeId = ComboBoxMeterType.Text,
                     MeterSizeId = ComboBoxMeterSize.Text,
                     MeterProtocolId = ComboBoxMeterProtocol.Text,
@@ -301,6 +313,16 @@ namespace MeterReports
             else
             {
                 MessageBox.Show("No meter to edit or Contact Admin.");
+            }
+        }
+        private void GetGateway()
+        {
+            ComboBoxMeterGateway.Items.Clear();
+            ReturnInfo getGateway = _gateway.GetGatewayList(new SmartDB());
+            List<TMF.Reports.Model.Gateway> gateways = (List<TMF.Reports.Model.Gateway>)getGateway.BizObject;
+            foreach (var gateway in gateways)
+            {
+                ComboBoxMeterGateway.Items.Add(gateway.MacAddress);
             }
         }
         private void GetCities()
@@ -363,6 +385,7 @@ namespace MeterReports
             TextBoxHCN.Enabled = false;
             DateTimePickerInstallationDate.Enabled = false;
             DateTimePickerMaintenanceDate.Enabled = false;
+            ComboBoxMeterGateway.Enabled = false;
             ComboBoxMeterType.Enabled = false;
             ComboBoxMeterSize.Enabled = false;
             ComboBoxMeterProtocol.Enabled = false;
@@ -375,6 +398,7 @@ namespace MeterReports
             TextBoxHCN.Text = "";
             DateTimePickerInstallationDate.Text = "";
             DateTimePickerMaintenanceDate.Text = DateTime.Now.ToString();
+            ComboBoxMeterGateway.Items.Clear();
             ComboBoxMeterType.Items.Clear();
             ComboBoxMeterSize.Items.Clear();
             ComboBoxMeterProtocol.Items.Clear();
@@ -422,7 +446,7 @@ namespace MeterReports
             StringBuilder fileContents = new StringBuilder();
 
             fileContents.Append("SERIAL_NUMBER, X, Y, STATUS, HCN, INSTALLATION_DATE," +
-                                "MAINTENANCE_DATE, METER_TYPE_ID, METER_SIZE_ID," +
+                                "MAINTENANCE_DATE, MAC_ADDRESS, METER_TYPE_ID, METER_SIZE_ID," +
                                 "METER_PROTOCOL_ID, DMZ_ID, CITY_ID, " +
                                 "CREATED_BY, EDITED_BY, DOC_DATE, SHOW, LOCK_COUNT\r\n");
             
@@ -441,6 +465,7 @@ namespace MeterReports
                     line += m.HCN + ",";
                     line += m.InstallationDate + ",";
                     line += m.MaintenanceDate + ",";
+                    line += m.MacAddress + ",";
                     line += m.MeterTypeId + ",";
                     line += m.MeterSizeId + ",";
                     line += m.MeterProtocolId + ",";
@@ -509,6 +534,7 @@ namespace MeterReports
                                 "OR HCN LIKE @SerialNumber " +
                                 "OR InstallationDate LIKE @SerialNumber " +
                                 "OR MaintenanceDate LIKE @SerialNumber " +
+                                "OR MacAddress LIKE @SerialNumber " +
                                 "OR MeterTypeId LIKE (SELECT DISTINCT Id FROM MeterType Where Description LIKE @SerialNumber) " +
                                 "OR MeterSizeId LIKE (SELECT DISTINCT Id FROM MeterSize Where Description LIKE @SerialNumber) " +
                                 "OR MeterProtocolId LIKE (SELECT DISTINCT Id FROM MeterProtocol Where Description LIKE @SerialNumber) " +

@@ -218,7 +218,6 @@ namespace MeterReports
                 wc.Show();
             }
         }
-
         private void meterReadingsToolStripMenuItem_Click(object sender, EventArgs e)
         {
             var rmr = new ReportMeterReading();
@@ -335,7 +334,6 @@ namespace MeterReports
         //    }
         //    TreeViewMeters.EndUpdate();
         //}
-
         public void SetNodes()
         {
             TreeViewMeters.Nodes.Clear();
@@ -405,21 +403,8 @@ namespace MeterReports
                                 new TreeNode("GPS", 3, 3)
                             })
                         });
-
             }
             _nodeList.Clear();
-        }
-        private void AddDMZ()
-        {
-            
-        }
-        private void AddMacAddresses()
-        {
-
-        }
-        private void AddSerialNumber()
-        {
-
         }
     }
 }

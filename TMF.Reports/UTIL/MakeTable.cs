@@ -406,16 +406,17 @@ namespace TMF.Reports.UTIL
                             HCN = data[4],
                             InstallationDate = data[5],
                             MaintenanceDate = data[6],
-                            MeterTypeId = data[7],
-                            MeterSizeId = data[8],
-                            MeterProtocolId = data[9],
-                            DMZId = data[10],
-                            CityId = data[11],
-                            Createdby = data[12],
-                            Editedby = data[13],
-                            DocDate = data[14],
-                            Show = data[15],
-                            LockCount = data[16],
+                            MacAddress = data[7],
+                            MeterTypeId = data[8],
+                            MeterSizeId = data[9],
+                            MeterProtocolId = data[10],
+                            DMZId = data[11],
+                            CityId = data[12],
+                            Createdby = data[13],
+                            Editedby = data[14],
+                            DocDate = data[15],
+                            Show = data[16],
+                            LockCount = data[17],
                         };
                     DataRow row;
                     foreach (var q in query.ToList().Skip(1))
@@ -428,12 +429,12 @@ namespace TMF.Reports.UTIL
                         row["HCN"] = q.HCN;
                         row["InstallationDate"] = Convert.ToDateTime(q.InstallationDate); 
                         row["MaintenanceDate"] = Convert.ToDateTime(q.MaintenanceDate); 
+                        row["MacAddress"] = q.MacAddress;
                         row["MeterTypeId"] = q.MeterTypeId;
                         row["MeterSizeId"] = q.MeterSizeId;
                         row["MeterProtocolId"] = q.MeterProtocolId;
                         row["DMZId"] = Convert.ToInt32(q.DMZId);
                         row["CityId"] = q.CityId;
-                        row["MacAddress"] = "1C:BA:8C:98:F4:CB";
                         row["Createdby"] = q.Createdby;
                         row["Editedby"] = q.Editedby;
                         row["DocDate"] = Convert.ToDateTime(q.DocDate); 

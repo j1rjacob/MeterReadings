@@ -42,18 +42,6 @@
             this.ButtonNew = new System.Windows.Forms.Button();
             this.ButtonSearch = new System.Windows.Forms.Button();
             this.DataGridViewMeter = new System.Windows.Forms.DataGridView();
-            this.ColSerialNumber = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColX = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColY = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColStatus = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColHCN = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColInstallationDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColMaintenanceDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColMeterType = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColMeterSize = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColMeterProtocol = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColDMZ = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColCity = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.TextBoxX = new System.Windows.Forms.TextBox();
             this.TextBoxHCN = new System.Windows.Forms.TextBox();
             this.TextBoxY = new System.Windows.Forms.TextBox();
@@ -83,6 +71,21 @@
             this.ButtonNext = new System.Windows.Forms.Button();
             this.ButtonLast = new System.Windows.Forms.Button();
             this.lblStatus = new System.Windows.Forms.Label();
+            this.ComboBoxMeterGateway = new System.Windows.Forms.ComboBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.ColSerialNumber = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColX = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColY = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColStatus = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColHCN = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColInstallationDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColMaintenanceDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColMeterType = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColMeterSize = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColMeterProtocol = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColDMZ = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColCity = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColMacAddress = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.DataGridViewMeter)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProviderMeter)).BeginInit();
             this.SuspendLayout();
@@ -91,7 +94,7 @@
             // 
             this.DateTimePickerMaintenanceDate.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.DateTimePickerMaintenanceDate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.DateTimePickerMaintenanceDate.Location = new System.Drawing.Point(672, 80);
+            this.DateTimePickerMaintenanceDate.Location = new System.Drawing.Point(216, 272);
             this.DateTimePickerMaintenanceDate.Name = "DateTimePickerMaintenanceDate";
             this.DateTimePickerMaintenanceDate.Size = new System.Drawing.Size(216, 27);
             this.DateTimePickerMaintenanceDate.TabIndex = 6;
@@ -162,7 +165,7 @@
             this.ButtonDelete.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("ButtonDelete.BackgroundImage")));
             this.ButtonDelete.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.ButtonDelete.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ButtonDelete.Location = new System.Drawing.Point(461, 277);
+            this.ButtonDelete.Location = new System.Drawing.Point(461, 308);
             this.ButtonDelete.Name = "ButtonDelete";
             this.ButtonDelete.Size = new System.Drawing.Size(136, 56);
             this.ButtonDelete.TabIndex = 45;
@@ -177,7 +180,7 @@
             this.ButtonSave.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("ButtonSave.BackgroundImage")));
             this.ButtonSave.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.ButtonSave.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ButtonSave.Location = new System.Drawing.Point(317, 277);
+            this.ButtonSave.Location = new System.Drawing.Point(317, 308);
             this.ButtonSave.Name = "ButtonSave";
             this.ButtonSave.Size = new System.Drawing.Size(136, 56);
             this.ButtonSave.TabIndex = 46;
@@ -192,7 +195,7 @@
             this.ButtonEdit.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("ButtonEdit.BackgroundImage")));
             this.ButtonEdit.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.ButtonEdit.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ButtonEdit.Location = new System.Drawing.Point(173, 277);
+            this.ButtonEdit.Location = new System.Drawing.Point(173, 308);
             this.ButtonEdit.Name = "ButtonEdit";
             this.ButtonEdit.Size = new System.Drawing.Size(136, 56);
             this.ButtonEdit.TabIndex = 47;
@@ -207,7 +210,7 @@
             this.ButtonNew.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("ButtonNew.BackgroundImage")));
             this.ButtonNew.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.ButtonNew.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ButtonNew.Location = new System.Drawing.Point(29, 277);
+            this.ButtonNew.Location = new System.Drawing.Point(29, 308);
             this.ButtonNew.Name = "ButtonNew";
             this.ButtonNew.Size = new System.Drawing.Size(136, 56);
             this.ButtonNew.TabIndex = 48;
@@ -248,98 +251,15 @@
             this.ColMeterSize,
             this.ColMeterProtocol,
             this.ColDMZ,
-            this.ColCity});
-            this.DataGridViewMeter.Location = new System.Drawing.Point(16, 372);
+            this.ColCity,
+            this.ColMacAddress});
+            this.DataGridViewMeter.Location = new System.Drawing.Point(16, 403);
             this.DataGridViewMeter.Name = "DataGridViewMeter";
             this.DataGridViewMeter.ReadOnly = true;
             this.DataGridViewMeter.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.DataGridViewMeter.Size = new System.Drawing.Size(872, 150);
             this.DataGridViewMeter.TabIndex = 44;
             this.DataGridViewMeter.SelectionChanged += new System.EventHandler(this.DataGridViewMeter_SelectionChanged);
-            // 
-            // ColSerialNumber
-            // 
-            this.ColSerialNumber.DataPropertyName = "SerialNumber";
-            this.ColSerialNumber.HeaderText = "SerialNumber";
-            this.ColSerialNumber.Name = "ColSerialNumber";
-            this.ColSerialNumber.ReadOnly = true;
-            // 
-            // ColX
-            // 
-            this.ColX.DataPropertyName = "X";
-            this.ColX.HeaderText = "X";
-            this.ColX.Name = "ColX";
-            this.ColX.ReadOnly = true;
-            // 
-            // ColY
-            // 
-            this.ColY.DataPropertyName = "Y";
-            this.ColY.HeaderText = "Y";
-            this.ColY.Name = "ColY";
-            this.ColY.ReadOnly = true;
-            // 
-            // ColStatus
-            // 
-            this.ColStatus.DataPropertyName = "Status";
-            this.ColStatus.HeaderText = "Status";
-            this.ColStatus.Name = "ColStatus";
-            this.ColStatus.ReadOnly = true;
-            // 
-            // ColHCN
-            // 
-            this.ColHCN.DataPropertyName = "HCN";
-            this.ColHCN.HeaderText = "HCN";
-            this.ColHCN.Name = "ColHCN";
-            this.ColHCN.ReadOnly = true;
-            // 
-            // ColInstallationDate
-            // 
-            this.ColInstallationDate.DataPropertyName = "InstallationDate";
-            this.ColInstallationDate.HeaderText = "InstallationDate";
-            this.ColInstallationDate.Name = "ColInstallationDate";
-            this.ColInstallationDate.ReadOnly = true;
-            // 
-            // ColMaintenanceDate
-            // 
-            this.ColMaintenanceDate.DataPropertyName = "MaintenanceDate";
-            this.ColMaintenanceDate.HeaderText = "MaintenanceDate";
-            this.ColMaintenanceDate.Name = "ColMaintenanceDate";
-            this.ColMaintenanceDate.ReadOnly = true;
-            // 
-            // ColMeterType
-            // 
-            this.ColMeterType.DataPropertyName = "MeterTypeId";
-            this.ColMeterType.HeaderText = "MeterType";
-            this.ColMeterType.Name = "ColMeterType";
-            this.ColMeterType.ReadOnly = true;
-            // 
-            // ColMeterSize
-            // 
-            this.ColMeterSize.DataPropertyName = "MeterSizeId";
-            this.ColMeterSize.HeaderText = "MeterSize";
-            this.ColMeterSize.Name = "ColMeterSize";
-            this.ColMeterSize.ReadOnly = true;
-            // 
-            // ColMeterProtocol
-            // 
-            this.ColMeterProtocol.DataPropertyName = "MeterProtocolId";
-            this.ColMeterProtocol.HeaderText = "MeterProtocol";
-            this.ColMeterProtocol.Name = "ColMeterProtocol";
-            this.ColMeterProtocol.ReadOnly = true;
-            // 
-            // ColDMZ
-            // 
-            this.ColDMZ.DataPropertyName = "DMZId";
-            this.ColDMZ.HeaderText = "DMZ";
-            this.ColDMZ.Name = "ColDMZ";
-            this.ColDMZ.ReadOnly = true;
-            // 
-            // ColCity
-            // 
-            this.ColCity.DataPropertyName = "CityId";
-            this.ColCity.HeaderText = "City";
-            this.ColCity.Name = "ColCity";
-            this.ColCity.ReadOnly = true;
             // 
             // TextBoxX
             // 
@@ -372,7 +292,7 @@
             // 
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.Location = new System.Drawing.Point(472, 83);
+            this.label9.Location = new System.Drawing.Point(16, 275);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(194, 22);
             this.label9.TabIndex = 36;
@@ -539,7 +459,7 @@
             this.ButtonImport.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("ButtonImport.BackgroundImage")));
             this.ButtonImport.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.ButtonImport.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ButtonImport.Location = new System.Drawing.Point(749, 278);
+            this.ButtonImport.Location = new System.Drawing.Point(749, 309);
             this.ButtonImport.Name = "ButtonImport";
             this.ButtonImport.Size = new System.Drawing.Size(136, 56);
             this.ButtonImport.TabIndex = 57;
@@ -554,7 +474,7 @@
             this.ButtonExport.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("ButtonExport.BackgroundImage")));
             this.ButtonExport.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.ButtonExport.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ButtonExport.Location = new System.Drawing.Point(605, 278);
+            this.ButtonExport.Location = new System.Drawing.Point(605, 309);
             this.ButtonExport.Name = "ButtonExport";
             this.ButtonExport.Size = new System.Drawing.Size(136, 56);
             this.ButtonExport.TabIndex = 58;
@@ -584,7 +504,7 @@
             // 
             this.ButtonFirst.AutoSize = true;
             this.ButtonFirst.Image = ((System.Drawing.Image)(resources.GetObject("ButtonFirst.Image")));
-            this.ButtonFirst.Location = new System.Drawing.Point(20, 337);
+            this.ButtonFirst.Location = new System.Drawing.Point(20, 368);
             this.ButtonFirst.Name = "ButtonFirst";
             this.ButtonFirst.Size = new System.Drawing.Size(30, 30);
             this.ButtonFirst.TabIndex = 91;
@@ -595,7 +515,7 @@
             // 
             this.ButtonPrevious.AutoSize = true;
             this.ButtonPrevious.Image = ((System.Drawing.Image)(resources.GetObject("ButtonPrevious.Image")));
-            this.ButtonPrevious.Location = new System.Drawing.Point(52, 337);
+            this.ButtonPrevious.Location = new System.Drawing.Point(52, 368);
             this.ButtonPrevious.Name = "ButtonPrevious";
             this.ButtonPrevious.Size = new System.Drawing.Size(30, 30);
             this.ButtonPrevious.TabIndex = 92;
@@ -606,7 +526,7 @@
             // 
             this.ButtonNext.AutoSize = true;
             this.ButtonNext.Image = ((System.Drawing.Image)(resources.GetObject("ButtonNext.Image")));
-            this.ButtonNext.Location = new System.Drawing.Point(244, 335);
+            this.ButtonNext.Location = new System.Drawing.Point(244, 366);
             this.ButtonNext.Name = "ButtonNext";
             this.ButtonNext.Size = new System.Drawing.Size(30, 30);
             this.ButtonNext.TabIndex = 93;
@@ -617,7 +537,7 @@
             // 
             this.ButtonLast.AutoSize = true;
             this.ButtonLast.Image = global::MeterReports.Properties.Resources.last;
-            this.ButtonLast.Location = new System.Drawing.Point(276, 335);
+            this.ButtonLast.Location = new System.Drawing.Point(276, 366);
             this.ButtonLast.Name = "ButtonLast";
             this.ButtonLast.Size = new System.Drawing.Size(30, 30);
             this.ButtonLast.TabIndex = 94;
@@ -629,18 +549,133 @@
             this.lblStatus.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.lblStatus.Enabled = false;
             this.lblStatus.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.lblStatus.Location = new System.Drawing.Point(84, 341);
+            this.lblStatus.Location = new System.Drawing.Point(84, 372);
             this.lblStatus.Name = "lblStatus";
             this.lblStatus.Size = new System.Drawing.Size(152, 20);
             this.lblStatus.TabIndex = 90;
             this.lblStatus.Text = "0 / 0";
             this.lblStatus.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
+            // ComboBoxMeterGateway
+            // 
+            this.ComboBoxMeterGateway.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ComboBoxMeterGateway.FormattingEnabled = true;
+            this.ComboBoxMeterGateway.Items.AddRange(new object[] {
+            "ACTIVE",
+            "NOT ACTIVE"});
+            this.ComboBoxMeterGateway.Location = new System.Drawing.Point(672, 80);
+            this.ComboBoxMeterGateway.Name = "ComboBoxMeterGateway";
+            this.ComboBoxMeterGateway.Size = new System.Drawing.Size(216, 28);
+            this.ComboBoxMeterGateway.TabIndex = 99;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.Location = new System.Drawing.Point(564, 83);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(101, 22);
+            this.label5.TabIndex = 98;
+            this.label5.Text = "GATEWAY";
+            // 
+            // ColSerialNumber
+            // 
+            this.ColSerialNumber.DataPropertyName = "SerialNumber";
+            this.ColSerialNumber.HeaderText = "SerialNumber";
+            this.ColSerialNumber.Name = "ColSerialNumber";
+            this.ColSerialNumber.ReadOnly = true;
+            // 
+            // ColX
+            // 
+            this.ColX.DataPropertyName = "X";
+            this.ColX.HeaderText = "X";
+            this.ColX.Name = "ColX";
+            this.ColX.ReadOnly = true;
+            // 
+            // ColY
+            // 
+            this.ColY.DataPropertyName = "Y";
+            this.ColY.HeaderText = "Y";
+            this.ColY.Name = "ColY";
+            this.ColY.ReadOnly = true;
+            // 
+            // ColStatus
+            // 
+            this.ColStatus.DataPropertyName = "Status";
+            this.ColStatus.HeaderText = "Status";
+            this.ColStatus.Name = "ColStatus";
+            this.ColStatus.ReadOnly = true;
+            // 
+            // ColHCN
+            // 
+            this.ColHCN.DataPropertyName = "HCN";
+            this.ColHCN.HeaderText = "HCN";
+            this.ColHCN.Name = "ColHCN";
+            this.ColHCN.ReadOnly = true;
+            // 
+            // ColInstallationDate
+            // 
+            this.ColInstallationDate.DataPropertyName = "InstallationDate";
+            this.ColInstallationDate.HeaderText = "InstallationDate";
+            this.ColInstallationDate.Name = "ColInstallationDate";
+            this.ColInstallationDate.ReadOnly = true;
+            // 
+            // ColMaintenanceDate
+            // 
+            this.ColMaintenanceDate.DataPropertyName = "MaintenanceDate";
+            this.ColMaintenanceDate.HeaderText = "MaintenanceDate";
+            this.ColMaintenanceDate.Name = "ColMaintenanceDate";
+            this.ColMaintenanceDate.ReadOnly = true;
+            // 
+            // ColMeterType
+            // 
+            this.ColMeterType.DataPropertyName = "MeterTypeId";
+            this.ColMeterType.HeaderText = "MeterType";
+            this.ColMeterType.Name = "ColMeterType";
+            this.ColMeterType.ReadOnly = true;
+            // 
+            // ColMeterSize
+            // 
+            this.ColMeterSize.DataPropertyName = "MeterSizeId";
+            this.ColMeterSize.HeaderText = "MeterSize";
+            this.ColMeterSize.Name = "ColMeterSize";
+            this.ColMeterSize.ReadOnly = true;
+            // 
+            // ColMeterProtocol
+            // 
+            this.ColMeterProtocol.DataPropertyName = "MeterProtocolId";
+            this.ColMeterProtocol.HeaderText = "MeterProtocol";
+            this.ColMeterProtocol.Name = "ColMeterProtocol";
+            this.ColMeterProtocol.ReadOnly = true;
+            // 
+            // ColDMZ
+            // 
+            this.ColDMZ.DataPropertyName = "DMZId";
+            this.ColDMZ.HeaderText = "DMZ";
+            this.ColDMZ.Name = "ColDMZ";
+            this.ColDMZ.ReadOnly = true;
+            // 
+            // ColCity
+            // 
+            this.ColCity.DataPropertyName = "CityId";
+            this.ColCity.HeaderText = "City";
+            this.ColCity.Name = "ColCity";
+            this.ColCity.ReadOnly = true;
+            // 
+            // ColMacAddress
+            // 
+            this.ColMacAddress.DataPropertyName = "MacAddress";
+            this.ColMacAddress.HeaderText = "MacAddress";
+            this.ColMacAddress.Name = "ColMacAddress";
+            this.ColMacAddress.ReadOnly = true;
+            // 
             // Meter
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(907, 532);
+            this.ClientSize = new System.Drawing.Size(907, 559);
+            this.Controls.Add(this.ComboBoxMeterGateway);
+            this.Controls.Add(this.label5);
             this.Controls.Add(this.ButtonFirst);
             this.Controls.Add(this.ButtonPrevious);
             this.Controls.Add(this.ButtonNext);
@@ -733,6 +768,11 @@
         private System.Windows.Forms.Button ButtonNext;
         private System.Windows.Forms.Button ButtonLast;
         private System.Windows.Forms.Label lblStatus;
+        public System.Windows.Forms.Button ButtonSearch;
+        public System.Windows.Forms.TextBox TextBoxSearch;
+        private System.Windows.Forms.TextBox TextBoxSerialNumber;
+        private System.Windows.Forms.ComboBox ComboBoxMeterGateway;
+        private System.Windows.Forms.Label label5;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColSerialNumber;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColX;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColY;
@@ -745,8 +785,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn ColMeterProtocol;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColDMZ;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColCity;
-        public System.Windows.Forms.Button ButtonSearch;
-        public System.Windows.Forms.TextBox TextBoxSearch;
-        private System.Windows.Forms.TextBox TextBoxSerialNumber;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColMacAddress;
     }
 }
