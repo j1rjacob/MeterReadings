@@ -135,8 +135,8 @@ namespace MeterReports
         }
         private void sfMapGIS_Paint(object sender, PaintEventArgs e)
         {
-            //DrawMarker(e.Graphics, _marker.X, _marker.Y);
-            DrawCurrentMarker(e.Graphics, _currentMarkerPosition.X, _currentMarkerPosition.Y);
+            DrawMarker(e.Graphics, _marker.X, _marker.Y);
+            //DrawCurrentMarker(e.Graphics, _currentMarkerPosition.X, _currentMarkerPosition.Y);
         }
         private void DrawMarker(Graphics g, double locX, double locY)
         {

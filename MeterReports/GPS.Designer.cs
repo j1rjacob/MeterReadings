@@ -56,6 +56,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(897, 506);
             this.Controls.Add(this.sfMapGIS);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "GPS";
             this.Text = "GPS";
             this.Load += new System.EventHandler(this.GPS_Load);

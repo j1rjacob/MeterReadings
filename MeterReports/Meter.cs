@@ -588,11 +588,11 @@ namespace MeterReports
                 cmd.Dispose();
                 conn.Close();
             }
-
         }
         public void GoFirst()
         {
             _mintCurrentPage = 1;
+            TextBoxSerialNumber.Clear();
             LoadPage();
         }
         public void GoPrevious()
@@ -601,7 +601,7 @@ namespace MeterReports
                 _mintCurrentPage = 1;
             else
                 _mintCurrentPage--;
-
+            TextBoxSerialNumber.Clear();
             LoadPage();
         }
         public void GoNext()
@@ -610,12 +610,13 @@ namespace MeterReports
                 _mintCurrentPage = _mintPageCount;
             else
                 _mintCurrentPage++;
-            
+            TextBoxSerialNumber.Clear();
             LoadPage();
         }
         public void GoLast()
         {
             _mintCurrentPage = _mintPageCount;
+            TextBoxSerialNumber.Clear();
             LoadPage();
         }
         private void ButtonFirst_Click(object sender, EventArgs e)

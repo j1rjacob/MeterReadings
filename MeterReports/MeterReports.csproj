@@ -109,6 +109,12 @@
     <Compile Include="DMZ.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FindAll.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FindAll.Designer.cs">
+      <DependentUpon>FindAll.cs</DependentUpon>
+    </Compile>
     <Compile Include="Gateway.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -198,6 +204,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="DMZ.resx">
       <DependentUpon>DMZ.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FindAll.resx">
+      <DependentUpon>FindAll.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Gateway.resx">
       <DependentUpon>Gateway.cs</DependentUpon>

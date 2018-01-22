@@ -15,7 +15,7 @@ namespace MeterReports
         private readonly TMF.Reports.BLL.Meter _meter;
         private TMF.Reports.BLL.NodeDTO _node;
         private List<TMF.Reports.Model.NodeDTO> _nodeList;
-
+        private readonly UserInfoBLL _userInfo;
 
         public Main()
         {
@@ -28,6 +28,7 @@ namespace MeterReports
             _city = new TMF.Reports.BLL.City();
             _gateway = new TMF.Reports.BLL.Gateway();
             _meter = new TMF.Reports.BLL.Meter();
+            _userInfo = new UserInfoBLL();
         }
         private bool OpenForms<T>()
         {
@@ -88,14 +89,23 @@ namespace MeterReports
         }
         private void logoutToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            foreach (Form c in this.MdiChildren)
-            {
-                c.Close();
-            }
+            var updateUser = _userInfo.UpdateLoginStatus(new SmartDB(), _currentUser.Username, false);
 
-            var l = new Login(_currentUser.Username);
-            l.Show();
-            this.Hide();
+            if (updateUser.Code == ErrorEnum.NoError)
+            {
+                foreach (Form c in this.MdiChildren)
+                {
+                    c.Close();
+                }
+
+                var l = new Login(_currentUser.Username);
+                l.Show();
+                this.Hide();
+            }
+            else
+            {
+                return;
+            }
         }
         protected override void OnClosed(EventArgs e)
         {

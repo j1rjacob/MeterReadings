@@ -13,9 +13,14 @@ namespace MeterReports
         private void LoadReport()
         {
             ReportDocument cryRpt = new ReportDocument();
-            cryRpt.Load(Application.StartupPath + "\\CrystalReport1.rpt");
+            cryRpt.Load(Application.StartupPath + "\\Reports\\TopMeters.rpt");
             CrystalReportViewer.ReportSource = cryRpt;
             CrystalReportViewer.Refresh();
+        }
+
+        private void ReportMeterReading_Load(object sender, System.EventArgs e)
+        {
+            LoadReport();
         }
     }
 }
