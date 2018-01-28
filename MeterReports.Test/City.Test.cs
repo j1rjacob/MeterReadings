@@ -1,9 +1,11 @@
 ﻿using NUnit.Framework;
 using System;
+using System.Data.Entity.Core.EntityClient;
 using System.Linq;
 using TMF.Core;
 using TMF.Core.Model;
 using TMF.DataAccess;
+using TMF.Reports.UTIL;
 
 namespace MeterReports.Test
 {
@@ -30,9 +32,22 @@ namespace MeterReports.Test
             //    LockCount = 0
             //};
             bool flag = false;
+            EntityConnectionStringBuilder entityBuilder = new EntityConnectionStringBuilder();
+
+            var connectionSettings = new SmartDB().Connection;
+
+            // Set the provider name. 
+            entityBuilder.Provider = "System.Data.SqlClient";
+
+            // Set the provider-specific connection string. 
+            entityBuilder.ProviderConnectionString = connectionSettings.ConnectionString;
+
+            // Set the Metadata location. 
+            entityBuilder.Metadata = "res://*/TMFModel.csdl|res://*/TMFModel.ssdl|res://*/TMFModel.msl";
+
             //try
             //{
-                using (var context = new TMF_Meter_ReadingsEntities("TMF_Meter_ReadingsEntities"))
+            using (var context = new TMF_Meter_ReadingsEntities(GenUtil.EFConnectionString()))
                 {
                     var city = new TMF.DataAccess.City()
                     {

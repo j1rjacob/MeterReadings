@@ -7,6 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+
 namespace TMF.DataAccess
 {
     using System.Data.Entity;
@@ -29,7 +30,7 @@ namespace TMF.DataAccess
         {
             throw new UnintentionalCodeFirstException();
         }
-    
+
         public virtual DbSet<City> Cities { get; set; }
         public virtual DbSet<DMZ> DMZs { get; set; }
         public virtual DbSet<Gateway> Gateways { get; set; }
