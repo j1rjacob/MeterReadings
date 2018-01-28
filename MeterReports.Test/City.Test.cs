@@ -1,6 +1,5 @@
 ﻿using NUnit.Framework;
 using System;
-using System.Data.Entity.Core.EntityClient;
 using System.Linq;
 using TMF.Core;
 using TMF.Core.Model;
@@ -13,41 +12,21 @@ namespace MeterReports.Test
     public class City
     {
         private readonly TMF.Reports.BLL.City _city;
+        private readonly TMF_Meter_ReadingsEntities _context;
+
         public City()
         {
             _city = new TMF.Reports.BLL.City();
+            _context = new TMF_Meter_ReadingsEntities(GenUtil.EFConnectionString());
         }
         [Test]
         public void City_INS_True()
         {
-            //Arrange
-            //TMF.Reports.Model.City city = new TMF.Reports.Model.City()
-            //{
-            //    Id = Guid.NewGuid().ToString("N"),
-            //    Description = "Al Damman",
-            //    TotalNumberOfMeters = 50,
-            //    CreatedBy = "646f18f9-6425-4769-aa79-16ecdb7cf816",
-            //    DocDate = DateTime.Now,
-            //    Show = 1,
-            //    LockCount = 0
-            //};
             bool flag = false;
-            EntityConnectionStringBuilder entityBuilder = new EntityConnectionStringBuilder();
 
-            var connectionSettings = new SmartDB().Connection;
-
-            // Set the provider name. 
-            entityBuilder.Provider = "System.Data.SqlClient";
-
-            // Set the provider-specific connection string. 
-            entityBuilder.ProviderConnectionString = connectionSettings.ConnectionString;
-
-            // Set the Metadata location. 
-            entityBuilder.Metadata = "res://*/TMFModel.csdl|res://*/TMFModel.ssdl|res://*/TMFModel.msl";
-
-            //try
-            //{
-            using (var context = new TMF_Meter_ReadingsEntities(GenUtil.EFConnectionString()))
+            try
+            {
+                using (_context)
                 {
                     var city = new TMF.DataAccess.City()
                     {
@@ -60,26 +39,15 @@ namespace MeterReports.Test
                         LockCount = 0
                     };
 
-                    context.Cities.Add(city);
-                    context.SaveChanges();
+                    _context.Cities.Add(city);
+                    _context.SaveChanges();
                     flag = true;
-                    //student.StudentName = "Edit student using SP";
-                    ////will execute sp_UpdateStudent
-                    //context.SaveChanges();
-
-                    //context.Students.Remove(student);
-                    ////will execute sp_DeleteStudentInfo 
-                    //context.SaveChanges();
                 }
-            //}
-            //catch (Exception)
-            //{
-            //    flag = false;
-            //}
-
-            //Act
-            //var createCity = _city.Create(new SmartDB(), ref city);
-            //bool flag = createCity.Code == ErrorEnum.NoError;
+            }
+            catch (Exception)
+            {
+                flag = false;
+            }
 
             //Assert
             Assert.IsTrue(flag);
@@ -141,20 +109,13 @@ namespace MeterReports.Test
         [Test]
         public void City_LST_Equal()
         {
-            //Arrange
-            //Act
-            //ReturnInfo city = _city.GetCityList(new SmartDB());
-            //bool flag = city.Code == ErrorEnum.NoError;
-
-            //Assert
-            //Assert.IsTrue(flag);
             int totCities = 0;
-            using (var context = new TMF_Meter_ReadingsEntities())
+            using (_context)
             {
-                var query = context.Cities.ToList();
+                var query = _context.Cities.ToList();
                 totCities = query.Count;
             }
-            Assert.AreEqual(6, totCities);
+            Assert.AreEqual(5, totCities);
         }
     }
 }
