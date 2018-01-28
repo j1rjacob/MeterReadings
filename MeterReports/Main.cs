@@ -348,7 +348,7 @@ namespace MeterReports
         {
             TreeViewMeters.Nodes.Clear();
             _node = new TMF.Reports.BLL.NodeDTO();
-            ReturnInfo node = _node.GetNodes(new SmartDB());
+            ReturnInfo node = _node.GetNodes(new SmartDB(), "");
             _nodeList = (List<TMF.Reports.Model.NodeDTO>)node.BizObject;
 
             //Cities

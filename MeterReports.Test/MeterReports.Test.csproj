@@ -76,6 +76,10 @@
       <Project>{c4aa963a-a0f5-412a-a5b1-5387cd565e6b}</Project>
       <Name>TMF.Core</Name>
     </ProjectReference>
+    <ProjectReference Include="..\TMF.DataAccess\TMF.DataAccess.csproj">
+      <Project>{3229f7ca-8a69-47a0-9325-dc879e47e537}</Project>
+      <Name>TMF.DataAccess</Name>
+    </ProjectReference>
     <ProjectReference Include="..\TMF.Reports\TMF.Reports.csproj">
       <Project>{ced8f3af-c81d-4006-b45d-0190874813bc}</Project>
       <Name>TMF.Reports</Name>
@@ -84,6 +88,9 @@
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

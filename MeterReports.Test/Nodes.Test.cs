@@ -19,7 +19,7 @@ namespace MeterReports.Test
         {
             //Arrange
             //Act
-            ReturnInfo node = _node.GetNodes(new SmartDB());
+            ReturnInfo node = _node.GetNodes(new SmartDB(), "");
             bool flag = node.Code == ErrorEnum.NoError;
             List<TMF.Reports.Model.NodeDTO> _nodeList = (List<TMF.Reports.Model.NodeDTO>)node.BizObject;
             //node.

@@ -2,6 +2,7 @@
 using System;
 using TMF.Core;
 using TMF.Core.Model;
+using TMF.DataAccess;
 
 namespace MeterReports.Test
 {
@@ -17,20 +18,54 @@ namespace MeterReports.Test
         public void City_INS_True()
         {
             //Arrange
-            TMF.Reports.Model.City city = new TMF.Reports.Model.City()
-            {
-                Id = Guid.NewGuid().ToString("N"),
-                Description = "Al Damman",
-                TotalNumberOfMeters = 50,
-                CreatedBy = "646f18f9-6425-4769-aa79-16ecdb7cf816",
-                DocDate = DateTime.Now,
-                Show = 1,
-                LockCount = 0
-            };
+            //TMF.Reports.Model.City city = new TMF.Reports.Model.City()
+            //{
+            //    Id = Guid.NewGuid().ToString("N"),
+            //    Description = "Al Damman",
+            //    TotalNumberOfMeters = 50,
+            //    CreatedBy = "646f18f9-6425-4769-aa79-16ecdb7cf816",
+            //    DocDate = DateTime.Now,
+            //    Show = 1,
+            //    LockCount = 0
+            //};
+            bool flag = false;
+            //try
+            //{
+                using (var context = new TMF_Meter_ReadingsEntities())
+                {
+                    var city = new TMF.DataAccess.City()
+                    {
+                        Id = Guid.NewGuid().ToString("N"),
+                        Description = "MEDINAH",
+                        TotalNumberOfMeters = 0,
+                        Createdby = "646f18f9-6425-4769-aa79-16ecdb7cf816",
+                        DocDate = DateTime.Now,
+                        Show = 1,
+                        LockCount = 0
+                    };
+
+                    context.Cities.Add(city);
+                    context.SaveChanges();
+                    flag = true;
+                    //student.StudentName = "Edit student using SP";
+                    ////will execute sp_UpdateStudent
+                    //context.SaveChanges();
+
+                    //context.Students.Remove(student);
+                    ////will execute sp_DeleteStudentInfo 
+                    //context.SaveChanges();
+                }
+            //}
+            //catch (Exception e)
+            //{
+            //    flag = false;
+            //    //Console.WriteLine(e);
+            //    //throw;
+            //}
 
             //Act
-            var createCity = _city.Create(new SmartDB(), ref city);
-            bool flag = createCity.Code == ErrorEnum.NoError;
+            //var createCity = _city.Create(new SmartDB(), ref city);
+            //bool flag = createCity.Code == ErrorEnum.NoError;
             
             //Assert
             Assert.IsTrue(flag);

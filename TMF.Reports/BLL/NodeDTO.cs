@@ -11,9 +11,9 @@ namespace TMF.Reports.BLL
         {
             return new ReturnInfo(ErrorEnum.NoError, "");
         }
-        public ReturnInfo GetNodes(SmartDB dbInstance)
+        public ReturnInfo GetNodes(SmartDB dbInstance, string query)
         {
-            IInfo records = _dal.GetRecordsByDescription(dbInstance,"");
+            IInfo records = _dal.GetRecordsByDescription(dbInstance, query);
             return new ReturnInfo
             {
                 BizObject = ((records.Code == ErrorEnum.NoError) ? records.BizObject : null),

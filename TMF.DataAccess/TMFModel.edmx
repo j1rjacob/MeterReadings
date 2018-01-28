@@ -1,0 +1,686 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="TMF_Meter_ReadingsModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="City">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="nvarchar" MaxLength="40" Nullable="false" />
+          <Property Name="Description" Type="nvarchar" MaxLength="256" />
+          <Property Name="TotalNumberOfMeters" Type="int" />
+          <Property Name="Createdby" Type="nvarchar" MaxLength="128" />
+          <Property Name="Editedby" Type="nvarchar" MaxLength="128" />
+          <Property Name="DocDate" Type="datetime" />
+          <Property Name="Show" Type="int" />
+          <Property Name="LockCount" Type="int" />
+        </EntityType>
+        <EntityType Name="DMZ">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Description" Type="nvarchar" MaxLength="256" />
+          <Property Name="TotalNumberOfMeters" Type="int" />
+          <Property Name="CityId" Type="nvarchar" MaxLength="40" />
+          <Property Name="Createdby" Type="nvarchar" MaxLength="128" />
+          <Property Name="Editedby" Type="nvarchar" MaxLength="128" />
+          <Property Name="DocDate" Type="datetime" />
+          <Property Name="Show" Type="int" />
+          <Property Name="LockCount" Type="int" />
+        </EntityType>
+        <EntityType Name="Gateway">
+          <Key>
+            <PropertyRef Name="MacAddress" />
+          </Key>
+          <Property Name="MacAddress" Type="nvarchar" MaxLength="25" Nullable="false" />
+          <Property Name="SimCard" Type="nvarchar" MaxLength="15" />
+          <Property Name="X" Type="decimal" Precision="18" Scale="10" />
+          <Property Name="Y" Type="decimal" Precision="18" Scale="10" />
+          <Property Name="Description" Type="text" />
+          <Property Name="InstallationDate" Type="datetime" />
+          <Property Name="MaintenanceDate" Type="datetime" />
+          <Property Name="Status" Type="nvarchar" MaxLength="10" />
+          <Property Name="IPAddress" Type="nvarchar" MaxLength="50" />
+          <Property Name="DMZId" Type="int" />
+          <Property Name="CityId" Type="nvarchar" MaxLength="40" />
+          <Property Name="Createdby" Type="nvarchar" MaxLength="128" />
+          <Property Name="Editedby" Type="nvarchar" MaxLength="128" />
+          <Property Name="DocDate" Type="datetime" />
+          <Property Name="Show" Type="int" />
+          <Property Name="LockCount" Type="int" />
+        </EntityType>
+        <EntityType Name="GatewayLog">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="RDS" Type="int" />
+          <Property Name="OMS" Type="int" />
+          <Property Name="GatewayMacAddress" Type="nvarchar" MaxLength="40" />
+          <Property Name="CSVFilename" Type="nvarchar" MaxLength="40" />
+          <Property Name="Createdby" Type="nvarchar" MaxLength="40" />
+          <Property Name="Editedby" Type="nvarchar" MaxLength="40" />
+          <Property Name="DocDate" Type="datetime" />
+          <Property Name="Show" Type="int" />
+          <Property Name="LockCount" Type="int" />
+        </EntityType>
+        <EntityType Name="LatestMeterReading">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="SerialNumber" Type="nvarchar(max)" />
+          <Property Name="ReadingDate" Type="datetime" />
+          <Property Name="ReadingValue" Type="nvarchar" MaxLength="300" />
+          <Property Name="LowBatteryAlr" Type="int" />
+          <Property Name="LeakAlr" Type="int" />
+          <Property Name="MagneticTamperAlr" Type="int" />
+          <Property Name="MeterErrorAlr" Type="int" />
+          <Property Name="BackFlowAlr" Type="int" />
+          <Property Name="BrokenPipeAlr" Type="int" />
+          <Property Name="EmptyPipeAlr" Type="int" />
+          <Property Name="SpecificErr" Type="int" />
+          <Property Name="Createdby" Type="nvarchar" MaxLength="40" />
+          <Property Name="Editedby" Type="nvarchar" MaxLength="40" />
+          <Property Name="DocDate" Type="datetime" />
+          <Property Name="Show" Type="int" />
+          <Property Name="LockCount" Type="int" />
+        </EntityType>
+        <EntityType Name="Meter">
+          <Key>
+            <PropertyRef Name="SerialNumber" />
+          </Key>
+          <Property Name="SerialNumber" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="X" Type="decimal" Precision="18" Scale="10" />
+          <Property Name="Y" Type="decimal" Precision="18" Scale="10" />
+          <Property Name="Status" Type="nvarchar" MaxLength="15" />
+          <Property Name="HCN" Type="text" />
+          <Property Name="InstallationDate" Type="datetime" />
+          <Property Name="MaintenanceDate" Type="datetime" />
+          <Property Name="MeterTypeId" Type="int" />
+          <Property Name="MeterSizeId" Type="int" />
+          <Property Name="MeterProtocolId" Type="int" />
+          <Property Name="DMZId" Type="int" />
+          <Property Name="CityId" Type="nvarchar" MaxLength="40" />
+          <Property Name="MacAddress" Type="nvarchar" MaxLength="25" />
+          <Property Name="Createdby" Type="nvarchar" MaxLength="40" />
+          <Property Name="Editedby" Type="nvarchar" MaxLength="40" />
+          <Property Name="DocDate" Type="datetime" />
+          <Property Name="Show" Type="int" />
+          <Property Name="LockCount" Type="int" />
+        </EntityType>
+        <EntityType Name="MeterProtocol">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Description" Type="nvarchar" MaxLength="256" />
+          <Property Name="Createdby" Type="nvarchar" MaxLength="40" />
+          <Property Name="Editedby" Type="nvarchar" MaxLength="40" />
+          <Property Name="DocDate" Type="datetime" />
+          <Property Name="Show" Type="int" />
+          <Property Name="LockCount" Type="int" />
+        </EntityType>
+        <EntityType Name="MeterReading">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="SerialNumber" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="ReadingDate" Type="datetime" />
+          <Property Name="ReadingValue" Type="nvarchar" MaxLength="300" />
+          <Property Name="LowBatteryAlr" Type="int" />
+          <Property Name="LeakAlr" Type="int" />
+          <Property Name="MagneticTamperAlr" Type="int" />
+          <Property Name="MeterErrorAlr" Type="int" />
+          <Property Name="BackFlowAlr" Type="int" />
+          <Property Name="BrokenPipeAlr" Type="int" />
+          <Property Name="EmptyPipeAlr" Type="int" />
+          <Property Name="SpecificErr" Type="int" />
+          <Property Name="MacAddress" Type="nvarchar" MaxLength="25" />
+          <Property Name="Createdby" Type="nvarchar" MaxLength="40" />
+          <Property Name="Editedby" Type="nvarchar" MaxLength="40" />
+          <Property Name="DocDate" Type="datetime" />
+          <Property Name="Show" Type="int" />
+          <Property Name="LockCount" Type="int" />
+        </EntityType>
+        <EntityType Name="MeterSize">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Description" Type="nvarchar" MaxLength="256" />
+          <Property Name="Createdby" Type="nvarchar" MaxLength="40" />
+          <Property Name="Editedby" Type="nvarchar" MaxLength="40" />
+          <Property Name="DocDate" Type="datetime" />
+          <Property Name="Show" Type="int" />
+          <Property Name="LockCount" Type="int" />
+        </EntityType>
+        <EntityType Name="MeterType">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Description" Type="nvarchar" MaxLength="256" />
+          <Property Name="Createdby" Type="nvarchar" MaxLength="256" />
+          <Property Name="Editedby" Type="nvarchar" MaxLength="256" />
+          <Property Name="DocDate" Type="datetime" />
+          <Property Name="Show" Type="int" />
+          <Property Name="LockCount" Type="int" />
+        </EntityType>
+        <EntityType Name="Roles">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="Description" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="UserInfo">
+          <Key>
+            <PropertyRef Name="Username" />
+          </Key>
+          <Property Name="Id" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="Username" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="Password" Type="nvarchar" MaxLength="128" />
+          <Property Name="Name" Type="nvarchar" MaxLength="128" />
+          <Property Name="Role" Type="nvarchar" MaxLength="128" />
+          <Property Name="SecurityQuestion" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="SecurityAnswer" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="IsActive" Type="bit" />
+        </EntityType>
+        <Function Name="REPORT_CITY_DEL" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" StoreFunctionName="REPORT CITY_DEL">
+          <Parameter Name="Id" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="REPORT_CITY_INS" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" StoreFunctionName="REPORT CITY_INS">
+          <Parameter Name="Id" Type="nvarchar" Mode="In" />
+          <Parameter Name="Description" Type="nvarchar" Mode="In" />
+          <Parameter Name="TotalNumberOfMeters" Type="int" Mode="In" />
+          <Parameter Name="Createdby" Type="nvarchar" Mode="In" />
+          <Parameter Name="DocDate" Type="datetime" Mode="In" />
+          <Parameter Name="Show" Type="int" Mode="In" />
+          <Parameter Name="LockCount" Type="int" Mode="In" />
+        </Function>
+        <Function Name="REPORT_CITY_UPD" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" StoreFunctionName="REPORT CITY_UPD">
+          <Parameter Name="Id" Type="nvarchar" Mode="In" />
+          <Parameter Name="Description" Type="nvarchar" Mode="In" />
+          <Parameter Name="Editedby" Type="nvarchar" Mode="In" />
+          <Parameter Name="DocDate" Type="datetime" Mode="In" />
+          <Parameter Name="Show" Type="int" Mode="In" />
+          <Parameter Name="LockCount" Type="int" Mode="In" />
+        </Function>
+        <EntityContainer Name="TMF_Meter_ReadingsModelStoreContainer">
+          <EntitySet Name="City" EntityType="Self.City" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DMZ" EntityType="Self.DMZ" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Gateway" EntityType="Self.Gateway" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="GatewayLog" EntityType="Self.GatewayLog" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="LatestMeterReading" EntityType="Self.LatestMeterReading" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Meter" EntityType="Self.Meter" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MeterProtocol" EntityType="Self.MeterProtocol" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MeterReading" EntityType="Self.MeterReading" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MeterSize" EntityType="Self.MeterSize" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MeterType" EntityType="Self.MeterType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Roles" EntityType="Self.Roles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UserInfo" EntityType="Self.UserInfo" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="TMF_Meter_ReadingsModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="City">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" MaxLength="40" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="TotalNumberOfMeters" Type="Int32" />
+          <Property Name="Createdby" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="Editedby" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="DocDate" Type="DateTime" Precision="3" />
+          <Property Name="Show" Type="Int32" />
+          <Property Name="LockCount" Type="Int32" />
+        </EntityType>
+        <EntityType Name="DMZ">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Description" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="TotalNumberOfMeters" Type="Int32" />
+          <Property Name="CityId" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
+          <Property Name="Createdby" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="Editedby" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="DocDate" Type="DateTime" Precision="3" />
+          <Property Name="Show" Type="Int32" />
+          <Property Name="LockCount" Type="Int32" />
+        </EntityType>
+        <EntityType Name="Gateway">
+          <Key>
+            <PropertyRef Name="MacAddress" />
+          </Key>
+          <Property Name="MacAddress" Type="String" MaxLength="25" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="SimCard" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="X" Type="Decimal" Precision="18" Scale="10" />
+          <Property Name="Y" Type="Decimal" Precision="18" Scale="10" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="InstallationDate" Type="DateTime" Precision="3" />
+          <Property Name="MaintenanceDate" Type="DateTime" Precision="3" />
+          <Property Name="Status" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="IPAddress" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="DMZId" Type="Int32" />
+          <Property Name="CityId" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
+          <Property Name="Createdby" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="Editedby" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="DocDate" Type="DateTime" Precision="3" />
+          <Property Name="Show" Type="Int32" />
+          <Property Name="LockCount" Type="Int32" />
+        </EntityType>
+        <EntityType Name="GatewayLog">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" />
+          <Property Name="RDS" Type="Int32" />
+          <Property Name="OMS" Type="Int32" />
+          <Property Name="GatewayMacAddress" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
+          <Property Name="CSVFilename" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
+          <Property Name="Createdby" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
+          <Property Name="Editedby" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
+          <Property Name="DocDate" Type="DateTime" Precision="3" />
+          <Property Name="Show" Type="Int32" />
+          <Property Name="LockCount" Type="Int32" />
+        </EntityType>
+        <EntityType Name="LatestMeterReading">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" />
+          <Property Name="SerialNumber" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ReadingDate" Type="DateTime" Precision="3" />
+          <Property Name="ReadingValue" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Name="LowBatteryAlr" Type="Int32" />
+          <Property Name="LeakAlr" Type="Int32" />
+          <Property Name="MagneticTamperAlr" Type="Int32" />
+          <Property Name="MeterErrorAlr" Type="Int32" />
+          <Property Name="BackFlowAlr" Type="Int32" />
+          <Property Name="BrokenPipeAlr" Type="Int32" />
+          <Property Name="EmptyPipeAlr" Type="Int32" />
+          <Property Name="SpecificErr" Type="Int32" />
+          <Property Name="Createdby" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
+          <Property Name="Editedby" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
+          <Property Name="DocDate" Type="DateTime" Precision="3" />
+          <Property Name="Show" Type="Int32" />
+          <Property Name="LockCount" Type="Int32" />
+        </EntityType>
+        <EntityType Name="Meter">
+          <Key>
+            <PropertyRef Name="SerialNumber" />
+          </Key>
+          <Property Name="SerialNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="X" Type="Decimal" Precision="18" Scale="10" />
+          <Property Name="Y" Type="Decimal" Precision="18" Scale="10" />
+          <Property Name="Status" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="HCN" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="InstallationDate" Type="DateTime" Precision="3" />
+          <Property Name="MaintenanceDate" Type="DateTime" Precision="3" />
+          <Property Name="MeterTypeId" Type="Int32" />
+          <Property Name="MeterSizeId" Type="Int32" />
+          <Property Name="MeterProtocolId" Type="Int32" />
+          <Property Name="DMZId" Type="Int32" />
+          <Property Name="CityId" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
+          <Property Name="MacAddress" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
+          <Property Name="Createdby" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
+          <Property Name="Editedby" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
+          <Property Name="DocDate" Type="DateTime" Precision="3" />
+          <Property Name="Show" Type="Int32" />
+          <Property Name="LockCount" Type="Int32" />
+        </EntityType>
+        <EntityType Name="MeterProtocol">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Description" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="Createdby" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
+          <Property Name="Editedby" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
+          <Property Name="DocDate" Type="DateTime" Precision="3" />
+          <Property Name="Show" Type="Int32" />
+          <Property Name="LockCount" Type="Int32" />
+        </EntityType>
+        <EntityType Name="MeterReading">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" />
+          <Property Name="SerialNumber" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ReadingDate" Type="DateTime" Precision="3" />
+          <Property Name="ReadingValue" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Name="LowBatteryAlr" Type="Int32" />
+          <Property Name="LeakAlr" Type="Int32" />
+          <Property Name="MagneticTamperAlr" Type="Int32" />
+          <Property Name="MeterErrorAlr" Type="Int32" />
+          <Property Name="BackFlowAlr" Type="Int32" />
+          <Property Name="BrokenPipeAlr" Type="Int32" />
+          <Property Name="EmptyPipeAlr" Type="Int32" />
+          <Property Name="SpecificErr" Type="Int32" />
+          <Property Name="MacAddress" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
+          <Property Name="Createdby" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
+          <Property Name="Editedby" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
+          <Property Name="DocDate" Type="DateTime" Precision="3" />
+          <Property Name="Show" Type="Int32" />
+          <Property Name="LockCount" Type="Int32" />
+        </EntityType>
+        <EntityType Name="MeterSize">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Description" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="Createdby" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
+          <Property Name="Editedby" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
+          <Property Name="DocDate" Type="DateTime" Precision="3" />
+          <Property Name="Show" Type="Int32" />
+          <Property Name="LockCount" Type="Int32" />
+        </EntityType>
+        <EntityType Name="MeterType">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Description" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="Createdby" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="Editedby" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="DocDate" Type="DateTime" Precision="3" />
+          <Property Name="Show" Type="Int32" />
+          <Property Name="LockCount" Type="Int32" />
+        </EntityType>
+        <EntityType Name="Role">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="UserInfo">
+          <Key>
+            <PropertyRef Name="Username" />
+          </Key>
+          <Property Name="Id" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Username" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Password" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="Name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="Role" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="SecurityQuestion" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="SecurityAnswer" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="IsActive" Type="Boolean" />
+        </EntityType>
+        <EntityContainer Name="TMF_Meter_ReadingsEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Cities" EntityType="Self.City" />
+          <EntitySet Name="DMZs" EntityType="Self.DMZ" />
+          <EntitySet Name="Gateways" EntityType="Self.Gateway" />
+          <EntitySet Name="GatewayLogs" EntityType="Self.GatewayLog" />
+          <EntitySet Name="LatestMeterReadings" EntityType="Self.LatestMeterReading" />
+          <EntitySet Name="Meters" EntityType="Self.Meter" />
+          <EntitySet Name="MeterProtocols" EntityType="Self.MeterProtocol" />
+          <EntitySet Name="MeterReadings" EntityType="Self.MeterReading" />
+          <EntitySet Name="MeterSizes" EntityType="Self.MeterSize" />
+          <EntitySet Name="MeterTypes" EntityType="Self.MeterType" />
+          <EntitySet Name="Roles" EntityType="Self.Role" />
+          <EntitySet Name="UserInfoes" EntityType="Self.UserInfo" />
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="TMF_Meter_ReadingsModelStoreContainer" CdmEntityContainer="TMF_Meter_ReadingsEntities">
+          <EntitySetMapping Name="Cities">
+            <EntityTypeMapping TypeName="TMF_Meter_ReadingsModel.City">
+              <MappingFragment StoreEntitySet="City">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="TotalNumberOfMeters" ColumnName="TotalNumberOfMeters" />
+                <ScalarProperty Name="Createdby" ColumnName="Createdby" />
+                <ScalarProperty Name="Editedby" ColumnName="Editedby" />
+                <ScalarProperty Name="DocDate" ColumnName="DocDate" />
+                <ScalarProperty Name="Show" ColumnName="Show" />
+                <ScalarProperty Name="LockCount" ColumnName="LockCount" />
+              </MappingFragment>
+            </EntityTypeMapping>
+            <EntityTypeMapping TypeName="TMF_Meter_ReadingsModel.City">
+              <ModificationFunctionMapping>
+                <InsertFunction FunctionName="TMF_Meter_ReadingsModel.Store.REPORT_CITY_INS">
+                  <ScalarProperty Name="Id" ParameterName="Id" />
+                  <ScalarProperty Name="LockCount" ParameterName="LockCount" />
+                  <ScalarProperty Name="Show" ParameterName="Show" />
+                  <ScalarProperty Name="DocDate" ParameterName="DocDate" />
+                  <ScalarProperty Name="Createdby" ParameterName="Createdby" />
+                  <ScalarProperty Name="TotalNumberOfMeters" ParameterName="TotalNumberOfMeters" />
+                  <ScalarProperty Name="Description" ParameterName="Description" />
+                </InsertFunction>
+                <UpdateFunction FunctionName="TMF_Meter_ReadingsModel.Store.REPORT_CITY_UPD">
+                  <ScalarProperty Name="LockCount" ParameterName="LockCount" Version="Current" />
+                  <ScalarProperty Name="Show" ParameterName="Show" Version="Current" />
+                  <ScalarProperty Name="DocDate" ParameterName="DocDate" Version="Current" />
+                  <ScalarProperty Name="Editedby" ParameterName="Editedby" Version="Current" />
+                  <ScalarProperty Name="Description" ParameterName="Description" Version="Current" />
+                  <ScalarProperty Name="Id" ParameterName="Id" Version="Current" />
+                </UpdateFunction>
+                <DeleteFunction FunctionName="TMF_Meter_ReadingsModel.Store.REPORT_CITY_DEL">
+                  <ScalarProperty Name="Id" ParameterName="Id" />
+                </DeleteFunction>
+              </ModificationFunctionMapping>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DMZs">
+            <EntityTypeMapping TypeName="TMF_Meter_ReadingsModel.DMZ">
+              <MappingFragment StoreEntitySet="DMZ">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="TotalNumberOfMeters" ColumnName="TotalNumberOfMeters" />
+                <ScalarProperty Name="CityId" ColumnName="CityId" />
+                <ScalarProperty Name="Createdby" ColumnName="Createdby" />
+                <ScalarProperty Name="Editedby" ColumnName="Editedby" />
+                <ScalarProperty Name="DocDate" ColumnName="DocDate" />
+                <ScalarProperty Name="Show" ColumnName="Show" />
+                <ScalarProperty Name="LockCount" ColumnName="LockCount" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Gateways">
+            <EntityTypeMapping TypeName="TMF_Meter_ReadingsModel.Gateway">
+              <MappingFragment StoreEntitySet="Gateway">
+                <ScalarProperty Name="MacAddress" ColumnName="MacAddress" />
+                <ScalarProperty Name="SimCard" ColumnName="SimCard" />
+                <ScalarProperty Name="X" ColumnName="X" />
+                <ScalarProperty Name="Y" ColumnName="Y" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="InstallationDate" ColumnName="InstallationDate" />
+                <ScalarProperty Name="MaintenanceDate" ColumnName="MaintenanceDate" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="IPAddress" ColumnName="IPAddress" />
+                <ScalarProperty Name="DMZId" ColumnName="DMZId" />
+                <ScalarProperty Name="CityId" ColumnName="CityId" />
+                <ScalarProperty Name="Createdby" ColumnName="Createdby" />
+                <ScalarProperty Name="Editedby" ColumnName="Editedby" />
+                <ScalarProperty Name="DocDate" ColumnName="DocDate" />
+                <ScalarProperty Name="Show" ColumnName="Show" />
+                <ScalarProperty Name="LockCount" ColumnName="LockCount" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="GatewayLogs">
+            <EntityTypeMapping TypeName="TMF_Meter_ReadingsModel.GatewayLog">
+              <MappingFragment StoreEntitySet="GatewayLog">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="RDS" ColumnName="RDS" />
+                <ScalarProperty Name="OMS" ColumnName="OMS" />
+                <ScalarProperty Name="GatewayMacAddress" ColumnName="GatewayMacAddress" />
+                <ScalarProperty Name="CSVFilename" ColumnName="CSVFilename" />
+                <ScalarProperty Name="Createdby" ColumnName="Createdby" />
+                <ScalarProperty Name="Editedby" ColumnName="Editedby" />
+                <ScalarProperty Name="DocDate" ColumnName="DocDate" />
+                <ScalarProperty Name="Show" ColumnName="Show" />
+                <ScalarProperty Name="LockCount" ColumnName="LockCount" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LatestMeterReadings">
+            <EntityTypeMapping TypeName="TMF_Meter_ReadingsModel.LatestMeterReading">
+              <MappingFragment StoreEntitySet="LatestMeterReading">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="SerialNumber" ColumnName="SerialNumber" />
+                <ScalarProperty Name="ReadingDate" ColumnName="ReadingDate" />
+                <ScalarProperty Name="ReadingValue" ColumnName="ReadingValue" />
+                <ScalarProperty Name="LowBatteryAlr" ColumnName="LowBatteryAlr" />
+                <ScalarProperty Name="LeakAlr" ColumnName="LeakAlr" />
+                <ScalarProperty Name="MagneticTamperAlr" ColumnName="MagneticTamperAlr" />
+                <ScalarProperty Name="MeterErrorAlr" ColumnName="MeterErrorAlr" />
+                <ScalarProperty Name="BackFlowAlr" ColumnName="BackFlowAlr" />
+                <ScalarProperty Name="BrokenPipeAlr" ColumnName="BrokenPipeAlr" />
+                <ScalarProperty Name="EmptyPipeAlr" ColumnName="EmptyPipeAlr" />
+                <ScalarProperty Name="SpecificErr" ColumnName="SpecificErr" />
+                <ScalarProperty Name="Createdby" ColumnName="Createdby" />
+                <ScalarProperty Name="Editedby" ColumnName="Editedby" />
+                <ScalarProperty Name="DocDate" ColumnName="DocDate" />
+                <ScalarProperty Name="Show" ColumnName="Show" />
+                <ScalarProperty Name="LockCount" ColumnName="LockCount" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Meters">
+            <EntityTypeMapping TypeName="TMF_Meter_ReadingsModel.Meter">
+              <MappingFragment StoreEntitySet="Meter">
+                <ScalarProperty Name="SerialNumber" ColumnName="SerialNumber" />
+                <ScalarProperty Name="X" ColumnName="X" />
+                <ScalarProperty Name="Y" ColumnName="Y" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="HCN" ColumnName="HCN" />
+                <ScalarProperty Name="InstallationDate" ColumnName="InstallationDate" />
+                <ScalarProperty Name="MaintenanceDate" ColumnName="MaintenanceDate" />
+                <ScalarProperty Name="MeterTypeId" ColumnName="MeterTypeId" />
+                <ScalarProperty Name="MeterSizeId" ColumnName="MeterSizeId" />
+                <ScalarProperty Name="MeterProtocolId" ColumnName="MeterProtocolId" />
+                <ScalarProperty Name="DMZId" ColumnName="DMZId" />
+                <ScalarProperty Name="CityId" ColumnName="CityId" />
+                <ScalarProperty Name="MacAddress" ColumnName="MacAddress" />
+                <ScalarProperty Name="Createdby" ColumnName="Createdby" />
+                <ScalarProperty Name="Editedby" ColumnName="Editedby" />
+                <ScalarProperty Name="DocDate" ColumnName="DocDate" />
+                <ScalarProperty Name="Show" ColumnName="Show" />
+                <ScalarProperty Name="LockCount" ColumnName="LockCount" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MeterProtocols">
+            <EntityTypeMapping TypeName="TMF_Meter_ReadingsModel.MeterProtocol">
+              <MappingFragment StoreEntitySet="MeterProtocol">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Createdby" ColumnName="Createdby" />
+                <ScalarProperty Name="Editedby" ColumnName="Editedby" />
+                <ScalarProperty Name="DocDate" ColumnName="DocDate" />
+                <ScalarProperty Name="Show" ColumnName="Show" />
+                <ScalarProperty Name="LockCount" ColumnName="LockCount" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MeterReadings">
+            <EntityTypeMapping TypeName="TMF_Meter_ReadingsModel.MeterReading">
+              <MappingFragment StoreEntitySet="MeterReading">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="SerialNumber" ColumnName="SerialNumber" />
+                <ScalarProperty Name="ReadingDate" ColumnName="ReadingDate" />
+                <ScalarProperty Name="ReadingValue" ColumnName="ReadingValue" />
+                <ScalarProperty Name="LowBatteryAlr" ColumnName="LowBatteryAlr" />
+                <ScalarProperty Name="LeakAlr" ColumnName="LeakAlr" />
+                <ScalarProperty Name="MagneticTamperAlr" ColumnName="MagneticTamperAlr" />
+                <ScalarProperty Name="MeterErrorAlr" ColumnName="MeterErrorAlr" />
+                <ScalarProperty Name="BackFlowAlr" ColumnName="BackFlowAlr" />
+                <ScalarProperty Name="BrokenPipeAlr" ColumnName="BrokenPipeAlr" />
+                <ScalarProperty Name="EmptyPipeAlr" ColumnName="EmptyPipeAlr" />
+                <ScalarProperty Name="SpecificErr" ColumnName="SpecificErr" />
+                <ScalarProperty Name="MacAddress" ColumnName="MacAddress" />
+                <ScalarProperty Name="Createdby" ColumnName="Createdby" />
+                <ScalarProperty Name="Editedby" ColumnName="Editedby" />
+                <ScalarProperty Name="DocDate" ColumnName="DocDate" />
+                <ScalarProperty Name="Show" ColumnName="Show" />
+                <ScalarProperty Name="LockCount" ColumnName="LockCount" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MeterSizes">
+            <EntityTypeMapping TypeName="TMF_Meter_ReadingsModel.MeterSize">
+              <MappingFragment StoreEntitySet="MeterSize">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Createdby" ColumnName="Createdby" />
+                <ScalarProperty Name="Editedby" ColumnName="Editedby" />
+                <ScalarProperty Name="DocDate" ColumnName="DocDate" />
+                <ScalarProperty Name="Show" ColumnName="Show" />
+                <ScalarProperty Name="LockCount" ColumnName="LockCount" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MeterTypes">
+            <EntityTypeMapping TypeName="TMF_Meter_ReadingsModel.MeterType">
+              <MappingFragment StoreEntitySet="MeterType">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Createdby" ColumnName="Createdby" />
+                <ScalarProperty Name="Editedby" ColumnName="Editedby" />
+                <ScalarProperty Name="DocDate" ColumnName="DocDate" />
+                <ScalarProperty Name="Show" ColumnName="Show" />
+                <ScalarProperty Name="LockCount" ColumnName="LockCount" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Roles">
+            <EntityTypeMapping TypeName="TMF_Meter_ReadingsModel.Role">
+              <MappingFragment StoreEntitySet="Roles">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserInfoes">
+            <EntityTypeMapping TypeName="TMF_Meter_ReadingsModel.UserInfo">
+              <MappingFragment StoreEntitySet="UserInfo">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Username" ColumnName="Username" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Role" ColumnName="Role" />
+                <ScalarProperty Name="SecurityQuestion" ColumnName="SecurityQuestion" />
+                <ScalarProperty Name="SecurityAnswer" ColumnName="SecurityAnswer" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
