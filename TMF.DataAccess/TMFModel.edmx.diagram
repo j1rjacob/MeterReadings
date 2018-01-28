@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="5d631932476641fb81c8c1337ad62ce2" Name="Diagram1">
+      <Diagram DiagramId="a9ea09f6ffbd4823831db49fb9c99402" Name="Diagram1">
         <EntityTypeShape EntityType="TMF_Meter_ReadingsModel.City" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="TMF_Meter_ReadingsModel.DMZ" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="TMF_Meter_ReadingsModel.Gateway" Width="1.5" PointX="4.75" PointY="0.75" IsExpanded="true" />

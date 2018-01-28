@@ -453,13 +453,13 @@
             <EntityTypeMapping TypeName="TMF_Meter_ReadingsModel.City">
               <ModificationFunctionMapping>
                 <InsertFunction FunctionName="TMF_Meter_ReadingsModel.Store.REPORT_CITY_INS">
-                  <ScalarProperty Name="Id" ParameterName="Id" />
                   <ScalarProperty Name="LockCount" ParameterName="LockCount" />
                   <ScalarProperty Name="Show" ParameterName="Show" />
                   <ScalarProperty Name="DocDate" ParameterName="DocDate" />
                   <ScalarProperty Name="Createdby" ParameterName="Createdby" />
                   <ScalarProperty Name="TotalNumberOfMeters" ParameterName="TotalNumberOfMeters" />
                   <ScalarProperty Name="Description" ParameterName="Description" />
+                  <ScalarProperty Name="Id" ParameterName="Id" />
                 </InsertFunction>
                 <UpdateFunction FunctionName="TMF_Meter_ReadingsModel.Store.REPORT_CITY_UPD">
                   <ScalarProperty Name="LockCount" ParameterName="LockCount" Version="Current" />

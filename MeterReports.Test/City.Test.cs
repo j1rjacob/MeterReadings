@@ -1,5 +1,6 @@
 ﻿using NUnit.Framework;
 using System;
+using System.Linq;
 using TMF.Core;
 using TMF.Core.Model;
 using TMF.DataAccess;
@@ -31,7 +32,7 @@ namespace MeterReports.Test
             bool flag = false;
             //try
             //{
-                using (var context = new TMF_Meter_ReadingsEntities())
+                using (var context = new TMF_Meter_ReadingsEntities("TMF_Meter_ReadingsEntities"))
                 {
                     var city = new TMF.DataAccess.City()
                     {
@@ -56,17 +57,15 @@ namespace MeterReports.Test
                     //context.SaveChanges();
                 }
             //}
-            //catch (Exception e)
+            //catch (Exception)
             //{
             //    flag = false;
-            //    //Console.WriteLine(e);
-            //    //throw;
             //}
 
             //Act
             //var createCity = _city.Create(new SmartDB(), ref city);
             //bool flag = createCity.Code == ErrorEnum.NoError;
-            
+
             //Assert
             Assert.IsTrue(flag);
         }
@@ -129,11 +128,18 @@ namespace MeterReports.Test
         {
             //Arrange
             //Act
-            ReturnInfo city = _city.GetCityList(new SmartDB());
-            bool flag = city.Code == ErrorEnum.NoError;
+            //ReturnInfo city = _city.GetCityList(new SmartDB());
+            //bool flag = city.Code == ErrorEnum.NoError;
 
             //Assert
-            Assert.IsTrue(flag);
+            //Assert.IsTrue(flag);
+            int totCities = 0;
+            using (var context = new TMF_Meter_ReadingsEntities())
+            {
+                var query = context.Cities.ToList();
+                totCities = query.Count;
+            }
+            Assert.AreEqual(6, totCities);
         }
     }
 }

@@ -9,17 +9,22 @@
 
 namespace TMF.DataAccess
 {
-    using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
-    
+
     public partial class TMF_Meter_ReadingsEntities : DbContext
     {
         public TMF_Meter_ReadingsEntities()
             : base("name=TMF_Meter_ReadingsEntities")
         {
         }
-    
+
+        public TMF_Meter_ReadingsEntities(string connString)
+            : base(connString)
+        {
+                
+        }
+
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             throw new UnintentionalCodeFirstException();

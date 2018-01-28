@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{3229F7CA-8A69-47A0-9325-DC879E47E537}</ProjectGuid>
+    <ProjectGuid>{81596DCA-D24E-47C6-9639-D0B012174B73}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>TMF.DataAccess</RootNamespace>
@@ -103,32 +103,30 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <None Include="App.Config" />
+    <None Include="packages.config" />
     <EntityDeploy Include="TMFModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>TMFModel.Designer.cs</LastGenOutput>
     </EntityDeploy>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="App.Config" />
-    <None Include="packages.config" />
     <None Include="TMFModel.edmx.diagram">
       <DependentUpon>TMFModel.edmx</DependentUpon>
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
     <Content Include="TMFModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>TMFModel.Context.cs</LastGenOutput>
       <DependentUpon>TMFModel.edmx</DependentUpon>
+      <LastGenOutput>TMFModel.Context.cs</LastGenOutput>
     </Content>
     <Content Include="TMFModel.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>TMFModel.edmx</DependentUpon>
       <LastGenOutput>TMFModel.cs</LastGenOutput>
     </Content>
-  </ItemGroup>
-  <ItemGroup>
-    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

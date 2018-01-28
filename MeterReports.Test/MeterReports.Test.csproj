@@ -77,7 +77,7 @@
       <Name>TMF.Core</Name>
     </ProjectReference>
     <ProjectReference Include="..\TMF.DataAccess\TMF.DataAccess.csproj">
-      <Project>{3229f7ca-8a69-47a0-9325-dc879e47e537}</Project>
+      <Project>{81596dca-d24e-47c6-9639-d0b012174b73}</Project>
       <Name>TMF.DataAccess</Name>
     </ProjectReference>
     <ProjectReference Include="..\TMF.Reports\TMF.Reports.csproj">

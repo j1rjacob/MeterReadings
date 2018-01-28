@@ -333,6 +333,10 @@
       <Project>{c4aa963a-a0f5-412a-a5b1-5387cd565e6b}</Project>
       <Name>TMF.Core</Name>
     </ProjectReference>
+    <ProjectReference Include="..\TMF.DataAccess\TMF.DataAccess.csproj">
+      <Project>{81596dca-d24e-47c6-9639-d0b012174b73}</Project>
+      <Name>TMF.DataAccess</Name>
+    </ProjectReference>
     <ProjectReference Include="..\TMF.Maps\TMF.Maps.csproj">
       <Project>{2dc95f15-08e2-45b3-8983-e2c8c3a99503}</Project>
       <Name>TMF.Maps</Name>
